@@ -1,0 +1,8 @@
+htdocs/node_modules
+htdocs/public/hot
+htdocs/public/storage
+htdocs/vendor
+htdocs/package-lock.json
+htdocs/composer.lock
+htdocs/.idea
+htdocs/.vagrant
