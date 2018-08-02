@@ -7,6 +7,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -16,7 +17,8 @@ Vue.use(VueRouter);
  * router config
  */
 const routes = [
-  { path: '/login', component: require('./components/Login.vue') }
+  { path: '/login', component: require('./components/Login.vue') },
+  { path: '/', component: require('./components/Dashboard.vue') }
 ];
 
 const router = new VueRouter({
