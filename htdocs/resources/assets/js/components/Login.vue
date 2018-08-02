@@ -81,6 +81,10 @@
 
 
 <script>
+import * as Core from '../common/core/app';
+import * as Api from '../common/core/apiConfig';
+import * as Lib from '../common/ext/functions';
+
 export default {
   data() {
     return {
@@ -92,16 +96,31 @@ export default {
   },
   methods: {
     login: function() {
+        Core.log('[method] login');
 
-			axios.get(url, option)
-				.then(function(res) {
+        axios({
+          method : 'POST',
+          url    : Api.API_ENDPOINT_LIST['test'],
+          data   : this.auth
+        })
+        .then(function(res) {
+          Core.log('[axios] success');
+          Core.log(res);
 
-				})
-				.catch(function(err) {
+          // cookieにトークンセット
+          Lib.setToken();
 
-				});			
-		}
-		
+          // ダッシュボードにログイン
+          Lib.login();
+
+        })
+        .catch(function(err) {
+          Core.log('[axios] error');
+          Core.log(err);
+
+          alert('通信エラーが発生しました');
+        });			
+    }
   }
 };
 </script>
