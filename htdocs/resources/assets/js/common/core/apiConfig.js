@@ -1,6 +1,7 @@
 export const API_ENDPOINT_LIST = {
-  test: "/common/test/test.json",
-  login: "/api/auth/login",
+  login: "/api/authenticate",
+  logout: "",
+  auth: "/api/me"
 
 };
 
