@@ -26,7 +26,7 @@ const routes = [
   { path: '/login', component: require('./components/Login.vue') },
   { path: '/', component: require('./components/Dashboard.vue'), meta:{ requiresAuth: true } },
   { path: '/corpus', component: require('./components/Dashboard.vue'), meta:{ requiresAuth: true } },
-  { path: '/corpus/data/view/:corpusId', component: require('./components/CorpusDataView.vue'), meta:{ requiresAuth: true } },
+  { path: '/corpus/data/view/:corpusId', component: require('./components/corpusadmin/dataManage/Main.vue'), meta:{ requiresAuth: true } },
 ];
 
 const router = new VueRouter({
