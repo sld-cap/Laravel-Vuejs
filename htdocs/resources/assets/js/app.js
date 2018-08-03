@@ -24,7 +24,9 @@ Vue.use(VueRouter);
  */
 const routes = [
   { path: '/login', component: require('./components/Login.vue') },
-  { path: '/', component: require('./components/Dashboard.vue'), meta:{ requiresAuth: true } }
+  { path: '/', component: require('./components/Dashboard.vue'), meta:{ requiresAuth: true } },
+  { path: '/corpus', component: require('./components/Dashboard.vue'), meta:{ requiresAuth: true } },
+  { path: '/corpus/data/view/:corpusId', component: require('./components/CorpusDataView.vue'), meta:{ requiresAuth: true } },
 ];
 
 const router = new VueRouter({
@@ -52,6 +54,7 @@ router.beforeEach((to, from, next) => {
 				Core.log(res.data);
 
 				if(res.status === 200) {
+          CapApp.$data.me = res.data.user;
           next();
 				}
 			})
@@ -68,14 +71,17 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
-
-
 });
 
 /**
  * mount app
  */
-const app = new Vue({
+const CapApp = new Vue({
   el: '#app',
-  router
+  router,
+  data: function() {
+    return {
+      me: {}
+    }
+  }
 });
