@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "name": "コーパス名",
+  "description": "コーパスの説明文",
+  "status": 2,
+  "type": 0,
+  "is_production": 0,
+  "company_id": 1,
+  "language": 0,
+  "tmp_nlc_id": "djpw3m23r2p",
+  "create_user_id": 1,
+  "update_user_id": 2
+}
