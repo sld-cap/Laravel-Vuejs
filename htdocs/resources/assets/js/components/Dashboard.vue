@@ -3,7 +3,9 @@
   <div class="row">
     <div class="col-12">
       <h1>dashboard</h1>
-      <button @click="logout">ログアウト</button>
+      <ul>
+        <li><a href="/corpus/data/view/1">コーパス管理画面 -データ管理-</a></li>
+      </ul>
     </div>
     <!-- /.col-12 -->
   </div>
