@@ -1,4 +1,7 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/app.js": "/js/app.js?id=bd5a8a2635ed80d1a84d",
+    "/css/app.css": "/css/app.css?id=19214247ec8b1f7d17fd",
+    "/js/corpusadmin-core.js": "/js/corpusadmin-core.js?id=486527212d701cd6908d",
+    "/css/bootstrap.css": "/css/bootstrap.css?id=f7136bfa9002c298cfb0",
+    "/css/corpusadmin.css": "/css/corpusadmin.css?id=e61bf1a3b7c12717bc8b"
 }
