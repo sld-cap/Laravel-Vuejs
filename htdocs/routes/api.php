@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 Route::post('authenticate','UserController@authenticate');
 
 // コンテンツルート
-Route::group(['middleware' => 'jwt.auth'], function () {
+// Route::group(['middleware' => 'jwt.auth'], function () {
   Route::prefix('v1')->group(function () {
     // ユーザー情報
     Route::resource('users', 'UserController');
@@ -16,7 +16,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::resource('corpus', 'CorpusController');
 
   });
-});
+// });
 
 
 // curl -GET 127.0.0.1:8000/api/users -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.

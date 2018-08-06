@@ -49,10 +49,11 @@ class CorpusController extends Controller
     $res_array = array(
       'code' => 202,
       'message' => '',
-      'data' => Corpus::find(1)
+      'data' => Corpus::find($id)
     );
 
-    return $res_array;
+    return response()->json($res_array);
+
   }
 
   /**
