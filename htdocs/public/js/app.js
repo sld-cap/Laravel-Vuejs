@@ -2157,30 +2157,40 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   },
   created: function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-      var apiOption, res;
+      var apiOption, res, data;
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               __WEBPACK_IMPORTED_MODULE_1__common_core_app__["log"]('[created]');
+              __WEBPACK_IMPORTED_MODULE_1__common_core_app__["log"](this.corpusId);
 
               apiOption = __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__["API_ENDPOINT_LIST"]['getCorpus'];
 
-              apiOption.data = { corpus_id: this.corpusId };
+              apiOption.url = apiOption.url.replace(/{corpus}/g, this.corpusId);
 
-              _context.next = 5;
+              _context.next = 6;
               return __WEBPACK_IMPORTED_MODULE_3__common_core_ajax__["execAjax"](apiOption);
 
-            case 5:
+            case 6:
               res = _context.sent;
 
               if ('status' in res && res.status === 200) {
-                this.corpusInfo = res.data;
+                // 通信成功
+                data = res.data;
+
+                if (data.code === 200 || data.code === 202) {
+                  __WEBPACK_IMPORTED_MODULE_1__common_core_app__["log"]('成功');
+                  this.corpusInfo = data.data;
+                  __WEBPACK_IMPORTED_MODULE_4__common_ext_functions__["setCorpusAdminTitle"](this.corpusInfo.name);
+                } else {
+                  this.errorList = [data.message];
+                }
               } else {
                 this.errorList = [res];
               }
 
-            case 7:
+            case 8:
             case 'end':
               return _context.stop();
           }
@@ -49120,7 +49130,6 @@ router.beforeEach(function (to, from, next) {
         url: __WEBPACK_IMPORTED_MODULE_3__common_core_apiConfig__["API_ENDPOINT_LIST"]['auth']
       }).then(function (res) {
         __WEBPACK_IMPORTED_MODULE_2__common_core_app__["log"]('[axios] success');
-        __WEBPACK_IMPORTED_MODULE_2__common_core_app__["log"](res.data);
 
         if (res.status === 200) {
           CapApp.$data.me = res.data.user;
@@ -49250,10 +49259,9 @@ var API_ENDPOINT_LIST = {
 
   // コーパス管理画面
   getCorpus: {
-    url: "/stub/data/corpusData.json",
-    method: 'POST',
-    params: {},
-    data: {}
+    url: "/api/v1/corpus/{corpus}",
+    method: 'GET',
+    params: {}
   }
 };
 
@@ -49294,6 +49302,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["login"] = login;
 /* harmony export (immutable) */ __webpack_exports__["isAuth"] = isAuth;
 /* harmony export (immutable) */ __webpack_exports__["logout"] = logout;
+/* harmony export (immutable) */ __webpack_exports__["setCorpusAdminTitle"] = setCorpusAdminTitle;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie__ = __webpack_require__("./node_modules/jquery.cookie/jquery.cookie.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_cookie__);
@@ -49363,6 +49372,16 @@ function isAuth() {
 function logout() {
   delToken();
   location.href = '/login';
+}
+
+/**
+ * データ管理画面でタイトルを動的にセット
+ */
+function setCorpusAdminTitle(corpusName) {
+  // タイトルタグ書き換え
+  document.title = corpusName;
+  // ナビゲーションのコーパス名書き換え
+  $('#navCorpusName').text(corpusName);
 }
 
 /***/ }),

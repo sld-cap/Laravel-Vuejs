@@ -51,7 +51,6 @@ router.beforeEach((to, from, next) => {
 			})
 			.then(function(res) {
 				Core.log('[axios] success');
-				Core.log(res.data);
 
 				if(res.status === 200) {
           CapApp.$data.me = res.data.user;

@@ -5,10 +5,9 @@ export const API_ENDPOINT_LIST = {
 
   // コーパス管理画面
   getCorpus: {
-    url: "/stub/data/corpusData.json",
-    method: 'POST',
-    params: {},
-    data: {}
+    url: "/api/v1/corpus/{corpus}",
+    method: 'GET',
+    params: {}
   }
 };
 

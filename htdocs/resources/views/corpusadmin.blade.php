@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="/img/cap-icon.png">
-    <title>CAP --</title>
+    <title>CAP</title>
     <!-- Styles -->
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/corpusadmin.css" rel="stylesheet">
@@ -25,7 +25,7 @@
       </div>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#" style="color:white;font-weight:bold;font-size:1rem;"><span> - </span>corpus name</a>
+          <a class="nav-link" href="#" style="color:white;font-weight:bold;font-size:1rem;"> - <span id="navCorpusName"></span></a>
         </li>
       </ul>
       <ul class="navbar-nav px-3">

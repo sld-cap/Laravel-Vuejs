@@ -244,13 +244,23 @@ export default {
   },
   async created() {
     Core.log('[created]');
+    Core.log(this.corpusId);
 
     let apiOption = Api.API_ENDPOINT_LIST['getCorpus'];
-    apiOption.data = {corpus_id: this.corpusId};
+    apiOption.url = apiOption.url.replace(/{corpus}/g, this.corpusId);
 
     const res = await Ajax.execAjax(apiOption);
     if('status' in res && res.status === 200) {
-      this.corpusInfo = res.data;
+      // 通信成功
+      const data = res.data;
+      if(data.code === 200 || data.code === 202) {
+        Core.log('成功');
+        this.corpusInfo = data.data;
+        Lib.setCorpusAdminTitle(this.corpusInfo.name);
+      } else {
+        this.errorList = [data.message];
+      }
+      
     } else {
       this.errorList = [res];
     }

@@ -67,3 +67,13 @@ export function logout() {
   delToken();
   location.href = '/login';
 }
+
+/**
+ * データ管理画面でタイトルを動的にセット
+ */
+export function setCorpusAdminTitle(corpusName) {
+  // タイトルタグ書き換え
+  document.title = corpusName;
+  // ナビゲーションのコーパス名書き換え
+  $('#navCorpusName').text(corpusName);
+}
