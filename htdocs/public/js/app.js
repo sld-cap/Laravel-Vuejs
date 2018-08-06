@@ -49265,10 +49265,6 @@ var API_ENDPOINT_LIST = {
   }
 };
 
-// const API_OPTION = {
-
-// };
-
 /***/ }),
 
 /***/ "./resources/assets/js/common/core/app.js":
