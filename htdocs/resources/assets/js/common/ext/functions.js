@@ -1,7 +1,6 @@
 import * as Core from '../core/app';
 import 'jquery.cookie';
 
-
 const TOKEN_OPTION = {
   expires: 365,
   path: '/',
@@ -13,8 +12,7 @@ const TOKEN_OPTION = {
  * クッキーにトークンセット
  */
 export function setToken(token) {
-  Core.log('[setToken] ' + token);
-
+  Core.log(`[setToken] ${token}`);
   $.cookie('CAP-TOKEN', token, TOKEN_OPTION);
 }
 
