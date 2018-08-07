@@ -80,8 +80,9 @@
 
 <script>
 import * as Core from '../common/core/app';
-import * as Api from '../common/core/apiConfig';
+import * as Ajax from '../common/core/ajax';
 import * as Lib from '../common/ext/functions';
+import ApiConfig from '../common/core/apiConfig';
 
 export default {
   data() {
@@ -96,28 +97,13 @@ export default {
     login: function() {
 			Core.log('[method] login');
 
-			axios({
-				method : 'POST',
-				url    : Api.API_ENDPOINT_LIST['login'],
-				data   : this.auth
-			})
-			.then(function(res) {
-				Core.log('[axios] success');
-				Core.log(res.data);
+      const apiOption = Object.assign({}, ApiConfig['login']);
+      apiOption.data = {
+        email: this.auth.email,
+        password: this.auth.password
+      };
 
-				if(res.status === 200) {
-					// cookieにトークンセット
-          Lib.setToken(res.data.token);
-          // ダッシュボードにログイン
-					Lib.login();
-				}
-			})
-			.catch(function(err) {
-				Core.log('[axios] error');
-				Core.log(err);
-
-				alert('ログインできませんでした');
-			});			
+			Ajax.login(apiOption);
     }
   }
 };

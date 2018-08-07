@@ -20,7 +20,7 @@
   <body>
     <div id="app">
       <div class="container">
-        <router-view>
+        <router-view :me="me">
         </router-view>
       </div>
     </div>

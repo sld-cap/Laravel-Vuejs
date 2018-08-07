@@ -1,15 +1,15 @@
 <template>
   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-2">
-
+    
     <div class="row mt-3">
       <div class="col-12">
-        <ProductionStatus v-if="corpusInfo.is_production === 1" v-bind:alert-type="alertInfo">
+        <!-- <ProductionStatus v-if="corpusInfo.is_production === 1" v-bind:alert-type="alertInfo">
           <div slot="message">このコーパスは本番稼働中です</div>
-        </ProductionStatus>
+        </ProductionStatus> -->
         <!-- /.alert -->
-        <CorpusStatus v-if="corpusInfo.status === 3" v-bind:alert-type="alertWarning">
+        <!-- <CorpusStatus v-if="corpusInfo.status === 3" v-bind:alert-type="alertWarning">
           <div slot="message">このコーパスは学習中です。学習データの登録、編集、削除の操作はできません。</div>
-        </CorpusStatus>
+        </CorpusStatus> -->
         <!-- /.alert -->
       </div>
     </div>
@@ -33,12 +33,12 @@
     </div>
     <!-- /.row -->
 
-    <SuccessMsg v-if="successMsg !== ''" v-bind:alert-type="alertInfo">
+    <!-- <SuccessMsg v-if="successMsg !== ''" v-bind:alert-type="alertInfo">
       <div slot="message">{{ successMsg }}</div>
-    </SuccessMsg>
+    </SuccessMsg> -->
     <!-- /.alert -->
 
-    <ErrorMsg v-if="errorList.length > 0" v-bind:alert-type="alertDanger">
+    <!-- <ErrorMsg v-if="errorList.length > 0" v-bind:alert-type="alertDanger">
       <div slot="message">
         <ul>
           <li v-for="(error, i) in errorList" :key="i">
@@ -46,7 +46,7 @@
           </li>
         </ul>
       </div>
-    </ErrorMsg>
+    </ErrorMsg> -->
     <!-- /.alert -->
 
     <section class="viewCreativeContents mt-3" style="width:100%;">
@@ -78,12 +78,11 @@
           <!-- /.row -->
 
           <div class="row mt-2" v-if="corpusInfo.status === 1" >
-            <div class="col-12">
+            <!-- <div class="col-12">
               <NoTrainingData v-bind:alert-type="alertSecondary">
                 <div slot="message">学習データが登録されていません。まずは登録を行いましょう。</div>
               </NoTrainingData>
-            </div>
-            <!-- /.col-12 -->
+            </div> -->
           </div>
           <!-- /.row -->
 
@@ -97,10 +96,12 @@
             <div class="row" style="width:100%;height:450px;margin:0;">
               <div class="col-3 border" style="height:470px;padding:5px;overflow-y:scroll;background-color:#F8F9FA;">
                 <div class="nav flex-column nav-pills-brand" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                  <a class="nav-link h6 active" id="v-pills-tab_1" data-toggle="pill" href="#v-pills_1" role="tab" aria-controls="v-pills_1" aria-selected="true">
-                    <span>クラス名</span>
-                    <span class="badge badge-pill badge-light ml-1">1</span>
-                  </a>
+                  <template v-for="(data, key) in trainingData">
+                    <a class="nav-link h6 active" id="v-pills-tab_1" data-toggle="pill" href="#v-pills_1" role="tab" aria-controls="v-pills_1" aria-selected="true">
+                      <span>{{ data.name }}</span>
+                      <span class="badge badge-pill badge-light ml-1">{{ data.training_data_count }}</span>
+                    </a>
+                  </template>
                 </div>
                 <!-- /.nav -->
               </div>
@@ -189,9 +190,9 @@
     <!-- /#viewCreativeContents -->
 
 
-    <AddCreativeModal></AddCreativeModal>
+    <!-- <AddCreativeModal></AddCreativeModal> -->
     <!-- /.クラステキスト追加モーダル -->
-    <UploadCsvModal></UploadCsvModal>
+    <!-- <UploadCsvModal></UploadCsvModal> -->
     <!-- /.CSVアップロードモーダル -->
 
   </main>
@@ -200,9 +201,9 @@
 
 <script>
 import * as Core from '../../../common/core/app';
-import * as Api from '../../../common/core/apiConfig';
 import * as Ajax from '../../../common/core/ajax';
 import * as Lib from '../../../common/ext/functions';
+import ApiConfig from '../../../common/core/apiConfig';
 
 // モーダル
 import AddCreativeModal from './modal/AddCreativeModal.vue';
@@ -228,53 +229,35 @@ export default {
   props: ['me'],
   data() {
     return {
-      myInfo: this.me,
       corpusId: this.$route.params.corpusId,
-      corpusInfo: {},
-      trainingData: [],
-      testData: [],
-      successMsg: "",
-      errorList: [],
-      // alert
-      alertInfo: 'alert-info',
-      alertDanger: 'alert-danger',
-      alertWarning: 'alert-warning',
-      alertSecondary: 'alert-secondary',
     };
   },
-  async created() {
-    Core.log('[created]');
-    Core.log(this.corpusId);
-
-    let apiOption = Api.API_ENDPOINT_LIST['getCorpus'];
-    apiOption.url = apiOption.url.replace(/{corpus}/g, this.corpusId);
-
-    const res = await Ajax.execAjax(apiOption);
-    if('status' in res && res.status === 200) {
-      // 通信成功
-      const data = res.data;
-      if(data.code === 200 || data.code === 202) {
-        Core.log('成功');
-        this.corpusInfo = data.data;
-        Lib.setCorpusAdminTitle(this.corpusInfo.name);
-      } else {
-        this.errorList = [data.message];
-      }
-      
-    } else {
-      this.errorList = [res];
-    }
-    
+  computed: {
+    corpusInfo() {
+      return this.$store.getters.corpusInfo;
+    },
+    trainingData() {
+      return this.$store.getters.trainingData;
+    },
+  },
+  created() {
+    this.$store.commit('setCorpusId', { corpusId: this.corpusId });
+    // コーパス情報取得
+    this.$store.dispatch('getCorpusInfoAtDataManage');
+    // トレーニングデータ取得
+    this.$store.dispatch('getTrainingData');
   },
   updated: function() {
     Core.log('[updated]');
-    Core.log(this.corpusInfo);
   },
   mounted: function() {
     Core.log('[mounted]');
     feather.replace();
   },
   methods: {
+    setCorpusTitle() {
+      Core.log('[methods] setCorpusTitle');
+    }
   }
 };
 </script>
