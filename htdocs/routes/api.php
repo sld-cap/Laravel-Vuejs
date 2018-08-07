@@ -15,6 +15,9 @@ Route::post('authenticate','UserController@authenticate');
     // コーパス情報
     Route::resource('corpus', 'CorpusController');
 
+    //  教師データ情報
+    Route::resource('training-data', 'TrainingDataController');
+
   });
 // });
 
