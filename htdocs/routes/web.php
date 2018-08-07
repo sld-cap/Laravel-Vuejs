@@ -32,6 +32,12 @@ Route::get('/corpus/{any}', function () {
 })
 ->where('any', '.*');
 
+// vuex検証
+Route::get('/vuex/{any}', function () {
+    return view('corpusadmin');
+})
+->where('any', '.*');
+
 // ダッシュボード
 Route::get('/{any}', function () {
     return view('dashboard');
