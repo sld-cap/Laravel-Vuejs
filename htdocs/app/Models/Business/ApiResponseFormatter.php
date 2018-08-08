@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Bussiness;
+namespace App\Models\Business;
 
 /**
  * SPAでAPIサーバーからの返却値を整形するためのクラス

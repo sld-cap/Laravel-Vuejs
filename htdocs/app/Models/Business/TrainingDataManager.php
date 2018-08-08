@@ -163,6 +163,9 @@ class TrainingDataManager
         ->orderByRaw('CAST(training_data_count AS int) DESC')
         ->get();
         
+    $response_array['code'] = 200;
+    $response_array['message'] = 'Find sucessfull.';
+
     $class_roop_cnt = 0; // クラス個数カウンタ
     foreach($classes as $class) {
       $creatives = CorpusCreative::where('corpus_class_id', $class->id)

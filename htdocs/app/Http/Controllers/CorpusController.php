@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Corpus;
-use App\Models\Bussiness\ApiResponseFormatter;
+use App\Models\Business\ApiResponseFormatter;
 
 class CorpusController extends Controller
 {

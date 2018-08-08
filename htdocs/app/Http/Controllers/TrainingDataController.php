@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use App\Models\Corpus;
 
-use App\Models\Bussiness\ApiResponseFormatter;
+use App\Models\Business\ApiResponseFormatter;
 use App\Models\Business\TrainingDataManager;
 
 class TrainingDataController extends Controller
