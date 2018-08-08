@@ -3,13 +3,11 @@
     
     <div class="row mt-3">
       <div class="col-12">
-        <!-- <ProductionStatus v-if="corpusInfo.is_production === 1" v-bind:alert-type="alertInfo">
-          <div slot="message">このコーパスは本番稼働中です</div>
-        </ProductionStatus> -->
+        <ProductionNoticeAlert v-if="corpusInfo.is_production === '1'">
+        </ProductionNoticeAlert>
         <!-- /.alert -->
-        <!-- <CorpusStatus v-if="corpusInfo.status === 3" v-bind:alert-type="alertWarning">
-          <div slot="message">このコーパスは学習中です。学習データの登録、編集、削除の操作はできません。</div>
-        </CorpusStatus> -->
+        <IsTrainingAlert v-if="corpusInfo.status === '3'">
+        </IsTrainingAlert>
         <!-- /.alert -->
       </div>
     </div>
@@ -33,19 +31,23 @@
     </div>
     <!-- /.row -->
 
-    <!-- <SuccessMsg v-if="successMsg !== ''" v-bind:alert-type="alertInfo">
-      <div slot="message">{{ successMsg }}</div>
-    </SuccessMsg> -->
+    <div class="row mt-3">
+      <div class="col-12">
+        <SuccessAlert v-if="successMsg !== ''">
+        </SuccessAlert>
+        <!-- /.alert -->
+        <ErrorAlert v-if="errors.length > 0">
+        </ErrorAlert>
+        <!-- /.alert -->
+      </div>
+    </div>
+    <!-- /.row alert-area-->
+
+    
     <!-- /.alert -->
 
     <!-- <ErrorMsg v-if="errorList.length > 0" v-bind:alert-type="alertDanger">
-      <div slot="message">
-        <ul>
-          <li v-for="(error, i) in errorList" :key="i">
-            {{ error.message }}
-          </li>
-        </ul>
-      </div>
+    
     </ErrorMsg> -->
     <!-- /.alert -->
 
@@ -210,21 +212,23 @@ import AddCreativeModal from './modal/AddCreativeModal.vue';
 import UploadCsvModal from './modal/UploadCsvModal.vue';
 
 // アラート
-import ProductionStatus from '../common/Alert.vue';
+import ProductionNoticeAlert from './alert/ProductionNoticeAlert.vue';
+import IsTrainingAlert from './alert/IsTrainingAlert.vue';
+import SuccessAlert from './alert/SuccessAlert.vue';
+import ErrorAlert from './alert/ErrorAlert.vue';
 import CorpusStatus from '../common/Alert.vue';
 import NoTrainingData from '../common/Alert.vue';
-import SuccessMsg from '../common/Alert.vue';
-import ErrorMsg from '../common/Alert.vue';
 
 export default {
   components: {
+    ProductionNoticeAlert,
+    IsTrainingAlert,
+    SuccessAlert,
     AddCreativeModal, 
     UploadCsvModal,
-    ProductionStatus,
     CorpusStatus,
     NoTrainingData,
-    SuccessMsg,
-    ErrorMsg
+    ErrorAlert,
   },
   props: ['me'],
   data() {
@@ -238,6 +242,12 @@ export default {
     },
     trainingData() {
       return this.$store.getters.trainingData;
+    },
+    successMsg() {
+      return this.$store.getters.successMsg;
+    },
+    errors() {
+      return this.$store.getters.errors;
     },
   },
   created() {
