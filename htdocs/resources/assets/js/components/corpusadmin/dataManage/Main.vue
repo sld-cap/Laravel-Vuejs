@@ -43,14 +43,6 @@
     </div>
     <!-- /.row alert-area-->
 
-    
-    <!-- /.alert -->
-
-    <!-- <ErrorMsg v-if="errorList.length > 0" v-bind:alert-type="alertDanger">
-    
-    </ErrorMsg> -->
-    <!-- /.alert -->
-
     <section class="viewCreativeContents mt-3" style="width:100%;">
       <div class="tab-content" id="pills-tabContent">
 
