@@ -14,9 +14,8 @@ const store = new Vuex.Store({
     corpusId: '',
     corpusInfo: {},
     corpusClass: [],
-    trainingData: [{
-      
-    }],
+    trainingData: [],
+    successMsg: '',
     errors: [],
   },
   mutations: {
@@ -61,7 +60,10 @@ const store = new Vuex.Store({
     trainingData(state) {
       return state.trainingData;
     },
-    error(state) {
+    successMsg(state) {
+      return state.successMsg;
+    },
+    errors(state) {
       return state.errors;
     },
   },
