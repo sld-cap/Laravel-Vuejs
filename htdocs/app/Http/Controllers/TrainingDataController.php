@@ -56,7 +56,7 @@ class TrainingDataController extends Controller
             return response()->json( $train_data->loadTrainingDataAll() );
         } else {
             return response()->json([
-                'code' => '404', 
+                'code' => 404, 
                 'message' => 'Not Found.',
                 'error' => array(
                     'input_corpus_id' => $_corpus_id,

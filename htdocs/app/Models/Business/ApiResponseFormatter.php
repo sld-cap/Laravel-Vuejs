@@ -9,14 +9,14 @@ class ApiResponseFormatter
 {
   /** APIレスポンスの定型フォーマット */
   protected $format = array(
-    '200' => array('code' => '200', 'message' => '', 'data' => ''),     // 200 OK 
-    '400' => array('code' => '400', 'message' => '', 'errors' => ''),   // 400 Bad Request 
-    '401' => array('code' => '401', 'message' => '', 'errors' => ''),   // 401 Unauthorized
-    '403' => array('code' => '403', 'message' => '', 'errors' => ''),   // 403 Forbidden - 認証はされているが認可されていない
-    '404' => array('code' => '404', 'message' => '', 'errors' => ''),   // 404 Not Found 
-    '410' => array('code' => '410', 'message' => '', 'errors' => ''),   // 410 Gone - 今は存在しないリソース（廃止されたAPIなど）
-    '422' => array('code' => '422', 'message' => '', 'errors' => ''),   // 422 Unprocessable Entity - バリデーションエラー
-    '429' => array('code' => '429', 'message' => '', 'errors' => ''),   // 429 Too Many Requests - 回数制限をオーバー
+    '200' => array('code' => 200, 'message' => '', 'data' => ''),     // 200 OK 
+    '400' => array('code' => 400, 'message' => '', 'errors' => ''),   // 400 Bad Request 
+    '401' => array('code' => 401, 'message' => '', 'errors' => ''),   // 401 Unauthorized
+    '403' => array('code' => 403, 'message' => '', 'errors' => ''),   // 403 Forbidden - 認証はされているが認可されていない
+    '404' => array('code' => 404, 'message' => '', 'errors' => ''),   // 404 Not Found 
+    '410' => array('code' => 410, 'message' => '', 'errors' => ''),   // 410 Gone - 今は存在しないリソース（廃止されたAPIなど）
+    '422' => array('code' => 422, 'message' => '', 'errors' => ''),   // 422 Unprocessable Entity - バリデーションエラー
+    '429' => array('code' => 429, 'message' => '', 'errors' => ''),   // 429 Too Many Requests - 回数制限をオーバー
   );
 
   /** APIレスポンス用の配列 */
