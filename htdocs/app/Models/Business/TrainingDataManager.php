@@ -172,26 +172,26 @@ class TrainingDataManager
           ->orderBy('updated_at', 'desc')
           ->get();
 
-      $response_array[$class_roop_cnt]['class_id'] = $class->id;
-      $response_array[$class_roop_cnt]['name'] = $class->name;
-      $response_array[$class_roop_cnt]['corpus_id'] = $class->corpus_id;
-      $response_array[$class_roop_cnt]['threshold'] = $class->threshold;
-      $response_array[$class_roop_cnt]['training_data_count'] = $class->training_data_count;
-      $response_array[$class_roop_cnt]['test_data_count'] = $class->test_data_count;
-      $response_array[$class_roop_cnt]['created_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $class->created_at)->format('Y-m-d H:i:s');
-      $response_array[$class_roop_cnt]['updated_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $class->updated_at)->format('Y-m-d H:i:s');
+      $response_array['data'][$class_roop_cnt]['class_id'] = $class->id;
+      $response_array['data'][$class_roop_cnt]['name'] = $class->name;
+      $response_array['data'][$class_roop_cnt]['corpus_id'] = $class->corpus_id;
+      $response_array['data'][$class_roop_cnt]['threshold'] = $class->threshold;
+      $response_array['data'][$class_roop_cnt]['training_data_count'] = $class->training_data_count;
+      $response_array['data'][$class_roop_cnt]['test_data_count'] = $class->test_data_count;
+      $response_array['data'][$class_roop_cnt]['created_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $class->created_at)->format('Y-m-d H:i:s');
+      $response_array['data'][$class_roop_cnt]['updated_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $class->updated_at)->format('Y-m-d H:i:s');
    
       // $creative_roop_cnt = 0; // クリエイティブ個数カウンタ
       foreach($creatives as $creative) {
         $data_type = (int)$creative->data_type;
         if($data_type === CorpusDataType::Training) {
-          $response_array[$class_roop_cnt]['training_data'][] = array(
+          $response_array['data'][$class_roop_cnt]['training_data'][] = array(
             'creative_id' => $creative->id,
             'content' => $creative->content
           );
 
         } else if($data_type === CorpusDataType::Test) {
-          $response_array[$class_roop_cnt]['test_data'][] = array(
+          $response_array['data'][$class_roop_cnt]['test_data'][] = array(
             'creative_id' => $creative->id,
             'content' => $creative->content
           );

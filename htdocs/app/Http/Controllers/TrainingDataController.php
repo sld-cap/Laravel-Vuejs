@@ -55,7 +55,14 @@ class TrainingDataController extends Controller
             $train_data = new TrainingDataManager($_corpus_id);
             return response()->json( $train_data->loadTrainingDataAll() );
         } else {
-            return response()->json(['code' => '404', 'message' => 'Not Found.']);
+            return response()->json([
+                'code' => '404', 
+                'message' => 'Not Found.',
+                'error' => array(
+                    'input_corpus_id' => $_corpus_id,
+                    'error_message' => 'The specified corpus does not exist.'
+                )
+            ]);
         }
     }
 
