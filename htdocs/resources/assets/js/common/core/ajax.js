@@ -9,11 +9,7 @@ export function exec(option, commit, mutation) {
     // commit
     Core.log('[axios] success');
     Core.log(res);
-    // if(res.data.code === '200' || res.data.code === '202') {
     commit(mutation, res.data);
-    // } else {
-    //   commit('setError', res.data.data);
-    // }
   }).catch((err) => {
     // error
     Core.log('[axios] faild...');

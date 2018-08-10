@@ -28,6 +28,12 @@ const API_CONFIG = {
     method: 'GET',
     params: {},
   },
+  // クリエイティブデータ登録
+  addCreative: {
+    url: '/api/v1/training-data/{training_datum}',
+    method: 'POST',
+    data: {},
+  },
 };
 
 export default API_CONFIG;

@@ -1846,13 +1846,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/common/CommonModal.vue":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/common/Modal.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 //
 //
 //
@@ -1879,16 +1878,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['modalId'],
+  // props: [ 'modalId', 'modalSize' ],
+  props: ['modalSize'],
   data: function data() {
     return {
-      id: this.modalId
+      // id: this.modalId,
+      defaultModalClass: 'modal-dialog '
     };
   },
 
-  mounted: function mounted() {},
-  methods: {}
+  computed: {
+    modalClass: function modalClass() {
+      return this.defaultModalClass + this.modalSize;
+    }
+  },
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+  },
+  mounted: function mounted() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+  },
+  updated: function updated() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
+  },
+
+  methods: {
+    showModal: function showModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showModal]');
+    }
+  }
 });
 
 /***/ }),
@@ -1902,133 +1923,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modal_AddCreativeModal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/modal/AddCreativeModal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modal_AddCreativeModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__modal_AddCreativeModal_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modal_UploadCsvModal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/modal/UploadCsvModal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modal_UploadCsvModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__modal_UploadCsvModal_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__alert_ProductionNoticeAlert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/alert/ProductionNoticeAlert.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__alert_ProductionNoticeAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__alert_ProductionNoticeAlert_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__alert_IsTrainingAlert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/alert/IsTrainingAlert.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__alert_IsTrainingAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__alert_IsTrainingAlert_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__alert_SuccessAlert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/alert/SuccessAlert.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__alert_SuccessAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__alert_SuccessAlert_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__alert_ErrorAlert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/alert/ErrorAlert.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__alert_ErrorAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__alert_ErrorAlert_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_Alert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/common/Alert.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_Alert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__common_Alert_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__alert_ProductionNoticeAlert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/alert/ProductionNoticeAlert.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__alert_ProductionNoticeAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__alert_ProductionNoticeAlert_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__alert_IsTrainingAlert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/alert/IsTrainingAlert.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__alert_IsTrainingAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__alert_IsTrainingAlert_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__alert_SuccessAlert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/alert/SuccessAlert.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__alert_SuccessAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__alert_SuccessAlert_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__alert_ErrorAlert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/alert/ErrorAlert.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__alert_ErrorAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__alert_ErrorAlert_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__alert_NoTrainingDataAlert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/alert/NoTrainingDataAlert.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__alert_NoTrainingDataAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__alert_NoTrainingDataAlert_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__tab_TrainingDataManageActions_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataManageActions.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__tab_TrainingDataManageActions_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__tab_TrainingDataManageActions_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tab_TrainingDataTable_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataTable.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tab_TrainingDataTable_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__tab_TrainingDataTable_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__tab_TestDataManageActions_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataManageActions.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__tab_TestDataManageActions_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__tab_TestDataManageActions_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__tab_TestDataTable_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataTable.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__tab_TestDataTable_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__tab_TestDataTable_vue__);
 //
 //
 //
@@ -2113,11 +2025,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-
-
-
-
-// モーダル
 
 
 
@@ -2127,18 +2034,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+// データ管理
+
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    ProductionNoticeAlert: __WEBPACK_IMPORTED_MODULE_6__alert_ProductionNoticeAlert_vue___default.a,
-    IsTrainingAlert: __WEBPACK_IMPORTED_MODULE_7__alert_IsTrainingAlert_vue___default.a,
-    SuccessAlert: __WEBPACK_IMPORTED_MODULE_8__alert_SuccessAlert_vue___default.a,
-    AddCreativeModal: __WEBPACK_IMPORTED_MODULE_4__modal_AddCreativeModal_vue___default.a,
-    UploadCsvModal: __WEBPACK_IMPORTED_MODULE_5__modal_UploadCsvModal_vue___default.a,
-    CorpusStatus: __WEBPACK_IMPORTED_MODULE_10__common_Alert_vue___default.a,
-    NoTrainingData: __WEBPACK_IMPORTED_MODULE_10__common_Alert_vue___default.a,
-    ErrorAlert: __WEBPACK_IMPORTED_MODULE_9__alert_ErrorAlert_vue___default.a
+    // アラート
+    ProductionNoticeAlert: __WEBPACK_IMPORTED_MODULE_4__alert_ProductionNoticeAlert_vue___default.a, IsTrainingAlert: __WEBPACK_IMPORTED_MODULE_5__alert_IsTrainingAlert_vue___default.a, SuccessAlert: __WEBPACK_IMPORTED_MODULE_6__alert_SuccessAlert_vue___default.a, ErrorAlert: __WEBPACK_IMPORTED_MODULE_7__alert_ErrorAlert_vue___default.a, NoTrainingDataAlert: __WEBPACK_IMPORTED_MODULE_8__alert_NoTrainingDataAlert_vue___default.a,
+    // タブ
+    TrainingDataManageActions: __WEBPACK_IMPORTED_MODULE_9__tab_TrainingDataManageActions_vue___default.a, TrainingDataTable: __WEBPACK_IMPORTED_MODULE_10__tab_TrainingDataTable_vue___default.a, TestDataManageActions: __WEBPACK_IMPORTED_MODULE_11__tab_TestDataManageActions_vue___default.a, TestDataTable: __WEBPACK_IMPORTED_MODULE_12__tab_TestDataTable_vue___default.a
   },
   props: ['me'],
   data: function data() {
@@ -2163,9 +2070,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   created: function created() {
     this.$store.commit('setCorpusId', { corpusId: this.corpusId });
-    // コーパス情報取得
+    // 各種情報取得
     this.$store.dispatch('getCorpusInfoAtDataManage');
-    // トレーニングデータ取得
     this.$store.dispatch('getTrainingData');
   },
 
@@ -2176,11 +2082,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
     feather.replace();
   },
-  methods: {
-    setCorpusTitle: function setCorpusTitle() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[methods] setCorpusTitle');
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -2251,6 +2153,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       alertClass: 'alert alert-dismissible fade show alert-warning'
+    };
+  },
+
+  mounted: function mounted() {},
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/alert/NoTestDataAlert.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_Alert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/common/Alert.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_Alert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_Alert_vue__);
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Alert: __WEBPACK_IMPORTED_MODULE_0__common_Alert_vue___default.a
+  },
+  data: function data() {
+    return {
+      alertClass: 'alert alert-dismissible fade show alert-secondary'
+    };
+  },
+
+  mounted: function mounted() {},
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/alert/NoTrainingDataAlert.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_Alert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/common/Alert.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_Alert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_Alert_vue__);
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Alert: __WEBPACK_IMPORTED_MODULE_0__common_Alert_vue___default.a
+  },
+  data: function data() {
+    return {
+      alertClass: 'alert alert-dismissible fade show alert-secondary'
     };
   },
 
@@ -2334,8 +2300,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_CommonModal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/common/CommonModal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_CommonModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_CommonModal_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_Modal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/common/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_Modal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_Modal_vue__);
 //
 //
 //
@@ -2359,19 +2328,181 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_0__common_CommonModal_vue___default.a },
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_Modal_vue___default.a },
+  props: ['addFromData', 'showModal'],
+  data: function data() {
+    return {};
+  },
+
+  computed: {
+    modalTitle: function modalTitle() {
+      var title = '';
+      if (this.addFromData.dataType !== '') {
+        title = __WEBPACK_IMPORTED_MODULE_0__common_core_app__["CorpusDataType"][this.addFromData.dataType].label;
+      }
+      return title;
+    },
+    trainingData: function trainingData() {
+      return this.$store.getters.trainingData;
+    }
+  },
+  mounted: function mounted() {},
+
+  methods: {
+    closeModal: function closeModal() {
+      this.$emit('close');
+    },
+    addCreative: function addCreative() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[addCreative]');
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.addFromData);
+      //this.$store.dispatch('addCreative', this.addFromData);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/EditCreativeModal.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_Modal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/common/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_Modal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_Modal_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_Modal_vue___default.a },
+  props: ['editFromData', 'showModal'],
   data: function data() {
     return {
-      modalId: 'AddCreativeModal'
+      deleteData: {}
     };
   },
 
+  computed: {
+    modalTitle: function modalTitle() {
+      var title = '';
+      if (this.editFromData.dataType !== '') {
+        title = __WEBPACK_IMPORTED_MODULE_0__common_core_app__["CorpusDataType"][this.editFromData.dataType].label;
+      }
+      return title;
+    },
+    trainingData: function trainingData() {
+      return this.$store.getters.trainingData;
+    }
+  },
+  crated: function crated() {
+    this.resetDeleteCrativeModalParams();
+  },
   mounted: function mounted() {},
-  methods: {}
+
+  methods: {
+    closeModal: function closeModal() {
+      this.$emit('close');
+    },
+    saveCreative: function saveCreative() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[saveCreative]');
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.editFromData);
+      //this.$store.dispatch('addCreative', this.addFromData);
+    },
+    showDelCreativeModal: function showDelCreativeModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showDelCreativeModal]');
+      this.resetDeleteCrativeModalParams();
+    },
+
+    // 削除モーダル向け
+    confirmDeleteCreative: function confirmDeleteCreative() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[confirmDeleteCreative]');
+      if (confirm('テキストを削除しようとしています。\n本当に削除してもよろしいでしょうか？')) {
+        // 削除API処理
+        alert('削除処理実行: 未実装');
+        Lib.closeModal();
+      }
+    },
+
+    // 
+    resetDeleteCrativeModalParams: function resetDeleteCrativeModalParams() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetDeleteCrativeModalParams]');
+      this.deleteData = {
+        dataType: '',
+        creative_id: ''
+      };
+    }
+  }
 });
 
 /***/ }),
@@ -2381,8 +2512,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_CommonModal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/common/CommonModal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_CommonModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_CommonModal_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_Modal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/common/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_Modal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_Modal_vue__);
 //
 //
 //
@@ -2409,25 +2543,565 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
+
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_0__common_CommonModal_vue___default.a },
-  props: ['me'],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_Modal_vue___default.a },
+  props: ['uploadFormData', 'showModal'],
   data: function data() {
     return {
-      modalId: 'UploadCsvModal'
+      deleteData: {}
     };
   },
 
+  computed: {
+    modalTitle: function modalTitle() {
+      var title = '';
+      if (this.uploadFormData.dataType !== '') {
+        title = __WEBPACK_IMPORTED_MODULE_0__common_core_app__["CorpusDataType"][this.uploadFormData.dataType].label;
+      }
+      return title;
+    }
+  },
+  crated: function crated() {},
   mounted: function mounted() {},
-  methods: {}
+
+  methods: {
+    closeModal: function closeModal() {
+      this.$emit('close');
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataManageActions.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modal_AddCreativeModal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/modal/AddCreativeModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modal_AddCreativeModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__modal_AddCreativeModal_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modal_UploadCsvModal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/modal/UploadCsvModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modal_UploadCsvModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__modal_UploadCsvModal_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['trainingData'],
+  components: {
+    AddTestCreativeModal: __WEBPACK_IMPORTED_MODULE_3__modal_AddCreativeModal_vue___default.a, UploadTestDataCsvModal: __WEBPACK_IMPORTED_MODULE_4__modal_UploadCsvModal_vue___default.a
+  },
+  data: function data() {
+    return {
+      createModal: {},
+      uploadModal: {},
+      showAddTestCreativeModal: false,
+      UploadTestDataCsvModal: false
+    };
+  },
+
+  computed: {},
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+  },
+  mounted: function mounted() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+  },
+  updated: function updated() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
+  },
+
+  methods: {
+    showModal: function showModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showModal]');
+    },
+    closeModal: function closeModal() {
+      this.showAddTestCreativeModal = false;
+      this.UploadTestDataCsvModal = false;
+    },
+    setAddTestCreativeModal: function setAddTestCreativeModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setAddTestCreativeModal]');
+      this.resetAddCrativeModalParams();
+      this.createModal.dataType = 0;
+      // 先頭のクラスをselectedにする
+      this.createModal.classId = this.trainingData[0].class_id;
+      this.showAddTestCreativeModal = true;
+    },
+    setUploadTestDataCsvModal: function setUploadTestDataCsvModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setUploadTestDataCsvModal]');
+      this.resetUploadCsvModalParams();
+      this.uploadModal.dataType = 0;
+      this.UploadTestDataCsvModal = true;
+    },
+    resetAddCrativeModalParams: function resetAddCrativeModalParams() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetAddCrativeModalParams]');
+      this.createModal = {
+        content: '',
+        classId: '',
+        newClassName: '',
+        dataType: ''
+      };
+    },
+    resetUploadCsvModalParams: function resetUploadCsvModalParams() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetUploadCsvModalParams]');
+      this.uploadModal = {
+        dataType: ''
+      };
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataTable.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modal_EditCreativeModal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/modal/EditCreativeModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modal_EditCreativeModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__modal_EditCreativeModal_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__alert_NoTestDataAlert_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/alert/NoTestDataAlert.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__alert_NoTestDataAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__alert_NoTestDataAlert_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['trainingData'],
+  components: {
+    EditTestCreativeModal: __WEBPACK_IMPORTED_MODULE_3__modal_EditCreativeModal_vue___default.a, NoTestDataAlert: __WEBPACK_IMPORTED_MODULE_4__alert_NoTestDataAlert_vue___default.a
+  },
+  data: function data() {
+    return {
+      showEditTestCreativeModal: false,
+      editModal: {}
+    };
+  },
+
+  computed: {
+    testDataCount: function testDataCount() {
+      return this.$store.getters.testDataCount;
+    }
+  },
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+  },
+  mounted: function mounted() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+  },
+  updated: function updated() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
+  },
+
+  methods: {
+    showModal: function showModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showModal]');
+    },
+    closeModal: function closeModal() {
+      this.showEditTrainingCreativeModal = false;
+      this.showEditTestCreativeModal = false;
+    },
+
+    // 編集モーダル向け
+    setEditTestCreativeModal: function setEditTestCreativeModal(classIndex, creativeIndex) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setEditTestCreativeModal]');
+      this.resetEditCrativeModalParams();
+      this.editModal.dataType = 0;
+      // 対象のテストデータ取得
+      var classData = this.$store.getters.trainingClassData(classIndex);
+      this.editModal.classId = classData.class_id;
+      this.editModal.content = classData.test_data[creativeIndex].content;
+      this.showEditTestCreativeModal = true;
+    },
+    resetEditCrativeModalParams: function resetEditCrativeModalParams() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetEditCrativeModalParams]');
+      this.editModal = {
+        content: '',
+        classId: '',
+        dataType: ''
+      };
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataManageActions.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modal_AddCreativeModal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/modal/AddCreativeModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modal_AddCreativeModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__modal_AddCreativeModal_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modal_UploadCsvModal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/modal/UploadCsvModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modal_UploadCsvModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__modal_UploadCsvModal_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['trainingData'],
+  components: {
+    AddTrainingCreativeModal: __WEBPACK_IMPORTED_MODULE_3__modal_AddCreativeModal_vue___default.a, UploadTrainingDataCsvModal: __WEBPACK_IMPORTED_MODULE_4__modal_UploadCsvModal_vue___default.a
+  },
+  data: function data() {
+    return {
+      createModal: {},
+      uploadModal: {},
+      showAddTrainingCreativeModal: false,
+      UploadTrainingDataCsvModal: false
+    };
+  },
+
+  computed: {},
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+  },
+  mounted: function mounted() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+  },
+  updated: function updated() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
+  },
+
+  methods: {
+    showModal: function showModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showModal]');
+    },
+    closeModal: function closeModal() {
+      this.showAddTrainingCreativeModal = false;
+      this.UploadTrainingDataCsvModal = false;
+    },
+
+    // 登録モーダル向け
+    setAddTrainingCreativeModal: function setAddTrainingCreativeModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setAddTrainingCreativeModal]');
+      this.resetAddCrativeModalParams();
+      this.createModal.dataType = 1;
+      // 先頭のクラスをselectedにする
+      this.createModal.classId = this.trainingData[0].class_id;
+      this.showAddTrainingCreativeModal = true;
+    },
+
+    // アップロード系モーダル向け
+    setUploadTrainingDataCsvModal: function setUploadTrainingDataCsvModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setUploadTrainingDataCsvModal]');
+      this.resetUploadCsvModalParams();
+      this.uploadModal.dataType = 1;
+      this.UploadTrainingDataCsvModal = true;
+    },
+    resetAddCrativeModalParams: function resetAddCrativeModalParams() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetAddCrativeModalParams]');
+      this.createModal = {
+        content: '',
+        classId: '',
+        newClassName: '',
+        dataType: ''
+      };
+    },
+    resetUploadCsvModalParams: function resetUploadCsvModalParams() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetUploadCsvModalParams]');
+      this.uploadModal = {
+        dataType: ''
+      };
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataTable.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modal_EditCreativeModal_vue__ = __webpack_require__("./resources/assets/js/components/corpusadmin/dataManage/modal/EditCreativeModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modal_EditCreativeModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__modal_EditCreativeModal_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['trainingData'],
+  components: {
+    EditTrainingCreativeModal: __WEBPACK_IMPORTED_MODULE_3__modal_EditCreativeModal_vue___default.a
+  },
+  data: function data() {
+    return {
+      showEditTrainingCreativeModal: false,
+      editModal: {}
+    };
+  },
+
+  computed: {},
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+  },
+  mounted: function mounted() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+  },
+  updated: function updated() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
+  },
+
+  methods: {
+    showModal: function showModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showModal]');
+    },
+    closeModal: function closeModal() {
+      this.showEditTrainingCreativeModal = false;
+    },
+
+    // 編集モーダル向け
+    setEditTrainingCreativeModal: function setEditTrainingCreativeModal(classIndex, creativeIndex) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setEditTrainingCreativeModal] ' + classIndex + ' / ' + creativeIndex);
+      this.resetEditCrativeModalParams();
+      this.editModal.dataType = 1;
+      // 対象の学習データ取得
+      var classData = this.$store.getters.trainingClassData(classIndex);
+      this.editModal.classId = classData.class_id;
+      this.editModal.content = classData.training_data[creativeIndex].content;
+      this.showEditTrainingCreativeModal = true;
+    },
+    resetEditCrativeModalParams: function resetEditCrativeModalParams() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetEditCrativeModalParams]');
+      this.editModal = {
+        content: '',
+        classId: '',
+        dataType: ''
+      };
+    }
+  }
 });
 
 /***/ }),
@@ -4922,7 +5596,7 @@ if (typeof jQuery === 'undefined') {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f425130\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/AddCreativeModal.vue":
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-01948239\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataManageActions.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
@@ -4930,7 +5604,22 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b24e488\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/common/Modal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.modal-mask {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, .5);\n  display: table;\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n.modal-wrapper {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container {\n  width: 300px;\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n          box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n  margin-top: 0;\n  color: #42b983;\n}\n.modal-body {\n  margin: 20px 0;\n}\n.modal-default-button {\n  float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n  opacity: 0;\n}\n.modal-leave-active {\n  opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n  -webkit-transform: scale(1.1);\n  transform: scale(1.1);\n}\n", ""]);
 
 // exports
 
@@ -4952,7 +5641,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7a961ebb\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/UploadCsvModal.vue":
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4684f1f7\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataTable.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
@@ -4960,14 +5649,14 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c5e796c6\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/common/CommonModal.vue":
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-69b24ffe\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataManageActions.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
@@ -4975,7 +5664,22 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7b0757a2\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataTable.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -34048,6 +34752,202 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-01948239\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataManageActions.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "row" },
+    [
+      _c("div", { staticClass: "col-auto mr-auto" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-brand",
+            attrs: { type: "button" },
+            on: { click: _vm.setAddTrainingCreativeModal }
+          },
+          [
+            _c("span", {
+              staticStyle: { width: "20px", height: "20px" },
+              attrs: { "data-feather": "plus" }
+            }),
+            _vm._v(" "),
+            _c("span", [_vm._v("クラス/テキスト追加")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-auto" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-light",
+            attrs: { type: "button" },
+            on: { click: _vm.setUploadTrainingDataCsvModal }
+          },
+          [
+            _c("span", {
+              staticClass: "text-muted",
+              staticStyle: { width: "20px", height: "20px" },
+              attrs: { "data-feather": "upload" }
+            }),
+            _vm._v(" "),
+            _c("span", [_vm._v("CSVアップロード")])
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1)
+      ]),
+      _vm._v(" "),
+      _c("AddTrainingCreativeModal", {
+        attrs: {
+          showModal: _vm.showAddTrainingCreativeModal,
+          "add-from-data": _vm.createModal
+        },
+        on: { close: _vm.closeModal }
+      }),
+      _vm._v(" "),
+      _c("UploadTrainingDataCsvModal", {
+        attrs: {
+          showModal: _vm.UploadTrainingDataCsvModal,
+          "upload-form-data": _vm.uploadModal
+        },
+        on: { close: _vm.closeModal }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-light",
+        attrs: {
+          href: "/corpus/csv/download/1",
+          role: "button",
+          "aria-pressed": "true"
+        }
+      },
+      [
+        _c("span", {
+          staticClass: "text-muted",
+          staticStyle: { width: "20px", height: "20px" },
+          attrs: { "data-feather": "download" }
+        }),
+        _vm._v(" "),
+        _c("span", [_vm._v("CSVダウンロード")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-link", attrs: { type: "button" } },
+      [
+        _c("span", [
+          _c(
+            "a",
+            { attrs: { href: "/files/corpus-admin/training_data_sample.csv" } },
+            [_vm._v("サンプル")]
+          )
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-01948239", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0b24e488\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/common/Modal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("transition", { attrs: { name: "modal" } }, [
+    _c(
+      "div",
+      {
+        staticClass: "modal-mask",
+        on: {
+          click: function($event) {
+            if ($event.target !== $event.currentTarget) {
+              return null
+            }
+            _vm.$emit("close")
+          }
+        }
+      },
+      [
+        _c("div", { class: _vm.modalClass, attrs: { role: "document" } }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c("h5", { staticClass: "modal-title" }, [_vm._t("title")], 2),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "close",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.$emit("close")
+                    }
+                  }
+                },
+                [
+                  _c("span", { attrs: { "aria-hidden": "true" } }, [
+                    _vm._v("×")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [_vm._t("body")], 2),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [_vm._t("footer")], 2)
+          ])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0b24e488", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-199c9e07\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/vuex/Main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34118,27 +35018,171 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("CommonModal", { attrs: { modalId: _vm.modalId } }, [
-    _c("div", { attrs: { slot: "title" }, slot: "title" }, [
-      _vm._v("モーダルタイトル")
-    ]),
-    _vm._v(" "),
-    _c("div", { attrs: { slot: "body" }, slot: "body" }, [
-      _c(
-        "div",
-        { staticClass: "alert alert-warning", attrs: { role: "alert" } },
-        [_vm._v("\n      追加するデータを入力してください\n    ")]
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("保存する")]
-      )
-    ])
-  ])
+  return this.showModal
+    ? _c("CommonModal", { on: { close: _vm.closeModal } }, [
+        _c("div", { attrs: { slot: "title" }, slot: "title" }, [
+          _vm._v("クラス／テキスト追加（" + _vm._s(_vm.modalTitle) + "）")
+        ]),
+        _vm._v(" "),
+        _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+          _c(
+            "div",
+            { staticClass: "alert alert-warning", attrs: { role: "alert" } },
+            [_vm._v("\n      追加するデータを入力してください\n    ")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "addContent" } }, [
+              _vm._v("追加するテキスト")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.addFromData.content,
+                  expression: "addFromData.content"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "addContent", rows: "3", required: "" },
+              domProps: { value: _vm.addFromData.content },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.addFromData, "content", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("small", { staticClass: "form-text text-muted" }, [
+              _vm._v("1024文字以内で入力してください。")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "invalid-feedback" }, [
+              _vm._v("\n        テキストを入力してください\n      ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "label",
+              {
+                attrs: { for: "selectEditClass_" + this.addFromData.dataType }
+              },
+              [_vm._v("クラス選択")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.addFromData.classId,
+                    expression: "addFromData.classId"
+                  }
+                ],
+                staticClass: "form-control form-control-sm",
+                attrs: { id: "selectEditClass_" + this.addFromData.dataType },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.addFromData,
+                      "classId",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _vm._l(_vm.trainingData, function(classData) {
+                  return [
+                    _c(
+                      "option",
+                      {
+                        key: classData.class_id,
+                        domProps: { value: classData.class_id }
+                      },
+                      [_vm._v(_vm._s(classData.name))]
+                    )
+                  ]
+                }),
+                _vm._v(" "),
+                this.addFromData.dataType === 1
+                  ? _c("option", { attrs: { value: "" } }, [
+                      _vm._v("＋クラスを追加")
+                    ])
+                  : _vm._e()
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          this.addFromData.dataType === 1 && _vm.addFromData.classId === ""
+            ? _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "addClass" } }, [
+                  _vm._v("追加するクラス名")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.addFromData.newClassName,
+                      expression: "addFromData.newClassName"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "addClass" },
+                  domProps: { value: _vm.addFromData.newClassName },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.addFromData,
+                        "newClassName",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v("\n        クラス名を入力してください\n      ")
+                ])
+              ])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { type: "button" },
+              on: { click: _vm.addCreative }
+            },
+            [_vm._v("保存する")]
+          )
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -34245,6 +35289,155 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-32a583b7", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-39520b5e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/EditCreativeModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return this.showModal
+    ? _c("CommonModal", { on: { close: _vm.closeModal } }, [
+        _c("div", { attrs: { slot: "title" }, slot: "title" }, [
+          _vm._v("テキスト編集（" + _vm._s(_vm.modalTitle) + "）")
+        ]),
+        _vm._v(" "),
+        _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+          _c(
+            "div",
+            { staticClass: "alert alert-warning", attrs: { role: "alert" } },
+            [_vm._v("\n      クラス／テキストを変更できます\n    ")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "addContent" } }, [_vm._v("テキスト")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.editFromData.content,
+                  expression: "editFromData.content"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "addContent", rows: "3", required: "" },
+              domProps: { value: _vm.editFromData.content },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.editFromData, "content", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("small", { staticClass: "form-text text-muted" }, [
+              _vm._v("1024文字以内で入力してください。")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "invalid-feedback" }, [
+              _vm._v("\n        テキストを入力してください\n      ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "label",
+              {
+                attrs: { for: "selectEditClass_" + this.editFromData.dataType }
+              },
+              [_vm._v("クラス選択")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.editFromData.classId,
+                    expression: "editFromData.classId"
+                  }
+                ],
+                staticClass: "form-control form-control-sm",
+                attrs: { id: "selectEditClass_" + this.editFromData.dataType },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.editFromData,
+                      "classId",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _vm._l(_vm.trainingData, function(classData) {
+                  return [
+                    _c(
+                      "option",
+                      {
+                        key: classData.class_id,
+                        domProps: { value: classData.class_id }
+                      },
+                      [_vm._v(_vm._s(classData.name))]
+                    )
+                  ]
+                })
+              ],
+              2
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary",
+              attrs: { type: "button" },
+              on: { click: _vm.confirmDeleteCreative }
+            },
+            [_vm._v("削除する")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { type: "button" },
+              on: { click: _vm.saveCreative }
+            },
+            [_vm._v("変更する")]
+          )
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-39520b5e", module.exports)
   }
 }
 
@@ -34516,6 +35709,303 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4684f1f7\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataTable.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "testDataList" } },
+    [
+      _vm.testDataCount === 0
+        ? _c("div", { staticClass: "row mt-2" }, [
+            _c("div", { staticClass: "col-12" }, [_c("NoTestDataAlert")], 1)
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.testDataCount > 0
+        ? _c(
+            "div",
+            {
+              staticClass: "row mt-2",
+              staticStyle: { width: "100%", height: "30px", margin: "0" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "h6 col-3 border",
+                  staticStyle: {
+                    "margin-bottom": "0",
+                    padding: "5px",
+                    "background-color": "#E9ECEF"
+                  }
+                },
+                [_vm._v("クラス")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "h6 col-9 border",
+                  staticStyle: {
+                    "margin-bottom": "0",
+                    padding: "5px",
+                    "background-color": "#E9ECEF"
+                  }
+                },
+                [_vm._v("関連テキスト")]
+              )
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.testDataCount > 0
+        ? _c(
+            "div",
+            {
+              staticClass: "row",
+              staticStyle: { width: "100%", height: "450px", margin: "0" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "col-3 border",
+                  staticStyle: {
+                    height: "470px",
+                    padding: "5px",
+                    "overflow-y": "scroll",
+                    "background-color": "#F8F9FA"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "nav flex-column nav-pills-brand",
+                      attrs: {
+                        id: "v-pills-tab",
+                        role: "tablist",
+                        "aria-orientation": "vertical"
+                      }
+                    },
+                    [
+                      _vm._l(_vm.trainingData, function(classData, i) {
+                        return [
+                          i === 0
+                            ? _c(
+                                "a",
+                                {
+                                  key: classData.class_id,
+                                  staticClass: "nav-link test h6 active",
+                                  attrs: {
+                                    id: "v-pills-tab_1_" + i,
+                                    "data-toggle": "pill",
+                                    href: "#v-pills_1_" + i,
+                                    role: "tab",
+                                    "aria-controls": "v-pills_1_" + i,
+                                    "aria-selected": "true"
+                                  }
+                                },
+                                [
+                                  _c("span", [_vm._v(_vm._s(classData.name))]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "badge badge-pill badge-light ml-1"
+                                    },
+                                    [_vm._v(_vm._s(classData.test_data_count))]
+                                  )
+                                ]
+                              )
+                            : _c(
+                                "a",
+                                {
+                                  key: classData.class_id,
+                                  staticClass: "nav-link test h6",
+                                  attrs: {
+                                    id: "v-pills-tab_1_" + i,
+                                    "data-toggle": "pill",
+                                    href: "#v-pills_1_" + i,
+                                    role: "tab",
+                                    "aria-controls": "v-pills_1_" + i,
+                                    "aria-selected": "true"
+                                  }
+                                },
+                                [
+                                  _c("span", [_vm._v(_vm._s(classData.name))]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "badge badge-pill badge-light ml-1"
+                                    },
+                                    [_vm._v(_vm._s(classData.test_data_count))]
+                                  )
+                                ]
+                              )
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "col-9 border",
+                  staticStyle: {
+                    padding: "5px",
+                    height: "470px",
+                    "overflow-y": "scroll",
+                    "background-color": "#F8F9FA"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "tab-content",
+                      attrs: { id: "v-pills-tabContent" }
+                    },
+                    [
+                      _vm._l(_vm.trainingData, function(classData, i) {
+                        return [
+                          i === 0
+                            ? _c(
+                                "div",
+                                {
+                                  key: classData.class_id,
+                                  staticClass:
+                                    "tab-pane fade show list-group active",
+                                  attrs: {
+                                    id: "v-pills_1_" + i,
+                                    role: "tabpanel",
+                                    "aria-labelledby": "v-pills-tab_1_" + i
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "ul",
+                                    { staticClass: "corpusTextList" },
+                                    _vm._l(classData.test_data, function(
+                                      creative,
+                                      j
+                                    ) {
+                                      return _c(
+                                        "li",
+                                        { key: creative.creative_id },
+                                        [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "list-group-item list-group-item-action",
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.setEditTestCreativeModal(
+                                                    i,
+                                                    j
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [_vm._v(_vm._s(creative.content))]
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  )
+                                ]
+                              )
+                            : _c(
+                                "div",
+                                {
+                                  key: classData.class_id,
+                                  staticClass: "tab-pane fade show list-group",
+                                  attrs: {
+                                    id: "v-pills_1_" + i,
+                                    role: "tabpanel",
+                                    "aria-labelledby": "v-pills-tab_1_" + i
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "ul",
+                                    { staticClass: "corpusTextList" },
+                                    _vm._l(classData.test_data, function(
+                                      creative,
+                                      j
+                                    ) {
+                                      return _c(
+                                        "li",
+                                        { key: creative.creative_id },
+                                        [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "list-group-item list-group-item-action",
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.setEditTestCreativeModal(
+                                                    i,
+                                                    j
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [_vm._v(_vm._s(creative.content))]
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  )
+                                ]
+                              )
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                ]
+              )
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("EditTestCreativeModal", {
+        attrs: {
+          showModal: _vm.showEditTestCreativeModal,
+          "edit-from-data": _vm.editModal
+        },
+        on: { close: _vm.closeModal }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4684f1f7", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-57903bdd\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/alert/SuccessAlert.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34541,66 +36031,97 @@ if (false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7a961ebb\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/UploadCsvModal.vue":
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-69b24ffe\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataManageActions.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("CommonModal", { attrs: { modalId: _vm.modalId } }, [
-    _c("div", { attrs: { slot: "title" }, slot: "title" }, [
-      _vm._v("学習データのアップロード")
-    ]),
-    _vm._v(" "),
-    _c("div", { attrs: { slot: "body" }, slot: "body" }, [
-      _c(
-        "div",
-        { staticClass: "alert alert-danger mt-3", attrs: { role: "alert" } },
-        [
-          _c("ul", { staticStyle: { "margin-bottom": "0" } }, [
-            _c("li", [_vm._v("既に登録されている学習データは削除されます。")]),
+  return _c(
+    "div",
+    { staticClass: "row" },
+    [
+      _c("div", { staticClass: "col-auto mr-auto" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-info",
+            attrs: { type: "button" },
+            on: { click: _vm.setAddTestCreativeModal }
+          },
+          [
+            _c("span", {
+              staticStyle: { width: "20px", height: "20px" },
+              attrs: { "data-feather": "plus" }
+            }),
             _vm._v(" "),
-            _c("li", [
-              _vm._v("学習データは5-15,000件での範囲で準備してください。")
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _vm._v(
-                "学習データのテキストはそれぞれ1,024文字以内で準備してください。"
-              )
-            ])
-          ])
-        ]
-      ),
+            _c("span", [_vm._v("クラス/テキスト追加")])
+          ]
+        )
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group mt-4" }, [
-        _c("input", {
-          attrs: {
-            type: "file",
-            value: "ファイルを選択",
-            name: "csv_file",
-            required: ""
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
+      _c("div", { staticClass: "col-auto" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-light",
+            attrs: { type: "button" },
+            on: { click: _vm.setUploadTestDataCsvModal }
+          },
+          [
+            _c("span", {
+              staticClass: "text-muted",
+              staticStyle: { width: "20px", height: "20px" },
+              attrs: { "data-feather": "upload" }
+            }),
+            _vm._v(" "),
+            _c("span", [_vm._v("CSVアップロード")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("AddTestCreativeModal", {
+        attrs: {
+          showModal: _vm.showAddTestCreativeModal,
+          "add-from-data": _vm.createModal
         },
-        [_vm._v("閉じる")]
-      ),
+        on: { close: _vm.closeModal }
+      }),
       _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("アップロードする")]
-      )
+      _c("UploadTestDataCsvModal", {
+        attrs: {
+          showModal: _vm.UploadTestDataCsvModal,
+          "upload-form-data": _vm.uploadModal
+        },
+        on: { close: _vm.closeModal }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-69b24ffe", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7113afea\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/alert/NoTestDataAlert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("Alert", { attrs: { "alert-type": _vm.alertClass } }, [
+    _c("div", { attrs: { slot: "message" }, slot: "message" }, [
+      _vm._v("テストデータが登録されていません。まずは登録を行いましょう。")
     ])
   ])
 }
@@ -34610,7 +36131,412 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7113afea", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7a961ebb\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/UploadCsvModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return this.showModal
+    ? _c(
+        "CommonModal",
+        { attrs: { modalSize: "modal-lg" }, on: { close: _vm.closeModal } },
+        [
+          _c("div", { attrs: { slot: "title" }, slot: "title" }, [
+            _vm._v("学習データのアップロード（" + _vm._s(_vm.modalTitle) + "）")
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+            _c(
+              "div",
+              {
+                staticClass: "alert alert-danger mt-1",
+                attrs: { role: "alert" }
+              },
+              [
+                _c("ul", { staticStyle: { "margin-bottom": "0" } }, [
+                  _c("li", [
+                    _vm._v("既に登録されている学習データは削除されます。")
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v("学習データは5-15,000件での範囲で準備してください。")
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _vm._v(
+                      "学習データのテキストはそれぞれ1,024文字以内で準備してください。"
+                    )
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group mt-4" }, [
+              _c("input", {
+                attrs: {
+                  type: "file",
+                  value: "ファイルを選択",
+                  name: "csv_file",
+                  required: ""
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("閉じる")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v("アップロードする")]
+            )
+          ])
+        ]
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-7a961ebb", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7b0757a2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataTable.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "trainingDataList" } },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "row",
+          staticStyle: { width: "100%", height: "450px", margin: "0" }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "col-3 border",
+              staticStyle: {
+                height: "470px",
+                padding: "5px",
+                "overflow-y": "scroll",
+                "background-color": "#F8F9FA"
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "nav flex-column nav-pills-brand",
+                  attrs: {
+                    id: "v-pills-tab",
+                    role: "tablist",
+                    "aria-orientation": "vertical"
+                  }
+                },
+                [
+                  _vm._l(_vm.trainingData, function(data, i) {
+                    return [
+                      i === 0
+                        ? _c(
+                            "a",
+                            {
+                              key: data.class_id,
+                              staticClass: "nav-link h6 active",
+                              attrs: {
+                                id: "v-pills-tab_" + i,
+                                "data-toggle": "pill",
+                                href: "#v-pills_" + i,
+                                role: "tab",
+                                "aria-controls": "v-pills_" + i,
+                                "aria-selected": "true"
+                              }
+                            },
+                            [
+                              _c("span", [_vm._v(_vm._s(data.name))]),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "badge badge-pill badge-light ml-1"
+                                },
+                                [_vm._v(_vm._s(data.training_data_count))]
+                              )
+                            ]
+                          )
+                        : _c(
+                            "a",
+                            {
+                              key: data.class_id,
+                              staticClass: "nav-link h6",
+                              attrs: {
+                                id: "v-pills-tab_" + i,
+                                "data-toggle": "pill",
+                                href: "#v-pills_" + i,
+                                role: "tab",
+                                "aria-controls": "v-pills_" + i,
+                                "aria-selected": "true"
+                              }
+                            },
+                            [
+                              _c("span", [_vm._v(_vm._s(data.name))]),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "badge badge-pill badge-light ml-1"
+                                },
+                                [_vm._v(_vm._s(data.training_data_count))]
+                              )
+                            ]
+                          )
+                    ]
+                  })
+                ],
+                2
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "col-9 border",
+              staticStyle: {
+                padding: "5px",
+                height: "470px",
+                "overflow-y": "scroll",
+                "background-color": "#F8F9FA"
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "tab-content",
+                  attrs: { id: "v-pills-tabContent" }
+                },
+                [
+                  _vm._l(_vm.trainingData, function(data, i) {
+                    return [
+                      i === 0
+                        ? _c(
+                            "div",
+                            {
+                              key: data.class_id,
+                              staticClass:
+                                "tab-pane fade show list-group active",
+                              attrs: {
+                                id: "v-pills_" + i,
+                                role: "tabpanel",
+                                "aria-labelledby": "v-pills-tab_" + i
+                              }
+                            },
+                            [
+                              _c(
+                                "ul",
+                                { staticClass: "corpusTextList" },
+                                _vm._l(data.training_data, function(
+                                  creative,
+                                  j
+                                ) {
+                                  return _c(
+                                    "li",
+                                    { key: creative.creative_id },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "list-group-item list-group-item-action",
+                                          on: {
+                                            click: function($event) {
+                                              _vm.setEditTrainingCreativeModal(
+                                                i,
+                                                j
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(creative.content))]
+                                      )
+                                    ]
+                                  )
+                                })
+                              )
+                            ]
+                          )
+                        : _c(
+                            "div",
+                            {
+                              key: data.class_id,
+                              staticClass: "tab-pane fade show list-group",
+                              attrs: {
+                                id: "v-pills_" + i,
+                                role: "tabpanel",
+                                "aria-labelledby": "v-pills-tab_" + i
+                              }
+                            },
+                            [
+                              _c(
+                                "ul",
+                                { staticClass: "corpusTextList" },
+                                _vm._l(data.training_data, function(
+                                  creative,
+                                  j
+                                ) {
+                                  return _c(
+                                    "li",
+                                    { key: creative.creative_id },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass:
+                                            "list-group-item list-group-item-action",
+                                          on: {
+                                            click: function($event) {
+                                              _vm.setEditTrainingCreativeModal(
+                                                i,
+                                                j
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(creative.content))]
+                                      )
+                                    ]
+                                  )
+                                })
+                              )
+                            ]
+                          )
+                    ]
+                  })
+                ],
+                2
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("EditTrainingCreativeModal", {
+        attrs: {
+          showModal: _vm.showEditTrainingCreativeModal,
+          "edit-from-data": _vm.editModal
+        },
+        on: { close: _vm.closeModal }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "row mt-2",
+        staticStyle: { width: "100%", height: "30px", margin: "0" }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "h6 col-3 border",
+            staticStyle: {
+              "margin-bottom": "0",
+              padding: "5px",
+              "background-color": "#E9ECEF"
+            }
+          },
+          [_vm._v("クラス")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "h6 col-9 border",
+            staticStyle: {
+              "margin-bottom": "0",
+              padding: "5px",
+              "background-color": "#E9ECEF"
+            }
+          },
+          [_vm._v("関連テキスト")]
+        )
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7b0757a2", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-99f3517a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/alert/NoTrainingDataAlert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("Alert", { attrs: { "alert-type": _vm.alertClass } }, [
+    _c("div", { attrs: { slot: "message" }, slot: "message" }, [
+      _vm._v("学習データが登録されていません。まずは登録を行いましょう。")
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-99f3517a", module.exports)
   }
 }
 
@@ -34683,100 +36609,24 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._m(1),
+                  _c("TrainingDataManageActions", {
+                    attrs: { trainingData: _vm.trainingData }
+                  }),
                   _vm._v(" "),
                   _vm.corpusInfo.status === 1
-                    ? _c("div", { staticClass: "row mt-2" })
-                    : _c("div", { attrs: { id: "trainingDataList" } }, [
-                        _vm._m(2),
-                        _vm._v(" "),
+                    ? _c("div", { staticClass: "row mt-2" }, [
                         _c(
                           "div",
-                          {
-                            staticClass: "row",
-                            staticStyle: {
-                              width: "100%",
-                              height: "450px",
-                              margin: "0"
-                            }
-                          },
-                          [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "col-3 border",
-                                staticStyle: {
-                                  height: "470px",
-                                  padding: "5px",
-                                  "overflow-y": "scroll",
-                                  "background-color": "#F8F9FA"
-                                }
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "nav flex-column nav-pills-brand",
-                                    attrs: {
-                                      id: "v-pills-tab",
-                                      role: "tablist",
-                                      "aria-orientation": "vertical"
-                                    }
-                                  },
-                                  [
-                                    _vm._l(_vm.trainingData, function(
-                                      data,
-                                      key
-                                    ) {
-                                      return [
-                                        _c(
-                                          "a",
-                                          {
-                                            staticClass: "nav-link h6 active",
-                                            attrs: {
-                                              id: "v-pills-tab_1",
-                                              "data-toggle": "pill",
-                                              href: "#v-pills_1",
-                                              role: "tab",
-                                              "aria-controls": "v-pills_1",
-                                              "aria-selected": "true"
-                                            }
-                                          },
-                                          [
-                                            _c("span", [
-                                              _vm._v(_vm._s(data.name))
-                                            ]),
-                                            _vm._v(" "),
-                                            _c(
-                                              "span",
-                                              {
-                                                staticClass:
-                                                  "badge badge-pill badge-light ml-1"
-                                              },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    data.training_data_count
-                                                  )
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    })
-                                  ],
-                                  2
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _vm._m(3)
-                          ]
+                          { staticClass: "col-12" },
+                          [_c("NoTrainingDataAlert")],
+                          1
                         )
                       ])
-                ]
+                    : _c("TrainingDataTable", {
+                        attrs: { trainingData: _vm.trainingData }
+                      })
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
@@ -34790,48 +36640,30 @@ var render = function() {
                   }
                 },
                 [
-                  _vm.corpusInfo.status !== 1
-                    ? _c("div", { staticClass: "row" }, [
-                        _vm._m(4),
-                        _vm._v(" "),
-                        _vm._m(5)
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
                   _vm.corpusInfo.status === 1
                     ? _c("div", { staticClass: "row mt-2" }, [
                         _c(
                           "div",
                           { staticClass: "col-12" },
-                          [
-                            _c(
-                              "NoTrainingData",
-                              { attrs: { "alert-type": _vm.alertSecondary } },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    attrs: { slot: "message" },
-                                    slot: "message"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "学習データが登録されていません。まずは登録を行いましょう。"
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ],
+                          [_c("NoTrainingDataAlert")],
                           1
                         )
                       ])
-                    : _c("div", { attrs: { id: "testDataList" } }, [
-                        _vm._m(6),
-                        _vm._v(" "),
-                        _vm._m(7)
-                      ])
-                ]
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.corpusInfo.status !== 1
+                    ? _c("TestDataManageActions", {
+                        attrs: { trainingData: _vm.trainingData }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.corpusInfo.status !== 1
+                    ? _c("TestDataTable", {
+                        attrs: { trainingData: _vm.trainingData }
+                      })
+                    : _vm._e()
+                ],
+                1
               )
             ]
           )
@@ -34905,397 +36737,6 @@ var staticRenderFns = [
         )
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-auto mr-auto" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-outline-brand",
-            attrs: {
-              type: "button",
-              "data-toggle": "modal",
-              "data-target": "#AddCreativeModal"
-            }
-          },
-          [
-            _c("span", {
-              staticStyle: { width: "20px", height: "20px" },
-              attrs: { "data-feather": "plus" }
-            }),
-            _vm._v(" "),
-            _c("span", [_vm._v("クラス/テキスト追加")])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-auto" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-light",
-            attrs: {
-              type: "button",
-              "data-toggle": "modal",
-              "data-target": "#UploadCsvModal"
-            }
-          },
-          [
-            _c("span", {
-              staticClass: "text-muted",
-              staticStyle: { width: "20px", height: "20px" },
-              attrs: { "data-feather": "upload" }
-            }),
-            _vm._v(" "),
-            _c("span", [_vm._v("CSVアップロード")])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-light",
-            attrs: {
-              href: "/corpus/csv/download/1",
-              role: "button",
-              "aria-pressed": "true"
-            }
-          },
-          [
-            _c("span", {
-              staticClass: "text-muted",
-              staticStyle: { width: "20px", height: "20px" },
-              attrs: { "data-feather": "download" }
-            }),
-            _vm._v(" "),
-            _c("span", [_vm._v("CSVダウンロード")])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "btn btn-link", attrs: { type: "button" } },
-          [
-            _c("span", [
-              _c(
-                "a",
-                {
-                  attrs: {
-                    href: "/files/corpus-admin/training_data_sample.csv"
-                  }
-                },
-                [_vm._v("サンプル")]
-              )
-            ])
-          ]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "row mt-2",
-        staticStyle: { width: "100%", height: "30px", margin: "0" }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "h6 col-3 border",
-            staticStyle: {
-              "margin-bottom": "0",
-              padding: "5px",
-              "background-color": "#E9ECEF"
-            }
-          },
-          [_vm._v("クラス")]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "h6 col-9 border",
-            staticStyle: {
-              "margin-bottom": "0",
-              padding: "5px",
-              "background-color": "#E9ECEF"
-            }
-          },
-          [_vm._v("関連テキスト")]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "col-9 border",
-        staticStyle: {
-          padding: "5px",
-          height: "470px",
-          "overflow-y": "scroll",
-          "background-color": "#F8F9FA"
-        }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "tab-content", attrs: { id: "v-pills-tabContent" } },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "tab-pane fade show list-group active",
-                attrs: {
-                  id: "v-pills_1",
-                  role: "tabpanel",
-                  "aria-labelledby": "v-pills-tab_1"
-                }
-              },
-              [
-                _c("ul", { staticClass: "corpusTextList" }, [
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "list-group-item list-group-item-action",
-                        attrs: { href: "javascript:void(0);" }
-                      },
-                      [_vm._v("関連テキスト")]
-                    )
-                  ])
-                ])
-              ]
-            )
-          ]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-auto mr-auto" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-info",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#addClassTextModal",
-            "data-datatype": "0",
-            "data-mtitle": "新しいクラス/テキストの登録"
-          }
-        },
-        [
-          _c("span", {
-            staticStyle: { width: "20px", height: "20px" },
-            attrs: { "data-feather": "plus" }
-          }),
-          _vm._v(" "),
-          _c("span", [_vm._v("クラス/テキスト追加")])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-auto" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#SelectTextCsvModal"
-          }
-        },
-        [
-          _c("span", {
-            staticClass: "text-muted",
-            staticStyle: { width: "20px", height: "20px" },
-            attrs: { "data-feather": "upload" }
-          }),
-          _vm._v(" "),
-          _c("span", [_vm._v("CSVアップロード")])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "row mt-2",
-        staticStyle: { width: "100%", height: "30px", margin: "0" }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "h6 col-3 border",
-            staticStyle: {
-              "margin-bottom": "0",
-              padding: "5px",
-              "background-color": "#E9ECEF"
-            }
-          },
-          [_vm._v("クラス")]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "h6 col-9 border",
-            staticStyle: {
-              "margin-bottom": "0",
-              padding: "5px",
-              "background-color": "#E9ECEF"
-            }
-          },
-          [_vm._v("関連テキスト")]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "row",
-        staticStyle: { width: "100%", height: "450px", margin: "0" }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "col-3 border",
-            staticStyle: {
-              height: "470px",
-              padding: "5px",
-              "overflow-y": "scroll",
-              "background-color": "#F8F9FA"
-            }
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "nav flex-column nav-pills-brand",
-                attrs: {
-                  id: "v-pills-tab",
-                  role: "tablist",
-                  "aria-orientation": "vertical"
-                }
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "nav-link test h6 active",
-                    attrs: {
-                      id: "v-pills-tab_1_2",
-                      "data-toggle": "pill",
-                      href: "#v-pills_1_2",
-                      role: "tab",
-                      "aria-controls": "v-pills_1_2",
-                      "aria-selected": "true"
-                    }
-                  },
-                  [
-                    _c("span", [_vm._v("クラス名")]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "badge badge-pill badge-light ml-1" },
-                      [_vm._v("1")]
-                    )
-                  ]
-                )
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "col-9 border",
-            staticStyle: {
-              padding: "5px",
-              height: "470px",
-              "overflow-y": "scroll",
-              "background-color": "#F8F9FA"
-            }
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "tab-content",
-                attrs: { id: "v-pills-tabContent" }
-              },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass: "tab-pane fade show list-group active",
-                    attrs: {
-                      id: "v-pills_1_2",
-                      role: "tabpanel",
-                      "aria-labelledby": "v-pills-tab_1_2"
-                    }
-                  },
-                  [
-                    _c("ul", { staticClass: "corpusTextList" }, [
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            staticClass:
-                              "list-group-item list-group-item-action",
-                            attrs: {
-                              href: "#",
-                              "data-toggle": "modal",
-                              "data-target": "#editClassTextModal"
-                            }
-                          },
-                          [_vm._v("関連テキスト")]
-                        )
-                      ])
-                    ])
-                  ]
-                )
-              ]
-            )
-          ]
-        )
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -35329,66 +36770,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-c21b2252", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-c5e796c6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/common/CommonModal.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "modal fade",
-      attrs: { id: _vm.id, tabindex: "-1", role: "dialog" }
-    },
-    [
-      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _c("div", { staticClass: "modal-header" }, [
-            _c("h5", { staticClass: "modal-title" }, [_vm._t("title")], 2),
-            _vm._v(" "),
-            _vm._m(0)
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [_vm._t("body")], 2),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [_vm._t("footer")], 2)
-        ])
-      ])
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-c5e796c6", module.exports)
   }
 }
 
@@ -38025,23 +39406,50 @@ if (inBrowser && window.Vue) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f425130\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/AddCreativeModal.vue":
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-01948239\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataManageActions.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f425130\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/AddCreativeModal.vue");
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-01948239\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataManageActions.vue");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("30d0d410", content, false, {});
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("7ac681b2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f425130\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddCreativeModal.vue", function() {
-     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f425130\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddCreativeModal.vue");
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-01948239\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TrainingDataManageActions.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-01948239\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TrainingDataManageActions.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b24e488\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/common/Modal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b24e488\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/common/Modal.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("1af0ad58", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b24e488\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b24e488\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -38079,23 +39487,23 @@ if(false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7a961ebb\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/UploadCsvModal.vue":
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4684f1f7\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataTable.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7a961ebb\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/UploadCsvModal.vue");
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4684f1f7\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataTable.vue");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("669a2c9f", content, false, {});
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("8a5b3668", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7a961ebb\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UploadCsvModal.vue", function() {
-     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7a961ebb\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UploadCsvModal.vue");
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4684f1f7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TestDataTable.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4684f1f7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TestDataTable.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -38106,23 +39514,50 @@ if(false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c5e796c6\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/common/CommonModal.vue":
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-69b24ffe\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataManageActions.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c5e796c6\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/common/CommonModal.vue");
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-69b24ffe\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataManageActions.vue");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("a57118e6", content, false, {});
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("e24908ec", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c5e796c6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommonModal.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c5e796c6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommonModal.vue");
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-69b24ffe\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TestDataManageActions.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-69b24ffe\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TestDataManageActions.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7b0757a2\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataTable.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7b0757a2\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataTable.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("f2e8db72", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7b0757a2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TrainingDataTable.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7b0757a2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TrainingDataTable.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -50574,11 +52009,7 @@ function exec(option, commit, mutation) {
     // commit
     __WEBPACK_IMPORTED_MODULE_1__app__["log"]('[axios] success');
     __WEBPACK_IMPORTED_MODULE_1__app__["log"](res);
-    // if(res.data.code === '200' || res.data.code === '202') {
     commit(mutation, res.data);
-    // } else {
-    //   commit('setError', res.data.data);
-    // }
   }).catch(function (err) {
     // error
     __WEBPACK_IMPORTED_MODULE_1__app__["log"]('[axios] faild...');
@@ -50674,6 +52105,12 @@ var API_CONFIG = {
     url: '/api/v1/training-data/{training_datum}',
     method: 'GET',
     params: {}
+  },
+  // クリエイティブデータ登録
+  addCreative: {
+    url: '/api/v1/training-data/{training_datum}',
+    method: 'POST',
+    data: {}
   }
 };
 
@@ -50688,6 +52125,7 @@ var API_CONFIG = {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEBUG_MODE", function() { return DEBUG_MODE; });
 /* harmony export (immutable) */ __webpack_exports__["log"] = log;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CorpusDataType", function() { return CorpusDataType; });
 var DEBUG_MODE = true;
 
 /**
@@ -50698,6 +52136,18 @@ function log(msg) {
     console.log(msg);
   }
 }
+
+/**
+ * 定数
+ */
+var CorpusDataType = {
+  0: {
+    label: 'テストデータ'
+  },
+  1: {
+    label: '学習データ'
+  }
+};
 
 /***/ }),
 
@@ -50745,8 +52195,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     },
     setCorpusInfoAtDataManage: function setCorpusInfoAtDataManage(state, payload) {
       __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] setCorpusInfoAtDataManage');
-      if (payload.code === '200') {
+      if (payload.code === 200) {
         state.corpusInfo = payload.data;
+        // state.corpusInfo.status = 1;
         __WEBPACK_IMPORTED_MODULE_4__app__["log"](state.corpusInfo);
         __WEBPACK_IMPORTED_MODULE_3__ext_functions__["setCorpusAdminTitle"](state.corpusInfo.name);
       } else {
@@ -50755,7 +52206,20 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     },
     setTrainingData: function setTrainingData(state, payload) {
       __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] setTrainingData');
-      state.trainingData = payload;
+      if (payload.code === 200) {
+        state.trainingData = payload.data;
+      } else {
+        state.errors = payload.errors;
+      }
+      __WEBPACK_IMPORTED_MODULE_4__app__["log"](payload);
+    },
+    setAddCreativeResult: function setAddCreativeResult(state, payload) {
+      __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] setAddCreativeResult');
+      if (payload.code === 200) {
+        state.successMsg = 'テキストの登録処理が完了しました';
+      } else {
+        state.errors = payload.errors;
+      }
       __WEBPACK_IMPORTED_MODULE_4__app__["log"](payload);
     },
     setError: function setError(state, payload) {
@@ -50774,6 +52238,18 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     trainingData: function trainingData(state) {
       return state.trainingData;
     },
+    trainingClassData: function trainingClassData(state) {
+      return function (classIndex) {
+        return state.trainingData[classIndex];
+      };
+    },
+    testDataCount: function testDataCount(state) {
+      var sum = 0;
+      state.trainingData.filter(function (classData) {
+        sum = sum + classData.test_data_count;
+      });
+      return sum;
+    },
     successMsg: function successMsg(state) {
       return state.successMsg;
     },
@@ -50782,6 +52258,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     }
   },
   actions: {
+    // 取得系
     getCorpusInfoAtDataManage: function getCorpusInfoAtDataManage(_ref) {
       var commit = _ref.commit;
 
@@ -50801,6 +52278,20 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       apiOption.url = apiOption.url.replace(/{training_datum}/g, this.state.corpusId);
 
       __WEBPACK_IMPORTED_MODULE_5__ajax__["exec"](apiOption, commit, 'setTrainingData');
+    },
+
+    // 登録系
+    addCreative: function addCreative(_ref3) {
+      var commit = _ref3.commit,
+          data = _ref3.data;
+
+      __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] getCorpusInfoAtDataManage');
+
+      var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['addCreative']);
+      apiOption.url = apiOption.url.replace(/{training_datum}/g, this.state.corpusId);
+      apiOption.data = data;
+
+      __WEBPACK_IMPORTED_MODULE_5__ajax__["exec"](apiOption, commit, 'setAddCreativeResult');
     }
   }
 });
@@ -50821,6 +52312,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["isAuth"] = isAuth;
 /* harmony export (immutable) */ __webpack_exports__["logout"] = logout;
 /* harmony export (immutable) */ __webpack_exports__["setCorpusAdminTitle"] = setCorpusAdminTitle;
+/* harmony export (immutable) */ __webpack_exports__["closeModal"] = closeModal;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie__ = __webpack_require__("./node_modules/jquery.cookie/jquery.cookie.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_cookie__);
@@ -50900,6 +52392,11 @@ function setCorpusAdminTitle(corpusName) {
   // ナビゲーションのコーパス名書き換え
   $('#navCorpusName').text(corpusName);
 }
+
+/**
+ * モーダル全クローズ
+ */
+function closeModal() {}
 
 /***/ }),
 
@@ -51051,19 +52548,19 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/corpusadmin/common/CommonModal.vue":
+/***/ "./resources/assets/js/components/corpusadmin/common/Modal.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c5e796c6\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/common/CommonModal.vue")
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b24e488\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/common/Modal.vue")
 }
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/common/CommonModal.vue")
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/common/Modal.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-c5e796c6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/common/CommonModal.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0b24e488\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/common/Modal.vue")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -51080,7 +52577,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/corpusadmin/common/CommonModal.vue"
+Component.options.__file = "resources/assets/js/components/corpusadmin/common/Modal.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -51089,9 +52586,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-c5e796c6", Component.options)
+    hotAPI.createRecord("data-v-0b24e488", Component.options)
   } else {
-    hotAPI.reload("data-v-c5e796c6", Component.options)
+    hotAPI.reload("data-v-0b24e488", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -51247,6 +52744,102 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/corpusadmin/dataManage/alert/NoTestDataAlert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/alert/NoTestDataAlert.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7113afea\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/alert/NoTestDataAlert.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/corpusadmin/dataManage/alert/NoTestDataAlert.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7113afea", Component.options)
+  } else {
+    hotAPI.reload("data-v-7113afea", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/corpusadmin/dataManage/alert/NoTrainingDataAlert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/alert/NoTrainingDataAlert.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-99f3517a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/alert/NoTrainingDataAlert.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/corpusadmin/dataManage/alert/NoTrainingDataAlert.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-99f3517a", Component.options)
+  } else {
+    hotAPI.reload("data-v-99f3517a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/corpusadmin/dataManage/alert/ProductionNoticeAlert.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51347,10 +52940,6 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f425130\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/AddCreativeModal.vue")
-}
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
 var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/AddCreativeModal.vue")
@@ -51359,7 +52948,7 @@ var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/templa
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -51395,14 +52984,58 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/corpusadmin/dataManage/modal/EditCreativeModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/EditCreativeModal.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-39520b5e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/EditCreativeModal.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/corpusadmin/dataManage/modal/EditCreativeModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-39520b5e", Component.options)
+  } else {
+    hotAPI.reload("data-v-39520b5e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/corpusadmin/dataManage/modal/UploadCsvModal.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7a961ebb\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/UploadCsvModal.vue")
-}
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
 var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/modal/UploadCsvModal.vue")
@@ -51411,7 +53044,7 @@ var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/templa
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -51436,6 +53069,214 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-7a961ebb", Component.options)
   } else {
     hotAPI.reload("data-v-7a961ebb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataManageActions.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-69b24ffe\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataManageActions.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataManageActions.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-69b24ffe\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataManageActions.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/corpusadmin/dataManage/tab/TestDataManageActions.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-69b24ffe", Component.options)
+  } else {
+    hotAPI.reload("data-v-69b24ffe", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataTable.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4684f1f7\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataTable.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataTable.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4684f1f7\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TestDataTable.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/corpusadmin/dataManage/tab/TestDataTable.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4684f1f7", Component.options)
+  } else {
+    hotAPI.reload("data-v-4684f1f7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataManageActions.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-01948239\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataManageActions.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataManageActions.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-01948239\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataManageActions.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataManageActions.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-01948239", Component.options)
+  } else {
+    hotAPI.reload("data-v-01948239", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataTable.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7b0757a2\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataTable.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataTable.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7b0757a2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataTable.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/corpusadmin/dataManage/tab/TrainingDataTable.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7b0757a2", Component.options)
+  } else {
+    hotAPI.reload("data-v-7b0757a2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

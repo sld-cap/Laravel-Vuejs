@@ -31,8 +31,9 @@ const store = new Vuex.Store({
     },
     setCorpusInfoAtDataManage(state, payload) {
       Core.log('[store] setCorpusInfoAtDataManage');
-      if (payload.code === '200') {
+      if (payload.code === 200) {
         state.corpusInfo = payload.data;
+        // state.corpusInfo.status = 1;
         Core.log(state.corpusInfo);
         Lib.setCorpusAdminTitle(state.corpusInfo.name);
       } else {
@@ -41,7 +42,20 @@ const store = new Vuex.Store({
     },
     setTrainingData(state, payload) {
       Core.log('[store] setTrainingData');
-      state.trainingData = payload;
+      if (payload.code === 200) {
+        state.trainingData = payload.data;
+      } else {
+        state.errors = payload.errors;
+      }
+      Core.log(payload);
+    },
+    setAddCreativeResult(state, payload) {
+      Core.log('[store] setAddCreativeResult');
+      if (payload.code === 200) {
+        state.successMsg = 'テキストの登録処理が完了しました';
+      } else {
+        state.errors = payload.errors;
+      }
       Core.log(payload);
     },
     setError(state, payload) {
@@ -51,23 +65,34 @@ const store = new Vuex.Store({
     },
   },
   getters: {
-    me(state) {
+    me: (state) => {
       return state.me;
     },
-    corpusInfo(state) {
+    corpusInfo: (state) => {
       return state.corpusInfo;
     },
-    trainingData(state) {
+    trainingData: (state) => {
       return state.trainingData;
     },
-    successMsg(state) {
+    trainingClassData: (state) => (classIndex) => {
+      return state.trainingData[classIndex];
+    },
+    testDataCount: (state) => {
+      let sum = 0;
+      state.trainingData.filter((classData) => {
+        sum = sum + classData.test_data_count;
+      });
+      return sum;
+    },
+    successMsg: (state) => {
       return state.successMsg;
     },
-    errors(state) {
+    errors: (state) => {
       return state.errors;
     },
   },
   actions: {
+    // 取得系
     getCorpusInfoAtDataManage({ commit }) {
       Core.log('[store] getCorpusInfoAtDataManage');
 
@@ -83,6 +108,16 @@ const store = new Vuex.Store({
       apiOption.url = apiOption.url.replace(/{training_datum}/g, this.state.corpusId);
 
       Ajax.exec(apiOption, commit, 'setTrainingData');
+    },
+    // 登録系
+    addCreative({ commit, data }) {
+      Core.log('[store] getCorpusInfoAtDataManage');
+
+      const apiOption = Object.assign({}, ApiConfig['addCreative']);
+      apiOption.url = apiOption.url.replace(/{training_datum}/g, this.state.corpusId);
+      apiOption.data = data;
+
+      Ajax.exec(apiOption, commit, 'setAddCreativeResult');
     },
   },
 });

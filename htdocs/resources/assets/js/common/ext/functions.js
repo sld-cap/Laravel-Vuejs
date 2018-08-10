@@ -75,3 +75,9 @@ export function setCorpusAdminTitle(corpusName) {
   // ナビゲーションのコーパス名書き換え
   $('#navCorpusName').text(corpusName);
 }
+
+/**
+ * モーダル全クローズ
+ */
+export function closeModal() {
+}
