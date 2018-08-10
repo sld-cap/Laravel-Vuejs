@@ -3,11 +3,9 @@
     
     <div class="row mt-3">
       <div class="col-12">
-        <ProductionNoticeAlert v-if="corpusInfo.is_production === '1'">
-        </ProductionNoticeAlert>
+        <ProductionNoticeAlert v-if="corpusInfo.is_production === '1'"></ProductionNoticeAlert>
         <!-- /.alert -->
-        <IsTrainingAlert v-if="corpusInfo.status === '3'">
-        </IsTrainingAlert>
+        <IsTrainingAlert v-if="corpusInfo.status === '3'"></IsTrainingAlert>
         <!-- /.alert -->
       </div>
     </div>
@@ -33,11 +31,9 @@
 
     <div class="row mt-3">
       <div class="col-12">
-        <SuccessAlert v-if="successMsg !== ''">
-        </SuccessAlert>
+        <SuccessAlert v-if="successMsg !== ''"></SuccessAlert>
         <!-- /.alert -->
-        <ErrorAlert v-if="errors.length > 0">
-        </ErrorAlert>
+        <ErrorAlert v-if="errors.length > 0"></ErrorAlert>
         <!-- /.alert -->
       </div>
     </div>
@@ -46,181 +42,67 @@
     <section class="viewCreativeContents mt-3" style="width:100%;">
       <div class="tab-content" id="pills-tabContent">
 
-        <!-- // 学習データタブ // -->
+        <!-- 学習データタブ -->
         <div class="tab-pane fade show active" id="training" role="tabpanel" aria-labelledby="training-tab" style="width:100%;"> 
-          <div class="row">
-            <div class="col-auto mr-auto">
-            <button type="button" class="btn btn-outline-brand" data-toggle="modal" data-target="#AddCreativeModal">
-              <span data-feather="plus" style="width:20px;height:20px;"></span>
-              <span>クラス/テキスト追加</span>
-            </button>
-            </div>
-            <div class="col-auto">
-              <button type="button" class="btn btn-light" data-toggle="modal" data-target="#UploadCsvModal">
-                <span class="text-muted" data-feather="upload" style="width:20px;height:20px;"></span>
-                <span>CSVアップロード</span>
-              </button>
-              <a href="/corpus/csv/download/1" class="btn btn-light" role="button" aria-pressed="true">
-                <span class="text-muted" data-feather="download" style="width:20px;height:20px;"></span>
-                <span>CSVダウンロード</span>
-              </a>
-              <button type="button" class="btn btn-link">
-                <span><a href="/files/corpus-admin/training_data_sample.csv">サンプル</a></span>
-              </button>
-            </div>
-          </div>
+          <TrainingDataManageActions :trainingData="trainingData"></TrainingDataManageActions>
           <!-- /.row -->
 
           <div class="row mt-2" v-if="corpusInfo.status === 1" >
-            <!-- <div class="col-12">
-              <NoTrainingData v-bind:alert-type="alertSecondary">
-                <div slot="message">学習データが登録されていません。まずは登録を行いましょう。</div>
-              </NoTrainingData>
-            </div> -->
-          </div>
-          <!-- /.row -->
-
-          <div v-else id="trainingDataList">
-            <div class="row mt-2" style="width:100%;height:30px;margin:0;">
-              <div class="h6 col-3 border" style="margin-bottom:0;padding:5px;background-color:#E9ECEF;">クラス</div>
-              <div class="h6 col-9 border" style="margin-bottom:0;padding:5px;background-color:#E9ECEF;">関連テキスト</div>
-            </div>
-            <!-- /.row -->
-
-            <div class="row" style="width:100%;height:450px;margin:0;">
-              <div class="col-3 border" style="height:470px;padding:5px;overflow-y:scroll;background-color:#F8F9FA;">
-                <div class="nav flex-column nav-pills-brand" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                  <template v-for="(data, key) in trainingData">
-                    <a class="nav-link h6 active" id="v-pills-tab_1" data-toggle="pill" href="#v-pills_1" role="tab" aria-controls="v-pills_1" aria-selected="true">
-                      <span>{{ data.name }}</span>
-                      <span class="badge badge-pill badge-light ml-1">{{ data.training_data_count }}</span>
-                    </a>
-                  </template>
-                </div>
-                <!-- /.nav -->
-              </div>
-              <!-- /.col-3 -->
-              <div class="col-9 border" style="padding:5px;height:470px;overflow-y:scroll;background-color:#F8F9FA;">
-                <div class="tab-content" id="v-pills-tabContent">
-                  <div class="tab-pane fade show list-group active" id="v-pills_1" role="tabpanel" aria-labelledby="v-pills-tab_1" style="">
-                    <ul class="corpusTextList">
-                      <li><a href="javascript:void(0);" class="list-group-item list-group-item-action">関連テキスト</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- /.tab-content -->
-              </div>
-            </div>
-            <!-- /.row -->
-          </div>
-          <!-- /#trainingDataList -->
-        </div>
-        <!-- /.tab-pane  -->
-        <!-- // 学習データタブ // -->
-
-        <!-- // テストデータタブ // -->
-        <div class="tab-pane fade" id="test" role="tabpanel" aria-labelledby="test-tab">
-          <div v-if="corpusInfo.status !== 1" class="row">
-            <div class="col-auto mr-auto">
-              <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#addClassTextModal" data-datatype="0" data-mtitle="新しいクラス/テキストの登録">
-                <span data-feather="plus" style="width:20px;height:20px;"></span>
-                <span>クラス/テキスト追加</span>
-              </button>
-            </div>
-            <div class="col-auto">
-              <button type="button" class="btn btn-light" data-toggle="modal" data-target="#SelectTextCsvModal">
-                <span class="text-muted" data-feather="upload" style="width:20px;height:20px;"></span>
-                <span>CSVアップロード</span>
-              </button>
-            </div>
-          </div>
-          <!-- /.row -->
-
-          <div class="row mt-2" v-if="corpusInfo.status === 1">
             <div class="col-12">
-              <NoTrainingData v-bind:alert-type="alertSecondary">
-                <div slot="message">学習データが登録されていません。まずは登録を行いましょう。</div>
-              </NoTrainingData>
+              <NoTrainingDataAlert></NoTrainingDataAlert>
+              <!-- /.alert -->
             </div>
-            <!-- /.col-12 -->
           </div>
           <!-- /.row -->
-          <div v-else id="testDataList">
-            <div class="row mt-2" style="width:100%;height:30px;margin:0;">
-              <div class="h6 col-3 border" style="margin-bottom:0;padding:5px;background-color:#E9ECEF;">クラス</div>
-              <div class="h6 col-9 border" style="margin-bottom:0;padding:5px;background-color:#E9ECEF;">関連テキスト</div>
-            </div>
-            <div class="row" style="width:100%;height:450px;margin:0;">
-              <div class="col-3 border" style="height:470px;padding:5px;overflow-y:scroll;background-color:#F8F9FA;">
-                <div class="nav flex-column nav-pills-brand" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                  <a class="nav-link test h6 active" id="v-pills-tab_1_2" data-toggle="pill" href="#v-pills_1_2" role="tab" aria-controls="v-pills_1_2" aria-selected="true">
-                    <span>クラス名</span>
-                    <span class="badge badge-pill badge-light ml-1">1</span>
-                  </a>
-                </div>
-              </div>
-              <!-- /.col -->
-              <div class="col-9 border" style="padding:5px;height:470px;overflow-y:scroll;background-color:#F8F9FA;">
-                <div class="tab-content" id="v-pills-tabContent">
-                  <div class="tab-pane fade show list-group active" id="v-pills_1_2" role="tabpanel" aria-labelledby="v-pills-tab_1_2" style="">
-                    <ul class="corpusTextList">
-                      <li><a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#editClassTextModal">関連テキスト</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
-          </div>
-          <!-- /#testDataList -->
+          <TrainingDataTable v-else :trainingData="trainingData"></TrainingDataTable>
         </div>
-        <!-- /.tab-pane  -->
-        <!-- // テストデータタブ // -->
+        <!-- /学習データタブ -->
+
+        <!-- テストデータタブ -->
+        <div class="tab-pane fade" id="test" role="tabpanel" aria-labelledby="test-tab">
+          <div v-if="corpusInfo.status === 1" class="row mt-2">
+            <div class="col-12">
+              <NoTrainingDataAlert></NoTrainingDataAlert>
+            <!-- /.alert -->
+            </div>
+          </div>
+          <!-- /.row -->
+
+          <TestDataManageActions v-if="corpusInfo.status !== 1" :trainingData="trainingData"></TestDataManageActions>
+          <TestDataTable v-if="corpusInfo.status !== 1" :trainingData="trainingData"></TestDataTable>
+        </div>
+        <!-- テストデータタブ -->
 
       </div>
       <!-- /.tab-content -->
     </section>
     <!-- /#viewCreativeContents -->
-
-
-    <!-- <AddCreativeModal></AddCreativeModal> -->
-    <!-- /.クラステキスト追加モーダル -->
-    <!-- <UploadCsvModal></UploadCsvModal> -->
-    <!-- /.CSVアップロードモーダル -->
-
   </main>
 </template>
-
 
 <script>
 import * as Core from '../../../common/core/app';
 import * as Ajax from '../../../common/core/ajax';
 import * as Lib from '../../../common/ext/functions';
 import ApiConfig from '../../../common/core/apiConfig';
-
-// モーダル
-import AddCreativeModal from './modal/AddCreativeModal.vue';
-import UploadCsvModal from './modal/UploadCsvModal.vue';
-
 // アラート
 import ProductionNoticeAlert from './alert/ProductionNoticeAlert.vue';
 import IsTrainingAlert from './alert/IsTrainingAlert.vue';
 import SuccessAlert from './alert/SuccessAlert.vue';
 import ErrorAlert from './alert/ErrorAlert.vue';
-import CorpusStatus from '../common/Alert.vue';
-import NoTrainingData from '../common/Alert.vue';
+import NoTrainingDataAlert from './alert/NoTrainingDataAlert.vue';
+// データ管理
+import TrainingDataManageActions from './tab/TrainingDataManageActions.vue';
+import TrainingDataTable from './tab/TrainingDataTable.vue';
+import TestDataManageActions from './tab/TestDataManageActions.vue';
+import TestDataTable from './tab/TestDataTable.vue';
 
 export default {
   components: {
-    ProductionNoticeAlert,
-    IsTrainingAlert,
-    SuccessAlert,
-    AddCreativeModal, 
-    UploadCsvModal,
-    CorpusStatus,
-    NoTrainingData,
-    ErrorAlert,
+    // アラート
+    ProductionNoticeAlert, IsTrainingAlert, SuccessAlert, ErrorAlert, NoTrainingDataAlert,
+    // タブ
+    TrainingDataManageActions, TrainingDataTable,TestDataManageActions, TestDataTable,
   },
   props: ['me'],
   data() {
@@ -244,9 +126,8 @@ export default {
   },
   created() {
     this.$store.commit('setCorpusId', { corpusId: this.corpusId });
-    // コーパス情報取得
+    // 各種情報取得
     this.$store.dispatch('getCorpusInfoAtDataManage');
-    // トレーニングデータ取得
     this.$store.dispatch('getTrainingData');
   },
   updated: function() {
@@ -257,10 +138,7 @@ export default {
     feather.replace();
   },
   methods: {
-    setCorpusTitle() {
-      Core.log('[methods] setCorpusTitle');
-    }
-  }
+  },
 };
 </script>
 
