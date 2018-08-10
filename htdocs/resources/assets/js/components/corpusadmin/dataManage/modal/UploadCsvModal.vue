@@ -1,9 +1,9 @@
 <template>
-  <CommonModal v-bind:modalId="modalId">
-    <div slot="title">学習データのアップロード</div>
+  <CommonModal v-if="this.showModal" @close="closeModal" modalSize="modal-lg">
+    <div slot="title">学習データのアップロード（{{ modalTitle }}）</div>
     <!-- /.title -->
     <div slot="body">
-      <div class="alert alert-danger mt-3" role="alert">
+      <div class="alert alert-danger mt-1" role="alert">
         <ul style="margin-bottom: 0;">
           <li>既に登録されている学習データは削除されます。</li>
           <li>学習データは5-15,000件での範囲で準備してください。</li>
@@ -24,25 +24,37 @@
   </CommonModal>
 </template>
 
-
-<style>
-</style>
-
-
 <script>
-import CommonModal from '../../common/CommonModal.vue';
+import * as Core from '../../../../common/core/app';
+import * as Ajax from '../../../../common/core/ajax';
+import ApiConfig from '../../../../common/core/apiConfig';
+import CommonModal from '../../common/Modal.vue';
 
 export default {
   components: { CommonModal },
-  props: ['me'],
+  props: [ 'uploadFormData', 'showModal' ],
   data() {
     return {
-      modalId: 'UploadCsvModal'
+      deleteData: {},
     };
   },
-  mounted: function() {
+  computed: {
+    modalTitle() {
+      let title = '';
+      if (this.uploadFormData.dataType !== '') {
+        title = Core.CorpusDataType[this.uploadFormData.dataType].label;
+      }
+      return title;
+    },
+  },
+  crated() {
+  },
+  mounted() {
   },
   methods: {
-  }
+    closeModal() {
+      this.$emit('close');
+    },
+  },
 };
 </script>
