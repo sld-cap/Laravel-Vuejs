@@ -72,6 +72,16 @@ class CorpusClassesTableSeeder extends Seeder
                 'threshold' => 0.5,
                 'created_at' => NOW(),
                 'updated_at' => NOW()
+            ],
+            [
+                'id' => 7,
+                'name' => 'クラスb',
+                'corpus_id' => '1',
+                'training_data_count' => 2,
+                'test_data_count' => 2,
+                'threshold' => 0.5,
+                'created_at' => NOW(),
+                'updated_at' => NOW()
             ]
         ]);
     }

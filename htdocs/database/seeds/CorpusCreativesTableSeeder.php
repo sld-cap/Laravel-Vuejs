@@ -116,6 +116,38 @@ class CorpusCreativesTableSeeder extends Seeder
                 'content' => 'これはクラスaのテストデータ1です。',
                 'created_at' => NOW(),
                 'updated_at' => NOW()
+            ],
+            [
+                'id' => 14,
+                'corpus_class_id' => '7',
+                'data_type' => 1,
+                'content' => 'これはクラスbの学習データ1です。',
+                'created_at' => NOW(),
+                'updated_at' => NOW()
+            ],
+            [
+                'id' => 15,
+                'corpus_class_id' => '7',
+                'data_type' => 1,
+                'content' => 'これはクラスbの学習データ2です。',
+                'created_at' => NOW(),
+                'updated_at' => NOW()
+            ],
+            [
+                'id' => 16,
+                'corpus_class_id' => '7',
+                'data_type' => 0,
+                'content' => 'これはクラスbのテストデータ1です。',
+                'created_at' => NOW(),
+                'updated_at' => NOW()
+            ],
+            [
+                'id' => 17,
+                'corpus_class_id' => '7',
+                'data_type' => 0,
+                'content' => 'これはクラスbのテストデータ2です。',
+                'created_at' => NOW(),
+                'updated_at' => NOW()
             ]
 
         ]);
