@@ -22,7 +22,12 @@ import store from './common/core/store';
  */
 import LoginVue from './components/Login.vue';
 import DashboardVue from './components/Dashboard.vue';
-import CorpusadminVue from './components/corpusadmin/dataManage/Main.vue';
+
+import CorpusadminVue from './components/corpusadmin/index.vue';
+import CorpusadminBaseInfoVue from './components/corpusadmin/baseInfo/Main.vue';
+import CorpusadminDataManageVue from './components/corpusadmin/dataManage/Main.vue';
+import CorpusadminTrainingManageVue from './components/corpusadmin/trainingManage/Main.vue';
+
 import VuexVue from './components/corpusadmin/vuex/Main.vue';
 
 require('./bootstrap');
@@ -37,9 +42,31 @@ const routes = [
   { path: '/login', component: LoginVue },
   { path: '/', component: DashboardVue, meta: { requiresAuth: true } },
   { path: '/corpus', component: DashboardVue, meta: { requiresAuth: true } },
-  { path: '/corpus/data/view/:corpusId', component: CorpusadminVue, meta: { requiresAuth: true } },
+  {
+    path: '/corpus/:corpusId',
+    meta: { requiresAuth: true },
+    props: route => ({ corpusId: route.params.corpusId }),
+    component: CorpusadminVue,
+    children: [
+      {
+        name: 'base-info',
+        path: 'data',
+        component: CorpusadminBaseInfoVue,
+      },
+      {
+        name: 'data-view',
+        path: 'data/view',
+        component: CorpusadminDataManageVue,
+      },
+      {
+        name: 'training',
+        path: 'training',
+        component: CorpusadminTrainingManageVue,
+      },
+    ],
+  },
   // vuex検証
-  { path: '/vuex/:corpusId', component: VuexVue, meta:{ requiresAuth: true } },
+  { path: '/vuex/:corpusId', component: VuexVue, meta: { requiresAuth: true } },
 ];
 
 const router = new VueRouter({
