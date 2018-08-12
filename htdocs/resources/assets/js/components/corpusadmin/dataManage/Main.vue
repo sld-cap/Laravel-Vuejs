@@ -104,11 +104,9 @@ export default {
     // タブ
     TrainingDataManageActions, TrainingDataTable,TestDataManageActions, TestDataTable,
   },
-  props: ['me'],
+  props: ['me', 'corpusId'],
   data() {
-    return {
-      corpusId: this.$route.params.corpusId,
-    };
+    return {};
   },
   computed: {
     corpusInfo() {
@@ -125,10 +123,6 @@ export default {
     },
   },
   created() {
-    this.$store.commit('setCorpusId', { corpusId: this.corpusId });
-    // 各種情報取得
-    this.$store.dispatch('getCorpusInfoAtDataManage');
-    this.$store.dispatch('getTrainingData');
   },
   updated: function() {
     Core.log('[updated]');
