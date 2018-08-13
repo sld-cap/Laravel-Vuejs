@@ -54,7 +54,7 @@ const store = new Vuex.Store({
       if (payload.code === 200) {
         state.successMsg = 'テキストの登録処理が完了しました';
       } else {
-        state.errors = payload.errors;
+        // state.errors = payload.errors;
       }
       Core.log(payload);
     },
@@ -110,12 +110,15 @@ const store = new Vuex.Store({
       Ajax.exec(apiOption, commit, 'setTrainingData');
     },
     // 登録系
-    addCreative({ commit, data }) {
-      Core.log('[store] getCorpusInfoAtDataManage');
-
-      const apiOption = Object.assign({}, ApiConfig['addCreative']);
-      apiOption.url = apiOption.url.replace(/{training_datum}/g, this.state.corpusId);
-      apiOption.data = data;
+    addCreative({ commit }, { classId, content, dataType, newClassName }) {
+      Core.log('[store] addCreative');
+      const apiOption = Object.assign({}, ApiConfig['addTrainingData']);
+      apiOption.data = {
+        class_id: classId,
+        content: content,
+        data_type: dataType,
+        new_class_name: newClassName,
+      };
 
       Ajax.exec(apiOption, commit, 'setAddCreativeResult');
     },

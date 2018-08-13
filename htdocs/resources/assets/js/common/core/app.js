@@ -20,3 +20,12 @@ export const CorpusDataType = {
     label: '学習データ',
   },
 };
+
+export const CorpusLanguage = {
+  0: {
+    label: '日本語',
+  },
+  1: {
+    label: '英語',
+  },
+};

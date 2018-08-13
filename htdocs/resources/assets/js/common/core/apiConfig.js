@@ -28,6 +28,12 @@ const API_CONFIG = {
     method: 'GET',
     params: {},
   },
+  // トレーニングデータ追加
+  addTrainingData: {
+    url: '/api/v1/training-data',
+    method: 'POST',
+    data: {},
+  },
   // クリエイティブデータ登録
   addCreative: {
     url: '/api/v1/training-data/{training_datum}',
