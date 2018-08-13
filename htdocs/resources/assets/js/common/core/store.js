@@ -11,7 +11,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     me: {},
-    corpusId: '',
+    corpusId: null,
     corpusInfo: {},
     corpusClass: [],
     trainingData: [],
@@ -110,10 +110,11 @@ const store = new Vuex.Store({
       Ajax.exec(apiOption, commit, 'setTrainingData');
     },
     // 登録系
-    addCreative({ commit }, { classId, content, dataType, newClassName }) {
+    addCreative({ commit, state }, { classId, content, dataType, newClassName }) {
       Core.log('[store] addCreative');
       const apiOption = Object.assign({}, ApiConfig['addTrainingData']);
       apiOption.data = {
+        corpus_id: state.corpusId,
         class_id: classId,
         content: content,
         data_type: dataType,

@@ -45,7 +45,7 @@ const routes = [
   {
     path: '/corpus/:corpusId',
     meta: { requiresAuth: true },
-    props: route => ({ corpusId: route.params.corpusId }),
+    props: route => ({ corpusId: parseInt(route.params.corpusId, 10) }),
     component: CorpusadminVue,
     children: [
       {

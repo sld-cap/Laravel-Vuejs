@@ -54336,7 +54336,7 @@ var routes = [{ path: '/login', component: __WEBPACK_IMPORTED_MODULE_8__componen
   path: '/corpus/:corpusId',
   meta: { requiresAuth: true },
   props: function props(route) {
-    return { corpusId: route.params.corpusId };
+    return { corpusId: parseInt(route.params.corpusId, 10) };
   },
   component: __WEBPACK_IMPORTED_MODULE_10__components_corpusadmin_index_vue___default.a,
   children: [{
@@ -54685,7 +54685,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   state: {
     me: {},
-    corpusId: '',
+    corpusId: null,
     corpusInfo: {},
     corpusClass: [],
     trainingData: [],
@@ -54792,7 +54792,8 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
     // 登録系
     addCreative: function addCreative(_ref3, _ref4) {
-      var commit = _ref3.commit;
+      var commit = _ref3.commit,
+          state = _ref3.state;
       var classId = _ref4.classId,
           content = _ref4.content,
           dataType = _ref4.dataType,
@@ -54801,6 +54802,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] addCreative');
       var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['addTrainingData']);
       apiOption.data = {
+        corpus_id: state.corpusId,
         class_id: classId,
         content: content,
         data_type: dataType,
