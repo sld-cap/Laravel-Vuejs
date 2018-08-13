@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import * as Core from '../../../common/core/app';
+import * as Core from '../../../../common/core/app';
 
 export default {
   // props: [ 'modalId', 'modalSize' ],
