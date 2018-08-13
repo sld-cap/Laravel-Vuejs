@@ -1670,6 +1670,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1687,7 +1694,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
   },
 
-  methods: {}
+  methods: {
+    logout: function logout() {
+      __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__["logout"]();
+    }
+  }
 });
 
 /***/ }),
@@ -2136,6 +2147,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2148,7 +2165,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: [],
   components: {},
   data: function data() {
-    return {};
+    return {
+      showEditCorpusInfoModal: false,
+      editModal: {}
+    };
   },
 
   computed: {
@@ -2158,6 +2178,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.resetEditCorpusInfoModal();
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
@@ -2166,7 +2187,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
   },
 
-  methods: {}
+  methods: {
+    closeModal: function closeModal() {
+      this.showEditCorpusInfoModal = false;
+    },
+    setEditCorpusInfoModal: function setEditCorpusInfoModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setEditCorpusInfoModal]');
+      this.resetEditCorpusInfoModal();
+      this.showEditCorpusInfoModal = true;
+    },
+    resetEditCorpusInfoModal: function resetEditCorpusInfoModal() {
+      this.editModal = {
+        name: '',
+        description: '',
+        language: ''
+      };
+    }
+  }
 });
 
 /***/ }),
@@ -6705,7 +6742,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -36552,6 +36589,16 @@ var render = function() {
           _c("li", [_vm._v("メールアドレス: " + _vm._s(_vm.me.email))])
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-danger", on: { click: _vm.logout } },
+          [_vm._v("ログアウト")]
+        )
+      ])
     ])
   ])
 }
@@ -38864,71 +38911,105 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "panel panel-default" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "panel-collapse collapse show",
-        attrs: { id: "collapse1" }
-      },
-      [
-        _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "table mb-0" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("コーパス名")]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.corpusInfo.name))])
-              ]),
+  return _c(
+    "div",
+    { staticClass: "panel panel-default" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "panel-collapse collapse show",
+          attrs: { id: "collapse1" }
+        },
+        [
+          _c("div", { staticClass: "table-responsive" }, [
+            _c("table", { staticClass: "table mb-0" }, [
+              _vm._m(1),
               _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("コーパス説明")]),
+              _c("tbody", [
+                _c("tr", [
+                  _c("th", { attrs: { scope: "row" } }, [_vm._v("コーパス名")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.corpusInfo.name))])
+                ]),
                 _vm._v(" "),
-                _c("td", {
-                  staticStyle: { "white-space": "pre" },
-                  domProps: { textContent: _vm._s(_vm.corpusInfo.description) }
-                })
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("言語")]),
+                _c("tr", [
+                  _c("th", { attrs: { scope: "row" } }, [
+                    _vm._v("コーパス説明")
+                  ]),
+                  _vm._v(" "),
+                  _c("td", {
+                    staticStyle: { "white-space": "pre" },
+                    domProps: {
+                      textContent: _vm._s(_vm.corpusInfo.description)
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.corpusInfo.language))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("作成日")]),
+                _c("tr", [
+                  _c("th", { attrs: { scope: "row" } }, [_vm._v("言語")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.corpusInfo.language))])
+                ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(_vm.corpusInfo.created_at) +
-                      "（***ここに作成者名を表示***）"
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("最終更新日")]),
+                _c("tr", [
+                  _c("th", { attrs: { scope: "row" } }, [_vm._v("作成日")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(_vm.corpusInfo.created_at) +
+                        "（***ここに作成者名を表示***）"
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(_vm.corpusInfo.updated_at) +
-                      "（***ここに更新者名を表示***）"
-                  )
+                _c("tr", [
+                  _c("th", { attrs: { scope: "row" } }, [_vm._v("最終更新日")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(_vm.corpusInfo.updated_at) +
+                        "（***ここに更新者名を表示***）"
+                    )
+                  ])
                 ])
               ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "float-right" }, [
+              _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                _c("span", {
+                  staticClass: "text-muted",
+                  staticStyle: { width: "15px", height: "15px" },
+                  attrs: { "data-feather": "settings" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "text-muted",
+                    on: { click: _vm.setEditCorpusInfoModal }
+                  },
+                  [_vm._v("編集する")]
+                )
+              ])
             ])
-          ]),
-          _vm._v(" "),
-          _vm._m(2)
-        ])
-      ]
-    )
-  ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("EditCorpusInfoModal", {
+        attrs: {
+          showModal: _vm.showEditCorpusInfoModal,
+          "edit-form-data": _vm.editModal
+        },
+        on: { close: _vm.closeModal }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -38957,29 +39038,6 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col", width: "25%" } }),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("内容")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "float-right" }, [
-      _c("a", { attrs: { href: "javascript:void(0);" } }, [
-        _c("span", {
-          staticClass: "text-muted",
-          staticStyle: { width: "15px", height: "15px" },
-          attrs: { "data-feather": "settings" }
-        }),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "text-muted",
-            attrs: { "data-toggle": "modal", "data-target": "#editCorpusModal" }
-          },
-          [_vm._v("編集する")]
-        )
       ])
     ])
   }

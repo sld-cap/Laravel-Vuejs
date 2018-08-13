@@ -24,6 +24,13 @@
     <!-- /.col-12 -->
   </div>
   <!-- /.row -->
+  <div class="row">
+    <div class="col-12">
+      <button @click="logout" class="btn btn-danger">ログアウト</button>
+    </div>
+    <!-- /.col-12 -->
+  </div>
+  <!-- /.row -->
 </div>
 <!-- /.container -->
 </template>
@@ -47,6 +54,9 @@ export default {
       Core.log('[mounted]');
   },
   methods: {
+    logout() {
+      Lib.logout();
+    }
   }
 };
 </script>
