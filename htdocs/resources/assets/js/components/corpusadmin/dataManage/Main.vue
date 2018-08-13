@@ -88,8 +88,8 @@ import ApiConfig from '../../../common/core/apiConfig';
 // アラート
 import ProductionNoticeAlert from './alert/ProductionNoticeAlert.vue';
 import IsTrainingAlert from './alert/IsTrainingAlert.vue';
-import SuccessAlert from './alert/SuccessAlert.vue';
-import ErrorAlert from './alert/ErrorAlert.vue';
+import SuccessAlert from '../common/custom/SuccessAlert.vue';
+import ErrorAlert from '../common/custom/ErrorAlert.vue';
 import NoTrainingDataAlert from './alert/NoTrainingDataAlert.vue';
 // データ管理
 import TrainingDataManageActions from './tab/TrainingDataManageActions.vue';
