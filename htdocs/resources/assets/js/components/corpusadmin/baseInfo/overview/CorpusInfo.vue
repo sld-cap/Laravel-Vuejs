@@ -40,11 +40,15 @@
         <div class="float-right">
           <a href="javascript:void(0);">
             <span class="text-muted" data-feather="settings" style="width:15px;height:15px;"></span>
-            <span class="text-muted" data-toggle="modal" data-target="#editCorpusModal">編集する</span>
+            <span class="text-muted" @click="setEditCorpusInfoModal">編集する</span>
           </a>
         </div>
       </div>
     </div>
+
+    <EditCorpusInfoModal
+      :edit-form-data="editModal">
+    </EditCorpusInfoModal>
   </div>
 </template>
 
@@ -61,17 +65,23 @@ import EditCorpusInfoModal from '../modal/EditCorpusInfoModal.vue';
 
 export default {
   props: [],
-  components: {},
+  components: { EditCorpusInfoModal, },
   data() {
-    return {};
+    return {
+      editModal: {},
+    };
   },
   computed: {
     corpusInfo() {
       return this.$store.getters.corpusInfo;
     },
+    // showEditCorpusInfoModal() {
+    //   return this.$store.getters.modalState.showEditCorpusInfoModal;
+    // },
   },
   created() {
     Core.log('[created]');
+    this.resetEditCorpusInfoModal();
   },
   mounted() {
     Core.log('[mounted]');
@@ -80,6 +90,18 @@ export default {
     Core.log('[updated]');
   },
   methods: {
+    setEditCorpusInfoModal() {
+      Core.log('[setEditCorpusInfoModal]');
+      this.resetEditCorpusInfoModal();
+      this.$store.state.modal.editCorpusInfoModalFlag = true;
+    },
+    resetEditCorpusInfoModal() {
+      this.editModal = {
+        name: this.corpusInfo.name,
+        description: this.corpusInfo.description,
+        language: this.corpusInfo.language,
+      };
+    },
   },
 }
 </script>

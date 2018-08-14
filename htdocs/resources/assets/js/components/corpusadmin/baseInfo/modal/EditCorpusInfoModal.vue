@@ -1,5 +1,5 @@
 <template>
-  <CommonModal v-if="this.showModal" @close="closeModal">
+  <CommonModal v-if="showModal" @close="closeModal">
     <div slot="title">コーパスの編集</div>
     <!-- /.title -->
     <div slot="body">
@@ -9,7 +9,7 @@
       <!-- /message -->
       <div class="form-group">
         <label for="editCorpusName">コーパス名</label>
-        <input type="text" name="name" class="form-control" id="editCorpusName" aria-describedby="nameHelp" required>
+        <input v-model="editFormData.name" type="text" class="form-control" id="editCorpusName" aria-describedby="nameHelp" required>
         <small id="nameHelp" class="form-text text-muted">10字程度の識別しやすい名前を記入してください。</small>
         <div class="invalid-feedback">
           コーパス名を入力してください
@@ -18,7 +18,7 @@
       <!-- /.form-group -->
       <div class="form-group">
         <label for="editDescription">説明文</label>
-        <textarea name="description" class="form-control" id="editDescription" rows="3" required></textarea>
+        <textarea v-model="editFormData.description" class="form-control" id="editDescription" rows="3" required></textarea>
         <!-- <small class="form-text text-muted">1000文字以内で入力してください。</small> -->
         <div class="invalid-feedback">
           説明文を入力してください
@@ -27,7 +27,7 @@
       <!-- /.form-group -->
       <div class="form-group">
         <label for="selectClass">言語</label>
-        <select name="language" class="form-control form-control-sm" id="selectClass">
+        <select v-model="editFormData.language" class="form-control form-control-sm" id="selectClass">
           <template v-for="(language, i) in corpusLanguageList" >
             <option :value="i" :key="i">{{ language.label }}</option>
           </template>
@@ -37,7 +37,7 @@
     </div>
     <!-- /.body -->
     <div slot="footer">
-      <button type="submit" class="btn btn-primary" id="add_content_btn">保存する</button>
+      <button @click="saveCorpusInfo" type="button" class="btn btn-primary">保存する</button>
     </div>
     <!-- /.footer -->
   </CommonModal>
@@ -54,7 +54,7 @@ import ApiConfig from '../../../../common/core/apiConfig';
 import CommonModal from '../../common/base/Modal.vue';
 
 export default {
-  props: [ 'editFormData', 'showModal' ],
+  props: [ 'editFormData', ],
   components: { CommonModal },
   data() {
     return {
@@ -62,6 +62,9 @@ export default {
     };
   },
   computed: {
+    showModal() {
+      return this.$store.state.modal.editCorpusInfoModalFlag;
+    },
   },
   created() {
     Core.log('[created]');
@@ -73,6 +76,15 @@ export default {
     Core.log('[updated]');
   },
   methods: {
+    closeModal() {
+      // this.$emit('close');
+      this.$store.state.modal.editCorpusInfoModalFlag = false;
+    },
+    saveCorpusInfo() {
+      Core.log('[saveCorpusInfo]');
+      Core.log(this.editFormData);
+      this.$store.dispatch('saveCorpusInfo', this.editFormData);
+    }
   },
 }
 </script>
