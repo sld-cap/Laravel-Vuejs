@@ -27,17 +27,16 @@
 import * as Core from '../../../../common/core/app';
 
 export default {
-  // props: [ 'modalId', 'modalSize' ],
   props: [ 'modalSize' ],
   data() {
     return {
-      // id: this.modalId,
-      defaultModalClass: 'modal-dialog ',
+      defaultModalClass: 'modal-dialog',
     };
   },
   computed: {
     modalClass() {
-      return this.defaultModalClass + this.modalSize;
+      const largeClass = this.modalSize !== undefined ? ' ' + this.modalSize : '';
+      return this.defaultModalClass + largeClass;
     },
   },
   created() {
@@ -50,9 +49,6 @@ export default {
     Core.log('[updated]');
   },
   methods: {
-    showModal() {
-      Core.log('[showModal]');
-    }
   },
 }
 </script>
@@ -121,4 +117,13 @@ export default {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+
+/* .modal-leave-to.modal-mask{
+  transition: all 0s;
+}
+
+.modal-leave-to .modal-container{
+  transition: all 0s;
+} */
+
 </style>
