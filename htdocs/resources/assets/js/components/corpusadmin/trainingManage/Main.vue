@@ -21,6 +21,8 @@ export default {
   },
   created() {
     Core.log('[created]');
+    this.$store.state.successMsg = '';
+    this.$store.state.errors = [];
   },
   updated: function() {
     Core.log('[updated]');

@@ -72,11 +72,13 @@ export default {
   },
   data() {
     return {
-      showEditTrainingCreativeModal: false,
       editModal: {},
     };
   },
   computed: {
+    showEditTrainingCreativeModal() {
+      return this.$store.getters.modalState.showEditTrainingCreativeModal;
+    },
   },
   created() {
     Core.log('[created]');
@@ -92,7 +94,7 @@ export default {
       Core.log('[showModal]');
     },
     closeModal() {
-      this.showEditTrainingCreativeModal = false;
+      this.$store.state.modal.editTrainingCreativeModalFlag = false;
     },
     // 編集モーダル向け
     setEditTrainingCreativeModal(classIndex, creativeIndex) {
@@ -103,7 +105,8 @@ export default {
       const classData = this.$store.getters.trainingClassData(classIndex);
       this.editModal.classId = classData.class_id;
       this.editModal.content = classData.training_data[creativeIndex].content;
-      this.showEditTrainingCreativeModal = true;
+      this.editModal.creativeId = classData.training_data[creativeIndex].creative_id;
+      this.$store.state.modal.editTrainingCreativeModalFlag = true;
     },
     resetEditCrativeModalParams() {
       Core.log('[resetEditCrativeModalParams]');
@@ -111,6 +114,7 @@ export default {
         content: '',
         classId: '',
         dataType: '',
+        creativeId: '',
       };
     },
   },

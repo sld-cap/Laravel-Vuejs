@@ -73,7 +73,7 @@ export default {
     saveCreative() {
       Core.log('[saveCreative]');
       Core.log(this.editFromData);
-      //this.$store.dispatch('addCreative', this.addFromData);
+      this.$store.dispatch('saveCreative', this.editFromData);
     },
     showDelCreativeModal() {
       Core.log('[showDelCreativeModal]');

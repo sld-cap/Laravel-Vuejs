@@ -21,7 +21,7 @@
     <!-- /.クラステキスト追加モーダル（テストデータ） -->
 
     <UploadTestDataCsvModal
-      :showModal="UploadTestDataCsvModal" 
+      :showModal="showUploadTestDataCsvModal" 
       @close="closeModal"
       :upload-form-data="uploadModal">
     </UploadTestDataCsvModal>
@@ -49,11 +49,15 @@ export default {
     return {
       createModal: {},
       uploadModal: {},
-      showAddTestCreativeModal: false,
-      UploadTestDataCsvModal: false,
     };
   },
   computed: {
+    showAddTestCreativeModal() {
+      return this.$store.getters.modalState.showAddTestCreativeModal;
+    },
+    showUploadTestDataCsvModal() {
+      return this.$store.getters.modalState.showUploadTestDataCsvModal;
+    },
   },
   created() {
     Core.log('[created]');
@@ -69,8 +73,8 @@ export default {
       Core.log('[showModal]');
     },
     closeModal() {
-      this.showAddTestCreativeModal = false;
-      this.UploadTestDataCsvModal = false;
+      this.$store.state.modal.addTestCreativeModalFlag = false;
+      this.$store.state.modal.uploadTestDataCsvModalFlag = false;
     },
     setAddTestCreativeModal() {
       Core.log('[setAddTestCreativeModal]');
@@ -78,13 +82,13 @@ export default {
       this.createModal.dataType = 0;
       // 先頭のクラスをselectedにする
       this.createModal.classId = this.trainingData[0].class_id;
-      this.showAddTestCreativeModal = true;
+      this.$store.state.modal.addTestCreativeModalFlag = true;
     },
     setUploadTestDataCsvModal() {
       Core.log('[setUploadTestDataCsvModal]');
       this.resetUploadCsvModalParams();
       this.uploadModal.dataType = 0;
-      this.UploadTestDataCsvModal = true;
+      this.$store.state.modal.uploadTestDataCsvModalFlag = true;
     },
     resetAddCrativeModalParams() {
       Core.log('[resetAddCrativeModalParams]');
