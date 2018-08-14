@@ -17,6 +17,17 @@ const store = new Vuex.Store({
     trainingData: [],
     successMsg: '',
     errors: [],
+    // モーダル開閉
+    modal: {
+      editCorpusInfoModalFlag: false,
+      addTrainingCreativeModalFlag: false,
+      editTrainingCreativeModalFlag: false,
+      addTestCreativeModalFlag: false,
+      editTestCreativeModalFlag: false,
+      uploadTrainingDataCsvModalFlag: false,
+      uploadTestDataCsvModalFlag: false,
+      
+    },
   },
   mutations: {
     setMe(state, payload) {
@@ -40,6 +51,16 @@ const store = new Vuex.Store({
         location.href = '/corpus';
       }
     },
+    checkSaveCorpusInfo(state, payload) {
+      Core.log('[store] checkSaveCorpusInfo');
+      if (payload.code === 200) {
+        state.successMsg = 'コーパス情報の更新が完了しました';
+      } else {
+        state.errors = payload.errors;
+      }
+      state.modal.editCorpusInfoModalFlag = false;
+      Lib.setScrollTop();
+    },
     setTrainingData(state, payload) {
       Core.log('[store] setTrainingData');
       if (payload.code === 200) {
@@ -49,12 +70,22 @@ const store = new Vuex.Store({
       }
       Core.log(payload);
     },
+    checkSaveCreative(state, payload) {
+      Core.log('[store] checkSaveCreative');
+      if (payload.code === 200) {
+        state.successMsg = 'テキストの更新処理が完了しました';
+      } else {
+        state.errors = payload.errors;
+      }
+      state.modal.editCorpusInfoModalFlag = false;
+      Lib.setScrollTop();
+    },
     setAddCreativeResult(state, payload) {
       Core.log('[store] setAddCreativeResult');
       if (payload.code === 200) {
-        state.successMsg = 'テキストの登録処理が完了しました';
+        state.modal.editCorpusInfo.successMsg = 'テキストの登録処理が完了しました';
       } else {
-        // state.errors = payload.errors;
+        state.errors = payload.errors;
       }
       Core.log(payload);
     },
@@ -62,6 +93,11 @@ const store = new Vuex.Store({
       Core.log('[store] setError');
       state.errors = payload;
       Core.log(state.error);
+    },
+    // test
+    testMutation(state) {
+      Core.log('[store] testMutation');
+      this.$emit('testEmit');
     },
   },
   getters: {
@@ -89,6 +125,17 @@ const store = new Vuex.Store({
     },
     errors: (state) => {
       return state.errors;
+    },
+    modalState: (state) => {
+      return {
+        showEditCorpusInfoModal: state.modal.editCorpusInfoModalFlag,
+        showAddTrainingCreativeModal: state.modal.addTrainingCreativeModalFlag,
+        showEditTrainingCreativeModal: state.modal.editTrainingCreativeModalFlag,
+        showAddTestCreativeModal: state.modal.addTestCreativeModalFlag,
+        showEditTestCreativeModal: state.modal.editTestCreativeModalFlag,
+        showUploadTrainingDataCsvModal: state.modal.uploadTrainingDataCsvModalFlag,
+        showUploadTestDataCsvModal: state.modal.uploadTestDataCsvModalFlag,
+      };
     },
   },
   actions: {
@@ -122,6 +169,37 @@ const store = new Vuex.Store({
       };
 
       Ajax.exec(apiOption, commit, 'setAddCreativeResult');
+    },
+    // 更新系
+    saveCorpusInfo({ commit, state }, { name, description, language }) {
+      Core.log('[store] saveCorpusInfo');
+      const apiOption = Object.assign({}, ApiConfig['setCorpusInfo']);
+      apiOption.data = {
+        corpus_id: state.corpusId,
+        name: name,
+        description: description,
+        language: language,
+      };
+
+      Ajax.exec(apiOption, commit, 'checkSaveCorpusInfo');
+    },
+    saveCreative({ commit, state }, { classId, creativeId, content, dataType }) {
+      Core.log('[store] addCreative');
+      const apiOption = Object.assign({}, ApiConfig['setTrainingData']);
+      apiOption.data = {
+        corpus_id: state.corpusId,
+        class_id: classId,
+        creative_id: creativeId,
+        content: content,
+        data_type: dataType,
+      };
+
+      Ajax.exec(apiOption, commit, 'checkSaveCreative');
+    },
+    // tet
+    test({ commit }) {
+      Core.log('[store] addCreative');
+      commit('testMutation');
     },
   },
 });

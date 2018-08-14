@@ -1,4 +1,7 @@
 const API_CONFIG = {
+  /**
+   * システム共通
+   */
   // ログイン
   login: {
     url: '/api/authenticate',
@@ -16,13 +19,27 @@ const API_CONFIG = {
     url: '/api/v1/me',
     method: 'GET',
   },
+  /**
+   * CAP管理画面
+   */
+
+  /**
+   *  コーパス管理画面
+   */
   // コーパス情報取得
   getCorpus: {
     url: '/api/v1/corpus/{corpusId}',
     method: 'GET',
     params: {},
   },
-  // トレーニングデータ取得
+  // コーパス情報更新
+  setCorpusInfo: {
+    // url: '/api/v1/corpus',
+    url: '/stub/data/setCorpusInfo.json',
+    method: 'POST',
+    params: {},
+  },
+  // トレーニングデータ一覧取得
   getTrainingData: {
     url: '/api/v1/training-data/{training_datum}',
     method: 'GET',

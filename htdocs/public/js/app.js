@@ -1978,6 +1978,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.$store.state.successMsg = '';
+    this.$store.state.errors = [];
   },
 
   updated: function updated() {
@@ -2059,7 +2061,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['editFormData', 'showModal'],
+  props: ['editFormData'],
   components: { CommonModal: __WEBPACK_IMPORTED_MODULE_4__common_base_Modal_vue___default.a },
   data: function data() {
     return {
@@ -2067,7 +2069,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
-  computed: {},
+  computed: {
+    showModal: function showModal() {
+      return this.$store.state.modal.editCorpusInfoModalFlag;
+    }
+  },
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
   },
@@ -2078,7 +2084,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
   },
 
-  methods: {}
+  methods: {
+    closeModal: function closeModal() {
+      // this.$emit('close');
+      this.$store.state.modal.editCorpusInfoModalFlag = false;
+    },
+    saveCorpusInfo: function saveCorpusInfo() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[saveCorpusInfo]');
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.editFormData);
+      this.$store.dispatch('saveCorpusInfo', this.editFormData);
+    }
+  }
 });
 
 /***/ }),
@@ -2151,8 +2167,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -2163,10 +2177,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
-  components: {},
+  components: { EditCorpusInfoModal: __WEBPACK_IMPORTED_MODULE_4__modal_EditCorpusInfoModal_vue___default.a },
   data: function data() {
     return {
-      showEditCorpusInfoModal: false,
       editModal: {}
     };
   },
@@ -2188,19 +2201,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    closeModal: function closeModal() {
-      this.showEditCorpusInfoModal = false;
-    },
     setEditCorpusInfoModal: function setEditCorpusInfoModal() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setEditCorpusInfoModal]');
       this.resetEditCorpusInfoModal();
-      this.showEditCorpusInfoModal = true;
+      this.$store.state.modal.editCorpusInfoModalFlag = true;
     },
     resetEditCorpusInfoModal: function resetEditCorpusInfoModal() {
       this.editModal = {
-        name: '',
-        description: '',
-        language: ''
+        name: this.corpusInfo.name,
+        description: this.corpusInfo.description,
+        language: this.corpusInfo.language
       };
     }
   }
@@ -2660,18 +2670,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  // props: [ 'modalId', 'modalSize' ],
   props: ['modalSize'],
   data: function data() {
     return {
-      // id: this.modalId,
-      defaultModalClass: 'modal-dialog '
+      defaultModalClass: 'modal-dialog'
     };
   },
 
   computed: {
     modalClass: function modalClass() {
-      return this.defaultModalClass + this.modalSize;
+      var largeClass = this.modalSize !== undefined ? ' ' + this.modalSize : '';
+      return this.defaultModalClass + largeClass;
     }
   },
   created: function created() {
@@ -2684,11 +2693,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
   },
 
-  methods: {
-    showModal: function showModal() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showModal]');
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -2925,7 +2930,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return this.$store.getters.errors;
     }
   },
-  created: function created() {},
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.$store.state.successMsg = '';
+    this.$store.state.errors = [];
+  },
 
   updated: function updated() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
@@ -3249,7 +3258,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     saveCreative: function saveCreative() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[saveCreative]');
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.editFromData);
-      //this.$store.dispatch('addCreative', this.addFromData);
+      this.$store.dispatch('saveCreative', this.editFromData);
     },
     showDelCreativeModal: function showDelCreativeModal() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showDelCreativeModal]');
@@ -3413,13 +3422,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       createModal: {},
-      uploadModal: {},
-      showAddTestCreativeModal: false,
-      UploadTestDataCsvModal: false
+      uploadModal: {}
     };
   },
 
-  computed: {},
+  computed: {
+    showAddTestCreativeModal: function showAddTestCreativeModal() {
+      return this.$store.getters.modalState.showAddTestCreativeModal;
+    },
+    showUploadTestDataCsvModal: function showUploadTestDataCsvModal() {
+      return this.$store.getters.modalState.showUploadTestDataCsvModal;
+    }
+  },
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
   },
@@ -3435,8 +3449,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showModal]');
     },
     closeModal: function closeModal() {
-      this.showAddTestCreativeModal = false;
-      this.UploadTestDataCsvModal = false;
+      this.$store.state.modal.addTestCreativeModalFlag = false;
+      this.$store.state.modal.uploadTestDataCsvModalFlag = false;
     },
     setAddTestCreativeModal: function setAddTestCreativeModal() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setAddTestCreativeModal]');
@@ -3444,13 +3458,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.createModal.dataType = 0;
       // 先頭のクラスをselectedにする
       this.createModal.classId = this.trainingData[0].class_id;
-      this.showAddTestCreativeModal = true;
+      this.$store.state.modal.addTestCreativeModalFlag = true;
     },
     setUploadTestDataCsvModal: function setUploadTestDataCsvModal() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setUploadTestDataCsvModal]');
       this.resetUploadCsvModalParams();
       this.uploadModal.dataType = 0;
-      this.UploadTestDataCsvModal = true;
+      this.$store.state.modal.uploadTestDataCsvModalFlag = true;
     },
     resetAddCrativeModalParams: function resetAddCrativeModalParams() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetAddCrativeModalParams]');
@@ -3562,12 +3576,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      showEditTestCreativeModal: false,
       editModal: {}
     };
   },
 
   computed: {
+    showEditTestCreativeModal: function showEditTestCreativeModal() {
+      return this.$store.getters.modalState.showEditTestCreativeModal;
+    },
     testDataCount: function testDataCount() {
       return this.$store.getters.testDataCount;
     }
@@ -3587,8 +3603,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showModal]');
     },
     closeModal: function closeModal() {
-      this.showEditTrainingCreativeModal = false;
-      this.showEditTestCreativeModal = false;
+      this.$store.state.modal.editTestCreativeModalFlag = false;
     },
 
     // 編集モーダル向け
@@ -3600,7 +3615,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var classData = this.$store.getters.trainingClassData(classIndex);
       this.editModal.classId = classData.class_id;
       this.editModal.content = classData.test_data[creativeIndex].content;
-      this.showEditTestCreativeModal = true;
+      this.$store.state.modal.editTestCreativeModalFlag = true;
     },
     resetEditCrativeModalParams: function resetEditCrativeModalParams() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetEditCrativeModalParams]');
@@ -3683,13 +3698,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       createModal: {},
-      uploadModal: {},
-      showAddTrainingCreativeModal: false,
-      UploadTrainingDataCsvModal: false
+      uploadModal: {}
     };
   },
 
-  computed: {},
+  computed: {
+    showAddTrainingCreativeModal: function showAddTrainingCreativeModal() {
+      return this.$store.getters.modalState.showAddTrainingCreativeModal;
+    },
+    showUploadTrainingDataCsvModal: function showUploadTrainingDataCsvModal() {
+      return this.$store.getters.modalState.showUploadTrainingDataCsvModal;
+    }
+  },
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
   },
@@ -3705,8 +3725,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showModal]');
     },
     closeModal: function closeModal() {
-      this.showAddTrainingCreativeModal = false;
-      this.UploadTrainingDataCsvModal = false;
+      this.$store.state.modal.addTrainingCreativeModalFlag = false;
+      this.$store.state.modal.uploadTrainingDataCsvModalFlag = false;
     },
 
     // 登録モーダル向け
@@ -3716,7 +3736,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.createModal.dataType = 1;
       // 先頭のクラスをselectedにする
       this.createModal.classId = this.trainingData[0].class_id;
-      this.showAddTrainingCreativeModal = true;
+      this.$store.state.modal.addTrainingCreativeModalFlag = true;
     },
 
     // アップロード系モーダル向け
@@ -3724,7 +3744,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setUploadTrainingDataCsvModal]');
       this.resetUploadCsvModalParams();
       this.uploadModal.dataType = 1;
-      this.UploadTrainingDataCsvModal = true;
+      this.$store.state.modal.uploadTrainingDataCsvModalFlag = true;
     },
     resetAddCrativeModalParams: function resetAddCrativeModalParams() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetAddCrativeModalParams]');
@@ -3830,12 +3850,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      showEditTrainingCreativeModal: false,
       editModal: {}
     };
   },
 
-  computed: {},
+  computed: {
+    showEditTrainingCreativeModal: function showEditTrainingCreativeModal() {
+      return this.$store.getters.modalState.showEditTrainingCreativeModal;
+    }
+  },
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
   },
@@ -3851,7 +3874,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showModal]');
     },
     closeModal: function closeModal() {
-      this.showEditTrainingCreativeModal = false;
+      this.$store.state.modal.editTrainingCreativeModalFlag = false;
     },
 
     // 編集モーダル向け
@@ -3863,14 +3886,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var classData = this.$store.getters.trainingClassData(classIndex);
       this.editModal.classId = classData.class_id;
       this.editModal.content = classData.training_data[creativeIndex].content;
-      this.showEditTrainingCreativeModal = true;
+      this.editModal.creativeId = classData.training_data[creativeIndex].creative_id;
+      this.$store.state.modal.editTrainingCreativeModalFlag = true;
     },
     resetEditCrativeModalParams: function resetEditCrativeModalParams() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetEditCrativeModalParams]');
       this.editModal = {
         content: '',
         classId: '',
-        dataType: ''
+        dataType: '',
+        creativeId: ''
       };
     }
   }
@@ -4021,6 +4046,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   computed: {},
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.$store.state.successMsg = '';
+    this.$store.state.errors = [];
   },
 
   updated: function updated() {
@@ -6607,7 +6634,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.modal-mask {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, .5);\n  display: table;\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n.modal-wrapper {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container {\n  width: 300px;\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n          box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n  margin-top: 0;\n  color: #42b983;\n}\n.modal-body {\n  margin: 20px 0;\n}\n.modal-default-button {\n  float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n  opacity: 0;\n}\n.modal-leave-active {\n  opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n  -webkit-transform: scale(1.1);\n  transform: scale(1.1);\n}\n", ""]);
+exports.push([module.i, "\n.modal-mask {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, .5);\n  display: table;\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n.modal-wrapper {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container {\n  width: 300px;\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n          box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n  margin-top: 0;\n  color: #42b983;\n}\n.modal-body {\n  margin: 20px 0;\n}\n.modal-default-button {\n  float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n  opacity: 0;\n}\n.modal-leave-active {\n  opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n  -webkit-transform: scale(1.1);\n  transform: scale(1.1);\n}\n\n/* .modal-leave-to.modal-mask{\n  transition: all 0s;\n}\n\n.modal-leave-to .modal-container{\n  transition: all 0s;\n} */\n\n", ""]);
 
 // exports
 
@@ -6742,7 +6769,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -35879,7 +35906,7 @@ var render = function() {
       _vm._v(" "),
       _c("UploadTrainingDataCsvModal", {
         attrs: {
-          showModal: _vm.UploadTrainingDataCsvModal,
+          showModal: _vm.showUploadTrainingDataCsvModal,
           "upload-form-data": _vm.uploadModal
         },
         on: { close: _vm.closeModal }
@@ -35951,7 +35978,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return this.showModal
+  return _vm.showModal
     ? _c("CommonModal", { on: { close: _vm.closeModal } }, [
         _c("div", { attrs: { slot: "title" }, slot: "title" }, [
           _vm._v("コーパスの編集")
@@ -35972,13 +35999,29 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.editFormData.name,
+                  expression: "editFormData.name"
+                }
+              ],
               staticClass: "form-control",
               attrs: {
                 type: "text",
-                name: "name",
                 id: "editCorpusName",
                 "aria-describedby": "nameHelp",
                 required: ""
+              },
+              domProps: { value: _vm.editFormData.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.editFormData, "name", $event.target.value)
+                }
               }
             }),
             _vm._v(" "),
@@ -36002,12 +36045,24 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.editFormData.description,
+                  expression: "editFormData.description"
+                }
+              ],
               staticClass: "form-control",
-              attrs: {
-                name: "description",
-                id: "editDescription",
-                rows: "3",
-                required: ""
+              attrs: { id: "editDescription", rows: "3", required: "" },
+              domProps: { value: _vm.editFormData.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.editFormData, "description", $event.target.value)
+                }
               }
             }),
             _vm._v(" "),
@@ -36022,8 +36077,33 @@ var render = function() {
             _c(
               "select",
               {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.editFormData.language,
+                    expression: "editFormData.language"
+                  }
+                ],
                 staticClass: "form-control form-control-sm",
-                attrs: { name: "language", id: "selectClass" }
+                attrs: { id: "selectClass" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.editFormData,
+                      "language",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
               },
               [
                 _vm._l(_vm.corpusLanguageList, function(language, i) {
@@ -36044,7 +36124,8 @@ var render = function() {
             "button",
             {
               staticClass: "btn btn-primary",
-              attrs: { type: "submit", id: "add_content_btn" }
+              attrs: { type: "button" },
+              on: { click: _vm.saveCorpusInfo }
             },
             [_vm._v("保存する")]
           )
@@ -38160,7 +38241,7 @@ var render = function() {
       _vm._v(" "),
       _c("UploadTestDataCsvModal", {
         attrs: {
-          showModal: _vm.UploadTestDataCsvModal,
+          showModal: _vm.showUploadTestDataCsvModal,
           "upload-form-data": _vm.uploadModal
         },
         on: { close: _vm.closeModal }
@@ -39000,13 +39081,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("EditCorpusInfoModal", {
-        attrs: {
-          showModal: _vm.showEditCorpusInfoModal,
-          "edit-form-data": _vm.editModal
-        },
-        on: { close: _vm.closeModal }
-      })
+      _c("EditCorpusInfoModal", { attrs: { "edit-form-data": _vm.editModal } })
     ],
     1
   )
@@ -54629,6 +54704,9 @@ var checkStatus = function () {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var API_CONFIG = {
+  /**
+   * システム共通
+   */
   // ログイン
   login: {
     url: '/api/authenticate',
@@ -54646,13 +54724,27 @@ var API_CONFIG = {
     url: '/api/v1/me',
     method: 'GET'
   },
+  /**
+   * CAP管理画面
+   */
+
+  /**
+   *  コーパス管理画面
+   */
   // コーパス情報取得
   getCorpus: {
     url: '/api/v1/corpus/{corpusId}',
     method: 'GET',
     params: {}
   },
-  // トレーニングデータ取得
+  // コーパス情報更新
+  setCorpusInfo: {
+    // url: '/api/v1/corpus',
+    url: '/stub/data/setCorpusInfo.json',
+    method: 'POST',
+    params: {}
+  },
+  // トレーニングデータ一覧取得
   getTrainingData: {
     url: '/api/v1/training-data/{training_datum}',
     method: 'GET',
@@ -54748,7 +54840,18 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     corpusClass: [],
     trainingData: [],
     successMsg: '',
-    errors: []
+    errors: [],
+    // モーダル開閉
+    modal: {
+      editCorpusInfoModalFlag: false,
+      addTrainingCreativeModalFlag: false,
+      editTrainingCreativeModalFlag: false,
+      addTestCreativeModalFlag: false,
+      editTestCreativeModalFlag: false,
+      uploadTrainingDataCsvModalFlag: false,
+      uploadTestDataCsvModalFlag: false
+
+    }
   },
   mutations: {
     setMe: function setMe(state, payload) {
@@ -54772,6 +54875,16 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
         location.href = '/corpus';
       }
     },
+    checkSaveCorpusInfo: function checkSaveCorpusInfo(state, payload) {
+      __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] checkSaveCorpusInfo');
+      if (payload.code === 200) {
+        state.successMsg = 'コーパス情報の更新が完了しました';
+      } else {
+        state.errors = payload.errors;
+      }
+      state.modal.editCorpusInfoModalFlag = false;
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["setScrollTop"]();
+    },
     setTrainingData: function setTrainingData(state, payload) {
       __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] setTrainingData');
       if (payload.code === 200) {
@@ -54781,12 +54894,22 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       }
       __WEBPACK_IMPORTED_MODULE_4__app__["log"](payload);
     },
+    checkSaveCreative: function checkSaveCreative(state, payload) {
+      __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] checkSaveCreative');
+      if (payload.code === 200) {
+        state.successMsg = 'テキストの更新処理が完了しました';
+      } else {
+        state.errors = payload.errors;
+      }
+      state.modal.editCorpusInfoModalFlag = false;
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["setScrollTop"]();
+    },
     setAddCreativeResult: function setAddCreativeResult(state, payload) {
       __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] setAddCreativeResult');
       if (payload.code === 200) {
-        state.successMsg = 'テキストの登録処理が完了しました';
+        state.modal.editCorpusInfo.successMsg = 'テキストの登録処理が完了しました';
       } else {
-        // state.errors = payload.errors;
+        state.errors = payload.errors;
       }
       __WEBPACK_IMPORTED_MODULE_4__app__["log"](payload);
     },
@@ -54794,6 +54917,12 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] setError');
       state.errors = payload;
       __WEBPACK_IMPORTED_MODULE_4__app__["log"](state.error);
+    },
+
+    // test
+    testMutation: function testMutation(state) {
+      __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] testMutation');
+      this.$emit('testEmit');
     }
   },
   getters: {
@@ -54823,6 +54952,17 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     },
     errors: function errors(state) {
       return state.errors;
+    },
+    modalState: function modalState(state) {
+      return {
+        showEditCorpusInfoModal: state.modal.editCorpusInfoModalFlag,
+        showAddTrainingCreativeModal: state.modal.addTrainingCreativeModalFlag,
+        showEditTrainingCreativeModal: state.modal.editTrainingCreativeModalFlag,
+        showAddTestCreativeModal: state.modal.addTestCreativeModalFlag,
+        showEditTestCreativeModal: state.modal.editTestCreativeModalFlag,
+        showUploadTrainingDataCsvModal: state.modal.uploadTrainingDataCsvModalFlag,
+        showUploadTestDataCsvModal: state.modal.uploadTestDataCsvModalFlag
+      };
     }
   },
   actions: {
@@ -54868,6 +55008,54 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       };
 
       __WEBPACK_IMPORTED_MODULE_5__ajax__["exec"](apiOption, commit, 'setAddCreativeResult');
+    },
+
+    // 更新系
+    saveCorpusInfo: function saveCorpusInfo(_ref5, _ref6) {
+      var commit = _ref5.commit,
+          state = _ref5.state;
+      var name = _ref6.name,
+          description = _ref6.description,
+          language = _ref6.language;
+
+      __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] saveCorpusInfo');
+      var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['setCorpusInfo']);
+      apiOption.data = {
+        corpus_id: state.corpusId,
+        name: name,
+        description: description,
+        language: language
+      };
+
+      __WEBPACK_IMPORTED_MODULE_5__ajax__["exec"](apiOption, commit, 'checkSaveCorpusInfo');
+    },
+    saveCreative: function saveCreative(_ref7, _ref8) {
+      var commit = _ref7.commit,
+          state = _ref7.state;
+      var classId = _ref8.classId,
+          creativeId = _ref8.creativeId,
+          content = _ref8.content,
+          dataType = _ref8.dataType;
+
+      __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] addCreative');
+      var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['setTrainingData']);
+      apiOption.data = {
+        corpus_id: state.corpusId,
+        class_id: classId,
+        creative_id: creativeId,
+        content: content,
+        data_type: dataType
+      };
+
+      __WEBPACK_IMPORTED_MODULE_5__ajax__["exec"](apiOption, commit, 'checkSaveCreative');
+    },
+
+    // tet
+    test: function test(_ref9) {
+      var commit = _ref9.commit;
+
+      __WEBPACK_IMPORTED_MODULE_4__app__["log"]('[store] addCreative');
+      commit('testMutation');
     }
   }
 });
@@ -54888,7 +55076,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["isAuth"] = isAuth;
 /* harmony export (immutable) */ __webpack_exports__["logout"] = logout;
 /* harmony export (immutable) */ __webpack_exports__["setCorpusAdminTitle"] = setCorpusAdminTitle;
-/* harmony export (immutable) */ __webpack_exports__["closeModal"] = closeModal;
+/* harmony export (immutable) */ __webpack_exports__["setScrollTop"] = setScrollTop;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie__ = __webpack_require__("./node_modules/jquery.cookie/jquery.cookie.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_cookie__);
@@ -54970,9 +55158,11 @@ function setCorpusAdminTitle(corpusName) {
 }
 
 /**
- * モーダル全クローズ
+ * スクロールトップ
  */
-function closeModal() {}
+function setScrollTop() {
+  $('html, body').scrollTop(0);
+}
 
 /***/ }),
 
