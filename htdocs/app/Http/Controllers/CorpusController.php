@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Corpus;
+use App\User;
 use App\Models\Business\ApiResponseFormatter;
 
 class CorpusController extends Controller
@@ -37,7 +38,18 @@ class CorpusController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    // リクエストのバリデーション
+    return response()->json($request);
+
+    // APIレスポンスの整形準備
+    $formatter = new ApiResponseFormatter();
+
+    // リクエスト不正の場合はエラーコード400を返答
+    // if () {
+
+    // }
+    // 存在しないリソースにアクセスされた場合はエラーコード404を応答
+    // バリデーションエラーの場合はエラーコード422を応答
   }
 
   /**
@@ -48,19 +60,23 @@ class CorpusController extends Controller
    */
   public function show($_id)
   {
-    // APIレスポンスの整形クラス
-    $formatter = new ApiResponseFormatter();
-
     try {
-      $corpus = Corpus::findOrFail($_id);
-      $formatter->toFormatArray('200');
-      $formatter->setMessage('Find Successful.');
-      $formatter->setContents($corpus->toArray());
+      // レスポンスデータの生成
+      $corpus_array = Corpus::findOrFail($_id)->toArray();
+      
+      // 作成者、更新者の名前をデータに追加
+      // $create_user = User::findOrFail($corpus_array['create_user_id']);
+      $create_user = User::findOrFail(4);
+      $create_user_name = $create_user->sei_kanji . $create_user->mei_kanji;
+      $update_user = User::findOrFail($corpus_array['update_user_id']);
+      $update_user_name = $update_user->sei_kanji . $create_user->mei_kanji;
+      $corpus_array['create_user_name'] = $create_user_name;
+      $corpus_array['update_user_name'] = $update_user_name;
+      
+      $formatter = new ApiResponseFormatter(200, 'Find Successful.', $corpus_array);
 
     } catch (ModelNotFoundException $e) {
-      $formatter->toFormatArray('404');
-      $formatter->setMessage($e->getMessage());
-
+      $formatter = new ApiResponseFormatter(404, $e->getMessage(), array());
     }
 
     return response()->json($formatter->getResponseArray());

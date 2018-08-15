@@ -32,15 +32,15 @@ class TrainingDataManager
   /**
    * コンストラクタ
    */
-  public function __construct($corpus_id)
+  public function __construct($_corpus_id)
   {
-    $this->corpus_id = $corpus_id;
+    $this->corpus_id = $_corpus_id;
   }
 
   /**
    * DBから教師データ情報を抽出し、所定フォルダにCSV保存する
    */
-  public function saveTrainingDataCsv()
+  public function saveTrainingDataToCsv()
   {
     try {
       // 対象コーパスのクリエイティブ取得
@@ -153,18 +153,11 @@ class TrainingDataManager
    */
   public function loadTrainingDataAll()
   {
-    $corpus = Corpus::find($this->corpus_id);
-
-    if (!$corpus) {
-      return false;
-    }
+    $corpus = Corpus::findOrFail($this->corpus_id);
 
     $classes = CorpusClass::where('corpus_id', $corpus->id)
         ->orderByRaw('CAST(training_data_count AS int) DESC')
         ->get();
-        
-    $response_array['code'] = 200;
-    $response_array['message'] = 'Find sucessfull.';
 
     $class_roop_cnt = 0; // クラス個数カウンタ
     foreach($classes as $class) {
@@ -172,26 +165,26 @@ class TrainingDataManager
           ->orderBy('updated_at', 'desc')
           ->get();
 
-      $response_array['data'][$class_roop_cnt]['class_id'] = $class->id;
-      $response_array['data'][$class_roop_cnt]['name'] = $class->name;
-      $response_array['data'][$class_roop_cnt]['corpus_id'] = $class->corpus_id;
-      $response_array['data'][$class_roop_cnt]['threshold'] = $class->threshold;
-      $response_array['data'][$class_roop_cnt]['training_data_count'] = $class->training_data_count;
-      $response_array['data'][$class_roop_cnt]['test_data_count'] = $class->test_data_count;
-      $response_array['data'][$class_roop_cnt]['created_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $class->created_at)->format('Y-m-d H:i:s');
-      $response_array['data'][$class_roop_cnt]['updated_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $class->updated_at)->format('Y-m-d H:i:s');
-   
+      $response_array[$class_roop_cnt]['class_id'] = $class->id;
+      $response_array[$class_roop_cnt]['name'] = $class->name;
+      $response_array[$class_roop_cnt]['corpus_id'] = $class->corpus_id;
+      $response_array[$class_roop_cnt]['threshold'] = $class->threshold;
+      $response_array[$class_roop_cnt]['training_data_count'] = $class->training_data_count;
+      $response_array[$class_roop_cnt]['test_data_count'] = $class->test_data_count;
+      $response_array[$class_roop_cnt]['created_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $class->created_at)->format('Y-m-d H:i:s');
+      $response_array[$class_roop_cnt]['updated_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $class->updated_at)->format('Y-m-d H:i:s');
+  
       // $creative_roop_cnt = 0; // クリエイティブ個数カウンタ
       foreach($creatives as $creative) {
         $data_type = (int)$creative->data_type;
         if($data_type === CorpusDataType::Training) {
-          $response_array['data'][$class_roop_cnt]['training_data'][] = array(
+          $response_array[$class_roop_cnt]['training_data'][] = array(
             'creative_id' => $creative->id,
             'content' => $creative->content
           );
 
         } else if($data_type === CorpusDataType::Test) {
-          $response_array['data'][$class_roop_cnt]['test_data'][] = array(
+          $response_array[$class_roop_cnt]['test_data'][] = array(
             'creative_id' => $creative->id,
             'content' => $creative->content
           );

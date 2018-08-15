@@ -17,6 +17,9 @@ Route::post('authenticate','UserController@authenticate');
 
     //  教師データ情報
     Route::resource('training-data', 'TrainingDataController');
+    Route::post('training-data/{corpus_id}/upload', 'TrainingDataController@upload');
+    Route::get('training-data/{corpus_id}/download', 'TrainingDataController@download');
+    Route::get('training-data/sample/download', 'TrainingDataController@downloadSample');
 
   });
 // });

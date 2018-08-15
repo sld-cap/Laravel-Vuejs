@@ -22,6 +22,16 @@ class ApiResponseFormatter
   /** APIレスポンス用の配列 */
   protected $response_array = null;
 
+  /**
+   * コンストラクタ
+   */
+  public function __construct($_code, $_message, $_contents)
+  {
+    $this->toFormatArray($_code);
+    $this->setMessage($_message);
+    $this->setContents($_contents);
+  }
+
   /** 
    * 入力されたパラメータを元にAPIレスポンス用の配列にフォーマットをセットする
    *
@@ -50,7 +60,10 @@ class ApiResponseFormatter
   {
     if (array_key_exists('message', $this->response_array)) {
       $this->response_array['message'] = $_message;
+      return true;
     }
+
+    return false;
   }
 
   /** 

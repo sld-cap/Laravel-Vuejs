@@ -15,7 +15,8 @@ class CorpusCreative extends Model
 
   public static $create_error_messages = array(
     'content.required' => 'テキストが入力されていません',
-    'content.between' => 'テキストは1024文字以内で入力してください'
+    'content.between' => 'テキストは1024文字以内で入力してください',
+    'add_class_name.required' => 'クラス名が入力されていません'
   );
 
 
