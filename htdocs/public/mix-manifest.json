@@ -1,7 +1,8 @@
 {
-    "/js/app.js": "/js/app.js?id=896ae286b38ae3f8ae51",
+    "/js/app.js": "/js/app.js?id=8bdc00698824a049fb93",
     "/css/app.css": "/css/app.css?id=19214247ec8b1f7d17fd",
-    "/js/corpusadmin-core.js": "/js/corpusadmin-core.js?id=486527212d701cd6908d",
+    "/css/login.css": "/css/login.css?id=4ba4acd1d0a6b1e42f5a",
+    "/js/corpusadmin-core.js": "/js/corpusadmin-core.js?id=eb1715ddadf72b2f346e",
     "/css/bootstrap.css": "/css/bootstrap.css?id=f7136bfa9002c298cfb0",
     "/css/corpusadmin.css": "/css/corpusadmin.css?id=e61bf1a3b7c12717bc8b"
 }

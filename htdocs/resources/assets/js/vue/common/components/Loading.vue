@@ -1,0 +1,29 @@
+<template>
+  <div class="loading-mask">
+    <LineScaleLoader />
+  </div>
+</template>
+
+<script>
+
+</script>
+
+<style>
+.loading-mask{
+  position: fixed;
+  z-index: 9995;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  /* transition: opacity .3s ease; */
+}
+
+.vue-loaders {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+</style>

@@ -41,8 +41,8 @@ export function login() {
   } else {
     logout();
   }
-  
 }
+
 
 /**
  * 認証状態確認
@@ -76,8 +76,10 @@ export function setCorpusAdminTitle(corpusName) {
   $('#navCorpusName').text(corpusName);
 }
 
+
 /**
- * モーダル全クローズ
+ * スクロールトップ
  */
-export function closeModal() {
+export function setScrollTop() {
+  $('html, body').scrollTop(0);
 }
