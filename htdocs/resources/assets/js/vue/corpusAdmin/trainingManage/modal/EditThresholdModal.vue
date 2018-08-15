@@ -4,8 +4,7 @@
     <!-- /.title -->
     <div slot="body">
       <div class="alert alert-info">
-        閾値を設定することで、AI判定の精度を調整することができます。<br>
-        閾値は、0 ～ 1 の範囲で設定でき、確信度（confidence）が閾値以上の場合に判定結果（passed_classes）として出力されます。<br>
+        閾値を設定することで、AI判定の精度を調整することができます。閾値は、0 ～ 1 の範囲で設定でき、確信度（confidence）が閾値以上の場合に判定結果（passed_classes）として出力されます。<br>
         以下フォームに閾値を入力してください。 例）0.5、0.8123
       </div>
       <!-- /.alert -->

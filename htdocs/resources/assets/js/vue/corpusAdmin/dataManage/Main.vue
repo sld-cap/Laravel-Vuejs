@@ -47,7 +47,7 @@
           <TrainingDataManageActions></TrainingDataManageActions>
           <!-- /.row -->
 
-          <div class="row mt-2" v-if="corpusInfo.status === 1" >
+          <div class="row mt-2" v-if="corpusInfo.status == 1" >
             <div class="col-12">
               <NoTrainingDataAlert></NoTrainingDataAlert>
               <!-- /.alert -->
@@ -60,7 +60,7 @@
 
         <!-- テストデータタブ -->
         <div class="tab-pane fade" id="test" role="tabpanel" aria-labelledby="test-tab">
-          <div v-if="corpusInfo.status === 1" class="row mt-2">
+          <div v-if="corpusInfo.status == 1" class="row mt-2">
             <div class="col-12">
               <NoTrainingDataAlert></NoTrainingDataAlert>
             <!-- /.alert -->
@@ -68,8 +68,8 @@
           </div>
           <!-- /.row -->
 
-          <TestDataManageActions v-if="corpusInfo.status !== 1"></TestDataManageActions>
-          <TestDataTable v-if="corpusInfo.status !== 1"></TestDataTable>
+          <TestDataManageActions v-if="corpusInfo.status != 1"></TestDataManageActions>
+          <TestDataTable v-if="corpusInfo.status != 1"></TestDataTable>
         </div>
         <!-- テストデータタブ -->
 

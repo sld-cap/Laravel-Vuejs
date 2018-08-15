@@ -37,6 +37,7 @@ const mutations = {
       state.corpusInfo = payload.data;
       Core.log(state.corpusInfo);
     } else {
+      return;
       location.href = '/corpus';
     }
   },
