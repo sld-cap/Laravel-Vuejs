@@ -41,8 +41,8 @@ export function login() {
   } else {
     logout();
   }
-  
 }
+
 
 /**
  * 認証状態確認

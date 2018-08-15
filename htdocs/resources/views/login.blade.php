@@ -4,24 +4,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
+  	<title>CAP ログイン</title>
+    <link rel="icon" href="/img/cap-icon.png">
+    <link href="/css/login.css" rel="stylesheet">
+    <!-- Styles -->
     <script>
       window.Laravel = {csrfToken: "{{ csrf_token() }}"};
     </script>
-
-    <title>ログイン</title>
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- CSRF Token -->
   </head>
-  <body>
+  <body class="container-fluid">
     <div id="app">
-      <div class="container">
-        <router-view></router-view>
-      </div>
+      <router-view></router-view>
     </div>
   </body>
+
   <script src="{{ mix('js/app.js') }}"></script>
 </html>

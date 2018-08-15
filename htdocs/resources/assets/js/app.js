@@ -7,6 +7,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
+import 'vue-loaders/dist/vue-loaders.css';
+import * as VueLoaders from 'vue-loaders';
 
 /**
  * 共通部品読み込み
@@ -20,7 +22,7 @@ import store from './common/core/store/index';
 /**
  * component
  */
-import LoginVue from './vue/Login.vue';
+import LoginVue from './vue/login/Main.vue';
 // CAP管理画面
 import DashboardVue from './vue/capAdmin/Dashboard.vue';
 // コーパス管理画面
@@ -34,19 +36,31 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 Vue.use(VueRouter);
+Vue.use(VueLoaders);
 
 /**
  * router config
  */
 const routes = [
-  { path: '/login', component: LoginVue },
-  { path: '/', component: DashboardVue, meta: { requiresAuth: true } },
-  { path: '/corpus', component: DashboardVue, meta: { requiresAuth: true } },
+  {
+    path: '/login',
+    component: LoginVue,
+  },
+  {
+    path: '/',
+    component: DashboardVue,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/corpus',
+    component: DashboardVue,
+    meta: { requiresAuth: true },
+  },
   {
     path: '/corpus/:corpusId',
+    component: CorpusadminVue,
     meta: { requiresAuth: true },
     props: route => ({ corpusId: parseInt(route.params.corpusId, 10) }),
-    component: CorpusadminVue,
     children: [
       {
         name: 'base-info',
