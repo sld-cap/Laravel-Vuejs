@@ -65,8 +65,7 @@ class CorpusController extends Controller
       $corpus_array = Corpus::findOrFail($_id)->toArray();
       
       // 作成者、更新者の名前をデータに追加
-      // $create_user = User::findOrFail($corpus_array['create_user_id']);
-      $create_user = User::findOrFail(4);
+      $create_user = User::findOrFail($corpus_array['create_user_id']);
       $create_user_name = $create_user->sei_kanji . $create_user->mei_kanji;
       $update_user = User::findOrFail($corpus_array['update_user_id']);
       $update_user_name = $update_user->sei_kanji . $create_user->mei_kanji;
