@@ -7,11 +7,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use App\User;
+use App\Enums\CorpusType;
+use App\Enums\CorpusStateType;
+use App\Enums\CorpusDataType;
 use App\Models\Corpus;
+use App\Models\CorpusClass;
 use App\Models\CorpusCreative;
 use App\Models\Business\ApiResponseFormatter;
 use App\Models\Business\TrainingDataManager;
-use App\User;
 
 use Log;
 use Validator;
@@ -45,8 +49,100 @@ class TrainingDataController extends Controller
     if ($validate_result_response) {
       return $validate_result_response;
     }
-    return "ok";
+    
+    // 登録処理
+    DB::beginTransaction();
 
+    try {
+      $form = $_request->all();
+      $corpus_id = $form['corpus_id'];
+      $add_class_name = $form['add_class_name'];
+      $get_data_type = (int)$form['data_type'];
+      $corpus_class_id = $form['corpus_class_id'];
+
+      if ($corpus_class_id === null) {
+        // 同じ名前のクラス名がないかどうか
+        $count = CorpusClass::where('corpus_id', $corpus_id)
+            ->where('name', 'like binary', $add_class_name)
+            ->count();
+
+        if ($count > 0) {
+          $data = array(
+            'corpus_id' => $corpus_id,
+            'add_class_name' => $add_class_name,
+            'message' => '既に同じクラス名が存在しています'
+          );
+          $formatter = new ApiResponseFormatter(400, 'Duplicate class name', $data);
+          return response()->json($formatter->getResponseArray());
+    
+        } else {
+          // クラス登録
+          $class = new CorpusClass;
+          $class->name = $add_class_name;
+          $class->corpus_id = $corpus_id;
+          $class->threshold = config('corpus.threshold_default');
+          $class->training_data_count = 0;
+          $class->test_data_count = 0;
+          $class->save();
+        }
+
+        $corpus_class_id = $class->id;
+      }
+
+      // クリエイティブのDB登録
+      $creative = new CorpusCreative;
+      $creative->corpus_class_id = $corpus_class_id;
+      $creative->data_type = $get_data_type;
+      $creative->content = $form['content'];
+      $creative->training_done_data = null;
+      $creative->save();
+
+      // クラスのデータ件数の更新
+      $update_class = CorpusClass::find($corpus_class_id);
+
+      if ($get_data_type === CorpusDataType::Training) { // 学習データ
+        $count = $update_class->training_data_count;
+        $count++;
+        $update_class->training_data_count = $count;
+
+        // コーパスのステータスを未学習に更新
+        $corpus = Corpus::find($corpus_id);
+        $corpus->status = CorpusStateType::Untrained;
+        $corpus->save();
+
+      } else if ($get_data_type === CorpusDataType::Test) { // テストデータ
+        $count = $update_class->test_data_count;
+        $count++;
+        $update_class->test_data_count = $count;
+      }
+
+      $update_class->save();
+      DB::commit();
+
+    } catch (\PDOException $e){
+      DB::rollBack();
+      $formatter = new ApiResponseFormatter(404, $e->getMessage(), '');
+      return response()->json($formatter->getResponseArray());
+
+    } catch(\Exception $e) {
+      DB::rollBack();
+      $formatter = new ApiResponseFormatter(400, $e->getMessage(), '');
+      return response()->json($formatter->getResponseArray());
+
+    }
+
+    // 正常にDB登録が完了した場合、200レスポンスを返す
+    $data = array(
+      'corpus_id' => $corpus_id,
+      'corpus_class_id' => $corpus_class_id,
+      'content' => $form['content'],
+      'data_type' => $get_data_type,
+      'message' => CorpusDataType::getDescription($get_data_type) . 'の登録が完了しました。'
+    );
+
+    $formatter = new ApiResponseFormatter(200, 'Training data insert successfull.', $data);
+    return response()->json($formatter->getResponseArray());
+  
   }
 
   /**
