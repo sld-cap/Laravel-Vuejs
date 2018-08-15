@@ -3781,8 +3781,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   methods: {
     showEditTrainingDataModal: function showEditTrainingDataModal(dataType, classIndex, creativeIndex) {
       var class_id = this.trainingData[classIndex].class_id;
-      var creative_id = this.trainingData[classIndex].training_data[creativeIndex].creative_id;
-      var content = this.trainingData[classIndex].training_data[creativeIndex].content;
+      var creative_id = this.trainingData[classIndex].test_data[creativeIndex].creative_id;
+      var content = this.trainingData[classIndex].test_data[creativeIndex].content;
 
       this.$store.dispatch('multiModal/showEditTrainingDataModal', { class_id: class_id, creative_id: creative_id, content: content, dataType: dataType });
     }
@@ -4232,7 +4232,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-//
 //
 //
 //
@@ -39102,11 +39101,7 @@ var render = function() {
     _c("div", { attrs: { slot: "body" }, slot: "body" }, [
       _c("div", { staticClass: "alert alert-info" }, [
         _vm._v(
-          "\n      閾値を設定することで、AI判定の精度を調整することができます。"
-        ),
-        _c("br"),
-        _vm._v(
-          "\n      閾値は、0 ～ 1 の範囲で設定でき、確信度（confidence）が閾値以上の場合に判定結果（passed_classes）として出力されます。"
+          "\n      閾値を設定することで、AI判定の精度を調整することができます。閾値は、0 ～ 1 の範囲で設定でき、確信度（confidence）が閾値以上の場合に判定結果（passed_classes）として出力されます。"
         ),
         _c("br"),
         _vm._v(
@@ -41463,7 +41458,7 @@ var render = function() {
                 [
                   _c("TrainingDataManageActions"),
                   _vm._v(" "),
-                  _vm.corpusInfo.status === 1
+                  _vm.corpusInfo.status == 1
                     ? _c("div", { staticClass: "row mt-2" }, [
                         _c(
                           "div",
@@ -41488,7 +41483,7 @@ var render = function() {
                   }
                 },
                 [
-                  _vm.corpusInfo.status === 1
+                  _vm.corpusInfo.status == 1
                     ? _c("div", { staticClass: "row mt-2" }, [
                         _c(
                           "div",
@@ -41499,11 +41494,11 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.corpusInfo.status !== 1
+                  _vm.corpusInfo.status != 1
                     ? _c("TestDataManageActions")
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.corpusInfo.status !== 1 ? _c("TestDataTable") : _vm._e()
+                  _vm.corpusInfo.status != 1 ? _c("TestDataTable") : _vm._e()
                 ],
                 1
               )
@@ -60450,6 +60445,7 @@ var mutations = {
       state.corpusInfo = payload.data;
       __WEBPACK_IMPORTED_MODULE_0__app__["log"](state.corpusInfo);
     } else {
+      return;
       location.href = '/corpus';
     }
   },
@@ -60544,10 +60540,13 @@ var getters = {
   // テストデータ件数
   testDataCount: function testDataCount(state) {
     var sum = 0;
-    state.trainingData.filter(function (classData) {
-      // sum = sum + classData.test_data_count;
-      sum += classData.test_data_count;
-    });
+
+    if (state.trainingData !== undefined && state.trainingData.length > 0) {
+      state.trainingData.filter(function (classData) {
+        // sum = sum + classData.test_data_count;
+        sum += parseInt(classData.test_data_count, 10);
+      });
+    }
     return sum;
   }
 };

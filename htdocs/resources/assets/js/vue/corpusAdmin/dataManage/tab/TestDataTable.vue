@@ -95,8 +95,8 @@ export default {
   methods: {
     showEditTrainingDataModal(dataType, classIndex, creativeIndex) {
       const class_id = this.trainingData[classIndex].class_id;
-      const creative_id = this.trainingData[classIndex].training_data[creativeIndex].creative_id;
-      const content = this.trainingData[classIndex].training_data[creativeIndex].content;
+      const creative_id = this.trainingData[classIndex].test_data[creativeIndex].creative_id;
+      const content = this.trainingData[classIndex].test_data[creativeIndex].content;
       
       this.$store.dispatch('multiModal/showEditTrainingDataModal', {class_id, creative_id, content, dataType});
     },

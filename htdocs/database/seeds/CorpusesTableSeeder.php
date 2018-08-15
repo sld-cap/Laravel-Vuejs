@@ -17,7 +17,7 @@ class CorpusesTableSeeder extends Seeder
                 'id' => 1,
                 'name' => '初期コーパス',
                 'description' => 'これはLaravelが自動生成した初期コーパスです。これはLaravelが自動生成した初期コーパスです。これはLaravelが自動生成した初期コーパスです。',
-                'status' => CorpusStateType::NoTrainingData,
+                'status' => CorpusStateType::Untrained,
                 'type' => '1',
                 'is_production' => '1',
                 'company_id' => '1',

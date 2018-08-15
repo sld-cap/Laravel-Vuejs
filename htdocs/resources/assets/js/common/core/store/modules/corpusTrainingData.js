@@ -22,10 +22,13 @@ const getters = {
   // テストデータ件数
   testDataCount: (state) => {
     let sum = 0;
-    state.trainingData.filter((classData) => {
-      // sum = sum + classData.test_data_count;
-      sum += classData.test_data_count;
-    });
+
+    if (state.trainingData !== undefined && state.trainingData.length > 0) {
+      state.trainingData.filter((classData) => {
+        // sum = sum + classData.test_data_count;
+        sum += parseInt(classData.test_data_count, 10);
+      });
+    }
     return sum;
   },
 };
