@@ -9,26 +9,26 @@ import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 
 /**
- * 共通処理
+ * 共通部品読み込み
  */
 import * as Core from './common/core/app';
 import * as Ajax from './common/core/ajax';
 import * as Lib from './common/ext/functions';
 import ApiConfig from './common/core/apiConfig';
-import store from './common/core/store';
+import store from './common/core/store/index';
 
 /**
  * component
  */
-import LoginVue from './components/Login.vue';
-import DashboardVue from './components/Dashboard.vue';
+import LoginVue from './vue/Login.vue';
+// CAP管理画面
+import DashboardVue from './vue/capAdmin/Dashboard.vue';
+// コーパス管理画面
+import CorpusadminVue from './vue/corpusAdmin/index.vue';
+import CorpusadminBaseInfoVue from './vue/corpusAdmin/baseInfo/Main.vue';
+import CorpusadminDataManageVue from './vue/corpusAdmin/dataManage/Main.vue';
+import CorpusadminTrainingManageVue from './vue/corpusAdmin/trainingManage/Main.vue';
 
-import CorpusadminVue from './components/corpusadmin/index.vue';
-import CorpusadminBaseInfoVue from './components/corpusadmin/baseInfo/Main.vue';
-import CorpusadminDataManageVue from './components/corpusadmin/dataManage/Main.vue';
-import CorpusadminTrainingManageVue from './components/corpusadmin/trainingManage/Main.vue';
-
-import VuexVue from './components/corpusadmin/vuex/Main.vue';
 
 require('./bootstrap');
 
@@ -65,8 +65,6 @@ const routes = [
       },
     ],
   },
-  // vuex検証
-  { path: '/vuex/:corpusId', component: VuexVue, meta: { requiresAuth: true } },
 ];
 
 const router = new VueRouter({

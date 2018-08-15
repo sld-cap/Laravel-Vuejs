@@ -4,11 +4,15 @@ import * as Lib from '../ext/functions';
 /**
  * axiosによる非同期通信
  */
-export function exec(option, commit, mutation) {
+export function exec(option, commit, mutation, callback) {
   axios(option).then((res) => {
     // commit
     Core.log('[axios] success');
     Core.log(res);
+
+    if (callback !== undefined) {
+      res.data.callback = callback;
+    }
     commit(mutation, res.data);
   }).catch((err) => {
     // error
