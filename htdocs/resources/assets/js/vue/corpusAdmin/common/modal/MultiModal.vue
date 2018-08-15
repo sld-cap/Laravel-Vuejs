@@ -21,6 +21,11 @@
   import UploadTrainingCsvModal from '../../dataManage/modal/UploadTrainingCsvModal';
   import CompUploadTrainingCsvModal from '../../dataManage/modal/CompUploadTrainingCsvModal';
 
+  // AI判定の閾値設定
+  import EditThresholdModal from '../../trainingManage/modal/EditThresholdModal';
+  // 本番反映
+  import SelectDeployModal from '../../trainingManage/modal/SelectDeployModal';
+
   export default {
     name: 'MultiModalView',
     components: {
@@ -30,6 +35,8 @@
       AddTrainingDataModal, CompAddTrainingDataModal, // 学習データ登録
       EditTrainingDataModal, CompEditTrainingDataModal, // 学習データ編集
       UploadTrainingCsvModal, CompUploadTrainingCsvModal, // 学習データCSVアップロード
+      // 学習管理
+      EditThresholdModal, SelectDeployModal,
     },
     computed: {
       ...mapState('multiModal', ['modalName']),

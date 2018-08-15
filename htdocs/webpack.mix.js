@@ -22,6 +22,7 @@ mix.js(['resources/assets/js/app.js',
     'resources/assets/js/common/ext/plugins/popper.min.js', 
     'resources/assets/js/common/ext/plugins/bootstrap.min.js',
     'resources/assets/js/common/ext/plugins/jquery.circliful.min.js',
+    'resources/assets/js/common/ext/plugins/chart.min.js',
   ], 'public/js/corpusadmin-core.js')
   .sass('resources/assets/sass/app.scss', 'public/css')
   .sass('resources/assets/sass/app/login.scss', 'public/css')

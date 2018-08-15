@@ -98,6 +98,18 @@ const actions = {
     Core.log('[showCompUploadTrainingDataCsvModal]');
     commit('setModal', 'CompUploadTrainingCsvModal');
   },
+
+  // 閾値設定モーダル開閉
+  showEditThresholdModal({ commit }) {
+    Core.log('[showEditThresholdModal]');
+    commit('setModal', 'EditThresholdModal');
+  },
+
+  // 本番反映モーダル開閉
+  showSelectDeployModal({ commit }) {
+    Core.log('[showSelectDeployModal]');
+    commit('setModal', 'SelectDeployModal');
+  },
 };
 
 
