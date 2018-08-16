@@ -2775,14 +2775,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dataManage_modal_EditTrainingDataModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__dataManage_modal_EditTrainingDataModal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dataManage_modal_CompEditTrainingDataModal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/modal/CompEditTrainingDataModal.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dataManage_modal_CompEditTrainingDataModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__dataManage_modal_CompEditTrainingDataModal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dataManage_modal_UploadTrainingCsvModal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/modal/UploadTrainingCsvModal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dataManage_modal_UploadTrainingCsvModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__dataManage_modal_UploadTrainingCsvModal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dataManage_modal_CompUploadTrainingCsvModal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/modal/CompUploadTrainingCsvModal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dataManage_modal_CompUploadTrainingCsvModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__dataManage_modal_CompUploadTrainingCsvModal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__trainingManage_modal_EditThresholdModal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/trainingManage/modal/EditThresholdModal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__trainingManage_modal_EditThresholdModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__trainingManage_modal_EditThresholdModal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__trainingManage_modal_SelectDeployModal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/trainingManage/modal/SelectDeployModal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__trainingManage_modal_SelectDeployModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__trainingManage_modal_SelectDeployModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dataManage_modal_DeleteTrainingDataModal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/modal/DeleteTrainingDataModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dataManage_modal_DeleteTrainingDataModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__dataManage_modal_DeleteTrainingDataModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dataManage_modal_CompDeleteTrainingDataModal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/modal/CompDeleteTrainingDataModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dataManage_modal_CompDeleteTrainingDataModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__dataManage_modal_CompDeleteTrainingDataModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dataManage_modal_UploadTrainingCsvModal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/modal/UploadTrainingCsvModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dataManage_modal_UploadTrainingCsvModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__dataManage_modal_UploadTrainingCsvModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dataManage_modal_CompUploadTrainingCsvModal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/modal/CompUploadTrainingCsvModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dataManage_modal_CompUploadTrainingCsvModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__dataManage_modal_CompUploadTrainingCsvModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__trainingManage_modal_EditThresholdModal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/trainingManage/modal/EditThresholdModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__trainingManage_modal_EditThresholdModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__trainingManage_modal_EditThresholdModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__trainingManage_modal_SelectDeployModal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/trainingManage/modal/SelectDeployModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__trainingManage_modal_SelectDeployModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__trainingManage_modal_SelectDeployModal__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -2804,6 +2808,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 // 教師データ編集
 
 
+// 教師データ削除
+
+
 // 教師データCSVアップロード
 
 
@@ -2818,12 +2825,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   components: {
     // コーパスデータ
     EditCorpusInfoModal: __WEBPACK_IMPORTED_MODULE_1__baseInfo_modal_EditCorpusInfoModal___default.a, CompEditCorpusInfoModal: __WEBPACK_IMPORTED_MODULE_2__baseInfo_modal_CompEditCorpusInfoModal___default.a,
-    // 学習データ
-    AddTrainingDataModal: __WEBPACK_IMPORTED_MODULE_3__dataManage_modal_AddTrainingDataModal___default.a, CompAddTrainingDataModal: __WEBPACK_IMPORTED_MODULE_4__dataManage_modal_CompAddTrainingDataModal___default.a, // 学習データ登録
-    EditTrainingDataModal: __WEBPACK_IMPORTED_MODULE_5__dataManage_modal_EditTrainingDataModal___default.a, CompEditTrainingDataModal: __WEBPACK_IMPORTED_MODULE_6__dataManage_modal_CompEditTrainingDataModal___default.a, // 学習データ編集
-    UploadTrainingCsvModal: __WEBPACK_IMPORTED_MODULE_7__dataManage_modal_UploadTrainingCsvModal___default.a, CompUploadTrainingCsvModal: __WEBPACK_IMPORTED_MODULE_8__dataManage_modal_CompUploadTrainingCsvModal___default.a, // 学習データCSVアップロード
+    // 教師データ
+    AddTrainingDataModal: __WEBPACK_IMPORTED_MODULE_3__dataManage_modal_AddTrainingDataModal___default.a, CompAddTrainingDataModal: __WEBPACK_IMPORTED_MODULE_4__dataManage_modal_CompAddTrainingDataModal___default.a, // 教師データ登録
+    EditTrainingDataModal: __WEBPACK_IMPORTED_MODULE_5__dataManage_modal_EditTrainingDataModal___default.a, CompEditTrainingDataModal: __WEBPACK_IMPORTED_MODULE_6__dataManage_modal_CompEditTrainingDataModal___default.a, // 教師データ編集
+    DeleteTrainingDataModal: __WEBPACK_IMPORTED_MODULE_7__dataManage_modal_DeleteTrainingDataModal___default.a, CompDeleteTrainingDataModal: __WEBPACK_IMPORTED_MODULE_8__dataManage_modal_CompDeleteTrainingDataModal___default.a, // 教師データ削除
+    UploadTrainingCsvModal: __WEBPACK_IMPORTED_MODULE_9__dataManage_modal_UploadTrainingCsvModal___default.a, CompUploadTrainingCsvModal: __WEBPACK_IMPORTED_MODULE_10__dataManage_modal_CompUploadTrainingCsvModal___default.a, // 教師データCSVアップロード
     // 学習管理
-    EditThresholdModal: __WEBPACK_IMPORTED_MODULE_9__trainingManage_modal_EditThresholdModal___default.a, SelectDeployModal: __WEBPACK_IMPORTED_MODULE_10__trainingManage_modal_SelectDeployModal___default.a
+    EditThresholdModal: __WEBPACK_IMPORTED_MODULE_11__trainingManage_modal_EditThresholdModal___default.a, SelectDeployModal: __WEBPACK_IMPORTED_MODULE_12__trainingManage_modal_SelectDeployModal___default.a
   },
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["e" /* mapState */])('multiModal', ['modalName']), {
     isShow: function isShow() {
@@ -3352,6 +3360,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/modal/CompDeleteTrainingDataModal.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'CompDeleteTrainingDataModal',
+  mixins: [__WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default.a },
+  props: [],
+  data: function data() {
+    return {
+      currentDataType: this.$store.getters['multiModal/currentDataType']
+    };
+  },
+
+  computed: {},
+  mounted: function mounted() {},
+
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/modal/CompEditTrainingDataModal.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3492,6 +3555,84 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/modal/DeleteTrainingDataModal.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/form/mixins/SetErrData.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'DeleteTrainingDataModal',
+  mixins: [__WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default.a },
+  props: [],
+  data: function data() {
+    return {
+      deleteData: {
+        creative_id: this.$store.getters['multiModal/deleteTrainingData'].creative_id
+      }
+    };
+  },
+
+  computed: {},
+  watch: {},
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[crated]');
+  },
+  mounted: function mounted() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+  },
+
+  methods: {
+    deleteExec: function deleteExec() {
+      this.$store.dispatch('corpusTrainingData/deleteTrainingData', this.deleteData);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/modal/EditTrainingDataModal.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3618,6 +3759,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.$store.dispatch('corpusTrainingData/saveTrainingData', this.form);
     },
 
+    // 削除モーダル表示
+    openDeleteTrainingDataModal: function openDeleteTrainingDataModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[openDeleteTrainingDataModal]');
+      this.$store.dispatch('multiModal/showDeleteTrainingDataModal', this.form.creative_id);
+    },
+
     // エラーデータリセット
     resetErr: function resetErr() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetErr]');
@@ -3740,6 +3887,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[upload]');
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.form);
       this.$store.dispatch('corpusTrainingData/uploadTrainingDataCsv', this.form);
+    },
+
+    // 選択ファイルセット
+    setUploadFile: function setUploadFile(e) {
+      e.preventDefault();
+      var files = e.target.files;
+      this.form.csv_file = files[0];
     },
 
     // エラーリセット
@@ -40002,7 +40156,11 @@ var render = function() {
     _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
       _c(
         "button",
-        { staticClass: "btn btn-secondary", attrs: { type: "button" } },
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button" },
+          on: { click: _vm.openDeleteTrainingDataModal }
+        },
         [_vm._v("削除する")]
       ),
       _vm._v(" "),
@@ -41126,6 +41284,47 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-67fab950\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/modal/CompDeleteTrainingDataModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("CommonModal", [
+    _c("div", { attrs: { slot: "title" }, slot: "title" }, [
+      _vm._v("テキスト削除")
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+      _c("p", [_vm._v("テキストの削除が完了しました。")])
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "button" },
+          on: { click: _vm.hideModal }
+        },
+        [_vm._v("閉じる")]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-67fab950", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6df47b9a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/login/Main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41517,7 +41716,8 @@ var render = function() {
       _c("div", { staticClass: "form-group mt-4" }, [
         _c("input", {
           class: "form-control" + _vm.err.csv_file.invalid,
-          attrs: { type: "file", value: "ファイルを選択", name: "csv_file" }
+          attrs: { type: "file", value: "ファイルを選択", name: "csv_file" },
+          on: { change: _vm.setUploadFile }
         }),
         _vm._v(" "),
         _c("div", { staticClass: "invalid-feedback" }, [
@@ -42090,6 +42290,67 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-ae7dc7ca", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-cfdb0342\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/modal/DeleteTrainingDataModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("CommonModal", [
+    _c("div", { attrs: { slot: "title" }, slot: "title" }, [
+      _vm._v("テキスト削除")
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+      _c(
+        "div",
+        { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+        [_vm._v("\n      テキストを削除しようとしています。\n    ")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "default-form-area mt-4" }, [
+        _c("p", [
+          _vm._v("削除をやめる場合は、キャンセルボタンを押してください。")
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button" },
+          on: { click: _vm.hideModal }
+        },
+        [_vm._v("キャンセル")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "button" },
+          on: { click: _vm.deleteExec }
+        },
+        [_vm._v("削除する")]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-cfdb0342", module.exports)
   }
 }
 
@@ -60342,13 +60603,24 @@ var API_CONFIG = {
     method: 'POST',
     data: {}
   },
+  // 教師データ削除
+  deleteTrainingData: {
+    // url: '/api/v1/training-data/{corpus_id}',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    // url: '/stub/data/TrainingDataEditError.json', // 処理失敗用stub
+    method: 'POST',
+    data: {}
+  },
   // 教師データアップロード
   uploadTrainingData: {
-    // url: '/api/v1/training-data',
+    // url: '/api/v1/training-data/{corpus_id}/upload',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/TrainingDataUploadError.json', // 処理失敗用stub
     method: 'POST',
-    data: {}
+    data: {},
+    headers: {
+      'content-type': 'multipart/form-data'
+    }
   }
 };
 
@@ -60774,6 +61046,20 @@ var mutations = {
     }
   },
 
+  // 削除: 教師データ削除結果チェック
+  setDeleteTrainingData: function setDeleteTrainingData(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setDeleteTrainingData');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+
+    if (payload.code === 200) {
+      // 完了モーダルを開く
+      this.dispatch('multiModal/showCompDeleteTrainingDataModal');
+    } else {
+      // エラーデータセット
+      // this.commit('multiModal/setTrainingDataUploadError', payload.errors);
+    }
+  },
+
   // アップロード: 教師データCSVアップロード結果チェック
   setUploadTrainingDataCsvResult: function setUploadTrainingDataCsvResult(state, payload) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setUploadTrainingDataCsvResult');
@@ -60844,15 +61130,37 @@ var actions = {
     __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setSaveTrainingData');
   },
 
-  // 一括登録
-  uploadTrainingDataCsv: function uploadTrainingDataCsv(_ref6, _ref7) {
+  // 削除
+  deleteTrainingData: function deleteTrainingData(_ref6, _ref7) {
     var commit = _ref6.commit,
         state = _ref6.state;
-    var data_type = _ref7.data_type;
+    var creative_id = _ref7.creative_id;
+
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] deleteTrainingData');
+
+    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['deleteTrainingData']);
+    // const corpusId = this.getters['commonData/corpusId'];
+    // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
+    apiOption.data = { creative_id: creative_id };
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setDeleteTrainingData');
+  },
+
+  // 一括登録
+  uploadTrainingDataCsv: function uploadTrainingDataCsv(_ref8, _ref9) {
+    var commit = _ref8.commit,
+        state = _ref8.state;
+    var csv_file = _ref9.csv_file,
+        data_type = _ref9.data_type;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] upload');
     var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['uploadTrainingData']);
-    apiOption.data = {};
+    // const corpusId = this.getters['commonData/corpusId'];
+    // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
+
+    // ファイル送信
+    apiOption.data = new FormData();
+    apiOption.data.append('csv_file', csv_file);
+    apiOption.data.append('data_type', data_type);
     __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setUploadTrainingDataCsvResult');
   }
 };
@@ -60883,9 +61191,13 @@ var state = {
   currentDataType: null,
   // クラス／テキストの編集対象
   editTrainingData: {
-    class_id: 0,
-    creative_id: 0,
+    class_id: null,
+    creative_id: null,
     content: ''
+  },
+  // テキスト削除対象
+  deleteTrainingData: {
+    creative_id: null
   },
 
   // エラー群
@@ -60904,6 +61216,9 @@ var getters = {
   },
   currentDataType: function currentDataType(state) {
     return state.currentDataType;
+  },
+  deleteTrainingData: function deleteTrainingData(state) {
+    return state.deleteTrainingData;
   },
   // エラー
   corpusEditError: function corpusEditError(state) {
@@ -61016,19 +61331,37 @@ var actions = {
   },
 
 
-  // 教師データSVアップロードモーダル開閉
-  showUploadTrainingCsvModal: function showUploadTrainingCsvModal(_ref9, _ref10) {
+  // 教師データ削除モーダル開閉
+  showDeleteTrainingDataModal: function showDeleteTrainingDataModal(_ref9, creative_id) {
     var commit = _ref9.commit,
         state = _ref9.state;
-    var dataType = _ref10.dataType;
+
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showDeleteTrainingDataModal]');
+    state.deleteTrainingData.creative_id = creative_id;
+
+    commit('setModal', 'DeleteTrainingDataModal');
+  },
+  showCompDeleteTrainingDataModal: function showCompDeleteTrainingDataModal(_ref10) {
+    var commit = _ref10.commit;
+
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompDeleteTrainingDataModal]');
+    commit('setModal', 'CompDeleteTrainingDataModal');
+  },
+
+
+  // 教師データSVアップロードモーダル開閉
+  showUploadTrainingCsvModal: function showUploadTrainingCsvModal(_ref11, _ref12) {
+    var commit = _ref11.commit,
+        state = _ref11.state;
+    var dataType = _ref12.dataType;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showUploadTrainingCsvModal]');
     state.currentDataType = dataType;
 
     commit('setModal', 'UploadTrainingCsvModal');
   },
-  showCompUploadTrainingDataCsvModal: function showCompUploadTrainingDataCsvModal(_ref11) {
-    var commit = _ref11.commit;
+  showCompUploadTrainingDataCsvModal: function showCompUploadTrainingDataCsvModal(_ref13) {
+    var commit = _ref13.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompUploadTrainingDataCsvModal]');
     commit('setModal', 'CompUploadTrainingCsvModal');
@@ -61036,8 +61369,8 @@ var actions = {
 
 
   // 閾値設定モーダル開閉
-  showEditThresholdModal: function showEditThresholdModal(_ref12) {
-    var commit = _ref12.commit;
+  showEditThresholdModal: function showEditThresholdModal(_ref14) {
+    var commit = _ref14.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showEditThresholdModal]');
     commit('setModal', 'EditThresholdModal');
@@ -61045,8 +61378,8 @@ var actions = {
 
 
   // 本番反映モーダル開閉
-  showSelectDeployModal: function showSelectDeployModal(_ref13) {
-    var commit = _ref13.commit;
+  showSelectDeployModal: function showSelectDeployModal(_ref15) {
+    var commit = _ref15.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showSelectDeployModal]');
     commit('setModal', 'SelectDeployModal');
@@ -62348,6 +62681,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/vue/corpusAdmin/dataManage/modal/CompDeleteTrainingDataModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/modal/CompDeleteTrainingDataModal.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-67fab950\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/modal/CompDeleteTrainingDataModal.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/corpusAdmin/dataManage/modal/CompDeleteTrainingDataModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-67fab950", Component.options)
+  } else {
+    hotAPI.reload("data-v-67fab950", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/vue/corpusAdmin/dataManage/modal/CompEditTrainingDataModal.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -62433,6 +62814,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-1c92e300", Component.options)
   } else {
     hotAPI.reload("data-v-1c92e300", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/corpusAdmin/dataManage/modal/DeleteTrainingDataModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/modal/DeleteTrainingDataModal.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-cfdb0342\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/modal/DeleteTrainingDataModal.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/corpusAdmin/dataManage/modal/DeleteTrainingDataModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-cfdb0342", Component.options)
+  } else {
+    hotAPI.reload("data-v-cfdb0342", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

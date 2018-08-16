@@ -10,9 +10,13 @@ const state = {
   currentDataType: null,
   // クラス／テキストの編集対象
   editTrainingData: {
-    class_id: 0,
-    creative_id: 0,
+    class_id: null,
+    creative_id: null,
     content: '',
+  },
+  // テキスト削除対象
+  deleteTrainingData: {
+    creative_id: null,
   },
 
   // エラー群
@@ -32,6 +36,9 @@ const getters = {
   },
   currentDataType: (state) => {
     return state.currentDataType;
+  },
+  deleteTrainingData: (state) => {
+    return state.deleteTrainingData;
   },
   // エラー
   corpusEditError: (state) => {
@@ -121,6 +128,18 @@ const actions = {
   showCompEditTrainingDataModal({ commit }) {
     Core.log('[showCompEditTrainingDataModal]');
     commit('setModal', 'CompEditTrainingDataModal');
+  },
+
+  // 教師データ削除モーダル開閉
+  showDeleteTrainingDataModal({ commit, state }, creative_id) {
+    Core.log('[showDeleteTrainingDataModal]');
+    state.deleteTrainingData.creative_id = creative_id;
+
+    commit('setModal', 'DeleteTrainingDataModal');
+  },
+  showCompDeleteTrainingDataModal({ commit }) {
+    Core.log('[showCompDeleteTrainingDataModal]');
+    commit('setModal', 'CompDeleteTrainingDataModal');
   },
 
   // 教師データSVアップロードモーダル開閉

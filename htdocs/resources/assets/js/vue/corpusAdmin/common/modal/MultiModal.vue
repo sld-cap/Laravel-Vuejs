@@ -17,6 +17,9 @@
   // 教師データ編集
   import EditTrainingDataModal from '../../dataManage/modal/EditTrainingDataModal';
   import CompEditTrainingDataModal from '../../dataManage/modal/CompEditTrainingDataModal';
+  // 教師データ削除
+  import DeleteTrainingDataModal from '../../dataManage/modal/DeleteTrainingDataModal';
+  import CompDeleteTrainingDataModal from '../../dataManage/modal/CompDeleteTrainingDataModal';
   // 教師データCSVアップロード
   import UploadTrainingCsvModal from '../../dataManage/modal/UploadTrainingCsvModal';
   import CompUploadTrainingCsvModal from '../../dataManage/modal/CompUploadTrainingCsvModal';
@@ -31,10 +34,11 @@
     components: {
       // コーパスデータ
       EditCorpusInfoModal, CompEditCorpusInfoModal,
-      // 学習データ
-      AddTrainingDataModal, CompAddTrainingDataModal, // 学習データ登録
-      EditTrainingDataModal, CompEditTrainingDataModal, // 学習データ編集
-      UploadTrainingCsvModal, CompUploadTrainingCsvModal, // 学習データCSVアップロード
+      // 教師データ
+      AddTrainingDataModal, CompAddTrainingDataModal, // 教師データ登録
+      EditTrainingDataModal, CompEditTrainingDataModal, // 教師データ編集
+      DeleteTrainingDataModal, CompDeleteTrainingDataModal, // 教師データ削除
+      UploadTrainingCsvModal, CompUploadTrainingCsvModal, // 教師データCSVアップロード
       // 学習管理
       EditThresholdModal, SelectDeployModal,
     },

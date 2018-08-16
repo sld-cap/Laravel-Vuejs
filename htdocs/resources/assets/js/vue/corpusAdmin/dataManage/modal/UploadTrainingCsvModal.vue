@@ -19,7 +19,7 @@
       </div>
       <!-- /.alert -->
       <div class="form-group mt-4">
-        <input type="file" value="ファイルを選択" name="csv_file"  :class="'form-control' + err.csv_file.invalid">
+        <input @change="setUploadFile" type="file" value="ファイルを選択" name="csv_file"  :class="'form-control' + err.csv_file.invalid">
         <div class="invalid-feedback">
           {{ err.csv_file.message }}
         </div>
@@ -86,6 +86,12 @@ export default {
       Core.log('[upload]');
       Core.log(this.form);
       this.$store.dispatch('corpusTrainingData/uploadTrainingDataCsv', this.form);
+    },
+    // 選択ファイルセット
+    setUploadFile(e) {
+      e.preventDefault();
+      const files = e.target.files;
+      this.form.csv_file = files[0];
     },
     // エラーリセット
     resetErr() {

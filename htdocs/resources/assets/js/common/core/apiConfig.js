@@ -62,13 +62,24 @@ const API_CONFIG = {
     method: 'POST',
     data: {},
   },
+  // 教師データ削除
+  deleteTrainingData: {
+    // url: '/api/v1/training-data/{corpus_id}',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    // url: '/stub/data/TrainingDataEditError.json', // 処理失敗用stub
+    method: 'POST',
+    data: {},
+  },
   // 教師データアップロード
   uploadTrainingData: {
-    // url: '/api/v1/training-data',
+    // url: '/api/v1/training-data/{corpus_id}/upload',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/TrainingDataUploadError.json', // 処理失敗用stub
     method: 'POST',
     data: {},
+    headers: {
+      'content-type': 'multipart/form-data',
+    },
   },
 };
 

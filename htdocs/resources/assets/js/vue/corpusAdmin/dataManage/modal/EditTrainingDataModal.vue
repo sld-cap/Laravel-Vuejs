@@ -32,7 +32,7 @@
     </div>
     <!-- /.body -->
     <div slot="footer">
-      <button type="button" class="btn btn-secondary">削除する</button>
+      <button @click="openDeleteTrainingDataModal" type="button" class="btn btn-secondary">削除する</button>
       <button @click="saveTrainingData" type="button" class="btn btn-primary">変更する</button>
     </div>
     <!-- /.footer -->
@@ -106,6 +106,11 @@ export default {
       Core.log('[saveTrainingData]');
       Core.log(this.form);
       this.$store.dispatch('corpusTrainingData/saveTrainingData', this.form);
+    },
+    // 削除モーダル表示
+    openDeleteTrainingDataModal() {
+      Core.log('[openDeleteTrainingDataModal]');
+      this.$store.dispatch('multiModal/showDeleteTrainingDataModal', this.form.creative_id);
     },
     // エラーデータリセット
     resetErr() {

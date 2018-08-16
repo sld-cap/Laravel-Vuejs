@@ -74,6 +74,19 @@ const mutations = {
       this.commit('multiModal/setTrainingDataEditError', payload.errors);
     }
   },
+  // 削除: 教師データ削除結果チェック
+  setDeleteTrainingData(state, payload) {
+    Core.log('[store] setDeleteTrainingData');
+    Core.log(payload);
+
+    if (payload.code === 200) {
+      // 完了モーダルを開く
+      this.dispatch('multiModal/showCompDeleteTrainingDataModal');
+    } else {
+      // エラーデータセット
+      // this.commit('multiModal/setTrainingDataUploadError', payload.errors);
+    }
+  },
   // アップロード: 教師データCSVアップロード結果チェック
   setUploadTrainingDataCsvResult(state, payload) {
     Core.log('[store] setUploadTrainingDataCsvResult');
@@ -124,11 +137,27 @@ const actions = {
     };
     Ajax.exec(apiOption, commit, 'setSaveTrainingData');
   },
+  // 削除
+  deleteTrainingData({ commit, state }, { creative_id }) {
+    Core.log('[store] deleteTrainingData');
+
+    const apiOption = Object.assign({}, ApiConfig['deleteTrainingData']);
+    // const corpusId = this.getters['commonData/corpusId'];
+    // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
+    apiOption.data = { creative_id };
+    Ajax.exec(apiOption, commit, 'setDeleteTrainingData');
+  },
   // 一括登録
-  uploadTrainingDataCsv({ commit, state }, { data_type }) {
+  uploadTrainingDataCsv({ commit, state }, { csv_file, data_type }) {
     Core.log('[store] upload');
     const apiOption = Object.assign({}, ApiConfig['uploadTrainingData']);
-    apiOption.data = {};
+    // const corpusId = this.getters['commonData/corpusId'];
+    // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
+
+    // ファイル送信
+    apiOption.data = new FormData();
+    apiOption.data.append('csv_file', csv_file);
+    apiOption.data.append('data_type', data_type);
     Ajax.exec(apiOption, commit, 'setUploadTrainingDataCsvResult');
   },
 };
