@@ -1,0 +1,10 @@
+{
+  "code": 404,
+  "errors": [
+    {
+      "item": "csv_file",
+      "message": "選択されていません"
+    }
+  ],
+  "message": "validation error."
+}

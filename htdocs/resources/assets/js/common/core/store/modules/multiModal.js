@@ -14,6 +14,12 @@ const state = {
     creative_id: 0,
     content: '',
   },
+
+  // エラー群
+  corpusEditError: [],
+  trainingDataAddError: [],
+  trainingDataEditError: [],
+  trainingDataUploadError: [],
 };
 
 
@@ -26,6 +32,19 @@ const getters = {
   },
   currentDataType: (state) => {
     return state.currentDataType;
+  },
+  // エラー
+  corpusEditError: (state) => {
+    return state.corpusEditError;
+  },
+  trainingDataAddError: (state) => {
+    return state.trainingDataAddError;
+  },
+  trainingDataEditError: (state) => {
+    return state.trainingDataEditError;
+  },
+  trainingDataUploadError: (state) => {
+    return state.trainingDataUploadError;
   },
 };
 
@@ -41,6 +60,23 @@ const mutations = {
   hideModal(state) {
     state.modalName = '';
     state.currentDataType = null;
+  },
+  // エラーセット
+  setCorpusEditError(state, errors) {
+    Core.log('[store] setCorpusEditError');
+    state.corpusEditError = errors;
+  },
+  setTrainingDataAddError(state, errors) {
+    Core.log('[store] setTrainingDataAddError');
+    state.trainingDataAddError = errors;
+  },
+  setTrainingDataEditError(state, errors) {
+    Core.log('[store] setTrainingDataEditError');
+    state.trainingDataEditError = errors;
+  },
+  setTrainingDataUploadError(state, errors) {
+    Core.log('[store] setTrainingDataUploadError');
+    state.trainingDataUploadError = errors;
   },
 };
 

@@ -22,6 +22,15 @@ const getters = {
   corpusName: (state) => {
     return state.corpusInfo.name;
   },
+  // コーパス言語のラベル返却
+  CorpuslanguageLabel: (state) => {
+    let label = "";
+    if (state.corpusInfo.language !== undefined) {
+      const languageIndex = parseInt(state.corpusInfo.language, 10);
+      label = Core.CorpusLanguage[languageIndex].label;
+    }
+    return label;
+  },
 };
 
 
@@ -37,7 +46,6 @@ const mutations = {
       state.corpusInfo = payload.data;
       Core.log(state.corpusInfo);
     } else {
-      return;
       location.href = '/corpus';
     }
   },
@@ -47,7 +55,8 @@ const mutations = {
     if (payload.code === 200) {
       this.dispatch('multiModal/showCompEditCorpusInfoModal');
     } else {
-      // エラー処理
+      // エラーデータセット
+      this.commit('multiModal/setCorpusEditError', payload.errors);
     }
   },
 };

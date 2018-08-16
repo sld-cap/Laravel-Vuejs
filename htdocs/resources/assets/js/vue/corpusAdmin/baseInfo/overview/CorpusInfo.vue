@@ -25,15 +25,15 @@
             </tr>
             <tr>
               <th scope="row">言語</th>
-              <td>{{ corpusInfo.language }}</td>
+              <td>{{ language_labal }}</td>
             </tr>
             <tr>
               <th scope="row">作成日</th>
-              <td>{{ corpusInfo.created_at }}（***ここに作成者名を表示***）</td>
+              <td>{{ corpusInfo.created_at }}（{{ corpusInfo.create_user_name }}）</td>
             </tr>
             <tr>
               <th scope="row">最終更新日</th>
-              <td>{{ corpusInfo.updated_at }}（***ここに更新者名を表示***）</td>
+              <td>{{ corpusInfo.updated_at }}（{{ corpusInfo.update_user_name }}）</td>
             </tr>
           </tbody>
         </table>
@@ -67,6 +67,9 @@ export default {
   computed: {
     corpusInfo() {
       return this.$store.getters['corpusData/corpusInfo'];
+    },
+    language_labal() {
+      return this.$store.getters['corpusData/CorpuslanguageLabel'];
     },
   },
   created() {

@@ -57,7 +57,8 @@ const mutations = {
       // 完了モーダルを開く
       this.dispatch('multiModal/showCompAddTrainingDataModal');
     } else {
-      // エラー表示
+      // エラーデータセット
+      this.commit('multiModal/setTrainingDataAddError', payload.errors);
     }
   },
   // 編集: 教師データ編集結果チェック
@@ -69,7 +70,8 @@ const mutations = {
       // 完了モーダルを開く
       this.dispatch('multiModal/showCompEditTrainingDataModal');
     } else {
-      // エラー表示
+      // エラーデータセット
+      this.commit('multiModal/setTrainingDataEditError', payload.errors);
     }
   },
   // アップロード: 教師データCSVアップロード結果チェック
@@ -81,7 +83,8 @@ const mutations = {
       // 完了モーダルを開く
       this.dispatch('multiModal/showCompUploadTrainingDataCsvModal');
     } else {
-      // エラー表示
+      // エラーデータセット
+      this.commit('multiModal/setTrainingDataUploadError', payload.errors);
     }
   },
 };

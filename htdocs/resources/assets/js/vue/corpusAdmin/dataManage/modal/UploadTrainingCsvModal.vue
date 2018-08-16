@@ -19,7 +19,10 @@
       </div>
       <!-- /.alert -->
       <div class="form-group mt-4">
-        <input type="file" value="ファイルを選択" name="csv_file" required="">
+        <input type="file" value="ファイルを選択" name="csv_file"  :class="'form-control' + err.csv_file.invalid">
+        <div class="invalid-feedback">
+          {{ err.csv_file.message }}
+        </div>
       </div>
     </div>
     <!-- /.body -->
@@ -37,25 +40,45 @@ import * as Ajax from '../../../../common/core/ajax';
 import ApiConfig from '../../../../common/core/apiConfig';
 import CommonModal from '../../common/modal/Modal';
 
+import { mapGetters } from 'vuex';
 import MultiModalMixin from '../../common/modal/mixins/MultiModalMixin';
+import SetErrDataMixin from '../../common/form/mixins/SetErrData';
 
 export default {
   name: 'UploadTrainingCsvModal',
-  mixins: [MultiModalMixin],
+  mixins: [MultiModalMixin, SetErrDataMixin],
   components: { CommonModal },
   props: [],
   data() {
     return {
       form: {
+        csv_file: null,
         data_type: this.$store.getters['multiModal/currentDataType'],
       },
+      err: [],
     };
   },
   computed: {
+    ...mapGetters({
+      errors: 'multiModal/trainingDataUploadError'
+    }),
   },
-  crated() {
+  watch: {
+    'errors': {
+      handler: function (errors) {
+        // エラー表示処理
+        this.resetErr();
+        this.setErrData(errors);
+      },
+      deep: true
+    },
+  },
+  created() {
+    Core.log('[created]');
+    this.resetErr();
   },
   mounted() {
+    Core.log('[mounted]');
   },
   methods: {
     // 登録
@@ -63,6 +86,15 @@ export default {
       Core.log('[upload]');
       Core.log(this.form);
       this.$store.dispatch('corpusTrainingData/uploadTrainingDataCsv', this.form);
+    },
+    // エラーリセット
+    resetErr() {
+      this.err = {
+        csv_file: {
+          invalid: '',
+          message: '',
+        },
+      };
     },
   },
 };

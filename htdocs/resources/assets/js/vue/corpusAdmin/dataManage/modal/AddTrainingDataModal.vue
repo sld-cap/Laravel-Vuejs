@@ -10,28 +10,31 @@
       <!-- /.alert -->
       <div class="form-group">
         <label for="addContent">追加するテキスト</label>
-        <textarea v-model="form.content" class="form-control" id="addContent" rows="3" required></textarea>
+        <textarea v-model="form.content" :class="'form-control' + err.content.invalid" id="addContent" rows="3"></textarea>
         <small class="form-text text-muted">1024文字以内で入力してください。</small>
         <div class="invalid-feedback">
-          テキストを入力してください
+          {{ err.content.message }}
         </div>
       </div>
       <!-- /.form-group -->
       <div class="form-group">
         <label :for="'selectEditClass_' + this.form.data_type">クラス選択</label>
-        <select v-model="form.corpus_class_id" class="form-control form-control-sm" :id="'selectEditClass_' + this.form.data_type">
+        <select v-model="form.corpus_class_id" :class="'form-control form-control-sm' + err.corpus_class_id.invalid" :id="'selectEditClass_' + this.form.data_type">
           <template v-for="classData in trainingData">
             <option :value="classData.class_id" :key="classData.class_id">{{ classData.name }}</option>
           </template>
           <option v-if="form.data_type === 1" value="">＋クラスを追加</option>
         </select>
+        <div class="invalid-feedback">
+          {{ err.corpus_class_id.message }}
+        </div>
       </div>
       <!-- /.form-group -->
       <div v-if="form.data_type === 1 && form.corpus_class_id === ''" class="form-group">
         <label for="addClass">追加するクラス名</label>
-        <input v-model="form.add_class_name" type="text" class="form-control" id="addClass">
+        <input v-model="form.add_class_name" type="text" :class="'form-control' + err.add_class_name.invalid" id="addClass">
         <div class="invalid-feedback">
-          クラス名を入力してください
+          {{ err.add_class_name.message }}
         </div>
       </div>
       <!-- /.form-group -->
@@ -52,10 +55,11 @@ import CommonModal from '../../common/modal/Modal';
 
 import { mapGetters } from 'vuex';
 import MultiModalMixin from '../../common/modal/mixins/MultiModalMixin';
+import SetErrDataMixin from '../../common/form/mixins/SetErrData';
 
 export default {
   name: 'AddCreativeModal',
-  mixins: [MultiModalMixin],
+  mixins: [MultiModalMixin, SetErrDataMixin],
   components: { CommonModal },
   props: [],
   data() {
@@ -67,14 +71,31 @@ export default {
         add_class_name: '',
         content: '',
       },
+      err: [],
     };
   },
   computed: {
     ...mapGetters({
       trainingData: 'corpusTrainingData/trainingData',
+      errors: 'multiModal/trainingDataAddError',
     }),
   },
+  watch: {
+    'errors': {
+      handler: function (errors) {
+        // エラー表示処理
+        this.resetErr();
+        this.setErrData(errors);
+      },
+      deep: true
+    },
+  },
+  created() {
+    Core.log('[created]');
+    this.resetErr();
+  },
   mounted() {
+    Core.log('[mounted]');
     this.initRender();
   },
   methods: {
@@ -92,6 +113,23 @@ export default {
       Core.log('[addTrainingData]');
       Core.log(this.form);
       this.$store.dispatch('corpusTrainingData/addTrainingData', this.form);
+    },
+    // エラーリセット
+    resetErr() {
+      this.err = {
+        corpus_class_id: {
+          invalid: '',
+          message: '',
+        },
+        add_class_name: {
+          invalid: '',
+          message: '',
+        },
+        content: {
+          invalid: '',
+          message: '',
+        },
+      };
     },
   },
 };

@@ -1,0 +1,14 @@
+{
+  "code": 404,
+  "errors": [
+    {
+      "item": "content",
+      "message": "入力されていません"
+    },
+    {
+      "item": "corpus_class_id",
+      "message": "選択されていません"
+    }
+  ],
+  "message": "validation error."
+}

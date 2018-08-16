@@ -35,7 +35,8 @@ const API_CONFIG = {
   // コーパス情報更新
   saveCorpusInfo: {
     // url: '/api/v1/corpus',
-    url: '/stub/data/setCorpusInfo.json',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    // url: '/stub/data/corpusEditError.json', // 処理失敗用stub
     method: 'POST',
     data: {},
   },
@@ -48,29 +49,27 @@ const API_CONFIG = {
   // 教師データ追加
   addTrainingData: {
     // url: '/api/v1/training-data',
-    url: '/stub/data/setTrainingData.json',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    // url: '/stub/data/TrainingDataAddError.json', // 処理失敗用stub
     method: 'POST',
     data: {},
   },
   // 教師データ編集
   saveTrainingData: {
     // url: '/api/v1/training-data',
-    url: '/stub/data/setTrainingData.json',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    // url: '/stub/data/TrainingDataEditError.json', // 処理失敗用stub
     method: 'POST',
     data: {},
   },
   // 教師データアップロード
   uploadTrainingData: {
-    url: '/stub/data/setTrainingData.json',
+    // url: '/api/v1/training-data',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    // url: '/stub/data/TrainingDataUploadError.json', // 処理失敗用stub
     method: 'POST',
     data: {},
   },
-  // クリエイティブデータ登録
-  // addCreative: {
-  //   url: '/api/v1/training-data/{training_datum}',
-  //   method: 'POST',
-  //   data: {},
-  // },
 };
 
 export default API_CONFIG;
