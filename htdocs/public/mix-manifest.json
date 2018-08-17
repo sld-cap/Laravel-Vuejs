@@ -1,8 +1,13 @@
 {
-    "/js/app.js": "/js/app.js?id=98eeab3ade922c70330a",
+    "/js/app.js": "/js/app.js?id=30bcaaefb8de3b5f1475",
     "/css/app.css": "/css/app.css?id=19214247ec8b1f7d17fd",
     "/css/login.css": "/css/login.css?id=4ba4acd1d0a6b1e42f5a",
-    "/js/corpusadmin-core.js": "/js/corpusadmin-core.js?id=eb1715ddadf72b2f346e",
+    "/css/common.css": "/css/common.css?id=0d4e86a4259c4f5b4dec",
+    "/../resources/assets/css/corpus.css": "/../resources/assets/css/corpus.css?id=65ca66d0990759f903ef",
+    "/../resources/assets/css/api-info.css": "/../resources/assets/css/api-info.css?id=52f533a84a3aa94f396e",
+    "/js/corpusadmin-core.js": "/js/corpusadmin-core.js?id=064a6766a312a061b4d6",
+    "/js/dashboard-common.js": "/js/dashboard-common.js?id=f3bf6f26e95e5f60c432",
     "/css/bootstrap.css": "/css/bootstrap.css?id=f7136bfa9002c298cfb0",
-    "/css/corpusadmin.css": "/css/corpusadmin.css?id=e61bf1a3b7c12717bc8b"
+    "/css/corpusadmin.css": "/css/corpusadmin.css?id=e61bf1a3b7c12717bc8b",
+    "/css/capadmin.css": "/css/capadmin.css?id=0d1beb517d5209679c55"
 }

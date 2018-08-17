@@ -33,6 +33,7 @@ Vue.use(VueLoaders);
 const router = new VueRouter({
   mode: 'history',
   routes,
+  linkExactActiveClass: 'active',
 });
 
 /**
