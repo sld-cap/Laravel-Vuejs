@@ -64,12 +64,6 @@
   </div>
 </template>
 
-<style>
-.sidebar .nav-link.router-link-exact-active {
-  color: #007bff;
-}
-</style>
-
 <script>
 import * as Core from '../../common/core/app';
 import { mapActions, mapGetters } from 'vuex';
@@ -116,3 +110,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.sidebar .nav-link.router-link-exact-active {
+  color: #007bff;
+}
+</style>
