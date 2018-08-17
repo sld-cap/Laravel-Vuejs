@@ -295,7 +295,7 @@ class TrainingDataController extends Controller
     // バリデーション
     $user = JWTAuth::parseToken()->authenticate();
     $corpus = Corpus::where('id', $_corpus_id)->where('company_id', $user->company_id)->get();
-    if ($_corpus->count() == 0) {
+    if ($corpus->count() == 0) {
       $message = 'Corpus not found. -> corpus_id:' . $_corpus_id;
       $formatter = new ApiResponseFormatter(404, $message, array(
         'message' => 'ご指定のコーパスは利用できません'
