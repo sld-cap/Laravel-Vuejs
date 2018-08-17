@@ -12,6 +12,7 @@ const TOKEN_OPTION = {
  * クッキーにトークンセット
  */
 export function setToken(token) {
+  Core.log('setToken');
   Core.log(`[setToken] ${token}`);
   $.cookie('CAP-TOKEN', token, TOKEN_OPTION);
 }
@@ -20,6 +21,7 @@ export function setToken(token) {
  * トークン取得
  */
 export function getToken() {
+  Core.log('[getToken]');
   return $.cookie('CAP-TOKEN');
 }
 
@@ -27,13 +29,15 @@ export function getToken() {
  * クッキーからトークン削除
  */
 export function delToken() {
-  $.removeCookie('CAP-TOKEN');
+  Core.log('[delToken]');
+  $.cookie('CAP-TOKEN', '', { expires: -1, path: '/' });
 }
 
 /**
  * ログイン
  */
 export function login() {
+  Core.log('[login]');
   const token = getToken();
 
   if(token !== undefined || token !== "") {
@@ -48,11 +52,11 @@ export function login() {
  * 認証状態確認
  */
 export function isAuth() {
+  Core.log('[isAuth]');
   const token = getToken();
 
   if(token !== undefined || token !== "") {
-    // 自分の情報取得
-
+    // ***
   } else {
     logout();
   }
@@ -62,24 +66,37 @@ export function isAuth() {
  * ログアウト
  */
 export function logout() {
+  Core.log('[logout]');
   delToken();
   location.href = '/login';
 }
-
-/**
- * データ管理画面でタイトルを動的にセット
- */
-export function setCorpusAdminTitle(corpusName) {
-  // タイトルタグ書き換え
-  document.title = corpusName;
-  // ナビゲーションのコーパス名書き換え
-  $('#navCorpusName').text(corpusName);
-}
-
 
 /**
  * スクロールトップ
  */
 export function setScrollTop() {
   $('html, body').scrollTop(0);
+}
+
+
+/**
+ * 通信エラーアラート表示
+ */
+export function alertAxiosError() {
+  alert('通信エラーが発生しました。再度、画面読み込みを行ってください。\nエラーが続く場合、お問い合わせください。');
+}
+
+/**
+ * 認証エラーアラート表示
+ */
+export function alertRefreshToken() {
+  alert('認証切れが発生しました。再ログインを行なった上で、再度操作を行ってください。');
+  logout();
+}
+
+/**
+ * お問い合わせアラート表示
+ */
+export function alertVendorEscalation(errorCode) {
+  alert(`アプリケーションエラーが発生しました（code: ${errorCode}）。\nエラーが続く場合、お問い合わせください。`);
 }

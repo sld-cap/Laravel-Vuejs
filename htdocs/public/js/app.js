@@ -4133,6 +4133,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -4162,6 +4163,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     openUploadTrainingCsvModal: function openUploadTrainingCsvModal(dataType) {
       this.$store.dispatch('multiModal/showUploadTrainingCsvModal', { dataType: dataType });
+    },
+    execDownloadTrainingCsv: function execDownloadTrainingCsv() {
+      this.$store.dispatch('corpusTrainingData/downloadTrainingDataCsv');
     }
   }
 });
@@ -8021,7 +8025,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39251,38 +39255,33 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._m(0),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-light",
+          attrs: {
+            href: "javascript:void(0)",
+            role: "button",
+            "aria-pressed": "true"
+          },
+          on: { click: _vm.execDownloadTrainingCsv }
+        },
+        [
+          _c("span", {
+            staticClass: "text-muted",
+            staticStyle: { width: "20px", height: "20px" },
+            attrs: { "data-feather": "download" }
+          }),
+          _vm._v(" "),
+          _c("span", [_vm._v("CSVダウンロード")])
+        ]
+      ),
       _vm._v(" "),
-      _vm._m(1)
+      _vm._m(0)
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "btn btn-light",
-        attrs: {
-          href: "/corpus/csv/download/1",
-          role: "button",
-          "aria-pressed": "true"
-        }
-      },
-      [
-        _c("span", {
-          staticClass: "text-muted",
-          staticStyle: { width: "20px", height: "20px" },
-          attrs: { "data-feather": "download" }
-        }),
-        _vm._v(" "),
-        _c("span", [_vm._v("CSVダウンロード")])
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -39919,21 +39918,25 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("ul", [
           _c("li", [
-            _c("a", { attrs: { href: "/corpus/1/data" } }, [
+            _c("a", { attrs: { href: "/corpus/1/data", target: "_blank" } }, [
               _vm._v("コーパス管理画面 -基本情報-")
             ])
           ]),
           _vm._v(" "),
           _c("li", [
-            _c("a", { attrs: { href: "/corpus/1/data/view" } }, [
-              _vm._v("コーパス管理画面 -データ管理-")
-            ])
+            _c(
+              "a",
+              { attrs: { href: "/corpus/1/data/view", target: "_blank" } },
+              [_vm._v("コーパス管理画面 -データ管理-")]
+            )
           ]),
           _vm._v(" "),
           _c("li", [
-            _c("a", { attrs: { href: "/corpus/1/training" } }, [
-              _vm._v("コーパス管理画面 -学習管理-")
-            ])
+            _c(
+              "a",
+              { attrs: { href: "/corpus/1/training", target: "_blank" } },
+              [_vm._v("コーパス管理画面 -学習管理-")]
+            )
           ])
         ])
       ])
@@ -42335,7 +42338,7 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "btn btn-primary",
+          staticClass: "btn btn-danger",
           attrs: { type: "button" },
           on: { click: _vm.deleteExec }
         },
@@ -60256,18 +60259,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_core_store_index__ = __webpack_require__("./resources/assets/js/common/core/store/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__vue_login_Main_vue__ = __webpack_require__("./resources/assets/js/vue/login/Main.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__vue_login_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__vue_login_Main_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__vue_capAdmin_Dashboard_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/Dashboard.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__vue_capAdmin_Dashboard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__vue_capAdmin_Dashboard_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__vue_corpusAdmin_index_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/index.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__vue_corpusAdmin_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__vue_corpusAdmin_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__vue_corpusAdmin_baseInfo_Main_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/baseInfo/Main.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__vue_corpusAdmin_baseInfo_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__vue_corpusAdmin_baseInfo_Main_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__vue_corpusAdmin_dataManage_Main_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/Main.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__vue_corpusAdmin_dataManage_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__vue_corpusAdmin_dataManage_Main_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__vue_corpusAdmin_trainingManage_Main_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/trainingManage/Main.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__vue_corpusAdmin_trainingManage_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__vue_corpusAdmin_trainingManage_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_core_route__ = __webpack_require__("./resources/assets/js/common/core/route.js");
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -60289,17 +60281,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-/**
- * component
- */
-
-// CAP管理画面
-
-// コーパス管理画面
-
-
-
-
 
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
@@ -60308,54 +60289,17 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vue_
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_vue_loaders__);
 
 /**
- * router config
+ * router
  */
-var routes = [{
-  path: '/login',
-  component: __WEBPACK_IMPORTED_MODULE_10__vue_login_Main_vue___default.a
-}, {
-  path: '/',
-  component: __WEBPACK_IMPORTED_MODULE_11__vue_capAdmin_Dashboard_vue___default.a,
-  meta: { requiresAuth: true }
-}, {
-  path: '/corpus',
-  component: __WEBPACK_IMPORTED_MODULE_11__vue_capAdmin_Dashboard_vue___default.a,
-  meta: { requiresAuth: true }
-}, {
-  path: '/corpus/:corpusId',
-  component: __WEBPACK_IMPORTED_MODULE_12__vue_corpusAdmin_index_vue___default.a,
-  meta: { requiresAuth: true },
-  props: function props(route) {
-    return { corpusId: parseInt(route.params.corpusId, 10) };
-  },
-  children: [{
-    name: 'base-info',
-    path: 'data',
-    component: __WEBPACK_IMPORTED_MODULE_13__vue_corpusAdmin_baseInfo_Main_vue___default.a
-  }, {
-    name: 'data-view',
-    path: 'data/view',
-    component: __WEBPACK_IMPORTED_MODULE_14__vue_corpusAdmin_dataManage_Main_vue___default.a
-  }, {
-    name: 'training',
-    path: 'training',
-    component: __WEBPACK_IMPORTED_MODULE_15__vue_corpusAdmin_trainingManage_Main_vue___default.a
-  }]
-}];
-
 var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
   mode: 'history',
-  routes: routes
+  routes: __WEBPACK_IMPORTED_MODULE_10__common_core_route__["a" /* default */]
 });
 
 /**
  * 画面アクセス制限
  */
-var myToken = __WEBPACK_IMPORTED_MODULE_7__common_ext_functions__["getToken"]();
 router.beforeEach(function (to, from, next) {
-  // ヘッダーにトークンセット
-  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + myToken;
-
   // 認証チェックが必要な場合
   if (to.matched.some(function (record) {
     return record.meta.requiresAuth;
@@ -60363,9 +60307,11 @@ router.beforeEach(function (to, from, next) {
     // 認証状態確認
     __WEBPACK_IMPORTED_MODULE_5__common_core_app__["log"]('[auth] 認証状態を確認します');
 
+    var myToken = __WEBPACK_IMPORTED_MODULE_7__common_ext_functions__["getToken"]();
     if (myToken !== undefined || myToken !== '') {
       // ログインユーザの情報確認
-      var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_8__common_core_apiConfig__["default"]['auth']);
+      // const apiOption = Object.assign({}, ApiConfig['auth']);
+      var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_8__common_core_apiConfig__["default"].auth);
       __WEBPACK_IMPORTED_MODULE_6__common_core_ajax__["checkStatus"](apiOption).then(function (res) {
         __WEBPACK_IMPORTED_MODULE_5__common_core_app__["log"]('[auth] success');
         __WEBPACK_IMPORTED_MODULE_5__common_core_app__["log"](res);
@@ -60405,8 +60351,11 @@ var CapApp = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 /***/ }),
 
 /***/ "./resources/assets/js/bootstrap.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
 
 window._ = __webpack_require__("./node_modules/lodash/lodash.js");
 
@@ -60418,7 +60367,6 @@ window._ = __webpack_require__("./node_modules/lodash/lodash.js");
 
 try {
   window.$ = window.jQuery = __webpack_require__("./node_modules/jquery/dist/jquery.js");
-
   __webpack_require__("./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js");
 } catch (e) {}
 
@@ -60428,8 +60376,10 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
+var myToken = __WEBPACK_IMPORTED_MODULE_0__common_ext_functions__["getToken"]();
 window.axios = __webpack_require__("./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + myToken;
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -60498,6 +60448,8 @@ function exec(option, commit, mutation, eMutation) {
 
     if (eMutation !== undefined && eMutation !== '') {
       commit(eMutation);
+    } else {
+      __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertAxiosError"]();
     }
   });
 }
@@ -60540,9 +60492,7 @@ var checkStatus = function () {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var API_CONFIG = {
-  /**
-   * システム共通
-   */
+  // システム共通
   // ログイン
   login: {
     url: '/api/authenticate',
@@ -60560,13 +60510,8 @@ var API_CONFIG = {
     url: '/api/v1/me',
     method: 'GET'
   },
-  /**
-   * CAP管理画面
-   */
 
-  /**
-   *  コーパス管理画面
-   */
+  // CAP管理画面
   // コーパス情報取得
   getCorpus: {
     url: '/api/v1/corpus/{corpusId}',
@@ -60581,6 +60526,8 @@ var API_CONFIG = {
     method: 'POST',
     data: {}
   },
+
+  // コーパス管理画面
   // 教師データ一覧取得
   getTrainingData: {
     url: '/api/v1/training-data/{training_datum}',
@@ -60607,7 +60554,7 @@ var API_CONFIG = {
   deleteTrainingData: {
     // url: '/api/v1/training-data/{corpus_id}',
     url: '/stub/data/successData.json', // 処理成功用stub
-    // url: '/stub/data/TrainingDataEditError.json', // 処理失敗用stub
+    // url: '/stub/data/TrainingDataDeleteError.json', // 処理失敗用stub
     method: 'POST',
     data: {}
   },
@@ -60621,6 +60568,14 @@ var API_CONFIG = {
     headers: {
       'content-type': 'multipart/form-data'
     }
+  },
+  // 教師データダウンロード
+  downloadTrainingData: {
+    // url: '/api/v1/training-data/{corpus_id}/download',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    // url: '/stub/data/TrainingDataUploadError.json', // 処理失敗用stub
+    method: 'POST',
+    data: {}
   }
 };
 
@@ -60668,6 +60623,74 @@ var CorpusLanguage = {
     label: '英語'
   }
 };
+
+/***/ }),
+
+/***/ "./resources/assets/js/common/core/route.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_login_Main_vue__ = __webpack_require__("./resources/assets/js/vue/login/Main.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_login_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__vue_login_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_Dashboard_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/Dashboard.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_Dashboard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_Dashboard_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vue_corpusAdmin_index_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vue_corpusAdmin_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__vue_corpusAdmin_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vue_corpusAdmin_baseInfo_Main_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/baseInfo/Main.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vue_corpusAdmin_baseInfo_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__vue_corpusAdmin_baseInfo_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__vue_corpusAdmin_dataManage_Main_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/Main.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__vue_corpusAdmin_dataManage_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__vue_corpusAdmin_dataManage_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__vue_corpusAdmin_trainingManage_Main_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/trainingManage/Main.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__vue_corpusAdmin_trainingManage_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__vue_corpusAdmin_trainingManage_Main_vue__);
+/**
+ * component
+ */
+
+// CAP管理画面
+
+// コーパス管理画面
+
+
+
+
+
+/**
+ * router config
+ */
+var routes = [{
+  path: '/login',
+  component: __WEBPACK_IMPORTED_MODULE_0__vue_login_Main_vue___default.a
+}, {
+  path: '/',
+  component: __WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_Dashboard_vue___default.a,
+  meta: { requiresAuth: true }
+}, {
+  path: '/corpus',
+  component: __WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_Dashboard_vue___default.a,
+  meta: { requiresAuth: true }
+}, {
+  path: '/corpus/:corpusId',
+  component: __WEBPACK_IMPORTED_MODULE_2__vue_corpusAdmin_index_vue___default.a,
+  meta: { requiresAuth: true },
+  props: function props(route) {
+    return { corpusId: parseInt(route.params.corpusId, 10) };
+  },
+  children: [{
+    name: 'base-info',
+    path: 'data',
+    component: __WEBPACK_IMPORTED_MODULE_3__vue_corpusAdmin_baseInfo_Main_vue___default.a
+  }, {
+    name: 'data-view',
+    path: 'data/view',
+    component: __WEBPACK_IMPORTED_MODULE_4__vue_corpusAdmin_dataManage_Main_vue___default.a
+  }, {
+    name: 'training',
+    path: 'training',
+    component: __WEBPACK_IMPORTED_MODULE_5__vue_corpusAdmin_trainingManage_Main_vue___default.a
+  }]
+}];
+
+/* harmony default export */ __webpack_exports__["a"] = (routes);
 
 /***/ }),
 
@@ -60820,13 +60843,12 @@ var mutations = {
 var actions = {
   // ログイン処理
   login: function login(_ref, _ref2) {
-    var commit = _ref.commit,
-        state = _ref.state;
+    var commit = _ref.commit;
     var email = _ref2.email,
         password = _ref2.password;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] login');
-    var apiOption = __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['login'];
+    var apiOption = __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].login;
     apiOption.data = { email: email, password: password };
 
     __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'doLogin', 'setLoginError');
@@ -60850,7 +60872,9 @@ var actions = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 
 
 
@@ -60876,7 +60900,7 @@ var getters = {
   },
   // コーパス言語のラベル返却
   CorpuslanguageLabel: function CorpuslanguageLabel(state) {
-    var label = "";
+    var label = '';
     if (state.corpusInfo.language !== undefined) {
       var languageIndex = parseInt(state.corpusInfo.language, 10);
       label = __WEBPACK_IMPORTED_MODULE_0__app__["CorpusLanguage"][languageIndex].label;
@@ -60889,13 +60913,16 @@ var getters = {
  * mutations
  */
 var mutations = {
-  // コーパスデータセット
-  setCorpusInfo: function setCorpusInfo(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setCorpusInfo');
+  // 取得: コーパスデータセット
+  setGetCorpusInfoResult: function setGetCorpusInfoResult(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setGetCorpusInfoResult');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+    var resCode = payload.code;
 
-    if (payload.code === 200) {
+    if (resCode === 200) {
       state.corpusInfo = payload.data;
-      __WEBPACK_IMPORTED_MODULE_0__app__["log"](state.corpusInfo);
+    } else if (resCode === 401) {
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
     } else {
       location.href = '/corpus';
     }
@@ -60904,11 +60931,21 @@ var mutations = {
   // 更新: コーパスデータ更新処理結果
   setSaveCorpusInfoResult: function setSaveCorpusInfoResult(state, payload) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setSaveCorpusInfoResult');
-    if (payload.code === 200) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+    var resCode = payload.code;
+
+    if (resCode === 200) {
       this.dispatch('multiModal/showCompEditCorpusInfoModal');
+    } else if (resCode === 400) {
+      if (payload.errors.length > 0) {
+        this.commit('multiModal/setCorpusEditError', payload.errors);
+      } else {
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+      }
+    } else if (resCode === 401) {
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
     } else {
-      // エラーデータセット
-      this.commit('multiModal/setCorpusEditError', payload.errors);
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
     }
   }
 };
@@ -60923,12 +60960,11 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusInfo');
     // const apiOption = Object.assign({}, ApiConfig['getCorpus']);
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['getCorpus']);
+    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].getCorpus);
     var corpusId = this.getters['commonData/corpusId'];
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](corpusId);
     apiOption.url = apiOption.url.replace(/{corpusId}/g, corpusId);
 
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setCorpusInfo');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setGetCorpusInfoResult');
   },
 
   // 編集
@@ -60941,7 +60977,7 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusInfo');
 
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['saveCorpusInfo']);
+    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].saveCorpusInfo);
     // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
     apiOption.data = {
       corpus_id: corpus_id, name: name, description: description, language: language
@@ -60968,7 +61004,9 @@ var actions = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 
 
 
@@ -60995,7 +61033,6 @@ var getters = {
 
     if (state.trainingData !== undefined && state.trainingData.length > 0) {
       state.trainingData.filter(function (classData) {
-        // sum = sum + classData.test_data_count;
         sum += parseInt(classData.test_data_count, 10);
       });
     }
@@ -61010,25 +61047,36 @@ var mutations = {
   // 教師データセット
   setGetTrainingDataResult: function setGetTrainingDataResult(state, payload) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setGetTrainingDataResult');
-    if (payload.code === 200) {
-      state.trainingData = payload.data;
-    } else {
-      state.errors = payload.errors;
-    }
     __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+    var resCode = payload.code;
+
+    if (resCode === 200) {
+      state.trainingData = payload.data;
+    } else if (resCode === 401) {
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+    } else {
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    }
   },
 
   // 登録: 教師データ登録結果チェック
   setAddTrainingData: function setAddTrainingData(state, payload) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setAddTrainingData');
     __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+    var resCode = payload.code;
 
-    if (payload.code === 200) {
-      // 完了モーダルを開く
+    if (resCode === 200) {
       this.dispatch('multiModal/showCompAddTrainingDataModal');
+    } else if (resCode === 400) {
+      if (payload.errors.length > 0) {
+        this.commit('multiModal/setTrainingDataAddError', payload.errors);
+      } else {
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+      }
+    } else if (resCode === 401) {
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
     } else {
-      // エラーデータセット
-      this.commit('multiModal/setTrainingDataAddError', payload.errors);
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
     }
   },
 
@@ -61036,13 +61084,20 @@ var mutations = {
   setSaveTrainingData: function setSaveTrainingData(state, payload) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setSaveTrainingData');
     __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+    var resCode = payload.code;
 
-    if (payload.code === 200) {
-      // 完了モーダルを開く
+    if (resCode === 200) {
       this.dispatch('multiModal/showCompEditTrainingDataModal');
+    } else if (resCode === 400) {
+      if (payload.errors.length > 0) {
+        this.commit('multiModal/setTrainingDataEditError', payload.errors);
+      } else {
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+      }
+    } else if (resCode === 401) {
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
     } else {
-      // エラーデータセット
-      this.commit('multiModal/setTrainingDataEditError', payload.errors);
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
     }
   },
 
@@ -61050,13 +61105,14 @@ var mutations = {
   setDeleteTrainingData: function setDeleteTrainingData(state, payload) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setDeleteTrainingData');
     __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+    var resCode = payload.code;
 
-    if (payload.code === 200) {
-      // 完了モーダルを開く
+    if (resCode === 200) {
       this.dispatch('multiModal/showCompDeleteTrainingDataModal');
+    } else if (resCode === 401) {
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
     } else {
-      // エラーデータセット
-      // this.commit('multiModal/setTrainingDataUploadError', payload.errors);
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
     }
   },
 
@@ -61064,14 +61120,35 @@ var mutations = {
   setUploadTrainingDataCsvResult: function setUploadTrainingDataCsvResult(state, payload) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setUploadTrainingDataCsvResult');
     __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+    var resCode = payload.code;
 
-    if (payload.code === 200) {
-      // 完了モーダルを開く
+    if (resCode === 200) {
       this.dispatch('multiModal/showCompUploadTrainingDataCsvModal');
+    } else if (resCode === 400) {
+      if (payload.errors.length > 0) {
+        this.commit('multiModal/setTrainingDataUploadError', payload.errors);
+      } else {
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+      }
+    } else if (resCode === 401) {
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
     } else {
-      // エラーデータセット
-      this.commit('multiModal/setTrainingDataUploadError', payload.errors);
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
     }
+  },
+
+  // ダウンロード: 教師データCSVダウンロード結果チェック
+  setDownloadTrainingDataCsvResult: function setDownloadTrainingDataCsvResult(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setDownloadTrainingDataCsvResult');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+
+    // if (payload.code === 200) {
+    //   // 完了モーダルを開く
+    //   this.dispatch('multiModal/showCompUploadTrainingDataCsvModal');
+    // } else {
+    //   // エラーデータセット
+    //   this.commit('multiModal/setTrainingDataUploadError', payload.errors);
+    // }
   }
 };
 
@@ -61085,7 +61162,7 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusInfoAtDataManage');
 
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['getTrainingData']);
+    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].getTrainingData);
     var corpusId = this.getters['commonData/corpusId'];
     apiOption.url = apiOption.url.replace(/{training_datum}/g, corpusId);
 
@@ -61094,8 +61171,7 @@ var actions = {
 
   // 登録
   addTrainingData: function addTrainingData(_ref2, _ref3) {
-    var commit = _ref2.commit,
-        state = _ref2.state;
+    var commit = _ref2.commit;
     var corpus_id = _ref3.corpus_id,
         data_type = _ref3.data_type,
         corpus_class_id = _ref3.corpus_class_id,
@@ -61104,7 +61180,7 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] addTrainingData');
 
-    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['addTrainingData']);
+    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].addTrainingData);
     apiOption.data = {
       corpus_id: corpus_id, data_type: data_type, corpus_class_id: corpus_class_id, add_class_name: add_class_name, content: content
     };
@@ -61113,8 +61189,7 @@ var actions = {
 
   // 編集
   saveTrainingData: function saveTrainingData(_ref4, _ref5) {
-    var commit = _ref4.commit,
-        state = _ref4.state;
+    var commit = _ref4.commit;
     var corpus_id = _ref5.corpus_id,
         data_type = _ref5.data_type,
         corpus_class_id = _ref5.corpus_class_id,
@@ -61123,7 +61198,7 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] saveTrainingData');
 
-    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['saveTrainingData']);
+    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].saveTrainingData);
     apiOption.data = {
       corpus_id: corpus_id, data_type: data_type, corpus_class_id: corpus_class_id, creative_id: creative_id, content: content
     };
@@ -61132,13 +61207,12 @@ var actions = {
 
   // 削除
   deleteTrainingData: function deleteTrainingData(_ref6, _ref7) {
-    var commit = _ref6.commit,
-        state = _ref6.state;
+    var commit = _ref6.commit;
     var creative_id = _ref7.creative_id;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] deleteTrainingData');
 
-    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['deleteTrainingData']);
+    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].deleteTrainingData);
     // const corpusId = this.getters['commonData/corpusId'];
     // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
     apiOption.data = { creative_id: creative_id };
@@ -61153,7 +61227,7 @@ var actions = {
         data_type = _ref9.data_type;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] upload');
-    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"]['uploadTrainingData']);
+    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].uploadTrainingData);
     // const corpusId = this.getters['commonData/corpusId'];
     // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
 
@@ -61162,6 +61236,20 @@ var actions = {
     apiOption.data.append('csv_file', csv_file);
     apiOption.data.append('data_type', data_type);
     __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setUploadTrainingDataCsvResult');
+  },
+
+  // CSVダウンロード
+  downloadTrainingDataCsv: function downloadTrainingDataCsv(_ref10) {
+    var commit = _ref10.commit,
+        state = _ref10.state;
+
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] upload');
+    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].downloadTrainingData);
+    // const corpusId = this.getters['commonData/corpusId'];
+    // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
+
+    // ファイル送信
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setDownloadTrainingDataCsvResult');
   }
 };
 
@@ -61407,8 +61495,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["login"] = login;
 /* harmony export (immutable) */ __webpack_exports__["isAuth"] = isAuth;
 /* harmony export (immutable) */ __webpack_exports__["logout"] = logout;
-/* harmony export (immutable) */ __webpack_exports__["setCorpusAdminTitle"] = setCorpusAdminTitle;
 /* harmony export (immutable) */ __webpack_exports__["setScrollTop"] = setScrollTop;
+/* harmony export (immutable) */ __webpack_exports__["alertAxiosError"] = alertAxiosError;
+/* harmony export (immutable) */ __webpack_exports__["alertRefreshToken"] = alertRefreshToken;
+/* harmony export (immutable) */ __webpack_exports__["alertVendorEscalation"] = alertVendorEscalation;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie__ = __webpack_require__("./node_modules/jquery.cookie/jquery.cookie.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_cookie__);
@@ -61426,6 +61516,7 @@ var TOKEN_OPTION = {
  * クッキーにトークンセット
  */
 function setToken(token) {
+  __WEBPACK_IMPORTED_MODULE_0__core_app__["log"]('setToken');
   __WEBPACK_IMPORTED_MODULE_0__core_app__["log"]('[setToken] ' + token);
   $.cookie('CAP-TOKEN', token, TOKEN_OPTION);
 }
@@ -61434,6 +61525,7 @@ function setToken(token) {
  * トークン取得
  */
 function getToken() {
+  __WEBPACK_IMPORTED_MODULE_0__core_app__["log"]('[getToken]');
   return $.cookie('CAP-TOKEN');
 }
 
@@ -61441,13 +61533,15 @@ function getToken() {
  * クッキーからトークン削除
  */
 function delToken() {
-  $.removeCookie('CAP-TOKEN');
+  __WEBPACK_IMPORTED_MODULE_0__core_app__["log"]('[delToken]');
+  $.cookie('CAP-TOKEN', '', { expires: -1, path: '/' });
 }
 
 /**
  * ログイン
  */
 function login() {
+  __WEBPACK_IMPORTED_MODULE_0__core_app__["log"]('[login]');
   var token = getToken();
 
   if (token !== undefined || token !== "") {
@@ -61461,11 +61555,11 @@ function login() {
  * 認証状態確認
  */
 function isAuth() {
+  __WEBPACK_IMPORTED_MODULE_0__core_app__["log"]('[isAuth]');
   var token = getToken();
 
   if (token !== undefined || token !== "") {
-    // 自分の情報取得
-
+    // ***
   } else {
     logout();
   }
@@ -61475,18 +61569,9 @@ function isAuth() {
  * ログアウト
  */
 function logout() {
+  __WEBPACK_IMPORTED_MODULE_0__core_app__["log"]('[logout]');
   delToken();
   location.href = '/login';
-}
-
-/**
- * データ管理画面でタイトルを動的にセット
- */
-function setCorpusAdminTitle(corpusName) {
-  // タイトルタグ書き換え
-  document.title = corpusName;
-  // ナビゲーションのコーパス名書き換え
-  $('#navCorpusName').text(corpusName);
 }
 
 /**
@@ -61494,6 +61579,28 @@ function setCorpusAdminTitle(corpusName) {
  */
 function setScrollTop() {
   $('html, body').scrollTop(0);
+}
+
+/**
+ * 通信エラーアラート表示
+ */
+function alertAxiosError() {
+  alert('通信エラーが発生しました。再度、画面読み込みを行ってください。\nエラーが続く場合、お問い合わせください。');
+}
+
+/**
+ * 認証エラーアラート表示
+ */
+function alertRefreshToken() {
+  alert('認証切れが発生しました。再ログインを行なった上で、再度操作を行ってください。');
+  logout();
+}
+
+/**
+ * お問い合わせアラート表示
+ */
+function alertVendorEscalation(errorCode) {
+  alert('\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u30A8\u30E9\u30FC\u304C\u767A\u751F\u3057\u307E\u3057\u305F\uFF08code: ' + errorCode + '\uFF09\u3002\n\u30A8\u30E9\u30FC\u304C\u7D9A\u304F\u5834\u5408\u3001\u304A\u554F\u3044\u5408\u308F\u305B\u304F\u3060\u3055\u3044\u3002');
 }
 
 /***/ }),
