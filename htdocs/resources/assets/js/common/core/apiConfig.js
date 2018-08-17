@@ -1,7 +1,5 @@
 const API_CONFIG = {
-  /**
-   * システム共通
-   */
+  // システム共通
   // ログイン
   login: {
     url: '/api/authenticate',
@@ -19,13 +17,8 @@ const API_CONFIG = {
     url: '/api/v1/me',
     method: 'GET',
   },
-  /**
-   * CAP管理画面
-   */
 
-  /**
-   *  コーパス管理画面
-   */
+  // CAP管理画面
   // コーパス情報取得
   getCorpus: {
     url: '/api/v1/corpus/{corpusId}',
@@ -40,6 +33,8 @@ const API_CONFIG = {
     method: 'POST',
     data: {},
   },
+
+  // コーパス管理画面
   // 教師データ一覧取得
   getTrainingData: {
     url: '/api/v1/training-data/{training_datum}',
@@ -66,7 +61,7 @@ const API_CONFIG = {
   deleteTrainingData: {
     // url: '/api/v1/training-data/{corpus_id}',
     url: '/stub/data/successData.json', // 処理成功用stub
-    // url: '/stub/data/TrainingDataEditError.json', // 処理失敗用stub
+    // url: '/stub/data/TrainingDataDeleteError.json', // 処理失敗用stub
     method: 'POST',
     data: {},
   },
@@ -80,6 +75,14 @@ const API_CONFIG = {
     headers: {
       'content-type': 'multipart/form-data',
     },
+  },
+  // 教師データダウンロード
+  downloadTrainingData: {
+    // url: '/api/v1/training-data/{corpus_id}/download',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    // url: '/stub/data/TrainingDataUploadError.json', // 処理失敗用stub
+    method: 'POST',
+    data: {},
   },
 };
 

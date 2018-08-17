@@ -18,19 +18,7 @@ import * as Ajax from './common/core/ajax';
 import * as Lib from './common/ext/functions';
 import ApiConfig from './common/core/apiConfig';
 import store from './common/core/store/index';
-
-/**
- * component
- */
-import LoginVue from './vue/login/Main.vue';
-// CAP管理画面
-import DashboardVue from './vue/capAdmin/Dashboard.vue';
-// コーパス管理画面
-import CorpusadminVue from './vue/corpusAdmin/index.vue';
-import CorpusadminBaseInfoVue from './vue/corpusAdmin/baseInfo/Main.vue';
-import CorpusadminDataManageVue from './vue/corpusAdmin/dataManage/Main.vue';
-import CorpusadminTrainingManageVue from './vue/corpusAdmin/trainingManage/Main.vue';
-
+import routes from './common/core/route';
 
 require('./bootstrap');
 
@@ -38,49 +26,10 @@ window.Vue = require('vue');
 Vue.use(VueRouter);
 Vue.use(VueLoaders);
 
-/**
- * router config
- */
-const routes = [
-  {
-    path: '/login',
-    component: LoginVue,
-  },
-  {
-    path: '/',
-    component: DashboardVue,
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/corpus',
-    component: DashboardVue,
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/corpus/:corpusId',
-    component: CorpusadminVue,
-    meta: { requiresAuth: true },
-    props: route => ({ corpusId: parseInt(route.params.corpusId, 10) }),
-    children: [
-      {
-        name: 'base-info',
-        path: 'data',
-        component: CorpusadminBaseInfoVue,
-      },
-      {
-        name: 'data-view',
-        path: 'data/view',
-        component: CorpusadminDataManageVue,
-      },
-      {
-        name: 'training',
-        path: 'training',
-        component: CorpusadminTrainingManageVue,
-      },
-    ],
-  },
-];
 
+/**
+ * router
+ */
 const router = new VueRouter({
   mode: 'history',
   routes,
@@ -89,19 +38,16 @@ const router = new VueRouter({
 /**
  * 画面アクセス制限
  */
-const myToken = Lib.getToken();
 router.beforeEach((to, from, next) => {
-  // ヘッダーにトークンセット
-  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + myToken;
-
   // 認証チェックが必要な場合
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // 認証状態確認
     Core.log('[auth] 認証状態を確認します');
 
+    const myToken = Lib.getToken();
     if (myToken !== undefined || myToken !== '') {
       // ログインユーザの情報確認
-      const apiOption = Object.assign({}, ApiConfig['auth']);
+      const apiOption = Object.assign({}, ApiConfig.auth);
       Ajax.checkStatus(apiOption).then((res) => {
         Core.log('[auth] success');
         Core.log(res);
@@ -109,15 +55,18 @@ router.beforeEach((to, from, next) => {
           CapApp.$data.me = res.data.user;
           next();
         } else {
-          Lib.logout();
+          const currentPath = location.pathname;
+          Lib.logout(currentPath);
         }
       }).catch((err) => {
         Core.log('[auth] error');
         Core.log(err);
-        Lib.logout();
+        const currentPath = location.pathname;
+        Lib.logout(currentPath);
       });
     } else {
-      Lib.logout();
+      const currentPath = location.pathname;
+      Lib.logout(currentPath);
     }
   } else {
     next();

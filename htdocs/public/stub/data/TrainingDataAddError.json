@@ -1,5 +1,6 @@
 {
   "code": 404,
+  "message": "validation error.",
   "errors": [
     {
       "item": "content",
@@ -13,6 +14,5 @@
       "item": "corpus_class_id",
       "message": "選択されていません"
     }
-  ],
-  "message": "validation error."
+  ]
 }

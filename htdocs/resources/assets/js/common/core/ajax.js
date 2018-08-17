@@ -18,6 +18,8 @@ export function exec(option, commit, mutation, eMutation) {
 
     if (eMutation !== undefined && eMutation !== '') {
       commit(eMutation);
+    } else {
+      Lib.alertAxiosError();
     }
   });
 }

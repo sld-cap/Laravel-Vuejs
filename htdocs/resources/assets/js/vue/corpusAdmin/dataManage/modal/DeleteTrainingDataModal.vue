@@ -16,7 +16,7 @@
     <!-- /.body -->
     <div slot="footer">
       <button @click="hideModal" type="button" class="btn btn-secondary">キャンセル</button>
-      <button @click="deleteExec" type="button" class="btn btn-primary">削除する</button>
+      <button @click="deleteExec" type="button" class="btn btn-danger">削除する</button>
     </div>
     <!-- /.footer -->
   </CommonModal>
