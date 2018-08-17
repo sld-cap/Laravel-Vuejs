@@ -16,7 +16,9 @@ Route::post('authenticate','UserController@authenticate');
     Route::resource('corpus', 'CorpusController');
 
     //  教師データ情報
-    Route::resource('training-data', 'TrainingDataController');
+    Route::resource('training-data', 'TrainingDataController')->except([
+      'index', 'edit' // このルートは除外
+    ]);
     Route::post('training-data/{corpus_id}/upload', 'TrainingDataController@upload');
     Route::get('training-data/{corpus_id}/download', 'TrainingDataController@download');
     Route::get('training-data/sample/download', 'TrainingDataController@downloadSample');

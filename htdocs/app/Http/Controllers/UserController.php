@@ -44,7 +44,7 @@ class UserController extends Controller
   { 
     $user = User::findOrFail($id); 
     $user->delete(); 
-    return ''; 
+    return; 
   }
 
   public function authenticate(Request $request) // emailとpasswordでアクセストークンを取得して返します
