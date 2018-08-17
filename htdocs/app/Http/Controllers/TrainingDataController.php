@@ -295,7 +295,7 @@ class TrainingDataController extends Controller
     // バリデーション
     $user = JWTAuth::parseToken()->authenticate();
     $corpus = Corpus::where('id', $_corpus_id)->where('company_id', $user->company_id)->get();
-    if ($corpus->count() == 0) {
+    if ($_corpus->count() == 0) {
       $message = 'Corpus not found. -> corpus_id:' . $_corpus_id;
       $formatter = new ApiResponseFormatter(404, $message, array(
         'message' => 'ご指定のコーパスは利用できません'
@@ -312,7 +312,7 @@ class TrainingDataController extends Controller
       "Expires" => "0"
     );
   
-    $callback = function() use ($corpus_id) {
+    $callback = function() use ($_corpus_id) {
       $handle = fopen('php://output', 'w');
 
       // ヘッダー（1行目）
@@ -327,7 +327,7 @@ class TrainingDataController extends Controller
       // データ（2行目以降）
       $training_data = CorpusCreative::select()
         ->join('corpus_classes','corpus_classes.id','=','corpus_creatives.corpus_class_id')
-        ->whereIn('corpus_classes.corpus_id', [$corpus_id])
+        ->whereIn('corpus_classes.corpus_id', [$_corpus_id])
         ->where('corpus_creatives.data_type', CorpusDataType::Training)
         ->get();
 
