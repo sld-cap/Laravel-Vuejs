@@ -99,19 +99,19 @@ class TrainingDataController extends Controller
 
       // データ件数更新
       $class = CorpusClass::findOrFail($relate_class_id);
-      if ($data_type === CorpusDataType::Training) {
+      if ($data_type == CorpusDataType::Training) {
         $count = $class->training_data_count;
         $count--;
         $class->training_data_count = $count;
 
         // 学習データが0件の時、コーパスステータスを未学習に更新
-        if ($count === 0) {
+        if ($count == 0) {
           $corpus = Corpus::findOrFail($class->corpus_id);
           $corpus->status = CorpusStateType::NoTrainingData;
           $corpus->save();
         }
 
-      } else if ($data_type === CorpusDataType::Test) {
+      } else if ($data_type == CorpusDataType::Test) {
         $count = $class->test_data_count;
         $count--;
         $class->test_data_count = $count;
@@ -120,11 +120,11 @@ class TrainingDataController extends Controller
 
       // 学習データが対象の時、学習データ件数が0件であれば
       // テストデータの関連クリエイティブを削除して、該当クラスを削除する
-      if ($data_type === CorpusDataType::Training) {
+      if ($data_type == CorpusDataType::Training) {
         $data_count = $class->training_data_count;
         $class_id = $class->id;
 
-        if($data_count === 0) {
+        if($data_count == 0) {
           $relate_creatives = CorpusCreative::where('corpus_class_id', $class_id);
           $relate_creatives->delete();
           $class->delete();
