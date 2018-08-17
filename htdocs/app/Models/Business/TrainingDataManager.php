@@ -244,7 +244,7 @@ class TrainingDataManager
   /**
    * CSV行数チェック
    */
-  private function isInvalidCsvRow($file, $corpus_id) 
+  public function isInvalidCsvRow($file, $corpus_id) 
   {
     // 行数チェック
     $row_count = 0;
