@@ -2,20 +2,22 @@
 
 namespace App\Models\Business;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
 use App\Models\Company;
 use App\Models\Api;
 use App\Models\ApiCorpus;
 use App\Models\Corpus;
 use App\Models\CorpusClass;
 use App\Models\CorpusCreative;
+use App\Models\Business\ApiResponseFormatter;
 
 use App\Enums\CorpusStateType;
 use App\Enums\CorpusDataType;
 use App\Enums\ClassifierLanguage;
 use App\Enums\TrainingDataStatus;
-
-use Illuminate\Support\Facades\DB;      // DBのトランザクション利用
-use Carbon\Carbon;
 
 /**
  * AI学習のための教師データの取り扱いを実装するモデル
@@ -25,7 +27,8 @@ class TrainingDataManager
   const SAVE_FILE_PATH = '/../../../public/files/corpus-admin/training-datas/';
   protected $corpus_id;   // コーパスID
   protected $file_name;   // ファイル名
-  protected $file_path;
+  protected $file_path;   // ファイルパス
+  protected $file;        // fileオブジェクト
   protected $record_cnt;  // レコード件数
   protected $err_msg;     // エラーメッセージ
   
@@ -196,4 +199,76 @@ class TrainingDataManager
     return $response_array; 
   }
 
+  /**
+   * 教師データCSVファイルが正常にアップされたかどうかを返す
+   */
+  public function checkUploadFile(Request $_request) 
+  {
+    $bool = false;
+    if (!$_request->hasFile('csv_file')) {
+      $bool = true;
+    } else {
+      $csv_tmp_file = $_request->file('csv_file');
+      if (!$csv_tmp_file->isValid()) {
+        $bool = true;
+      }
+    }
+    
+    if ($bool) {
+      $message = 'Training-data not found.';
+      $formatter = new ApiResponseFormatter(400, $message, array(
+        'message' => 'CSVファイルのアップロードに失敗しました'
+      ));
+      return response()->json($formatter->getResponseArray());
+    }
+
+    return;
+  }
+
+  /**
+   * CSVファイル読み込み
+   */
+  public function loadCsvFile($path) {
+    $file = new \SplFileObject($path);
+
+    $file->setFlags(
+      \SplFileObject::READ_CSV |     // CSV 列として行を読み込む
+      \SplFileObject::READ_AHEAD |   // 先読み/巻き戻しで読み出す。
+      \SplFileObject::SKIP_EMPTY |   // 空行は読み飛ばす
+      \SplFileObject::DROP_NEW_LINE  // 行末の改行を読み飛ばす
+    );
+
+    $this->file = $file;
+  }
+
+  /**
+   * CSV行数チェック
+   */
+  private function isInvalidCsvRow($file, $corpus_id) 
+  {
+    // 行数チェック
+    $row_count = 0;
+    $min_row_count = 5;
+    $max_row_count = 15000;
+
+    $file->rewind();
+    foreach ($file as $line) {
+      // 最初の行をスキップ
+      if($file->key() === 0) {
+        continue;
+      }
+      $row_count++;
+    }
+
+    if ($row_count < $min_row_count || $max_row_count < $row_count) {
+      return true;
+    }
+
+    return false;
+  }
+
+  public function getObject()
+  {
+    return $this->file;
+  }
 }
