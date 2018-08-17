@@ -11,7 +11,8 @@
         <span class="text-muted" data-feather="upload" style="width:20px;height:20px;"></span>
         <span>CSVアップロード</span>
       </button>
-      <a href="/corpus/csv/download/1" class="btn btn-light" role="button" aria-pressed="true">
+      <!-- <a href="/corpus/csv/download/1" class="btn btn-light" role="button" aria-pressed="true"> -->
+      <a @click="execDownloadTrainingCsv" href="javascript:void(0)" class="btn btn-light" role="button" aria-pressed="true">
         <span class="text-muted" data-feather="download" style="width:20px;height:20px;"></span>
         <span>CSVダウンロード</span>
       </a>
@@ -55,6 +56,9 @@ export default {
     },
     openUploadTrainingCsvModal(dataType) {
       this.$store.dispatch('multiModal/showUploadTrainingCsvModal', { dataType });
+    },
+    execDownloadTrainingCsv() {
+      this.$store.dispatch('corpusTrainingData/downloadTrainingDataCsv');
     },
   },
 }
