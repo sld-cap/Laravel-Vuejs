@@ -6,7 +6,8 @@
       </h4>
     </div>
     <div id="collapse1" class="panel-collapse collapse show">
-      <div class="table-responsive">
+      <Loading v-if="Object.keys(corpusInfo).length === 0" /><!-- loading -->
+      <div v-if="Object.keys(corpusInfo).length > 0" class="table-responsive">
         <table class="table mb-0">
           <thead class="thead-light">
             <tr>
@@ -58,9 +59,13 @@ import * as Ajax from '../../../../common/core/ajax';
 import * as Lib from '../../../../common/ext/functions';
 import ApiConfig from '../../../../common/core/apiConfig';
 
+import Loading from '../../common/loading/BasicLoading.vue';
+
 export default {
   props: [],
-  components: {},
+  components: {
+    Loading,
+  },
   data() {
     return {};
   },

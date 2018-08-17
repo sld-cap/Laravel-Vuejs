@@ -1631,7 +1631,274 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/Dashboard.vue":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/corpusManage/Main.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['me'],
+  components: {},
+  data: function data() {
+    return {};
+  },
+
+  computed: {},
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+  },
+
+  updated: function updated() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
+  },
+  mounted: function mounted() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+  },
+  methods: {
+    openCorpusAdminTab: function openCorpusAdminTab(corpusId) {
+      var corpusIdStr = corpusId + '';
+      var redirectPath = '/corpus/' + corpusIdStr + '/data';
+      open(redirectPath, "_blank");
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/dashboard/Main.vue":
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/index.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1639,6 +1906,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2084,6 +2399,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue__);
 //
 //
 //
@@ -2138,6 +2455,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
+
 
 
 
@@ -2146,7 +2466,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
-  components: {},
+  components: {
+    Loading: __WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue___default.a
+  },
   data: function data() {
     return {};
   },
@@ -2686,6 +3008,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   mounted: function mounted() {},
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {},
+  props: [],
+  data: function data() {
+    return {};
+  },
+
   methods: {}
 });
 
@@ -3987,8 +4335,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__alert_NoTestDataAlert_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/alert/NoTestDataAlert.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__alert_NoTestDataAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__alert_NoTestDataAlert_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__alert_NoTestDataAlert_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/alert/NoTestDataAlert.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__alert_NoTestDataAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__alert_NoTestDataAlert_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -4052,6 +4402,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+
+
 
 
 
@@ -4063,7 +4417,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
   components: {
-    NoTestDataAlert: __WEBPACK_IMPORTED_MODULE_4__alert_NoTestDataAlert_vue___default.a
+    Loading: __WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue___default.a, NoTestDataAlert: __WEBPACK_IMPORTED_MODULE_5__alert_NoTestDataAlert_vue___default.a
   },
   data: function data() {
     return {
@@ -4181,6 +4535,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -4237,6 +4593,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+
 
 
 
@@ -4245,7 +4604,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
-  components: {},
+  components: {
+    Loading: __WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue___default.a
+  },
   data: function data() {
     return {};
   },
@@ -4287,12 +4648,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_MultiModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_MultiModal__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7965,7 +8320,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -7995,7 +8350,22 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13ac7c35\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/serviceManage/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.setting-table .btnbox {\n  width: 20%;\n}\n.setting-table button {\n  padding: 5px;\n}\n.warning-notify {\n  margin-bottom: 0; \n  line-height: 1.5;\n}\n", ""]);
 
 // exports
 
@@ -8011,6 +8381,21 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, "\n.modal-mask {\n  position: fixed;\n  z-index: 9990;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, .5);\n  display: table;\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n.modal-wrapper {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container {\n  width: 300px;\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n          box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n  margin-top: 0;\n  color: #42b983;\n}\n.modal-body {\n  margin: 20px 0;\n}\n.modal-default-button {\n  float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n  opacity: 0;\n}\n.modal-leave-active {\n  opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n  -webkit-transform: scale(1.1);\n  transform: scale(1.1);\n}\n\n/* .modal-leave-to.modal-mask{\n  transition: all 0s;\n}\n\n.modal-leave-to .modal-container{\n  transition: all 0s;\n} */\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-18be631c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.vue-loaders,\n.vue-loaders-text {\n  display: inline-block;  /* インラインブロック化 */\n  vertical-align: middle; /* 中央を揃える */\n}\n", ""]);
 
 // exports
 
@@ -8167,6 +8552,21 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4e477c44\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/corpusManage/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.bd-callout {\n  padding: 1.25rem;\n  margin-top: 1.25rem;\n  margin-bottom: 1.25rem;\n  border: 1px solid #eee;\n  border-left-width: .25rem;\n  border-radius: .25rem;\n}\n.bd-callout p {\n  margin-bottom: 0;\n}\n.bd-callout-warning {\n  border-left-color: #f0ad4e;\n}\n#my_corpus_list .card:hover {\n  cursor: pointer;\n}\n.three-dots-card {\n  overflow: hidden; /* overflow: hidden;　がキモ。*/\n  /* width: 245px; */\n  height: 50px;\n  /* font-size: 16px; */\n}\n.detail-card:hover {\n  cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5375acc2\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/corpusAdmin/index.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8265,7 +8665,22 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f6e7fa4a\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/dashboard/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38524,80 +38939,93 @@ var render = function() {
         attrs: { id: "collapse1" }
       },
       [
-        _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "table mb-0" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("コーパス名")]),
+        Object.keys(_vm.corpusInfo).length === 0 ? _c("Loading") : _vm._e(),
+        _vm._v(" "),
+        Object.keys(_vm.corpusInfo).length > 0
+          ? _c("div", { staticClass: "table-responsive" }, [
+              _c("table", { staticClass: "table mb-0" }, [
+                _vm._m(1),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.corpusInfo.name))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("コーパス説明")]),
-                _vm._v(" "),
-                _c("td", {
-                  staticStyle: { "white-space": "pre" },
-                  domProps: { textContent: _vm._s(_vm.corpusInfo.description) }
-                })
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("言語")]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.language_labal))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("作成日")]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(_vm.corpusInfo.created_at) +
-                      "（" +
-                      _vm._s(_vm.corpusInfo.create_user_name) +
-                      "）"
-                  )
+                _c("tbody", [
+                  _c("tr", [
+                    _c("th", { attrs: { scope: "row" } }, [
+                      _vm._v("コーパス名")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.corpusInfo.name))])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", { attrs: { scope: "row" } }, [
+                      _vm._v("コーパス説明")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", {
+                      staticStyle: { "white-space": "pre" },
+                      domProps: {
+                        textContent: _vm._s(_vm.corpusInfo.description)
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", { attrs: { scope: "row" } }, [_vm._v("言語")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.language_labal))])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", { attrs: { scope: "row" } }, [_vm._v("作成日")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(_vm.corpusInfo.created_at) +
+                          "（" +
+                          _vm._s(_vm.corpusInfo.create_user_name) +
+                          "）"
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("th", { attrs: { scope: "row" } }, [
+                      _vm._v("最終更新日")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(_vm.corpusInfo.updated_at) +
+                          "（" +
+                          _vm._s(_vm.corpusInfo.update_user_name) +
+                          "）"
+                      )
+                    ])
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("tr", [
-                _c("th", { attrs: { scope: "row" } }, [_vm._v("最終更新日")]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(_vm.corpusInfo.updated_at) +
-                      "（" +
-                      _vm._s(_vm.corpusInfo.update_user_name) +
-                      "）"
+              _c("div", { staticClass: "float-right" }, [
+                _c("a", { attrs: { href: "javascript:void(0);" } }, [
+                  _c("span", {
+                    staticClass: "text-muted",
+                    staticStyle: { width: "15px", height: "15px" },
+                    attrs: { "data-feather": "settings" }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "text-muted",
+                      on: { click: _vm.openEditCorpusInfoModal }
+                    },
+                    [_vm._v("編集する")]
                   )
                 ])
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "float-right" }, [
-            _c("a", { attrs: { href: "javascript:void(0);" } }, [
-              _c("span", {
-                staticClass: "text-muted",
-                staticStyle: { width: "15px", height: "15px" },
-                attrs: { "data-feather": "settings" }
-              }),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass: "text-muted",
-                  on: { click: _vm.openEditCorpusInfoModal }
-                },
-                [_vm._v("編集する")]
-              )
-            ])
-          ])
-        ])
-      ]
+          : _vm._e()
+      ],
+      1
     )
   ])
 }
@@ -38663,6 +39091,48 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-04eebfa2", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0551cfd0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/help/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header card-header-default" }, [
+            _c("h4", { staticClass: "card-title" }, [_vm._v("ヘルプ")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body", staticStyle: { padding: "10px 25px" } },
+            [_c("p", [_vm._v("コンテンツは検討する必要あり")])]
+          )
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0551cfd0", module.exports)
   }
 }
 
@@ -38882,6 +39352,8 @@ var render = function() {
             }
           },
           [
+            _vm.trainingData.length === 0 ? _c("Loading") : _vm._e(),
+            _vm._v(" "),
             _c(
               "div",
               {
@@ -38953,7 +39425,8 @@ var render = function() {
               ],
               2
             )
-          ]
+          ],
+          1
         ),
         _vm._v(" "),
         _c(
@@ -38975,6 +39448,8 @@ var render = function() {
                 attrs: { id: "v-pills-tabContent" }
               },
               [
+                _vm.trainingData.length === 0 ? _c("Loading") : _vm._e(),
+                _vm._v(" "),
                 _vm._l(_vm.trainingData, function(data, i) {
                   return [
                     i === 0
@@ -39111,6 +39586,421 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-13ac7c35\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/serviceManage/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12 col-lg-6" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header card-header-default" }, [
+                _c("h4", { staticClass: "card-title " }, [
+                  _vm._v("管理アカウント一覧")
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-category" }, [
+                  _vm._v(" 本サイトを閲覧できるアカウントの一覧です。")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "table-responsive" }, [
+                  _c("table", { staticClass: "table setting-table" }, [
+                    _c("thead", { staticClass: "text-info" }, [
+                      _c("tr", [
+                        _c("th", [_vm._v("氏名")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("登録メール")]),
+                        _vm._v(" "),
+                        _c("th", { staticClass: "btnbox" })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tbody", [
+                      _c("tr", [
+                        _c("td", [_vm._v("テスト 太郎")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("test@gmail.com")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              attrs: { type: "button", rel: "tooltip" }
+                            },
+                            [
+                              _c("i", { staticClass: "material-icons" }, [
+                                _vm._v("edit")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button", rel: "tooltip" }
+                            },
+                            [
+                              _c("i", { staticClass: "material-icons" }, [
+                                _vm._v("close")
+                              ])
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-info",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "modal",
+                        "data-target": "#addUserModal"
+                      }
+                    },
+                    [_vm._v("新規登録")]
+                  )
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-12 col-lg-6" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header card-header-default" }, [
+                _c("h4", { staticClass: "card-title" }, [
+                  _vm._v("月間APIコール上限設定")
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-category" })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "limit-contents" }, [
+                  _c("table", { staticClass: "table setting-table" }, [
+                    _c("thead", { staticClass: "text-info" }, [
+                      _c("tr", [
+                        _c("th", [_vm._v("サービス")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("上限回数")]),
+                        _vm._v(" "),
+                        _c("th", { staticClass: "btnbox" })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tbody", [
+                      _c("tr", [
+                        _c("td", [_vm._v("APIコール回数")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("10,000　回")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              attrs: {
+                                type: "button",
+                                rel: "tooltip",
+                                onclick: "location.href='/acount/edit/1'"
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "material-icons" }, [
+                                _vm._v("edit")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "modal fade",
+                              attrs: {
+                                id: "exampleModal",
+                                tabindex: "-1",
+                                role: "dialog",
+                                "aria-labelledby": "exampleModalLabel",
+                                "aria-hidden": "true"
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "modal-dialog",
+                                  attrs: { role: "document" }
+                                },
+                                [
+                                  _c("div", { staticClass: "modal-content" }, [
+                                    _c("div", { staticClass: "modal-header" }, [
+                                      _c(
+                                        "h5",
+                                        {
+                                          staticClass: "modal-title",
+                                          attrs: { id: "exampleModalLabel" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "本当に削除してもよろしいですか？"
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "close",
+                                          attrs: {
+                                            type: "button",
+                                            "data-dismiss": "modal",
+                                            "aria-label": "Close"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "span",
+                                            {
+                                              attrs: { "aria-hidden": "true" }
+                                            },
+                                            [_vm._v("×")]
+                                          )
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "modal-body" }, [
+                                      _vm._v(
+                                        "\n                            実行すると当該アカウントのプロフィール情報は全て削除されます。\n                          "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "modal-footer" }, [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-secondary",
+                                          attrs: {
+                                            type: "button",
+                                            "data-dismiss": "modal"
+                                          }
+                                        },
+                                        [_vm._v("閉じる")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-primary",
+                                          attrs: { type: "button" }
+                                        },
+                                        [_vm._v("削除")]
+                                      )
+                                    ])
+                                  ])
+                                ]
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header card-header-default" }, [
+                _c("h4", { staticClass: "card-title " }, [
+                  _vm._v("利用ログ一覧")
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-category" }, [
+                  _vm._v("ユーザーが本サイトを閲覧、利用した履歴の一覧です。")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "limit-contents" }, [
+                  _c("table", { staticClass: "table" }, [
+                    _c("thead", { staticClass: " text-info" }, [
+                      _c("tr", [
+                        _c("th", [_vm._v("日時")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("利用者")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("レベル")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("内容")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tbody", [
+                      _c("tr", [
+                        _c("td", [_vm._v("2018-06-01 12:45:00")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("ユーザー(157.12.16.150)")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("エラー")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "API-ID:0adfwjf98-7786 は現在無効になっているため応答できません。"
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("2018-06-01 12:45:00")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("テスト太郎")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("エラー")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "コーパスID:0teg38aq は検証用の教師データが登録されていないため検証できません。"
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("2018-06-01 12:15:00")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("テスト太郎")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("警告")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "コーパスID:0teg38aq が作成されましたが、教師データが登録されていません。"
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("2018-06-01 12:00:00")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("テスト太郎")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("情報")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "ログインしました。[GET / HTTP/1.1 Chrome/66.0.3359.181 10.171.2.123:38981]"
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header card-header-default" }, [
+                _c("h4", { staticClass: "card-title " }, [
+                  _vm._v("ご請求一覧")
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-category" }, [
+                  _vm._v("ご請求利用料金の履歴の一覧です。")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "limit-contents" }, [
+                  _c("table", { staticClass: "table" }, [
+                    _c("thead", { staticClass: " text-info" }, [
+                      _c("tr", [
+                        _c("th", [_vm._v("＃")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("対象年月")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("APIコール回数")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("利用料金")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tbody", [
+                      _c("tr", [
+                        _c("td", [_vm._v("1")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("2018年6月分")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("23,200")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("￥81,000")])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("2")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("2018年5月分")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("21,192")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("￥73,000")])
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c("td", [_vm._v("3")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("2018年4月分")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("19,000")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("￥55,000")])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-13ac7c35", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-15581428\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/alert/IsTrainingAlert.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39196,6 +40086,36 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-1588feec", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-18be631c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "loading-block" },
+    [
+      _c("BallSpinFadeLoader", { attrs: { size: "5px", color: "black" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "vue-loaders-text pl-1" }, [_vm._v("Loading")])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-18be631c", module.exports)
   }
 }
 
@@ -39307,6 +40227,259 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-1962d346", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-198d808a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/index.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "wrapper" }, [
+    _c(
+      "div",
+      {
+        staticClass: "sidebar",
+        attrs: { "data-color": "azure", "data-background-color": "white" }
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "sidebar-wrapper" }, [
+          _c(
+            "ul",
+            { staticClass: "nav" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-item",
+                  attrs: { to: { name: "dashboard" }, tag: "li" }
+                },
+                [
+                  _c("a", { staticClass: "nav-link" }, [
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("dashboard")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("ダッシュボード")])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-item",
+                  attrs: { to: { name: "corpusManage" }, tag: "li" }
+                },
+                [
+                  _c("a", { staticClass: "nav-link" }, [
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("school")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("コーパス管理")])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-item",
+                  attrs: { to: { name: "apiManage" }, tag: "li" }
+                },
+                [
+                  _c("a", { staticClass: "nav-link" }, [
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("play_for_work")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("API管理")])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-item",
+                  attrs: { to: { name: "serviveManage" }, tag: "li" }
+                },
+                [
+                  _c("a", { staticClass: "nav-link" }, [
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("settings")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("サービス管理")])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-item",
+                  attrs: { to: { name: "help" }, tag: "li" }
+                },
+                [
+                  _c("a", { staticClass: "nav-link" }, [
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("help_outline")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("ヘルプ")])
+                  ])
+                ]
+              )
+            ],
+            1
+          )
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "main-panel" },
+      [
+        _c(
+          "nav",
+          {
+            staticClass:
+              "navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top"
+          },
+          [
+            _c("div", { staticClass: "container-fluid" }, [
+              _c("div", { staticClass: "navbar-wrapper" }, [
+                _vm._v("\n          パンくずナビ\n        ")
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "collapse navbar-collapse justify-content-end",
+                  attrs: { id: "navigation" }
+                },
+                [
+                  _c("ul", { staticClass: "navbar-nav" }, [
+                    _c("li", { staticClass: "nav-item dropdown" }, [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "dropdown-menu dropdown-menu-right",
+                          attrs: {
+                            "aria-labelledby": "navbarDropdownMenuLink2"
+                          }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { href: "#" }
+                            },
+                            [_vm._v("アカウント情報の確認")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item",
+                              attrs: { href: "javascript:void(0);" },
+                              on: { click: _vm.logout }
+                            },
+                            [_vm._v("ログアウト")]
+                          )
+                        ]
+                      )
+                    ])
+                  ])
+                ]
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("router-view", { attrs: { me: _vm.me } })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "logo" }, [
+      _c(
+        "a",
+        { staticClass: "simple-text logo-normal", attrs: { href: "#" } },
+        [
+          _c("img", {
+            attrs: {
+              src: "img/cap-icon.png",
+              alt: "cap_logo",
+              width: "50px",
+              height: "45px"
+            }
+          }),
+          _vm._v(" "),
+          _c("img", {
+            attrs: {
+              src: "img/cap-char-logo.png",
+              alt: "cap_char",
+              width: "70px",
+              height: "45px"
+            }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "nav-link",
+        attrs: {
+          href: "",
+          id: "navbarDropdownMenuLink2",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [
+        _c("i", { staticClass: "material-icons" }, [_vm._v("person")]),
+        _vm._v(" "),
+        _c("p", [
+          _c("span", { staticClass: "d-lg-none d-md-block" }, [
+            _vm._v("Some Actions")
+          ])
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-198d808a", module.exports)
   }
 }
 
@@ -39869,86 +41042,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-2d5e0396", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-306c6fdd\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/Dashboard.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("h1", [_vm._v("あなたの情報")]),
-        _vm._v(" "),
-        _c("ul", [
-          _c("li", [_vm._v("ユーザ名: " + _vm._s(_vm.me.name))]),
-          _vm._v(" "),
-          _c("li", [_vm._v("メールアドレス: " + _vm._s(_vm.me.email))])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-danger", on: { click: _vm.logout } },
-          [_vm._v("ログアウト")]
-        )
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("h1", [_vm._v("dashboard")]),
-        _vm._v(" "),
-        _c("ul", [
-          _c("li", [
-            _c("a", { attrs: { href: "/corpus/1/data", target: "_blank" } }, [
-              _vm._v("コーパス管理画面 -基本情報-")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c(
-              "a",
-              { attrs: { href: "/corpus/1/data/view", target: "_blank" } },
-              [_vm._v("コーパス管理画面 -データ管理-")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c(
-              "a",
-              { attrs: { href: "/corpus/1/training", target: "_blank" } },
-              [_vm._v("コーパス管理画面 -学習管理-")]
-            )
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-306c6fdd", module.exports)
   }
 }
 
@@ -40696,6 +41789,257 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4e477c44\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/corpusManage/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "content" }, [
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "card" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "card-body",
+                staticStyle: { padding: "10px 25px" }
+              },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-lg-4 col-md-4 col-sm-6" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "card detail-card",
+                        staticStyle: { margin: "10px 0" },
+                        on: {
+                          click: function($event) {
+                            _vm.openCorpusAdminTab(1)
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { staticClass: "ribbon13-2" }, [
+                          _vm._v("本番")
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _vm._m(5)
+                      ]
+                    )
+                  ])
+                ])
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header card-header-default" }, [
+      _c("h4", { staticClass: "card-title" }, [_vm._v("稼動コーパス一覧")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "bd-callout bd-callout-warning" }, [
+          _c("p", [_vm._v("作成できるコーパスは8個までです。")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-2" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          staticStyle: { "margin-left": "15px" },
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": "#NlCreateModal"
+          }
+        },
+        [_vm._v("新規作成")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "card-body",
+        staticStyle: { padding: "15px 15px 10px 15px" }
+      },
+      [
+        _c(
+          "h4",
+          {
+            staticClass: "card-title",
+            staticStyle: { width: "95%", float: "left", "font-weight": "600" }
+          },
+          [_vm._v("コーパス名")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "nav-item dropdown",
+            staticStyle: { width: "5%", float: "right" }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                staticStyle: { padding: "0" },
+                attrs: {
+                  href: "#",
+                  "data-toggle": "dropdown",
+                  "aria-haspopup": "true",
+                  "aria-expanded": "false"
+                }
+              },
+              [
+                _c("i", { staticClass: "material-icons" }, [
+                  _vm._v("more_vert")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dropdown-menu dropdown-menu-right",
+                attrs: { "aria-labelledby": "corpusDropdownMenuLink" }
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: { href: "#", target: "_blank" }
+                  },
+                  [_vm._v("編集")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [_vm._v("複製")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [_vm._v("無効化")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [_vm._v("削除")]
+                )
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "card-text",
+            staticStyle: { clear: "both", "margin-bottom": "10px" }
+          },
+          [_vm._v("コーパスの説明")]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "card-footer",
+        staticStyle: { "padding-top": "2px", "border-top": "1px solid #eee" }
+      },
+      [
+        _c("div", { staticClass: "stats pull-right" }, [
+          _vm._v(
+            "\n                      関連API:「景表法と薬機法の抵触リスクチェック」\n                    "
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "card-footer",
+        staticStyle: { "padding-top": "2px", "border-top": "1px solid #eee" }
+      },
+      [
+        _c("div", { staticClass: "stats pull-right" }, [
+          _vm._v("\n                      自然言語\n                    ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "stats pull-left" }, [
+          _c("i", { staticClass: "material-icons" }, [_vm._v("update")]),
+          _vm._v(" 最終更新日：\n                    ")
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4e477c44", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5375acc2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/corpusAdmin/index.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41201,6 +42545,576 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-594e5fa8", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-650871b0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/apiManage/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header card-header-default" }, [
+                _c("h4", { staticClass: "card-title" }, [
+                  _vm._v("利用中のAPI一覧")
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-category" }, [
+                  _vm._v(
+                    "現在契約しているAPIの一覧です。追加のご要望はサイト運営までご連絡ください。"
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "table-responsive" }, [
+                  _c("table", { staticClass: "table active-api-table" }, [
+                    _c("thead", { staticClass: "text-brand" }, [
+                      _c("tr", [
+                        _c("th"),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("API-ID")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("API名")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("利用コーパス名")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("利用可否")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("ステータス")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tbody", [
+                      _c("tr", [
+                        _c("td", [
+                          _c("label", [
+                            _c("input", {
+                              attrs: {
+                                type: "radio",
+                                name: "display",
+                                checked: ""
+                              }
+                            }),
+                            _vm._v(" 表示")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("001abcd-cap-001")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("テストカンパニー社のサンプルAPI①")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("test")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("不可")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("注意: 学習未実行")])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "card mt-0" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("p", { staticClass: "blockquote-footer mb-0" }, [
+                  _vm._v("001abcd-cap-001")
+                ]),
+                _vm._v(" "),
+                _c("h5", { staticClass: "text-brand mt-0" }, [
+                  _vm._v("テストカンパニー社のサンプルAPI①")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  {
+                    staticClass:
+                      "nav nav-pills nav-pills-icons nav-pills-info nav-border",
+                    attrs: { role: "tablist" }
+                  },
+                  [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link active",
+                          attrs: {
+                            href: "#api-resex",
+                            role: "tab",
+                            "data-toggle": "tab"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    API利用例\n                  "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: {
+                            href: "#api-auth",
+                            role: "tab",
+                            "data-toggle": "tab"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    資格情報\n                  "
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "tab-content tab-space" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "tab-pane active",
+                      attrs: { id: "api-resex" }
+                    },
+                    [
+                      _c("div", { staticClass: "highlight" }, [
+                        _c("h5", { staticClass: "bold text-default" }, [
+                          _vm._v("リクエストサンプル")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(
+                            "\n                      以下のフォーマットにて、審査リクエストを送る必要があります。"
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n                      認証トークンは「認証情報」タブにてご確認ください。\n                    "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "※注意：審査するテキストは1024文字以内です。上限を超えた場合、下記のエラーコードがレスポンスされます。"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("pre", { staticClass: "doc-content" }, [
+                          _c("code", [
+                            _c("span", { staticClass: "bold" }, [
+                              _vm._v("GET")
+                            ]),
+                            _vm._v(" /api/exec/{api_id}")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("リクエスト例）")]),
+                        _vm._v(" "),
+                        _c("pre", { staticClass: "doc-content" }, [
+                          _c("code", [
+                            _vm._v("curl -G \n-H "),
+                            _c("span", { staticClass: "bold" }, [
+                              _vm._v('"X-Pasonatech-Cap-Token:0123abcd"')
+                            ]),
+                            _vm._v(" "),
+                            _c("span", { staticStyle: { color: "green" } }, [
+                              _vm._v(
+                                " //<- 認証トークンはHTTPリクエストのヘッダに必ず付加してください。"
+                              )
+                            ]),
+                            _vm._v('\n--data-urlencode "text='),
+                            _c("span", { staticClass: "bold" }, [
+                              _vm._v("今日は晴れです。")
+                            ]),
+                            _vm._v(
+                              '" "https://cap-development.mybluemix.net/api/exec/'
+                            ),
+                            _c("span", { staticClass: "bold" }, [
+                              _vm._v("001abcd-cap-0000")
+                            ]),
+                            _vm._v('"')
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h5", { staticClass: "bold text-default" }, [
+                          _vm._v("リクエストパラメータ")
+                        ]),
+                        _vm._v(" "),
+                        _c("table", { staticClass: "parameter_table" }, [
+                          _c("tr", [
+                            _c("th", { staticClass: "table_title" }, [
+                              _vm._v("パラメータ名")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("型")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("内容")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("X-Pasonatech-Cap-Token")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("文字列")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("（※必須）API認証トークン")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("text")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("文字列")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("（※必須）審査対象テキスト")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("api_id")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("文字列")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("（※必須）API-ID")])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("hr"),
+                        _vm._v(" "),
+                        _c("h5", { staticClass: "bold text-default" }, [
+                          _vm._v("レスポンスサンプル")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(
+                            "レスポンスには、API-ID と 入力したテキスト 、 その審査結果が含まれています。"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("span", [
+                          _vm._v(
+                            "リクエストがエラーになった場合は、以下のエラーレスポンスが返却されます。"
+                          )
+                        ]),
+                        _c("br"),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "レスポンス例）以下は「今日は晴れです。」という審査テキストに対して、登録済みの各クラス（天気、気温、日時）それぞれの確信度を取得しています。"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("pre", { staticClass: "doc-content" }, [
+                          _vm._v("  "),
+                          _c("code", { staticClass: "hljs json" }, [
+                            _vm._v("{\n  "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"api_id"')
+                            ]),
+                            _vm._v(" : "),
+                            _c("span", { staticClass: "hljs-string" }, [
+                              _vm._v('"001abcd-cap-0000"')
+                            ]),
+                            _vm._v(",\n  "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"url"')
+                            ]),
+                            _vm._v(": "),
+                            _c("span", { staticClass: "hljs-string" }, [
+                              _vm._v(
+                                '"https://cap-development.mybluemix.net/api/exec/001abcd-cap-0000"'
+                              )
+                            ]),
+                            _vm._v(",\n  "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"text"')
+                            ]),
+                            _vm._v(": "),
+                            _c("span", { staticClass: "hljs-string" }, [
+                              _vm._v('"今日は晴れです。"')
+                            ]),
+                            _vm._v(",\n  "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"passed_classes"')
+                            ]),
+                            _vm._v(": [\n    "),
+                            _c("span", { staticClass: "hljs-string" }, [
+                              _vm._v('"天気"')
+                            ]),
+                            _vm._v(",\n    "),
+                            _c("span", { staticClass: "hljs-string" }, [
+                              _vm._v('"日時"')
+                            ]),
+                            _vm._v("\n  ],\n  "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"results"')
+                            ]),
+                            _vm._v(": [\n    {\n      "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"class_name"')
+                            ]),
+                            _vm._v(": "),
+                            _c("span", { staticClass: "hljs-string" }, [
+                              _vm._v('"天気"')
+                            ]),
+                            _vm._v(",\n      "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"confidence"')
+                            ]),
+                            _vm._v(": 0.95012345678912345,\n      "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"threshold"')
+                            ]),
+                            _vm._v(": 0.8,\n      "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"result"')
+                            ]),
+                            _vm._v(": 1\n    },\n    {\n      "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"class_name"')
+                            ]),
+                            _vm._v(": "),
+                            _c("span", { staticClass: "hljs-string" }, [
+                              _vm._v('"気温"')
+                            ]),
+                            _vm._v(",\n      "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"confidence"')
+                            ]),
+                            _vm._v(": 0.05987654321987654,\n      "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"threshold"')
+                            ]),
+                            _vm._v(": 0.8,\n      "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"result"')
+                            ]),
+                            _vm._v(": 0\n    },\n    {\n      "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"class_name"')
+                            ]),
+                            _vm._v(": "),
+                            _c("span", { staticClass: "hljs-string" }, [
+                              _vm._v('"日時"')
+                            ]),
+                            _vm._v(",\n      "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"confidence"')
+                            ]),
+                            _vm._v(": 0.8596534321983653,\n      "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"threshold"')
+                            ]),
+                            _vm._v(": 0.8,\n      "),
+                            _c("span", { staticClass: "hljs-attr" }, [
+                              _vm._v('"result"')
+                            ]),
+                            _vm._v(": 1\n    }\n  ]\n}\n")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h5", { staticClass: "bold text-default" }, [
+                          _vm._v("レスポンスパラメータ")
+                        ]),
+                        _vm._v(" "),
+                        _c("table", { staticClass: "parameter_table" }, [
+                          _c("tr", [
+                            _c("th", { staticClass: "table_title" }, [
+                              _vm._v("パラメータ名")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("型")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("内容")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("text")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("文字列")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v("リクエストされた審査対象テキスト")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("passed_classes")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("配列")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                "審査結果の確信度が閾値以上になったクラス（※閾値未設定の場合は最大確信度のクラスを返します。）"
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("results")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("配列")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v("審査結果の詳細（全クラスの結果を格納）")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("class_name")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("文字列")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("クラス名")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("confidence")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("数値")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("AIの審査確信度（0〜1の数値）")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("threshold")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("数値")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("確信度閾値（0〜1の数値）")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("result")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("数値")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                "確信度が閾値以上の場合は1、閾値未満の場合は0 を返却"
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h5", { staticClass: "bold text-default" }, [
+                          _vm._v("エラーレスポンス一覧")
+                        ]),
+                        _vm._v(" "),
+                        _c("table", { staticClass: "parameter_table" }, [
+                          _c("tr", [
+                            _c("th", { staticClass: "table_title" }, [
+                              _vm._v("HTTPコード")
+                            ]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("メッセージ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("説明")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("400")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("Bad request")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                "APIに紐づくコーパスに問題があるか、審査対象のテキストに不備がある可能性があります。"
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("401")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("Unauthorized")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                "API認証に失敗しています。認証トークンに不備がある可能性があります。"
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("404")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("Not found")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                "指定されたAPI-IDが存在していません。API-IDの指定に不備がある可能性があります。"
+                              )
+                            ])
+                          ])
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "tab-pane", attrs: { id: "api-auth" } },
+                    [
+                      _c("div", { staticClass: "table-responsive" }, [
+                        _c("table", { staticClass: "table api-auth-table" }, [
+                          _c("thead", [
+                            _c("th", [_vm._v("URI")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("認証トークン")])
+                          ]),
+                          _vm._v(" "),
+                          _c("tbody", [
+                            _c("tr", [
+                              _c("td", [
+                                _vm._v(
+                                  "https://cap-development.mybluemix.net/api/exec/"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("BEm7tiSIV3")])
+                            ])
+                          ])
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-650871b0", module.exports)
   }
 }
 
@@ -42083,6 +43997,8 @@ var render = function() {
                 }
               },
               [
+                _vm.trainingData.length === 0 ? _c("Loading") : _vm._e(),
+                _vm._v(" "),
                 _c(
                   "div",
                   {
@@ -42156,7 +44072,8 @@ var render = function() {
                   ],
                   2
                 )
-              ]
+              ],
+              1
             ),
             _vm._v(" "),
             _c(
@@ -42178,6 +44095,8 @@ var render = function() {
                     attrs: { id: "v-pills-tabContent" }
                   },
                   [
+                    _vm.trainingData.length === 0 ? _c("Loading") : _vm._e(),
+                    _vm._v(" "),
                     _vm._l(_vm.trainingData, function(classData, i) {
                       return [
                         i === 0
@@ -42354,6 +44273,383 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-cfdb0342", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-f6e7fa4a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/dashboard/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-3 col-md-6 col-sm-6" }, [
+            _c("div", { staticClass: "card card-stats" }, [
+              _c("div", { staticClass: "card-header card-header-icon" }, [
+                _c("div", { staticClass: "card-icon" }, [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("content_copy")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-category" }, [
+                  _vm._v("AIコーパス数")
+                ]),
+                _vm._v(" "),
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("3/5\n            ")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-footer" }, [
+                _c("div", { staticClass: "stats" }, [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("settings")
+                  ]),
+                  _vm._v(" "),
+                  _c("a", { attrs: { href: "#" } }, [
+                    _vm._v("新規登録・編集・削除")
+                  ])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-3 col-md-6 col-sm-6" }, [
+            _c("div", { staticClass: "card card-stats" }, [
+              _c("div", { staticClass: "card-header card-header-icon" }, [
+                _c("div", { staticClass: "card-icon" }, [
+                  _c("i", { staticClass: "material-icons" }, [_vm._v("school")])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-category" }, [
+                  _vm._v("当月AI学習数")
+                ]),
+                _vm._v(" "),
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("100 "),
+                  _c("small", [_vm._v("回")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-footer" }, [
+                _c("div", { staticClass: "stats" }, [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("update")
+                  ]),
+                  _vm._v(" 更新\n            ")
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-3 col-md-6 col-sm-6" }, [
+            _c("div", { staticClass: "card card-stats" }, [
+              _c("div", { staticClass: "card-header card-header-icon" }, [
+                _c("div", { staticClass: "card-icon" }, [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("play_circle_outline")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-category" }, [
+                  _vm._v("APIコール数")
+                ]),
+                _vm._v(" "),
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("75 "),
+                  _c("small", [_vm._v("回")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-footer" }, [
+                _c("div", { staticClass: "stats" }, [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("update")
+                  ]),
+                  _vm._v(" 更新\n            ")
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-3 col-md-6 col-sm-6" }, [
+            _c("div", { staticClass: "card card-stats" }, [
+              _c("div", { staticClass: "card-header card-header-icon" }, [
+                _c("div", { staticClass: "card-icon" }, [
+                  _c("i", { staticClass: "material-icons" }, [_vm._v("group")])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-category" }, [
+                  _vm._v("管理ユーザー数")
+                ]),
+                _vm._v(" "),
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("3 "),
+                  _c("small", [_vm._v("人")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-footer" }, [
+                _c("div", { staticClass: "stats" }, [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("settings")
+                  ]),
+                  _vm._v(" "),
+                  _c("a", { attrs: { href: "/acount" } }, [
+                    _vm._v("新規登録・削除")
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12 col-lg-6" }, [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { "margin-top": "25px" } },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "card-header card-header-tabs card-header-default"
+                  },
+                  [
+                    _c("div", { staticClass: "nav-tabs-navigation" }, [
+                      _c("div", { staticClass: "nav-tabs-wrapper" }, [
+                        _c("span", { staticClass: "nav-tabs-title" }, [
+                          _vm._v("API応答確信度推移:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "dropdown" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary dropdown-toggle",
+                              attrs: {
+                                type: "button",
+                                id: "dropdownMenuButton",
+                                "data-toggle": "dropdown",
+                                "aria-haspopup": "true",
+                                "aria-expanded": "false"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    60日\n                  "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "dropdown-menu",
+                              attrs: { "aria-labelledby": "dropdownMenuButton" }
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("3日")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("10日")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("30日")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("60日")]
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "card-body", staticStyle: { padding: "0" } },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "container",
+                        staticStyle: { width: "100%", height: "100%" }
+                      },
+                      [
+                        _c("canvas", {
+                          staticStyle: { width: "100%", height: "300px" },
+                          attrs: { id: "classifyChart" }
+                        })
+                      ]
+                    )
+                  ]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-12 col-lg-6" }, [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { "margin-top": "25px" } },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "card-header card-header-tabs card-header-default"
+                  },
+                  [
+                    _c("div", { staticClass: "nav-tabs-navigation" }, [
+                      _c("div", { staticClass: "nav-tabs-wrapper" }, [
+                        _c("span", { staticClass: "nav-tabs-title" }, [
+                          _vm._v("APIコール数推移:")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "dropdown" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary dropdown-toggle",
+                              attrs: {
+                                type: "button",
+                                id: "dropdownMenuButton",
+                                "data-toggle": "dropdown",
+                                "aria-haspopup": "true",
+                                "aria-expanded": "false"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    60日\n                  "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "dropdown-menu",
+                              attrs: { "aria-labelledby": "dropdownMenuButton" }
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("3日")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("10日")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("30日")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#" }
+                                },
+                                [_vm._v("60日")]
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "card-body", staticStyle: { padding: "0" } },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "container",
+                        staticStyle: { width: "100%", height: "100%" }
+                      },
+                      [
+                        _c("canvas", {
+                          staticStyle: { width: "100%", height: "300px" },
+                          attrs: { id: "apiCallChart" }
+                        })
+                      ]
+                    )
+                  ]
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f6e7fa4a", module.exports)
   }
 }
 
@@ -47523,6 +49819,33 @@ if(false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13ac7c35\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/serviceManage/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13ac7c35\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/serviceManage/Main.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("256f4ed4", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13ac7c35\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Main.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13ac7c35\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Main.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1588feec\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -47540,6 +49863,33 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1588feec\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue", function() {
      var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1588feec\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-18be631c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-18be631c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("597323d6", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-18be631c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BasicLoading.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-18be631c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BasicLoading.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -47820,6 +50170,33 @@ if(false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4e477c44\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/corpusManage/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4e477c44\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/corpusManage/Main.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("57060c96", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4e477c44\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Main.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4e477c44\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Main.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5375acc2\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/corpusAdmin/index.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -47999,6 +50376,33 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ae7dc7ca\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TestDataTable.vue", function() {
      var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ae7dc7ca\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TestDataTable.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f6e7fa4a\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/dashboard/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f6e7fa4a\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/dashboard/Main.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("18c4bb98", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f6e7fa4a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Main.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f6e7fa4a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Main.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -60293,7 +62697,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_vue_
  */
 var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
   mode: 'history',
-  routes: __WEBPACK_IMPORTED_MODULE_10__common_core_route__["a" /* default */]
+  routes: __WEBPACK_IMPORTED_MODULE_10__common_core_route__["a" /* default */],
+  linkExactActiveClass: 'active'
 });
 
 /**
@@ -60634,21 +63039,37 @@ var CorpusLanguage = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_login_Main_vue__ = __webpack_require__("./resources/assets/js/vue/login/Main.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__vue_login_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__vue_login_Main_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_Dashboard_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/Dashboard.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_Dashboard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_Dashboard_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vue_corpusAdmin_index_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/index.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vue_corpusAdmin_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__vue_corpusAdmin_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vue_corpusAdmin_baseInfo_Main_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/baseInfo/Main.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vue_corpusAdmin_baseInfo_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__vue_corpusAdmin_baseInfo_Main_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__vue_corpusAdmin_dataManage_Main_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/Main.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__vue_corpusAdmin_dataManage_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__vue_corpusAdmin_dataManage_Main_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__vue_corpusAdmin_trainingManage_Main_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/trainingManage/Main.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__vue_corpusAdmin_trainingManage_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__vue_corpusAdmin_trainingManage_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_index_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vue_capAdmin_dashboard_Main_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/dashboard/Main.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vue_capAdmin_dashboard_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__vue_capAdmin_dashboard_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vue_capAdmin_corpusManage_Main_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/corpusManage/Main.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vue_capAdmin_corpusManage_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__vue_capAdmin_corpusManage_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__vue_capAdmin_apiManage_Main_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/apiManage/Main.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__vue_capAdmin_apiManage_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__vue_capAdmin_apiManage_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__vue_capAdmin_serviceManage_Main_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/serviceManage/Main.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__vue_capAdmin_serviceManage_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__vue_capAdmin_serviceManage_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__vue_capAdmin_help_Main_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/help/Main.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__vue_capAdmin_help_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__vue_capAdmin_help_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__vue_corpusAdmin_index_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__vue_corpusAdmin_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__vue_corpusAdmin_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__vue_corpusAdmin_baseInfo_Main_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/baseInfo/Main.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__vue_corpusAdmin_baseInfo_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__vue_corpusAdmin_baseInfo_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__vue_corpusAdmin_dataManage_Main_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/dataManage/Main.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__vue_corpusAdmin_dataManage_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__vue_corpusAdmin_dataManage_Main_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__vue_corpusAdmin_trainingManage_Main_vue__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/trainingManage/Main.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__vue_corpusAdmin_trainingManage_Main_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__vue_corpusAdmin_trainingManage_Main_vue__);
 /**
  * component
  */
 
 // CAP管理画面
+
+
+
+
+
+
 
 // コーパス管理画面
 
@@ -60662,17 +63083,42 @@ var CorpusLanguage = {
 var routes = [{
   path: '/login',
   component: __WEBPACK_IMPORTED_MODULE_0__vue_login_Main_vue___default.a
-}, {
+},
+/**
+ * CAP管理画面
+ */
+{
   path: '/',
-  component: __WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_Dashboard_vue___default.a,
-  meta: { requiresAuth: true }
-}, {
-  path: '/corpus',
-  component: __WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_Dashboard_vue___default.a,
-  meta: { requiresAuth: true }
-}, {
+  component: __WEBPACK_IMPORTED_MODULE_1__vue_capAdmin_index_vue___default.a,
+  meta: { requiresAuth: true },
+  children: [{
+    name: 'dashboard',
+    path: '/',
+    component: __WEBPACK_IMPORTED_MODULE_2__vue_capAdmin_dashboard_Main_vue___default.a
+  }, {
+    name: 'corpusManage',
+    path: '/corpus',
+    component: __WEBPACK_IMPORTED_MODULE_3__vue_capAdmin_corpusManage_Main_vue___default.a
+  }, {
+    name: 'apiManage',
+    path: '/api-info',
+    component: __WEBPACK_IMPORTED_MODULE_4__vue_capAdmin_apiManage_Main_vue___default.a
+  }, {
+    name: 'serviveManage',
+    path: '/setting',
+    component: __WEBPACK_IMPORTED_MODULE_5__vue_capAdmin_serviceManage_Main_vue___default.a
+  }, {
+    name: 'help',
+    path: '/help',
+    component: __WEBPACK_IMPORTED_MODULE_6__vue_capAdmin_help_Main_vue___default.a
+  }]
+},
+/**
+ * コーパス管理画面
+ */
+{
   path: '/corpus/:corpusId',
-  component: __WEBPACK_IMPORTED_MODULE_2__vue_corpusAdmin_index_vue___default.a,
+  component: __WEBPACK_IMPORTED_MODULE_7__vue_corpusAdmin_index_vue___default.a,
   meta: { requiresAuth: true },
   props: function props(route) {
     return { corpusId: parseInt(route.params.corpusId, 10) };
@@ -60680,15 +63126,15 @@ var routes = [{
   children: [{
     name: 'base-info',
     path: 'data',
-    component: __WEBPACK_IMPORTED_MODULE_3__vue_corpusAdmin_baseInfo_Main_vue___default.a
+    component: __WEBPACK_IMPORTED_MODULE_8__vue_corpusAdmin_baseInfo_Main_vue___default.a
   }, {
     name: 'data-view',
     path: 'data/view',
-    component: __WEBPACK_IMPORTED_MODULE_4__vue_corpusAdmin_dataManage_Main_vue___default.a
+    component: __WEBPACK_IMPORTED_MODULE_9__vue_corpusAdmin_dataManage_Main_vue___default.a
   }, {
     name: 'training',
     path: 'training',
-    component: __WEBPACK_IMPORTED_MODULE_5__vue_corpusAdmin_trainingManage_Main_vue___default.a
+    component: __WEBPACK_IMPORTED_MODULE_10__vue_corpusAdmin_trainingManage_Main_vue___default.a
   }]
 }];
 
@@ -61644,15 +64090,15 @@ function alertVendorEscalation(errorCode) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/vue/capAdmin/Dashboard.vue":
+/***/ "./resources/assets/js/vue/capAdmin/apiManage/Main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/Dashboard.vue")
+var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-306c6fdd\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/Dashboard.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-650871b0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/apiManage/Main.vue")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -61669,7 +64115,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/vue/capAdmin/Dashboard.vue"
+Component.options.__file = "resources/assets/js/vue/capAdmin/apiManage/Main.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -61678,9 +64124,261 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-306c6fdd", Component.options)
+    hotAPI.createRecord("data-v-650871b0", Component.options)
   } else {
-    hotAPI.reload("data-v-306c6fdd", Component.options)
+    hotAPI.reload("data-v-650871b0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/capAdmin/corpusManage/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4e477c44\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/corpusManage/Main.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/corpusManage/Main.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4e477c44\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/corpusManage/Main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/capAdmin/corpusManage/Main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4e477c44", Component.options)
+  } else {
+    hotAPI.reload("data-v-4e477c44", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/capAdmin/dashboard/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f6e7fa4a\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/dashboard/Main.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/dashboard/Main.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-f6e7fa4a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/dashboard/Main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/capAdmin/dashboard/Main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f6e7fa4a", Component.options)
+  } else {
+    hotAPI.reload("data-v-f6e7fa4a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/capAdmin/help/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0551cfd0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/help/Main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/capAdmin/help/Main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0551cfd0", Component.options)
+  } else {
+    hotAPI.reload("data-v-0551cfd0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/capAdmin/index.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/index.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-198d808a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/index.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/capAdmin/index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-198d808a", Component.options)
+  } else {
+    hotAPI.reload("data-v-198d808a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/capAdmin/serviceManage/Main.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13ac7c35\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/serviceManage/Main.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-13ac7c35\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/serviceManage/Main.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/capAdmin/serviceManage/Main.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-13ac7c35", Component.options)
+  } else {
+    hotAPI.reload("data-v-13ac7c35", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -62373,6 +65071,58 @@ module.exports = Component.exports
     }
   }
 });
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-18be631c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-18be631c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/corpusAdmin/common/loading/BasicLoading.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-18be631c", Component.options)
+  } else {
+    hotAPI.reload("data-v-18be631c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 
@@ -64061,6 +66811,27 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/sass/common-dashboard.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/main/dashboard/api-info.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/main/dashboard/corpus.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -64070,7 +66841,10 @@ __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
 __webpack_require__("./resources/assets/js/common/core/ajax.js");
 __webpack_require__("./resources/assets/js/common/ext/functions.js");
 __webpack_require__("./resources/assets/sass/app.scss");
-module.exports = __webpack_require__("./resources/assets/sass/app/login.scss");
+__webpack_require__("./resources/assets/sass/app/login.scss");
+__webpack_require__("./resources/assets/sass/common-dashboard.scss");
+__webpack_require__("./resources/assets/sass/main/dashboard/corpus.scss");
+module.exports = __webpack_require__("./resources/assets/sass/main/dashboard/api-info.scss");
 
 
 /***/ })

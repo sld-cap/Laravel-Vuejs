@@ -7,6 +7,7 @@
     <!-- /.row -->
     <div class="row" style="width:100%;height:450px;margin:0;">
       <div class="col-3 border" style="height:470px;padding:5px;overflow-y:scroll;background-color:#F8F9FA;">
+        <Loading v-if="trainingData.length === 0" /><!-- loading -->
         <div class="nav flex-column nav-pills-brand" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <template v-for="(data, i) in trainingData">
             <a v-if="i === 0" class="nav-link h6 active" :key="data.class_id" :id="'v-pills-tab_' + i" data-toggle="pill" :href="'#v-pills_' + i" role="tab" :aria-controls="'v-pills_' + i" aria-selected="true">
@@ -24,6 +25,7 @@
       <!-- /.col-3 -->
       <div class="col-9 border" style="padding:5px;height:470px;overflow-y:scroll;background-color:#F8F9FA;">
         <div class="tab-content" id="v-pills-tabContent">
+          <Loading v-if="trainingData.length === 0" /><!-- loading -->
           <template v-for="(data, i) in trainingData">
             <div v-if="i === 0" class="tab-pane fade show list-group active" :key="data.class_id" :id="'v-pills_' + i" role="tabpanel" :aria-labelledby="'v-pills-tab_' + i">
               <ul class="corpusTextList">
@@ -57,11 +59,12 @@ import * as Core from '../../../../common/core/app';
 import * as Ajax from '../../../../common/core/ajax';
 import ApiConfig from '../../../../common/core/apiConfig';
 import { mapGetters } from 'vuex';
-
+import Loading from '../../common/loading/BasicLoading.vue';
 
 export default {
   props: [],
   components: {
+    Loading,
   },
   data() {
     return {};

@@ -3,7 +3,13 @@
  */
 import LoginVue from '../../vue/login/Main.vue';
 // CAP管理画面
-import DashboardVue from '../../vue/capAdmin/Dashboard.vue';
+import CapadminVue from '../../vue/capAdmin/index.vue';
+import DashboardVue from '../../vue/capAdmin/dashboard/Main.vue';
+import CorpusManageVue from '../../vue/capAdmin/corpusManage/Main.vue';
+import ApiManageVue from '../../vue/capAdmin/apiManage/Main.vue';
+import ServieManageVue from '../../vue/capAdmin/serviceManage/Main.vue';
+import HelpVue from '../../vue/capAdmin/help/Main.vue';
+
 // コーパス管理画面
 import CorpusadminVue from '../../vue/corpusAdmin/index.vue';
 import CorpusadminBaseInfoVue from '../../vue/corpusAdmin/baseInfo/Main.vue';
@@ -19,16 +25,44 @@ const routes = [
     path: '/login',
     component: LoginVue,
   },
+  /**
+   * CAP管理画面
+   */
   {
     path: '/',
-    component: DashboardVue,
+    component: CapadminVue,
     meta: { requiresAuth: true },
+    children: [
+      {
+        name: 'dashboard',
+        path: '/',
+        component: DashboardVue,
+      },
+      {
+        name: 'corpusManage',
+        path: '/corpus',
+        component: CorpusManageVue,
+      },
+      {
+        name: 'apiManage',
+        path: '/api-info',
+        component: ApiManageVue,
+      },
+      {
+        name: 'serviveManage',
+        path: '/setting',
+        component: ServieManageVue,
+      },
+      {
+        name: 'help',
+        path: '/help',
+        component: HelpVue,
+      },
+    ],
   },
-  {
-    path: '/corpus',
-    component: DashboardVue,
-    meta: { requiresAuth: true },
-  },
+  /**
+   * コーパス管理画面
+   */
   {
     path: '/corpus/:corpusId',
     component: CorpusadminVue,
