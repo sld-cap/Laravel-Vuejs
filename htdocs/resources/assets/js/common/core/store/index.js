@@ -5,6 +5,8 @@ import commonData from './modules/commonData';
 import corpusData from './modules/corpusData';
 import corpusTrainingData from './modules/corpusTrainingData';
 import multiModal from './modules/multiModal'; // モーダル管理用モジュール
+import apiData from './modules/apiData';
+import accountData from './modules/accountData';
 
 Vue.use(Vuex);
 
@@ -23,6 +25,8 @@ const modules = {
   corpusData,
   corpusTrainingData,
   multiModal,
+  apiData,
+  accountData,
 };
 
 

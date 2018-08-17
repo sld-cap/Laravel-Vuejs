@@ -18,7 +18,7 @@ mix.js(['resources/assets/js/app.js',
   'resources/assets/js/common/ext/functions.js',
 ], 'public/js/app.js')
   .scripts([
-    // 'resources/assets/js/common/ext/plugins/jquery.min.js', // public/js/app.jsでjquery読み込んでいるため
+    'resources/assets/js/common/ext/plugins/jquery.min.js',
     'resources/assets/js/common/ext/plugins/popper.min.js',
     'resources/assets/js/common/ext/plugins/bootstrap.min.js',
     'resources/assets/js/common/ext/plugins/jquery.circliful.min.js',

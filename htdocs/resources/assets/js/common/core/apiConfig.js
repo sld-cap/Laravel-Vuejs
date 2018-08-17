@@ -19,6 +19,14 @@ const API_CONFIG = {
   },
 
   // CAP管理画面
+  getCorpusList: {
+    // url: '/api/v1/corpus',
+    url: '/stub/data/CorpusListGetSuccess.json', // 処理成功用stub
+    method: 'GET',
+    params: {},
+  },
+
+  // コーパス管理画面
   // コーパス情報取得
   getCorpus: {
     url: '/api/v1/corpus/{corpusId}',
@@ -33,8 +41,6 @@ const API_CONFIG = {
     method: 'POST',
     data: {},
   },
-
-  // コーパス管理画面
   // 教師データ一覧取得
   getTrainingData: {
     url: '/api/v1/training-data/{training_datum}',
@@ -43,33 +49,24 @@ const API_CONFIG = {
   },
   // 教師データ追加
   addTrainingData: {
-    // url: '/api/v1/training-data',
-    url: '/stub/data/successData.json', // 処理成功用stub
-    // url: '/stub/data/TrainingDataAddError.json', // 処理失敗用stub
+    url: '/api/v1/training-data',
     method: 'POST',
     data: {},
   },
   // 教師データ編集
   saveTrainingData: {
-    // url: '/api/v1/training-data',
-    url: '/stub/data/successData.json', // 処理成功用stub
-    // url: '/stub/data/TrainingDataEditError.json', // 処理失敗用stub
-    method: 'POST',
+    url: '/api/v1/training-data/{creative_id}',
+    method: 'PUT',
     data: {},
   },
   // 教師データ削除
   deleteTrainingData: {
-    // url: '/api/v1/training-data/{corpus_id}',
-    url: '/stub/data/successData.json', // 処理成功用stub
-    // url: '/stub/data/TrainingDataDeleteError.json', // 処理失敗用stub
-    method: 'POST',
-    data: {},
+    url: '/api/v1/training-data/{creative_id}',
+    method: 'DELETE',
   },
   // 教師データアップロード
   uploadTrainingData: {
-    // url: '/api/v1/training-data/{corpus_id}/upload',
-    url: '/stub/data/successData.json', // 処理成功用stub
-    // url: '/stub/data/TrainingDataUploadError.json', // 処理失敗用stub
+    url: '/api/v1/training-data/{corpus_id}/upload',
     method: 'POST',
     data: {},
     headers: {
@@ -78,10 +75,10 @@ const API_CONFIG = {
   },
   // 教師データダウンロード
   downloadTrainingData: {
-    // url: '/api/v1/training-data/{corpus_id}/download',
-    url: '/stub/data/successData.json', // 処理成功用stub
+    url: '/api/v1/training-data/{corpus_id}/download',
+    // url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/TrainingDataUploadError.json', // 処理失敗用stub
-    method: 'POST',
+    method: 'GET',
     data: {},
   },
 };

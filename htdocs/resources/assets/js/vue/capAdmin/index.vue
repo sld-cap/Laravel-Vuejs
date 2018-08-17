@@ -92,14 +92,20 @@ import * as Lib from '../../common/ext/functions';
 export default {
   props: ['me'],
   data() {
-    return {
-    };
+    return {};
   },
   created() {
-			Core.log('[created]');
+    Core.log('[created]');
+    Core.log('me/corpusId');
+    Core.log(this.me);
+
+    // 各種データ取得
+    // ダッシュボードで表示する情報 / コーパス一覧 / API一覧 / アカウント一覧
+    // Todo: 利用ログ一覧や請求一覧の情報も取得する（ite2）
+    this.$store.dispatch('corpusData/getCorpusList');
   },
   mounted() {
-      Core.log('[mounted]');
+    Core.log('[mounted]');
   },
   methods: {
     logout() {

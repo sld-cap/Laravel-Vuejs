@@ -9,6 +9,7 @@ import * as Lib from '../../../ext/functions';
  */
 const state = {
   corpusInfo: {},
+  corpusList: [],
 };
 
 
@@ -16,6 +17,12 @@ const state = {
  * getters
  */
 const getters = {
+  // コーパス一覧
+  corpusList: (state) => {
+    Core.log('[store] getters: corpusList');
+    Core.log(state.corpusList);
+    return state.corpusList;
+  },
   // コーパス情報取得
   corpusInfo: (state) => {
     return state.corpusInfo;
@@ -39,6 +46,20 @@ const getters = {
  * mutations
  */
 const mutations = {
+  // 取得 :コーパス一覧
+  setGetCorpusListResult(state, payload) {
+    Core.log('[store] setGetCorpusListResult');
+    Core.log(payload);
+    const resCode = payload.code;
+
+    if (resCode === 200) {
+      state.corpusList = payload.data;
+    } else if (resCode === 401) {
+      Lib.alertRefreshToken();
+    } else {
+      Lib.alertVendorEscalation(resCode);
+    }
+  },
   // 取得: コーパスデータセット
   setGetCorpusInfoResult(state, payload) {
     Core.log('[store] setGetCorpusInfoResult');
@@ -80,7 +101,13 @@ const mutations = {
  * actions
  */
 const actions = {
-  // 取得
+  // 取得（一覧）
+  getCorpusList({ commit }) {
+    Core.log('[store] getCorpusList');
+    const apiOption = { ...ApiConfig.getCorpusList };
+    Ajax.exec(apiOption, commit, 'setGetCorpusListResult');
+  },
+  // 取得（詳細）
   getCorpusInfo({ commit }) {
     Core.log('[store] getCorpusInfo');
     // const apiOption = Object.assign({}, ApiConfig['getCorpus']);

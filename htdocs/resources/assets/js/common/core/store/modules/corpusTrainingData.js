@@ -171,8 +171,11 @@ const actions = {
     Core.log('[store] saveTrainingData');
 
     const apiOption = Object.assign({}, ApiConfig.saveTrainingData);
+    apiOption.url = apiOption.url.replace(/{creative_id}/g, creative_id);
+    const add_class_name = '';
+
     apiOption.data = {
-      corpus_id, data_type, corpus_class_id, creative_id, content,
+      corpus_id, data_type, corpus_class_id, content, add_class_name, creative_id,
     };
     Ajax.exec(apiOption, commit, 'setSaveTrainingData');
   },
@@ -181,17 +184,15 @@ const actions = {
     Core.log('[store] deleteTrainingData');
 
     const apiOption = Object.assign({}, ApiConfig.deleteTrainingData);
-    // const corpusId = this.getters['commonData/corpusId'];
-    // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
-    apiOption.data = { creative_id };
+    apiOption.url = apiOption.url.replace(/{creative_id}/g, creative_id);
     Ajax.exec(apiOption, commit, 'setDeleteTrainingData');
   },
   // 一括登録
   uploadTrainingDataCsv({ commit, state }, { csv_file, data_type }) {
     Core.log('[store] upload');
     const apiOption = Object.assign({}, ApiConfig.uploadTrainingData);
-    // const corpusId = this.getters['commonData/corpusId'];
-    // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
+    const corpusId = this.getters['commonData/corpusId'];
+    apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
 
     // ファイル送信
     apiOption.data = new FormData();
@@ -203,8 +204,8 @@ const actions = {
   downloadTrainingDataCsv({ commit, state }) {
     Core.log('[store] upload');
     const apiOption = Object.assign({}, ApiConfig.downloadTrainingData);
-    // const corpusId = this.getters['commonData/corpusId'];
-    // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
+    const corpusId = this.getters['commonData/corpusId'];
+    apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
 
     // ファイル送信
     Ajax.exec(apiOption, commit, 'setDownloadTrainingDataCsvResult');

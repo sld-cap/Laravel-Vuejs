@@ -20,8 +20,9 @@
     <!-- /#app.row -->
   </body>
 
-  <script src="{{ mix('js/app.js') }}"></script>
+  
   <script src="/js/corpusadmin-core.js"></script>
+  <script src="{{ mix('js/app.js') }}"></script>
   <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
   <script>
       feather.replace();

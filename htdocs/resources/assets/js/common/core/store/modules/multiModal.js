@@ -112,6 +112,7 @@ const actions = {
   showCompAddTrainingDataModal({ commit }) {
     Core.log('[showCompAddTrainingDataModal]');
     commit('setModal', 'CompAddTrainingDataModal');
+    this.dispatch('corpusTrainingData/getTrainingData');
   },
 
   // 教師データ編集モーダル開閉
@@ -128,6 +129,7 @@ const actions = {
   showCompEditTrainingDataModal({ commit }) {
     Core.log('[showCompEditTrainingDataModal]');
     commit('setModal', 'CompEditTrainingDataModal');
+    this.dispatch('corpusTrainingData/getTrainingData');
   },
 
   // 教師データ削除モーダル開閉
@@ -140,6 +142,7 @@ const actions = {
   showCompDeleteTrainingDataModal({ commit }) {
     Core.log('[showCompDeleteTrainingDataModal]');
     commit('setModal', 'CompDeleteTrainingDataModal');
+    this.dispatch('corpusTrainingData/getTrainingData');
   },
 
   // 教師データSVアップロードモーダル開閉

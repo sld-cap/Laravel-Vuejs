@@ -26,44 +26,38 @@
               <!-- /.row -->
 
               <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
 
-                  <div @click="openCorpusAdminTab(1)" class="card detail-card" style="margin:10px 0;">
-                    <span class="ribbon13-2">本番</span>
+                <div v-for="(corpus) in corpusList" :key="corpus.id" class="col-lg-4 col-md-4 col-sm-6">
+                  <div @click="openCorpusAdminTab(corpus.id)" class="card detail-card" style="margin:10px 0;">
+                    <span v-if="corpus.is_production === '1'" class="ribbon13-2">本番</span>
+                    <span v-else class="ribbon13-3">検証</span>
                     <div class="card-body" style="padding: 15px 15px 10px 15px;">
-                      <h4 class="card-title" style="width:95%;float:left;font-weight:600;">コーパス名</h4>
+                      <h4 class="card-title" style="width:95%;float:left;font-weight:600;">{{ corpus.name }}</h4>
                       <div class="nav-item dropdown" style="width:5%;float:right;">
                         <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding:0;">
                           <i class="material-icons">more_vert</i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="corpusDropdownMenuLink">
-                          <a class="dropdown-item" href="#" target="_blank">編集</a>
-                          <a class="dropdown-item" href="#">複製</a>
-                          <a class="dropdown-item" href="#">無効化</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">削除</a>
-                        </div>
                       </div>
-                      <p class="card-text" style="clear:both;margin-bottom:10px;">コーパスの説明</p>
+                      <p class="card-text" style="clear:both;margin-bottom:10px;">{{ corpus.description }}</p>
                     </div>
                     <div class="card-footer" style="padding-top:2px;border-top: 1px solid #eee;">
                       <div class="stats pull-right">
-                        関連API:「景表法と薬機法の抵触リスクチェック」
+                        関連API:「」
                       </div>
                     </div>
                     <div class="card-footer" style="padding-top:2px;border-top: 1px solid #eee;">
                       <div class="stats pull-right">
-                        自然言語
+                        {{ corpus.type }}
                       </div>
                       <div class="stats pull-left">
-                        <i class="material-icons">update</i> 最終更新日：
+                        <i class="material-icons">update</i> 最終更新日：{{ corpus.updated_at }}（{{ corpus.update_user_name }}）
                       </div>
                     </div>
                   </div>
                   <!-- /.detail-card -->
-
                 </div>
                 <!-- /.col -->
+
               </div>
               <!-- /.row -->
             </div>
@@ -87,6 +81,8 @@ import * as Ajax from '../../../common/core/ajax';
 import * as Lib from '../../../common/ext/functions';
 import ApiConfig from '../../../common/core/apiConfig';
 
+import { mapGetters } from 'vuex';
+
 export default {
   props: ['me'],
   components: {
@@ -95,6 +91,9 @@ export default {
     return {};
   },
   computed: {
+    ...mapGetters({
+      corpusList: 'corpusData/corpusList',
+    }),
   },
   created() {
     Core.log('[created]');

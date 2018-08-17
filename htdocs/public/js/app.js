@@ -1631,6 +1631,251 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/apiManage/Main.vue":
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/corpusManage/Main.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1640,6 +1885,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -1717,12 +1965,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
+
+
 
 
 
@@ -1736,7 +1980,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {};
   },
 
-  computed: {},
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapGetters */])({
+    corpusList: 'corpusData/corpusList'
+  })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
   },
@@ -2004,6 +2250,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('me/corpusId');
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.me);
+
+    // 各種データ取得
+    // ダッシュボードで表示する情報 / コーパス一覧 / API一覧 / アカウント一覧
+    // Todo: 利用ログ一覧や請求一覧の情報も取得する（ite2）
+    this.$store.dispatch('corpusData/getCorpusList');
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
@@ -41814,33 +42067,113 @@ var render = function() {
                 _vm._v(" "),
                 _vm._m(2),
                 _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-lg-4 col-md-4 col-sm-6" }, [
-                    _c(
+                _c(
+                  "div",
+                  { staticClass: "row" },
+                  _vm._l(_vm.corpusList, function(corpus) {
+                    return _c(
                       "div",
                       {
-                        staticClass: "card detail-card",
-                        staticStyle: { margin: "10px 0" },
-                        on: {
-                          click: function($event) {
-                            _vm.openCorpusAdminTab(1)
-                          }
-                        }
+                        key: corpus.id,
+                        staticClass: "col-lg-4 col-md-4 col-sm-6"
                       },
                       [
-                        _c("span", { staticClass: "ribbon13-2" }, [
-                          _vm._v("本番")
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(3),
-                        _vm._v(" "),
-                        _vm._m(4),
-                        _vm._v(" "),
-                        _vm._m(5)
+                        _c(
+                          "div",
+                          {
+                            staticClass: "card detail-card",
+                            staticStyle: { margin: "10px 0" },
+                            on: {
+                              click: function($event) {
+                                _vm.openCorpusAdminTab(corpus.id)
+                              }
+                            }
+                          },
+                          [
+                            corpus.is_production === "1"
+                              ? _c("span", { staticClass: "ribbon13-2" }, [
+                                  _vm._v("本番")
+                                ])
+                              : _c("span", { staticClass: "ribbon13-3" }, [
+                                  _vm._v("検証")
+                                ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "card-body",
+                                staticStyle: { padding: "15px 15px 10px 15px" }
+                              },
+                              [
+                                _c(
+                                  "h4",
+                                  {
+                                    staticClass: "card-title",
+                                    staticStyle: {
+                                      width: "95%",
+                                      float: "left",
+                                      "font-weight": "600"
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(corpus.name))]
+                                ),
+                                _vm._v(" "),
+                                _vm._m(3, true),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "card-text",
+                                    staticStyle: {
+                                      clear: "both",
+                                      "margin-bottom": "10px"
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(corpus.description))]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(4, true),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "card-footer",
+                                staticStyle: {
+                                  "padding-top": "2px",
+                                  "border-top": "1px solid #eee"
+                                }
+                              },
+                              [
+                                _c("div", { staticClass: "stats pull-right" }, [
+                                  _vm._v(
+                                    "\n                      " +
+                                      _vm._s(corpus.type) +
+                                      "\n                    "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "stats pull-left" }, [
+                                  _c("i", { staticClass: "material-icons" }, [
+                                    _vm._v("update")
+                                  ]),
+                                  _vm._v(
+                                    " 最終更新日：" +
+                                      _vm._s(corpus.updated_at) +
+                                      "（" +
+                                      _vm._s(corpus.update_user_name) +
+                                      "）\n                    "
+                                  )
+                                ])
+                              ]
+                            )
+                          ]
+                        )
                       ]
                     )
-                  ])
-                ])
+                  })
+                )
               ]
             )
           ])
@@ -41897,92 +42230,23 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass: "card-body",
-        staticStyle: { padding: "15px 15px 10px 15px" }
+        staticClass: "nav-item dropdown",
+        staticStyle: { width: "5%", float: "right" }
       },
       [
         _c(
-          "h4",
+          "a",
           {
-            staticClass: "card-title",
-            staticStyle: { width: "95%", float: "left", "font-weight": "600" }
+            staticClass: "nav-link",
+            staticStyle: { padding: "0" },
+            attrs: {
+              href: "#",
+              "data-toggle": "dropdown",
+              "aria-haspopup": "true",
+              "aria-expanded": "false"
+            }
           },
-          [_vm._v("コーパス名")]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "nav-item dropdown",
-            staticStyle: { width: "5%", float: "right" }
-          },
-          [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                staticStyle: { padding: "0" },
-                attrs: {
-                  href: "#",
-                  "data-toggle": "dropdown",
-                  "aria-haspopup": "true",
-                  "aria-expanded": "false"
-                }
-              },
-              [
-                _c("i", { staticClass: "material-icons" }, [
-                  _vm._v("more_vert")
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "dropdown-menu dropdown-menu-right",
-                attrs: { "aria-labelledby": "corpusDropdownMenuLink" }
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: { href: "#", target: "_blank" }
-                  },
-                  [_vm._v("編集")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "dropdown-item", attrs: { href: "#" } },
-                  [_vm._v("複製")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "dropdown-item", attrs: { href: "#" } },
-                  [_vm._v("無効化")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "dropdown-divider" }),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "dropdown-item", attrs: { href: "#" } },
-                  [_vm._v("削除")]
-                )
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass: "card-text",
-            staticStyle: { clear: "both", "margin-bottom": "10px" }
-          },
-          [_vm._v("コーパスの説明")]
+          [_c("i", { staticClass: "material-icons" }, [_vm._v("more_vert")])]
         )
       ]
     )
@@ -41999,31 +42263,7 @@ var staticRenderFns = [
       },
       [
         _c("div", { staticClass: "stats pull-right" }, [
-          _vm._v(
-            "\n                      関連API:「景表法と薬機法の抵触リスクチェック」\n                    "
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "card-footer",
-        staticStyle: { "padding-top": "2px", "border-top": "1px solid #eee" }
-      },
-      [
-        _c("div", { staticClass: "stats pull-right" }, [
-          _vm._v("\n                      自然言語\n                    ")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "stats pull-left" }, [
-          _c("i", { staticClass: "material-icons" }, [_vm._v("update")]),
-          _vm._v(" 最終更新日：\n                    ")
+          _vm._v("\n                      関連API:「」\n                    ")
         ])
       ]
     )
@@ -62919,6 +63159,14 @@ var API_CONFIG = {
   },
 
   // CAP管理画面
+  getCorpusList: {
+    // url: '/api/v1/corpus',
+    url: '/stub/data/CorpusListGetSuccess.json', // 処理成功用stub
+    method: 'GET',
+    params: {}
+  },
+
+  // コーパス管理画面
   // コーパス情報取得
   getCorpus: {
     url: '/api/v1/corpus/{corpusId}',
@@ -62933,8 +63181,6 @@ var API_CONFIG = {
     method: 'POST',
     data: {}
   },
-
-  // コーパス管理画面
   // 教師データ一覧取得
   getTrainingData: {
     url: '/api/v1/training-data/{training_datum}',
@@ -62943,33 +63189,24 @@ var API_CONFIG = {
   },
   // 教師データ追加
   addTrainingData: {
-    // url: '/api/v1/training-data',
-    url: '/stub/data/successData.json', // 処理成功用stub
-    // url: '/stub/data/TrainingDataAddError.json', // 処理失敗用stub
+    url: '/api/v1/training-data',
     method: 'POST',
     data: {}
   },
   // 教師データ編集
   saveTrainingData: {
-    // url: '/api/v1/training-data',
-    url: '/stub/data/successData.json', // 処理成功用stub
-    // url: '/stub/data/TrainingDataEditError.json', // 処理失敗用stub
-    method: 'POST',
+    url: '/api/v1/training-data/{creative_id}',
+    method: 'PUT',
     data: {}
   },
   // 教師データ削除
   deleteTrainingData: {
-    // url: '/api/v1/training-data/{corpus_id}',
-    url: '/stub/data/successData.json', // 処理成功用stub
-    // url: '/stub/data/TrainingDataDeleteError.json', // 処理失敗用stub
-    method: 'POST',
-    data: {}
+    url: '/api/v1/training-data/{creative_id}',
+    method: 'DELETE'
   },
   // 教師データアップロード
   uploadTrainingData: {
-    // url: '/api/v1/training-data/{corpus_id}/upload',
-    url: '/stub/data/successData.json', // 処理成功用stub
-    // url: '/stub/data/TrainingDataUploadError.json', // 処理失敗用stub
+    url: '/api/v1/training-data/{corpus_id}/upload',
     method: 'POST',
     data: {},
     headers: {
@@ -62978,10 +63215,10 @@ var API_CONFIG = {
   },
   // 教師データダウンロード
   downloadTrainingData: {
-    // url: '/api/v1/training-data/{corpus_id}/download',
-    url: '/stub/data/successData.json', // 処理成功用stub
+    url: '/api/v1/training-data/{corpus_id}/download',
+    // url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/TrainingDataUploadError.json', // 処理失敗用stub
-    method: 'POST',
+    method: 'GET',
     data: {}
   }
 };
@@ -63153,6 +63390,10 @@ var routes = [{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_corpusData__ = __webpack_require__("./resources/assets/js/common/core/store/modules/corpusData.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_corpusTrainingData__ = __webpack_require__("./resources/assets/js/common/core/store/modules/corpusTrainingData.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_multiModal__ = __webpack_require__("./resources/assets/js/common/core/store/modules/multiModal.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_apiData__ = __webpack_require__("./resources/assets/js/common/core/store/modules/apiData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_apiData___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__modules_apiData__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_accountData__ = __webpack_require__("./resources/assets/js/common/core/store/modules/accountData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_accountData___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__modules_accountData__);
 
 
 // modules
@@ -63160,6 +63401,8 @@ var routes = [{
 
 
  // モーダル管理用モジュール
+
+
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
 
@@ -63175,7 +63418,9 @@ var modules = {
   commonData: __WEBPACK_IMPORTED_MODULE_2__modules_commonData__["a" /* default */],
   corpusData: __WEBPACK_IMPORTED_MODULE_3__modules_corpusData__["a" /* default */],
   corpusTrainingData: __WEBPACK_IMPORTED_MODULE_4__modules_corpusTrainingData__["a" /* default */],
-  multiModal: __WEBPACK_IMPORTED_MODULE_5__modules_multiModal__["a" /* default */]
+  multiModal: __WEBPACK_IMPORTED_MODULE_5__modules_multiModal__["a" /* default */],
+  apiData: __WEBPACK_IMPORTED_MODULE_6__modules_apiData___default.a,
+  accountData: __WEBPACK_IMPORTED_MODULE_7__modules_accountData___default.a
 };
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
@@ -63184,6 +63429,20 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (store);
+
+/***/ }),
+
+/***/ "./resources/assets/js/common/core/store/modules/accountData.js":
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/common/core/store/modules/apiData.js":
+/***/ (function(module, exports) {
+
+
 
 /***/ }),
 
@@ -63332,13 +63591,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
  * state
  */
 var state = {
-  corpusInfo: {}
+  corpusInfo: {},
+  corpusList: []
 };
 
 /**
  * getters
  */
 var getters = {
+  // コーパス一覧
+  corpusList: function corpusList(state) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getters: corpusList');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"](state.corpusList);
+    return state.corpusList;
+  },
   // コーパス情報取得
   corpusInfo: function corpusInfo(state) {
     return state.corpusInfo;
@@ -63361,6 +63627,21 @@ var getters = {
  * mutations
  */
 var mutations = {
+  // 取得 :コーパス一覧
+  setGetCorpusListResult: function setGetCorpusListResult(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setGetCorpusListResult');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+    var resCode = payload.code;
+
+    if (resCode === 200) {
+      state.corpusList = payload.data;
+    } else if (resCode === 401) {
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+    } else {
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    }
+  },
+
   // 取得: コーパスデータセット
   setGetCorpusInfoResult: function setGetCorpusInfoResult(state, payload) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setGetCorpusInfoResult');
@@ -63402,9 +63683,18 @@ var mutations = {
  * actions
  */
 var actions = {
-  // 取得
-  getCorpusInfo: function getCorpusInfo(_ref) {
+  // 取得（一覧）
+  getCorpusList: function getCorpusList(_ref) {
     var commit = _ref.commit;
+
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusList');
+    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].getCorpusList);
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setGetCorpusListResult');
+  },
+
+  // 取得（詳細）
+  getCorpusInfo: function getCorpusInfo(_ref2) {
+    var commit = _ref2.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusInfo');
     // const apiOption = Object.assign({}, ApiConfig['getCorpus']);
@@ -63416,12 +63706,12 @@ var actions = {
   },
 
   // 編集
-  saveCorpus: function saveCorpus(_ref2, _ref3) {
-    var commit = _ref2.commit;
-    var corpus_id = _ref3.corpus_id,
-        name = _ref3.name,
-        description = _ref3.description,
-        language = _ref3.language;
+  saveCorpus: function saveCorpus(_ref3, _ref4) {
+    var commit = _ref3.commit;
+    var corpus_id = _ref4.corpus_id,
+        name = _ref4.name,
+        description = _ref4.description,
+        language = _ref4.language;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusInfo');
 
@@ -63647,8 +63937,11 @@ var actions = {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] saveTrainingData');
 
     var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].saveTrainingData);
+    apiOption.url = apiOption.url.replace(/{creative_id}/g, creative_id);
+    var add_class_name = '';
+
     apiOption.data = {
-      corpus_id: corpus_id, data_type: data_type, corpus_class_id: corpus_class_id, creative_id: creative_id, content: content
+      corpus_id: corpus_id, data_type: data_type, corpus_class_id: corpus_class_id, content: content, add_class_name: add_class_name, creative_id: creative_id
     };
     __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setSaveTrainingData');
   },
@@ -63661,9 +63954,7 @@ var actions = {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] deleteTrainingData');
 
     var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].deleteTrainingData);
-    // const corpusId = this.getters['commonData/corpusId'];
-    // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
-    apiOption.data = { creative_id: creative_id };
+    apiOption.url = apiOption.url.replace(/{creative_id}/g, creative_id);
     __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setDeleteTrainingData');
   },
 
@@ -63676,8 +63967,8 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] upload');
     var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].uploadTrainingData);
-    // const corpusId = this.getters['commonData/corpusId'];
-    // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
+    var corpusId = this.getters['commonData/corpusId'];
+    apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
 
     // ファイル送信
     apiOption.data = new FormData();
@@ -63693,8 +63984,8 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] upload');
     var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].downloadTrainingData);
-    // const corpusId = this.getters['commonData/corpusId'];
-    // apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
+    var corpusId = this.getters['commonData/corpusId'];
+    apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
 
     // ファイル送信
     __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setDownloadTrainingDataCsvResult');
@@ -63838,6 +64129,7 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompAddTrainingDataModal]');
     commit('setModal', 'CompAddTrainingDataModal');
+    this.dispatch('corpusTrainingData/getTrainingData');
   },
 
 
@@ -63864,6 +64156,7 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompEditTrainingDataModal]');
     commit('setModal', 'CompEditTrainingDataModal');
+    this.dispatch('corpusTrainingData/getTrainingData');
   },
 
 
@@ -63882,6 +64175,7 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompDeleteTrainingDataModal]');
     commit('setModal', 'CompDeleteTrainingDataModal');
+    this.dispatch('corpusTrainingData/getTrainingData');
   },
 
 
@@ -64096,7 +64390,7 @@ function alertVendorEscalation(errorCode) {
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/apiManage/Main.vue")
 /* template */
 var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-650871b0\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/apiManage/Main.vue")
 /* template functional */
