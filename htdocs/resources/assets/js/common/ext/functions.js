@@ -9,6 +9,30 @@ const TOKEN_OPTION = {
 };
 
 /**
+ * クエリ文字列取得
+ */
+export function getUrlQuery() {
+  if (location.search.length > 1) {
+    const query = location.search.substring(1);
+    const parameters = query.split('&');
+
+    const result = {};
+    for (let i = 0; i < parameters.length; i++) {
+      // パラメータ名とパラメータ値に分割する
+      const element = parameters[i].split('=');
+
+      const paramName = decodeURIComponent(element[0]);
+      const paramValue = decodeURIComponent(element[1]);
+
+      // パラメータ名をキーとして連想配列に追加する
+      result[paramName] = decodeURIComponent(paramValue);
+    }
+    return result;
+  }
+  return null;
+}
+
+/**
  * クッキーにトークンセット
  */
 export function setToken(token) {
@@ -40,8 +64,13 @@ export function login() {
   Core.log('[login]');
   const token = getToken();
 
-  if(token !== undefined || token !== "") {
-    location.href = '/';
+  if (token !== undefined || token !== '') {
+    const query = getUrlQuery();
+    let path = '/';
+    if (query !== null && query.redirect !== undefined) {
+      path = query.redirect;
+    }
+    location.href = path;
   } else {
     logout();
   }
@@ -65,10 +94,15 @@ export function isAuth() {
 /**
  * ログアウト
  */
-export function logout() {
+export function logout(redirectPath) {
   Core.log('[logout]');
   delToken();
-  location.href = '/login';
+  
+  let path = '/login';
+  if (redirectPath !== undefined) {
+    path += '?redirect=' + redirectPath;
+  }
+  location.href = path;
 }
 
 /**
@@ -91,7 +125,9 @@ export function alertAxiosError() {
  */
 export function alertRefreshToken() {
   alert('認証切れが発生しました。再ログインを行なった上で、再度操作を行ってください。');
-  logout();
+
+  const currentPath = location.pathname;
+  logout(currentPath);
 }
 
 /**

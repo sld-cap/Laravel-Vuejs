@@ -47,7 +47,6 @@ router.beforeEach((to, from, next) => {
     const myToken = Lib.getToken();
     if (myToken !== undefined || myToken !== '') {
       // ログインユーザの情報確認
-      // const apiOption = Object.assign({}, ApiConfig['auth']);
       const apiOption = Object.assign({}, ApiConfig.auth);
       Ajax.checkStatus(apiOption).then((res) => {
         Core.log('[auth] success');
@@ -56,15 +55,18 @@ router.beforeEach((to, from, next) => {
           CapApp.$data.me = res.data.user;
           next();
         } else {
-          Lib.logout();
+          const currentPath = location.pathname;
+          Lib.logout(currentPath);
         }
       }).catch((err) => {
         Core.log('[auth] error');
         Core.log(err);
-        Lib.logout();
+        const currentPath = location.pathname;
+        Lib.logout(currentPath);
       });
     } else {
-      Lib.logout();
+      const currentPath = location.pathname;
+      Lib.logout(currentPath);
     }
   } else {
     next();

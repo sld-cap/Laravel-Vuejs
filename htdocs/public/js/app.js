@@ -60310,7 +60310,6 @@ router.beforeEach(function (to, from, next) {
     var myToken = __WEBPACK_IMPORTED_MODULE_7__common_ext_functions__["getToken"]();
     if (myToken !== undefined || myToken !== '') {
       // ログインユーザの情報確認
-      // const apiOption = Object.assign({}, ApiConfig['auth']);
       var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_8__common_core_apiConfig__["default"].auth);
       __WEBPACK_IMPORTED_MODULE_6__common_core_ajax__["checkStatus"](apiOption).then(function (res) {
         __WEBPACK_IMPORTED_MODULE_5__common_core_app__["log"]('[auth] success');
@@ -60319,15 +60318,18 @@ router.beforeEach(function (to, from, next) {
           CapApp.$data.me = res.data.user;
           next();
         } else {
-          __WEBPACK_IMPORTED_MODULE_7__common_ext_functions__["logout"]();
+          var currentPath = location.pathname;
+          __WEBPACK_IMPORTED_MODULE_7__common_ext_functions__["logout"](currentPath);
         }
       }).catch(function (err) {
         __WEBPACK_IMPORTED_MODULE_5__common_core_app__["log"]('[auth] error');
         __WEBPACK_IMPORTED_MODULE_5__common_core_app__["log"](err);
-        __WEBPACK_IMPORTED_MODULE_7__common_ext_functions__["logout"]();
+        var currentPath = location.pathname;
+        __WEBPACK_IMPORTED_MODULE_7__common_ext_functions__["logout"](currentPath);
       });
     } else {
-      __WEBPACK_IMPORTED_MODULE_7__common_ext_functions__["logout"]();
+      var currentPath = location.pathname;
+      __WEBPACK_IMPORTED_MODULE_7__common_ext_functions__["logout"](currentPath);
     }
   } else {
     next();
@@ -61489,6 +61491,7 @@ var actions = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["getUrlQuery"] = getUrlQuery;
 /* harmony export (immutable) */ __webpack_exports__["setToken"] = setToken;
 /* harmony export (immutable) */ __webpack_exports__["getToken"] = getToken;
 /* harmony export (immutable) */ __webpack_exports__["delToken"] = delToken;
@@ -61511,6 +61514,30 @@ var TOKEN_OPTION = {
   domain: '',
   secure: false
 };
+
+/**
+ * クエリ文字列取得
+ */
+function getUrlQuery() {
+  if (location.search.length > 1) {
+    var query = location.search.substring(1);
+    var parameters = query.split('&');
+
+    var result = {};
+    for (var i = 0; i < parameters.length; i++) {
+      // パラメータ名とパラメータ値に分割する
+      var element = parameters[i].split('=');
+
+      var paramName = decodeURIComponent(element[0]);
+      var paramValue = decodeURIComponent(element[1]);
+
+      // パラメータ名をキーとして連想配列に追加する
+      result[paramName] = decodeURIComponent(paramValue);
+    }
+    return result;
+  }
+  return null;
+}
 
 /**
  * クッキーにトークンセット
@@ -61544,8 +61571,13 @@ function login() {
   __WEBPACK_IMPORTED_MODULE_0__core_app__["log"]('[login]');
   var token = getToken();
 
-  if (token !== undefined || token !== "") {
-    location.href = '/';
+  if (token !== undefined || token !== '') {
+    var query = getUrlQuery();
+    var path = '/';
+    if (query !== null && query.redirect !== undefined) {
+      path = query.redirect;
+    }
+    location.href = path;
   } else {
     logout();
   }
@@ -61568,10 +61600,15 @@ function isAuth() {
 /**
  * ログアウト
  */
-function logout() {
+function logout(redirectPath) {
   __WEBPACK_IMPORTED_MODULE_0__core_app__["log"]('[logout]');
   delToken();
-  location.href = '/login';
+
+  var path = '/login';
+  if (redirectPath !== undefined) {
+    path += '?redirect=' + redirectPath;
+  }
+  location.href = path;
 }
 
 /**
@@ -61593,7 +61630,9 @@ function alertAxiosError() {
  */
 function alertRefreshToken() {
   alert('認証切れが発生しました。再ログインを行なった上で、再度操作を行ってください。');
-  logout();
+
+  var currentPath = location.pathname;
+  logout(currentPath);
 }
 
 /**
