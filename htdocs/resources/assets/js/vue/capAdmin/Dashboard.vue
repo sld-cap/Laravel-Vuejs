@@ -4,9 +4,9 @@
     <div class="col-12">
       <h1>dashboard</h1>
       <ul>
-        <li><a href="/corpus/1/data">コーパス管理画面 -基本情報-</a></li>
-        <li><a href="/corpus/1/data/view">コーパス管理画面 -データ管理-</a></li>
-        <li><a href="/corpus/1/training">コーパス管理画面 -学習管理-</a></li>
+        <li><a href="/corpus/1/data" target="_blank">コーパス管理画面 -基本情報-</a></li>
+        <li><a href="/corpus/1/data/view" target="_blank">コーパス管理画面 -データ管理-</a></li>
+        <li><a href="/corpus/1/training" target="_blank">コーパス管理画面 -学習管理-</a></li>
       </ul>
     </div>
     <!-- /.col-12 -->
