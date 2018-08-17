@@ -35,6 +35,7 @@
           <Loading v-if="trainingData.length === 0" /><!-- loading -->
           <template v-for="(classData, i) in trainingData">
             <div v-if="i === 0" class="tab-pane fade show list-group active" :key="classData.class_id" :id="'v-pills_1_' + i" role="tabpanel" :aria-labelledby="'v-pills-tab_1_' + i">
+              <NoTestDataAlert v-if="classData.test_data_count == '0'"/>
               <ul class="corpusTextList">
                 <li v-for="(creative, j) in classData.test_data" :key="creative.creative_id">
                   <a @click="showEditTrainingDataModal(0, i, j)" class="list-group-item list-group-item-action">{{ creative.content }}</a>
@@ -42,6 +43,7 @@
               </ul>
             </div>
             <div v-else class="tab-pane fade show list-group" :key="classData.class_id" :id="'v-pills_1_' + i" role="tabpanel" :aria-labelledby="'v-pills-tab_1_' + i">
+              <NoTestDataAlert v-if="classData.test_data_count == '0'"/>
               <ul class="corpusTextList">
                 <li v-for="(creative, j) in classData.test_data" :key="creative.creative_id">
                   <a @click="showEditTrainingDataModal(0, i, j)" class="list-group-item list-group-item-action">{{ creative.content }}</a>

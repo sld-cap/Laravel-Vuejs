@@ -4657,6 +4657,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 
@@ -8918,7 +8920,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -44353,6 +44355,10 @@ var render = function() {
                                 }
                               },
                               [
+                                classData.test_data_count == "0"
+                                  ? _c("NoTestDataAlert")
+                                  : _vm._e(),
+                                _vm._v(" "),
                                 _c(
                                   "ul",
                                   { staticClass: "corpusTextList" },
@@ -44385,7 +44391,8 @@ var render = function() {
                                     )
                                   })
                                 )
-                              ]
+                              ],
+                              1
                             )
                           : _c(
                               "div",
@@ -44399,6 +44406,10 @@ var render = function() {
                                 }
                               },
                               [
+                                classData.test_data_count == "0"
+                                  ? _c("NoTestDataAlert")
+                                  : _vm._e(),
+                                _vm._v(" "),
                                 _c(
                                   "ul",
                                   { staticClass: "corpusTextList" },
@@ -44431,7 +44442,8 @@ var render = function() {
                                     )
                                   })
                                 )
-                              ]
+                              ],
+                              1
                             )
                       ]
                     })
@@ -63896,9 +63908,11 @@ var mutations = {
 var actions = {
   // 取得
   getTrainingData: function getTrainingData(_ref) {
-    var commit = _ref.commit;
+    var commit = _ref.commit,
+        state = _ref.state;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusInfoAtDataManage');
+    state.trainingData = [];
 
     var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].getTrainingData);
     var corpusId = this.getters['commonData/corpusId'];

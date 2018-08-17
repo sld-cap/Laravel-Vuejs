@@ -147,8 +147,9 @@ const mutations = {
  */
 const actions = {
   // 取得
-  getTrainingData({ commit }) {
+  getTrainingData({ commit, state }) {
     Core.log('[store] getCorpusInfoAtDataManage');
+    state.trainingData = [];
 
     const apiOption = { ...ApiConfig.getTrainingData };
     const corpusId = this.getters['commonData/corpusId'];
