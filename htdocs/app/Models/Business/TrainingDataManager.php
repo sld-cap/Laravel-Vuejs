@@ -180,13 +180,13 @@ class TrainingDataManager
       // $creative_roop_cnt = 0; // クリエイティブ個数カウンタ
       foreach($creatives as $creative) {
         $data_type = (int)$creative->data_type;
-        if($data_type === CorpusDataType::Training) {
+        if($data_type == CorpusDataType::Training) {
           $response_array[$class_roop_cnt]['training_data'][] = array(
             'creative_id' => $creative->id,
             'content' => $creative->content
           );
 
-        } else if($data_type === CorpusDataType::Test) {
+        } else if($data_type == CorpusDataType::Test) {
           $response_array[$class_roop_cnt]['test_data'][] = array(
             'creative_id' => $creative->id,
             'content' => $creative->content
@@ -254,7 +254,7 @@ class TrainingDataManager
     $file->rewind();
     foreach ($file as $line) {
       // 最初の行をスキップ
-      if($file->key() === 0) {
+      if($file->key() == 0) {
         continue;
       }
       $row_count++;

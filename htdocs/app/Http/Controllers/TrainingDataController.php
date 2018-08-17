@@ -189,7 +189,7 @@ class TrainingDataController extends Controller
       // 学習データの場合のみ、CSVデータ件数チェック(範囲: 5-15000件)
       $form = $_request->all();
       $data_type = $form['data_type'];
-      if ($data_type === CorpusDataType::Training) {
+      if ($data_type == CorpusDataType::Training) {
         $rowCnt_error = $file->isInvalidCsvRow($file, $_corpus_id);
         if ($rowCnt_error) {
           $message = 'Invalid file contents.';
@@ -211,7 +211,7 @@ class TrainingDataController extends Controller
       }
 
       // 学習 or テスト
-      if ($data_type === CorpusDataType::Training) {
+      if ($data_type == CorpusDataType::Training) {
         // 全てのクリエイティブ対象
         $del_creatives = CorpusCreative::whereIn('corpus_class_id', $del_class_id_list);
 
@@ -222,7 +222,7 @@ class TrainingDataController extends Controller
       }
       $del_creatives->delete();
 
-      if ($data_type === CorpusDataType::Training) {
+      if ($data_type == CorpusDataType::Training) {
         $del_classes->delete();
       }
       
@@ -248,7 +248,7 @@ class TrainingDataController extends Controller
         $added_creative_count = CorpusCreative::where('corpus_class_id', $class->id)->where('data_type', $data_type)->count();
 
         $class = CorpusClass::find($class->id);
-        if($data_type === CorpusDataType::Training) {
+        if($data_type == CorpusDataType::Training) {
           $class->training_data_count = $added_creative_count;
         } else {
           $class->test_data_count = $added_creative_count;
@@ -258,7 +258,7 @@ class TrainingDataController extends Controller
       }
       
       // コーパスのステータス更新
-      if($data_type === CorpusDataType::Training) {
+      if($data_type == CorpusDataType::Training) {
         $corpus = Corpus::find($_corpus_id);
         $corpus->status = CorpusStateType::Untrained;
         $corpus->save();
@@ -360,7 +360,7 @@ class TrainingDataController extends Controller
       $validator = Validator::make($form, CorpusCreative::$edit_rule, CorpusCreative::$edit_error_messages);
       $validator->sometimes('add_class_name', 'required', function($input) {
         // クラスID未指定の場合は「クラス名」を必須項目としてチェックする
-        return $input->corpus_class_id === null;
+        return $input->corpus_class_id == null;
       });
   
     } else {
@@ -368,7 +368,7 @@ class TrainingDataController extends Controller
       $validator = Validator::make($form, CorpusCreative::$create_rule, CorpusCreative::$create_error_messages);
       $validator->sometimes('add_class_name', 'required', function($input) {
         // クラスID未指定の場合は「クラス名」を必須項目としてチェックする
-        return $input->corpus_class_id === null;
+        return $input->corpus_class_id == null;
       });
 
     }
@@ -398,7 +398,7 @@ class TrainingDataController extends Controller
         ->where('company_id', $user->company_id)
         ->count();
 
-    if ($my_corpus === 0) {
+    if ($my_corpus == 0) {
       // 指定コーパスが見つからない&&自社のAPIではない場合、400エラーを返す
       $formatter = new ApiResponseFormatter(404, 'Corpus not found.', array());
       return response()->json($formatter->getResponseArray());
@@ -455,7 +455,7 @@ class TrainingDataController extends Controller
       $get_data_type = (int)$form['data_type'];
       $corpus_class_id = $form['corpus_class_id'];
 
-      if ($corpus_class_id === null) {
+      if ($corpus_class_id == null) {
         // 同じ名前のクラス名がないかどうか
         $count = CorpusClass::where('corpus_id', $corpus_id)
             ->where('name', 'like binary', $add_class_name)
@@ -507,7 +507,7 @@ class TrainingDataController extends Controller
       // クラスのデータ件数の更新
       $update_class = CorpusClass::find($corpus_class_id);
 
-      if ($get_data_type === CorpusDataType::Training) { // 学習データ
+      if ($get_data_type == CorpusDataType::Training) { // 学習データ
         $count = $update_class->training_data_count;
         $count++;
         $update_class->training_data_count = $count;
@@ -517,7 +517,7 @@ class TrainingDataController extends Controller
         $corpus->status = CorpusStateType::Untrained;
         $corpus->save();
 
-      } else if ($get_data_type === CorpusDataType::Test) { // テストデータ
+      } else if ($get_data_type == CorpusDataType::Test) { // テストデータ
         $count = $update_class->test_data_count;
         $count++;
         $update_class->test_data_count = $count;
@@ -566,7 +566,7 @@ class TrainingDataController extends Controller
     $key = 0;
     foreach ($file as $line) {
       // 最初の行をスキップ
-      if ($file->key() === 0) {
+      if ($file->key() == 0) {
         continue;
       }
       
@@ -644,7 +644,7 @@ class TrainingDataController extends Controller
         'updated_at' => $now
       ];
 
-      if (count($insert_creative_data[$key]) === 1000) {
+      if (count($insert_creative_data[$key]) == 1000) {
         $key++;
       }
     }
