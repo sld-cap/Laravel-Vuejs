@@ -3835,6 +3835,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   watch: {
     'errors': {
       handler: function handler(errors) {
+        __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[watch] errors');
         // エラー表示処理
         this.resetErr();
         this.setErrData(errors);
@@ -4901,8 +4902,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_MultiModal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/MultiModal.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_MultiModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_MultiModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_components_Loading__ = __webpack_require__("./resources/assets/js/vue/common/components/Loading.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_components_Loading___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_components_Loading__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
 //
 //
 //
@@ -4975,9 +4979,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 // 共通モーダル
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    MultiModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_MultiModal___default.a
+    MultiModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_MultiModal___default.a, Loading: __WEBPACK_IMPORTED_MODULE_3__common_components_Loading___default.a
   },
   props: ['me', 'corpusId'],
   data: function data() {
@@ -4985,7 +4990,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
 
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
-    corpusInfo: 'corpusData/corpusInfo'
+    corpusInfo: 'corpusData/corpusInfo',
+    loading: 'commonData/loading'
   })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
@@ -42412,7 +42418,18 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("MultiModal")
+      _c("MultiModal"),
+      _vm._v(" "),
+      _c("Loading", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.loading,
+            expression: "loading"
+          }
+        ]
+      })
     ],
     1
   )
@@ -63107,7 +63124,10 @@ function exec(option, commit, mutation, eMutation) {
 
     if (eMutation !== undefined && eMutation !== '') {
       commit(eMutation);
-    } else {
+    }
+
+    // Todo: エラー周りはもう少しなんとかしたい
+    if (eMutation !== 'setLoginError') {
       __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertAxiosError"]();
     }
   });
@@ -63826,6 +63846,7 @@ var mutations = {
     } else {
       __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
     }
+    this.commit('commonData/hideLoading');
   },
 
   // 編集: 教師データ編集結果チェック
@@ -63847,6 +63868,7 @@ var mutations = {
     } else {
       __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
     }
+    this.commit('commonData/hideLoading');
   },
 
   // 削除: 教師データ削除結果チェック
@@ -63862,6 +63884,7 @@ var mutations = {
     } else {
       __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
     }
+    this.commit('commonData/hideLoading');
   },
 
   // アップロード: 教師データCSVアップロード結果チェック
@@ -63883,6 +63906,7 @@ var mutations = {
     } else {
       __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
     }
+    this.commit('commonData/hideLoading');
   },
 
   // ダウンロード: 教師データCSVダウンロード結果チェック
@@ -63897,6 +63921,12 @@ var mutations = {
     }));
     var filename = 'training_data.csv';
     __WEBPACK_IMPORTED_MODULE_3__ext_functions__["execFileDownload"](url, filename);
+  },
+
+  // ajaxでエラー時にローディング削除する用
+  hideLoading: function hideLoading() {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] hideLoading');
+    this.commit('commonData/hideLoading');
   }
 };
 
@@ -63929,12 +63959,13 @@ var actions = {
         content = _ref3.content;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] addTrainingData');
+    this.commit('commonData/showLoading');
 
     var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].addTrainingData);
     apiOption.data = {
       corpus_id: corpus_id, data_type: data_type, corpus_class_id: corpus_class_id, add_class_name: add_class_name, content: content
     };
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setAddTrainingData');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setAddTrainingData', 'hideLoading');
   },
 
   // 編集
@@ -63947,6 +63978,7 @@ var actions = {
         content = _ref5.content;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] saveTrainingData');
+    this.commit('commonData/showLoading');
 
     var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].saveTrainingData);
     apiOption.url = apiOption.url.replace(/{creative_id}/g, creative_id);
@@ -63955,7 +63987,7 @@ var actions = {
     apiOption.data = {
       corpus_id: corpus_id, data_type: data_type, corpus_class_id: corpus_class_id, content: content, add_class_name: add_class_name, creative_id: creative_id
     };
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setSaveTrainingData');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setSaveTrainingData', 'hideLoading');
   },
 
   // 削除
@@ -63964,10 +63996,11 @@ var actions = {
     var creative_id = _ref7.creative_id;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] deleteTrainingData');
+    this.commit('commonData/showLoading');
 
     var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].deleteTrainingData);
     apiOption.url = apiOption.url.replace(/{creative_id}/g, creative_id);
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setDeleteTrainingData');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setDeleteTrainingData', 'hideLoading');
   },
 
   // 一括登録
@@ -63978,15 +64011,16 @@ var actions = {
         data_type = _ref9.data_type;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] upload');
+    this.commit('commonData/showLoading');
+
     var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].uploadTrainingData);
     var corpusId = this.getters['commonData/corpusId'];
     apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
-
     // ファイル送信
     apiOption.data = new FormData();
     apiOption.data.append('csv_file', csv_file);
     apiOption.data.append('data_type', data_type);
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setUploadTrainingDataCsvResult');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setUploadTrainingDataCsvResult', 'hideLoading');
   },
 
   // CSVダウンロード
@@ -65386,7 +65420,7 @@ module.exports = Component.exports
   methods: {
     setErrData: function setErrData(errors) {
       for (var index in errors) {
-        var item = errors[index].item;
+        var item = errors[index].field_id;
         if (item in this.err) {
           this.err[item]['invalid'] = ' is-invalid';
           this.err[item]['message'] = errors[index].message;

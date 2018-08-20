@@ -18,7 +18,10 @@ export function exec(option, commit, mutation, eMutation) {
 
     if (eMutation !== undefined && eMutation !== '') {
       commit(eMutation);
-    } else {
+    }
+
+    // Todo: エラー周りはもう少しなんとかしたい
+    if (eMutation !== 'setLoginError') {
       Lib.alertAxiosError();
     }
   });

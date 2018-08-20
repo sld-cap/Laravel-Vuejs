@@ -83,6 +83,7 @@ export default {
   watch: {
     'errors': {
       handler: function (errors) {
+        Core.log('[watch] errors');
         // エラー表示処理
         this.resetErr();
         this.setErrData(errors);

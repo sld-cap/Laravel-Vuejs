@@ -61,6 +61,7 @@
     </div>
     <!-- /.container-fluid -->
     <MultiModal></MultiModal>
+    <Loading v-show="loading"></Loading>
   </div>
 </template>
 
@@ -69,10 +70,11 @@ import * as Core from '../../common/core/app';
 import { mapActions, mapGetters } from 'vuex';
 // 共通モーダル
 import MultiModal from './common/modal/MultiModal';
+import Loading from '../common/components/Loading';
 
 export default {
   components: {
-    MultiModal,
+    MultiModal, Loading,
   },
   props: ['me', 'corpusId'],
   data() {
@@ -82,6 +84,7 @@ export default {
   computed: {
     ...mapGetters({
       corpusInfo: 'corpusData/corpusInfo',
+      loading: 'commonData/loading',
     }),
   },
   created() {

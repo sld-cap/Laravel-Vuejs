@@ -71,6 +71,7 @@ const mutations = {
     } else {
       Lib.alertVendorEscalation(resCode);
     }
+    this.commit('commonData/hideLoading');
   },
   // 編集: 教師データ編集結果チェック
   setSaveTrainingData(state, payload) {
@@ -91,6 +92,7 @@ const mutations = {
     } else {
       Lib.alertVendorEscalation(resCode);
     }
+    this.commit('commonData/hideLoading');
   },
   // 削除: 教師データ削除結果チェック
   setDeleteTrainingData(state, payload) {
@@ -105,6 +107,7 @@ const mutations = {
     } else {
       Lib.alertVendorEscalation(resCode);
     }
+    this.commit('commonData/hideLoading');
   },
   // アップロード: 教師データCSVアップロード結果チェック
   setUploadTrainingDataCsvResult(state, payload) {
@@ -125,6 +128,7 @@ const mutations = {
     } else {
       Lib.alertVendorEscalation(resCode);
     }
+    this.commit('commonData/hideLoading');
   },
   // ダウンロード: 教師データCSVダウンロード結果チェック
   setDownloadTrainingDataCsvResult(state, payload) {
@@ -138,6 +142,11 @@ const mutations = {
     }));
     const filename = 'training_data.csv';
     Lib.execFileDownload(url, filename);
+  },
+  // ajaxでエラー時にローディング削除する用
+  hideLoading() {
+    Core.log('[store] hideLoading');
+    this.commit('commonData/hideLoading');
   },
 };
 
@@ -160,16 +169,18 @@ const actions = {
   // 登録
   addTrainingData({ commit }, {corpus_id, data_type, corpus_class_id, add_class_name, content}) {
     Core.log('[store] addTrainingData');
-
+    this.commit('commonData/showLoading');
+    
     const apiOption = Object.assign({}, ApiConfig.addTrainingData);
     apiOption.data = {
       corpus_id, data_type, corpus_class_id, add_class_name, content,
     };
-    Ajax.exec(apiOption, commit, 'setAddTrainingData');
+    Ajax.exec(apiOption, commit, 'setAddTrainingData', 'hideLoading');
   },
   // 編集
   saveTrainingData({ commit }, {corpus_id, data_type, corpus_class_id, creative_id, content}) {
     Core.log('[store] saveTrainingData');
+    this.commit('commonData/showLoading');
 
     const apiOption = Object.assign({}, ApiConfig.saveTrainingData);
     apiOption.url = apiOption.url.replace(/{creative_id}/g, creative_id);
@@ -178,28 +189,30 @@ const actions = {
     apiOption.data = {
       corpus_id, data_type, corpus_class_id, content, add_class_name, creative_id,
     };
-    Ajax.exec(apiOption, commit, 'setSaveTrainingData');
+    Ajax.exec(apiOption, commit, 'setSaveTrainingData', 'hideLoading');
   },
   // 削除
   deleteTrainingData({ commit }, { creative_id }) {
     Core.log('[store] deleteTrainingData');
+    this.commit('commonData/showLoading');
 
     const apiOption = Object.assign({}, ApiConfig.deleteTrainingData);
     apiOption.url = apiOption.url.replace(/{creative_id}/g, creative_id);
-    Ajax.exec(apiOption, commit, 'setDeleteTrainingData');
+    Ajax.exec(apiOption, commit, 'setDeleteTrainingData', 'hideLoading');
   },
   // 一括登録
   uploadTrainingDataCsv({ commit, state }, { csv_file, data_type }) {
     Core.log('[store] upload');
+    this.commit('commonData/showLoading');
+
     const apiOption = Object.assign({}, ApiConfig.uploadTrainingData);
     const corpusId = this.getters['commonData/corpusId'];
     apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
-
     // ファイル送信
     apiOption.data = new FormData();
     apiOption.data.append('csv_file', csv_file);
     apiOption.data.append('data_type', data_type);
-    Ajax.exec(apiOption, commit, 'setUploadTrainingDataCsvResult');
+    Ajax.exec(apiOption, commit, 'setUploadTrainingDataCsvResult', 'hideLoading');
   },
   // CSVダウンロード
   downloadTrainingDataCsv({ commit, state }) {
