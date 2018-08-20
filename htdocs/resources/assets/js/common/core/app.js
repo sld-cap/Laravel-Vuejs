@@ -29,3 +29,12 @@ export const CorpusLanguage = {
     label: '英語',
   },
 };
+
+export const CorpusType = {
+  1: {
+    label: '自然言語',
+  },
+  2: {
+    label: '画像',
+  },
+};
