@@ -76,8 +76,6 @@ const API_CONFIG = {
   // 教師データダウンロード
   downloadTrainingData: {
     url: '/api/v1/training-data/{corpus_id}/download',
-    // url: '/stub/data/successData.json', // 処理成功用stub
-    // url: '/stub/data/TrainingDataUploadError.json', // 処理失敗用stub
     method: 'GET',
     data: {},
   },
