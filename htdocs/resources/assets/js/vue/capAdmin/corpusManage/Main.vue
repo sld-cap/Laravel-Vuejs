@@ -19,13 +19,15 @@
                 </div>
               </div>
               <!-- /.row -->
-
-              <div class="row mt-2">
+              <div class="row mt-2" v-if="corpusList.length > 0 && corpusList.length < 8">
                 <button type="button" class="btn btn-danger" style="margin-left:15px;" data-toggle="modal" data-target="#NlCreateModal">新規作成</button>
               </div>
               <!-- /.row -->
 
               <div class="row">
+                <div class="col-12" v-if="corpusList.length === 0">
+                  <NoCorpusAlert></NoCorpusAlert>
+                </div>
 
                 <div v-for="(corpus) in corpusList" :key="corpus.id" class="col-lg-4 col-md-4 col-sm-6">
                   <div @click="openCorpusAdminTab(corpus.id)" class="card detail-card" style="margin:10px 0;">
@@ -38,19 +40,19 @@
                           <i class="material-icons">more_vert</i>
                         </a>
                       </div>
-                      <p class="card-text" style="clear:both;margin-bottom:10px;">{{ corpus.description }}</p>
+                      <p class="card-text three-dots-card" style="clear:both;margin-bottom:10px;">{{ corpus.description }}</p>
                     </div>
                     <div class="card-footer" style="padding-top:2px;border-top: 1px solid #eee;">
                       <div class="stats pull-right">
-                        関連API:「」
+                        関連API:「」（Todo: 後で実装）
                       </div>
                     </div>
                     <div class="card-footer" style="padding-top:2px;border-top: 1px solid #eee;">
                       <div class="stats pull-right">
-                        {{ corpus.type }}
+                        {{ dispCorpusTypeLabel(corpus.type) }}
                       </div>
                       <div class="stats pull-left">
-                        <i class="material-icons">update</i> 最終更新日：{{ corpus.updated_at }}（{{ corpus.update_user_name }}）
+                        <i class="material-icons">update</i> 最終更新日：{{ convElapsedTime(corpus.updated_at) }}（{{ corpus.update_user_name }}）
                       </div>
                     </div>
                   </div>
@@ -82,10 +84,12 @@ import * as Lib from '../../../common/ext/functions';
 import ApiConfig from '../../../common/core/apiConfig';
 
 import { mapGetters } from 'vuex';
+import NoCorpusAlert from './alert/NoCorpusAlert.vue';
 
 export default {
   props: ['me'],
   components: {
+    NoCorpusAlert,
   },
   data() {
     return {};
@@ -100,6 +104,7 @@ export default {
   },
   updated: function() {
     Core.log('[updated]');
+    Lib.adjastCorpusCardDescriptionRows('three-dots-card');
   },
   mounted: function() {
     Core.log('[mounted]');
@@ -109,6 +114,13 @@ export default {
       const corpusIdStr = corpusId + '';
       const redirectPath = `/corpus/${corpusIdStr}/data`;
       open(redirectPath, "_blank");
+    },
+    convElapsedTime(dateTime) {
+      Core.log('[convElapsedTime]');
+      return Lib.elapsedTime(dateTime);
+    },
+    dispCorpusTypeLabel(typeKey) {
+      return Core.CorpusType[typeKey].label;
     },
   },
 };
