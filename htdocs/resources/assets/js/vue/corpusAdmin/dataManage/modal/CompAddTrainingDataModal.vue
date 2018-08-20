@@ -4,7 +4,9 @@
       <div slot="title">クラス／テキスト追加（学習データ）</div>
       <!-- /.title -->
       <div slot="body">
-        <p>学習データの登録が完了しました。学習管理で学習しましょう。</p>
+        <h5>学習データの登録が完了しました。</h5>
+        <p class="mt-4" v-if="trainingDataCount >= 5" @click="hideModal"><router-link :to="{ name: 'training' }">学習管理ページ</router-link>でAI学習を実行しましょう。</p>
+        <p class="mt-4" v-else>AI学習には5件以上の学習データが必要です。<br>引き続き登録を行いましょう。</p>
       </div>
       <!-- /.body -->
       <div slot="footer">
@@ -48,6 +50,9 @@ export default {
     };
   },
   computed: {
+    ...mapGetters({
+      trainingDataCount: 'corpusTrainingData/trainingDataCount',
+    }),
   },
   mounted() {
   },
