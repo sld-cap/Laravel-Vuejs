@@ -131,13 +131,13 @@ const mutations = {
     Core.log('[store] setDownloadTrainingDataCsvResult');
     Core.log(payload);
 
-    // if (payload.code === 200) {
-    //   // 完了モーダルを開く
-    //   this.dispatch('multiModal/showCompUploadTrainingDataCsvModal');
-    // } else {
-    //   // エラーデータセット
-    //   this.commit('multiModal/setTrainingDataUploadError', payload.errors);
-    // }
+    const content = payload;
+    const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+    const url = window.URL.createObjectURL(new Blob([bom, content], {
+      type: 'text/csv',
+    }));
+    const filename = 'training_data.csv';
+    Lib.execFileDownload(url, filename);
   },
 };
 
