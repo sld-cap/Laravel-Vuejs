@@ -31,6 +31,19 @@ const getters = {
     }
     return sum;
   },
+  // 学習データ件数
+  trainingDataCount: (state) => {
+    Core.log('[store] trainingDataCount');
+    let sum = 0;
+
+    if (state.trainingData !== undefined && state.trainingData.length > 0) {
+      state.trainingData.filter((classData) => {
+        Core.log(classData.training_data_count);
+        sum += parseInt(classData.training_data_count, 10);
+      });
+    }
+    return sum;
+  },
 };
 
 
