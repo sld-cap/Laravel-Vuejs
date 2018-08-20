@@ -19,7 +19,8 @@
       <div slot="title">クラス／テキスト追加（テストデータ）</div>
       <!-- /.title -->
       <div slot="body">
-        <p>テストデータの登録が完了しました。学習管理で学習しましょう。</p>
+        <h5>テストデータの登録が完了しました。</h5>
+        <p class="mt-4" @click="hideModal"><router-link :to="{ name: 'training' }">学習管理ページ</router-link>でテストを実行しましょう。</p>
       </div>
       <!-- /.body -->
       <div slot="footer">

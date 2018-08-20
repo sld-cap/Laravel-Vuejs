@@ -4019,6 +4019,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 
@@ -42901,11 +42902,19 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { attrs: { slot: "body" }, slot: "body" }, [
-                _c("p", [
-                  _vm._v(
-                    "テストデータの登録が完了しました。学習管理で学習しましょう。"
-                  )
-                ])
+                _c("h5", [_vm._v("テストデータの登録が完了しました。")]),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  { staticClass: "mt-4", on: { click: _vm.hideModal } },
+                  [
+                    _c("router-link", { attrs: { to: { name: "training" } } }, [
+                      _vm._v("学習管理ページ")
+                    ]),
+                    _vm._v("でテストを実行しましょう。")
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
