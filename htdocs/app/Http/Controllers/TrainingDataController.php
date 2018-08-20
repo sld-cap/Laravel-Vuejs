@@ -162,7 +162,7 @@ class TrainingDataController extends Controller
    */
   public function upload(Request $_request, $_corpus_id)
   {
-    // try {
+    try {
       // バリデーション
       $user = JWTAuth::parseToken()->authenticate();
       $corpus = Corpus::where('id', $_corpus_id)->where('company_id', $user->company_id)->get();
@@ -272,17 +272,17 @@ class TrainingDataController extends Controller
       ));
       return response()->json($formatter->getResponseArray());
 
-    // } catch (\PDOException $e){
-    //   DB::rollBack();
-    //   $formatter = new ApiResponseFormatter(404, $e->getMessage(), '');
-    //   return response()->json($formatter->getResponseArray());
+    } catch (\PDOException $e){
+      DB::rollBack();
+      $formatter = new ApiResponseFormatter(404, $e->getMessage(), '');
+      return response()->json($formatter->getResponseArray());
 
-    // } catch(\Exception $e) {
-    //   DB::rollBack();
-    //   $formatter = new ApiResponseFormatter(400, $e->getMessage(), '');
-    //   return response()->json($formatter->getResponseArray());
+    } catch(\Exception $e) {
+      DB::rollBack();
+      $formatter = new ApiResponseFormatter(400, $e->getMessage(), '');
+      return response()->json($formatter->getResponseArray());
 
-    // }
+    }
   }
 
   /**

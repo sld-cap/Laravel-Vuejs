@@ -51,7 +51,9 @@ class UserController extends Controller
   {
     $credentials = $request->only('email', 'password');
     try {
-      if (! $token = JWTAuth::attempt($credentials)) {
+      // トークンのセット（有効期限：4w）
+      $customClaims = isset($request->remember_me) ? ['exp' => Carbon\Carbon::now()->addWeeks(4)-test>getTimestamp()] : [];
+      if (! $token = JWTAuth::attempt($credentials, $customClaims)) {
         return response()->json(['error' => 'invalid_credentials'], 401);
       }
     } catch (JWTException $e) {

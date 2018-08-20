@@ -8,20 +8,25 @@ Route::post('authenticate','UserController@authenticate');
 // コンテンツルート
 // Route::group(['middleware' => 'jwt.auth'], function () {
   Route::prefix('v1')->group(function () {
-    // ユーザー情報
+    // ユーザー情報のCRUD
     Route::resource('users', 'UserController');
     Route::get('me', 'UserController@getCurrentUser');
 
-    // コーパス情報
+    // コーパスのCRUD
     Route::resource('corpus', 'CorpusController');
 
-    //  教師データ情報
+    // AI学習
+    Route::get('corpus/{corpus_id}/learnable', 'LearningController@learnable');
+
+    // 教師データのCRUD
     Route::resource('training-data', 'TrainingDataController')->except([
       'index', 'edit' // このルートは除外
     ]);
     Route::post('training-data/{corpus_id}/upload', 'TrainingDataController@upload');
     Route::get('training-data/{corpus_id}/download', 'TrainingDataController@download');
     Route::get('training-data/sample/download', 'TrainingDataController@downloadSample');
+
+
 
   });
 // });
