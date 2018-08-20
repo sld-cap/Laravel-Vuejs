@@ -115,18 +115,6 @@ export default {
       successMsg: 'commonData/successMsg',
       errors: 'commonData/errors',
     }),
-    // corpusInfo() {
-    //   return this.$store.getters.corpusInfo;
-    // },
-    // trainingData() {
-    //   return this.$store.getters.trainingData;
-    // },
-    // successMsg() {
-    //   return this.$store.getters.successMsg;
-    // },
-    // errors() {
-    //   return this.$store.getters.errors;
-    // },
   },
   created() {
     Core.log('[created]');
