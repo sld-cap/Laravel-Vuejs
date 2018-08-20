@@ -16,8 +16,8 @@
         <span class="text-muted" data-feather="download" style="width:20px;height:20px;"></span>
         <span>CSVダウンロード</span>
       </a>
-      <button type="button" class="btn btn-link">
-        <span><a href="/files/corpus-admin/training_data_sample.csv">サンプル</a></span>
+      <button @click="downloadSampleCsv" type="button" class="btn btn-link">
+        サンプル
       </button>
     </div>
 
@@ -30,6 +30,7 @@
 import * as Core from '../../../../common/core/app';
 import * as Ajax from '../../../../common/core/ajax';
 import ApiConfig from '../../../../common/core/apiConfig';
+import * as Lib from '../../../../common/ext/functions';
 
 export default {
   props: [],
@@ -59,6 +60,11 @@ export default {
     },
     execDownloadTrainingCsv() {
       this.$store.dispatch('corpusTrainingData/downloadTrainingDataCsv');
+    },
+    downloadSampleCsv() {
+      const url = '/files/corpus-admin/training_data_sample.csv';
+      const filename = 'training_data_sample.csv';
+      Lib.execFileDownload(url, filename);
     },
   },
 }
