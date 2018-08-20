@@ -4117,6 +4117,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
 //
 //
 //
@@ -4167,7 +4172,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
-  computed: {},
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapGetters */])({
+    trainingDataCount: 'corpusTrainingData/trainingDataCount'
+  })),
   mounted: function mounted() {},
 
   methods: {}
@@ -4187,6 +4194,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+//
 //
 //
 //
@@ -4804,6 +4812,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
 //
 //
 //
@@ -4832,6 +4841,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -4864,6 +4874,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     execDownloadTrainingCsv: function execDownloadTrainingCsv() {
       this.$store.dispatch('corpusTrainingData/downloadTrainingDataCsv');
+    },
+    downloadSampleCsv: function downloadSampleCsv() {
+      var url = '/files/corpus-admin/training_data_sample.csv';
+      var filename = 'training_data_sample.csv';
+      __WEBPACK_IMPORTED_MODULE_3__common_ext_functions__["execFileDownload"](url, filename);
     }
   }
 });
@@ -40562,30 +40577,19 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._m(0)
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-link",
+          attrs: { type: "button" },
+          on: { click: _vm.downloadSampleCsv }
+        },
+        [_vm._v("\n      サンプル\n    ")]
+      )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn btn-link", attrs: { type: "button" } },
-      [
-        _c("span", [
-          _c(
-            "a",
-            { attrs: { href: "/files/corpus-admin/training_data_sample.csv" } },
-            [_vm._v("サンプル")]
-          )
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -40867,11 +40871,19 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { attrs: { slot: "body" }, slot: "body" }, [
-              _c("p", [
-                _vm._v(
-                  "学習データのアップロードが完了しました。学習管理で学習しましょう。"
-                )
-              ])
+              _c("h5", [_vm._v("学習データのアップロードが完了しました。")]),
+              _vm._v(" "),
+              _c(
+                "p",
+                { staticClass: "mt-4", on: { click: _vm.hideModal } },
+                [
+                  _c("router-link", { attrs: { to: { name: "training" } } }, [
+                    _vm._v("学習管理ページ")
+                  ]),
+                  _vm._v("でAI学習を実行しましょう。")
+                ],
+                1
+              )
             ]),
             _vm._v(" "),
             _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
@@ -43577,11 +43589,27 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { attrs: { slot: "body" }, slot: "body" }, [
-              _c("p", [
-                _vm._v(
-                  "学習データの編集が完了しました。学習管理で学習しましょう。"
-                )
-              ])
+              _c("h5", [_vm._v("学習データの編集が完了しました。")]),
+              _vm._v(" "),
+              _vm.trainingDataCount >= 5
+                ? _c(
+                    "p",
+                    { staticClass: "mt-4", on: { click: _vm.hideModal } },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "training" } } },
+                        [_vm._v("学習管理ページ")]
+                      ),
+                      _vm._v("でAI学習を実行しましょう。")
+                    ],
+                    1
+                  )
+                : _c("p", { staticClass: "mt-4" }, [
+                    _vm._v("AI学習には5件以上の学習データが必要です。"),
+                    _c("br"),
+                    _vm._v("登録を行いましょう。")
+                  ])
             ]),
             _vm._v(" "),
             _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
@@ -43605,11 +43633,19 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { attrs: { slot: "body" }, slot: "body" }, [
-              _c("p", [
-                _vm._v(
-                  "テストデータの編集が完了しました。学習管理で学習しましょう。"
-                )
-              ])
+              _c("h5", [_vm._v("テストデータの登録が完了しました。")]),
+              _vm._v(" "),
+              _c(
+                "p",
+                { staticClass: "mt-4", on: { click: _vm.hideModal } },
+                [
+                  _c("router-link", { attrs: { to: { name: "training" } } }, [
+                    _vm._v("学習管理ページ")
+                  ]),
+                  _vm._v("でテストを実行しましょう。")
+                ],
+                1
+              )
             ]),
             _vm._v(" "),
             _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
@@ -64726,7 +64762,7 @@ function setScrollTop() {
  * 通信エラーアラート表示
  */
 function alertAxiosError() {
-  alert('通信エラーが発生しました。再度、画面読み込みを行ってください。\nエラーが続く場合、お問い合わせください。');
+  alert('処理エラーが発生しました。画面の再読み込みを行なった上で、再度操作を行なってください。\nエラーが続く場合、お問い合わせください。');
 }
 
 /**
