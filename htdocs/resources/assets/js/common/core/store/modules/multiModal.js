@@ -85,6 +85,11 @@ const mutations = {
     Core.log('[store] setTrainingDataUploadError');
     state.trainingDataUploadError = errors;
   },
+  // リロード処理
+  reloadTrainingData() {
+    Core.log('[store] reloadTrainingData');
+    this.dispatch('corpusTrainingData/getTrainingData');
+  },
 };
 
 
@@ -106,13 +111,12 @@ const actions = {
   showAddTrainingDataModal({ commit, state }, { dataType }) {
     Core.log('[showAddTrainingDataModal]');
     state.currentDataType = dataType;
-
     commit('setModal', 'AddTrainingDataModal');
   },
   showCompAddTrainingDataModal({ commit }) {
     Core.log('[showCompAddTrainingDataModal]');
     commit('setModal', 'CompAddTrainingDataModal');
-    this.dispatch('corpusTrainingData/getTrainingData');
+    commit('reloadTrainingData');
   },
 
   // 教師データ編集モーダル開閉
@@ -129,7 +133,7 @@ const actions = {
   showCompEditTrainingDataModal({ commit }) {
     Core.log('[showCompEditTrainingDataModal]');
     commit('setModal', 'CompEditTrainingDataModal');
-    this.dispatch('corpusTrainingData/getTrainingData');
+    commit('reloadTrainingData');
   },
 
   // 教師データ削除モーダル開閉
@@ -142,10 +146,10 @@ const actions = {
   showCompDeleteTrainingDataModal({ commit }) {
     Core.log('[showCompDeleteTrainingDataModal]');
     commit('setModal', 'CompDeleteTrainingDataModal');
-    this.dispatch('corpusTrainingData/getTrainingData');
+    commit('reloadTrainingData');
   },
 
-  // 教師データSVアップロードモーダル開閉
+  // 教師データCSVアップロードモーダル開閉
   showUploadTrainingCsvModal({ commit,state }, { dataType }) {
     Core.log('[showUploadTrainingCsvModal]');
     state.currentDataType = dataType;
@@ -155,6 +159,7 @@ const actions = {
   showCompUploadTrainingDataCsvModal({ commit }) {
     Core.log('[showCompUploadTrainingDataCsvModal]');
     commit('setModal', 'CompUploadTrainingCsvModal');
+    commit('reloadTrainingData');
   },
 
   // 閾値設定モーダル開閉
