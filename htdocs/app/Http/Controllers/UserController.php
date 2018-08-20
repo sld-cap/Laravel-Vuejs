@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Carbon\Carbon;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -52,7 +53,7 @@ class UserController extends Controller
     $credentials = $request->only('email', 'password');
     try {
       // トークンのセット（有効期限：4w）
-      $customClaims = isset($request->remember_me) ? ['exp' => Carbon\Carbon::now()->addWeeks(4)-test>getTimestamp()] : [];
+      $customClaims = isset($request->remember_me) ? ['exp' => Carbon::now()->addWeeks(4)-test>getTimestamp()] : [];
       if (! $token = JWTAuth::attempt($credentials, $customClaims)) {
         return response()->json(['error' => 'invalid_credentials'], 401);
       }
