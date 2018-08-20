@@ -26,7 +26,7 @@
           <div class="divider-form"></div>
           <div class="checkbox">
             <label>
-              <input type="checkbox" name="remember"> ログインを記憶する
+              <input v-model="auth.remember_me" type="checkbox" name="remember"> ログインを記憶する
             </label>
           </div>
           <!-- /.form-group -->
@@ -64,7 +64,8 @@ export default {
     return {
       auth: {
 				email: "",
-				password: "",
+        password: "",
+        remember_me: false,
       },
     };
   },

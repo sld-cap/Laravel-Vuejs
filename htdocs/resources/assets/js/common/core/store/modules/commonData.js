@@ -92,10 +92,10 @@ const mutations = {
  */
 const actions = {
   // ログイン処理
-  login({ commit }, { email, password }) {
+  login({ commit }, { email, password, remember_me }) {
     Core.log('[store] login');
     const apiOption = ApiConfig.login;
-    apiOption.data = { email, password };
+    apiOption.data = { email, password, remember_me };
 
     Ajax.exec(apiOption, commit, 'doLogin', 'setLoginError');
   },
