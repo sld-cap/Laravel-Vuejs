@@ -4,7 +4,8 @@
       <div slot="title">学習データのアップロード</div>
       <!-- /.title -->
       <div slot="body">
-        <p>学習データのアップロードが完了しました。学習管理で学習しましょう。</p>
+        <h5>学習データのアップロードが完了しました。</h5>
+        <p class="mt-4" @click="hideModal"><router-link :to="{ name: 'training' }">学習管理ページ</router-link>でAI学習を実行しましょう。</p>
       </div>
       <!-- /.body -->
       <div slot="footer">
