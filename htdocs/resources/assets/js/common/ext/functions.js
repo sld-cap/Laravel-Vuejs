@@ -136,3 +136,14 @@ export function alertRefreshToken() {
 export function alertVendorEscalation(errorCode) {
   alert(`アプリケーションエラーが発生しました（code: ${errorCode}）。\nエラーが続く場合、お問い合わせください。`);
 }
+
+/**
+ * ファイルダウンローダー
+ */
+export function execFileDownload(url, filename) {
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', filename);
+  document.body.appendChild(link);
+  link.click();
+}
