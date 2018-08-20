@@ -1876,6 +1876,40 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/common/alert/Alert.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['alertType'],
+  data: function data() {
+    return {
+      alertClass: 'alert ' + this.alertType
+    };
+  },
+
+  mounted: function mounted() {},
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/corpusManage/Main.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1886,6 +1920,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__alert_NoCorpusAlert_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/corpusManage/alert/NoCorpusAlert.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__alert_NoCorpusAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__alert_NoCorpusAlert_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -1965,6 +2001,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+
 
 
 
@@ -1975,7 +2014,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['me'],
-  components: {},
+  components: {
+    NoCorpusAlert: __WEBPACK_IMPORTED_MODULE_5__alert_NoCorpusAlert_vue___default.a
+  },
   data: function data() {
     return {};
   },
@@ -1989,6 +2030,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
   updated: function updated() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
+    __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__["adjastCorpusCardDescriptionRows"]('three-dots-card');
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
@@ -1998,8 +2040,47 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       var corpusIdStr = corpusId + '';
       var redirectPath = '/corpus/' + corpusIdStr + '/data';
       open(redirectPath, "_blank");
+    },
+    convElapsedTime: function convElapsedTime(dateTime) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[convElapsedTime]');
+      return __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__["elapsedTime"](dateTime);
+    },
+    dispCorpusTypeLabel: function dispCorpusTypeLabel(typeKey) {
+      return __WEBPACK_IMPORTED_MODULE_0__common_core_app__["CorpusType"][typeKey].label;
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/corpusManage/alert/NoCorpusAlert.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_alert_Alert_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/alert/Alert.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_alert_Alert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_alert_Alert_vue__);
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Alert: __WEBPACK_IMPORTED_MODULE_0__common_alert_Alert_vue___default.a
+  },
+  data: function data() {
+    return {
+      alertClass: ''
+    };
+  },
+
+  mounted: function mounted() {},
+  methods: {}
 });
 
 /***/ }),
@@ -3904,6 +3985,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
 //
 //
 //
@@ -3954,7 +4039,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
-  computed: {},
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapGetters */])({
+    trainingDataCount: 'corpusTrainingData/trainingDataCount'
+  })),
   mounted: function mounted() {},
 
   methods: {}
@@ -6055,7 +6142,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     return {
       auth: {
         email: "",
-        password: ""
+        password: "",
+        remember_me: false
       }
     };
   },
@@ -8912,6 +9000,21 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a71fd1e8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/common/alert/Alert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -41545,6 +41648,31 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3c279c45\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/corpusManage/alert/NoCorpusAlert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("Alert", { attrs: { "alert-type": _vm.alertClass } }, [
+    _c("div", { attrs: { slot: "message" }, slot: "message" }, [
+      _vm._v("稼働コーパスはありません")
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3c279c45", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3f258b1e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/corpusAdmin/common/alert/custom/ErrorAlert.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -42073,114 +42201,160 @@ var render = function() {
               [
                 _vm._m(1),
                 _vm._v(" "),
-                _vm._m(2),
+                _vm.corpusList.length > 0 && _vm.corpusList.length < 8
+                  ? _c("div", { staticClass: "row mt-2" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          staticStyle: { "margin-left": "15px" },
+                          attrs: {
+                            type: "button",
+                            "data-toggle": "modal",
+                            "data-target": "#NlCreateModal"
+                          }
+                        },
+                        [_vm._v("新規作成")]
+                      )
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "row" },
-                  _vm._l(_vm.corpusList, function(corpus) {
-                    return _c(
-                      "div",
-                      {
-                        key: corpus.id,
-                        staticClass: "col-lg-4 col-md-4 col-sm-6"
-                      },
-                      [
-                        _c(
+                  [
+                    _vm.corpusList.length === 0
+                      ? _c(
                           "div",
-                          {
-                            staticClass: "card detail-card",
-                            staticStyle: { margin: "10px 0" },
-                            on: {
-                              click: function($event) {
-                                _vm.openCorpusAdminTab(corpus.id)
-                              }
-                            }
-                          },
-                          [
-                            corpus.is_production === "1"
-                              ? _c("span", { staticClass: "ribbon13-2" }, [
-                                  _vm._v("本番")
-                                ])
-                              : _c("span", { staticClass: "ribbon13-3" }, [
-                                  _vm._v("検証")
-                                ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass: "card-body",
-                                staticStyle: { padding: "15px 15px 10px 15px" }
-                              },
-                              [
-                                _c(
-                                  "h4",
-                                  {
-                                    staticClass: "card-title",
-                                    staticStyle: {
-                                      width: "95%",
-                                      float: "left",
-                                      "font-weight": "600"
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(corpus.name))]
-                                ),
-                                _vm._v(" "),
-                                _vm._m(3, true),
-                                _vm._v(" "),
-                                _c(
-                                  "p",
-                                  {
-                                    staticClass: "card-text",
-                                    staticStyle: {
-                                      clear: "both",
-                                      "margin-bottom": "10px"
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(corpus.description))]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _vm._m(4, true),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass: "card-footer",
-                                staticStyle: {
-                                  "padding-top": "2px",
-                                  "border-top": "1px solid #eee"
-                                }
-                              },
-                              [
-                                _c("div", { staticClass: "stats pull-right" }, [
-                                  _vm._v(
-                                    "\n                      " +
-                                      _vm._s(corpus.type) +
-                                      "\n                    "
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "stats pull-left" }, [
-                                  _c("i", { staticClass: "material-icons" }, [
-                                    _vm._v("update")
-                                  ]),
-                                  _vm._v(
-                                    " 最終更新日：" +
-                                      _vm._s(corpus.updated_at) +
-                                      "（" +
-                                      _vm._s(corpus.update_user_name) +
-                                      "）\n                    "
-                                  )
-                                ])
-                              ]
-                            )
-                          ]
+                          { staticClass: "col-12" },
+                          [_c("NoCorpusAlert")],
+                          1
                         )
-                      ]
-                    )
-                  })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm._l(_vm.corpusList, function(corpus) {
+                      return _c(
+                        "div",
+                        {
+                          key: corpus.id,
+                          staticClass: "col-lg-4 col-md-4 col-sm-6"
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "card detail-card",
+                              staticStyle: { margin: "10px 0" },
+                              on: {
+                                click: function($event) {
+                                  _vm.openCorpusAdminTab(corpus.id)
+                                }
+                              }
+                            },
+                            [
+                              corpus.is_production === "1"
+                                ? _c("span", { staticClass: "ribbon13-2" }, [
+                                    _vm._v("本番")
+                                  ])
+                                : _c("span", { staticClass: "ribbon13-3" }, [
+                                    _vm._v("検証")
+                                  ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "card-body",
+                                  staticStyle: {
+                                    padding: "15px 15px 10px 15px"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "h4",
+                                    {
+                                      staticClass: "card-title",
+                                      staticStyle: {
+                                        width: "95%",
+                                        float: "left",
+                                        "font-weight": "600"
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(corpus.name))]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._m(2, true),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      staticClass: "card-text three-dots-card",
+                                      staticStyle: {
+                                        clear: "both",
+                                        "margin-bottom": "10px"
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(corpus.description))]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _vm._m(3, true),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "card-footer",
+                                  staticStyle: {
+                                    "padding-top": "2px",
+                                    "border-top": "1px solid #eee"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "stats pull-right" },
+                                    [
+                                      _vm._v(
+                                        "\n                      " +
+                                          _vm._s(
+                                            _vm.dispCorpusTypeLabel(corpus.type)
+                                          ) +
+                                          "\n                    "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "stats pull-left" },
+                                    [
+                                      _c(
+                                        "i",
+                                        { staticClass: "material-icons" },
+                                        [_vm._v("update")]
+                                      ),
+                                      _vm._v(
+                                        " 最終更新日：" +
+                                          _vm._s(
+                                            _vm.convElapsedTime(
+                                              corpus.updated_at
+                                            )
+                                          ) +
+                                          "（" +
+                                          _vm._s(corpus.update_user_name) +
+                                          "）\n                    "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    })
+                  ],
+                  2
                 )
               ]
             )
@@ -42209,26 +42383,6 @@ var staticRenderFns = [
           _c("p", [_vm._v("作成できるコーパスは8個までです。")])
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mt-2" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          staticStyle: { "margin-left": "15px" },
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#NlCreateModal"
-          }
-        },
-        [_vm._v("新規作成")]
-      )
     ])
   },
   function() {
@@ -42271,7 +42425,9 @@ var staticRenderFns = [
       },
       [
         _c("div", { staticClass: "stats pull-right" }, [
-          _vm._v("\n                      関連API:「」\n                    ")
+          _vm._v(
+            "\n                      関連API:「」（Todo: 後で実装）\n                    "
+          )
         ])
       ]
     )
@@ -42703,11 +42859,27 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { attrs: { slot: "body" }, slot: "body" }, [
-              _c("p", [
-                _vm._v(
-                  "学習データの登録が完了しました。学習管理で学習しましょう。"
-                )
-              ])
+              _c("h5", [_vm._v("学習データの登録が完了しました。")]),
+              _vm._v(" "),
+              _vm.trainingDataCount >= 5
+                ? _c(
+                    "p",
+                    { staticClass: "mt-4", on: { click: _vm.hideModal } },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "training" } } },
+                        [_vm._v("学習管理ページ")]
+                      ),
+                      _vm._v("でAI学習を実行しましょう。")
+                    ],
+                    1
+                  )
+                : _c("p", { staticClass: "mt-4" }, [
+                    _vm._v("AI学習には5件以上の学習データが必要です。"),
+                    _c("br"),
+                    _vm._v("引き続き登録を行いましょう。")
+                  ])
             ]),
             _vm._v(" "),
             _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
@@ -43623,7 +43795,51 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "divider-form" }),
             _vm._v(" "),
-            _vm._m(0),
+            _c("div", { staticClass: "checkbox" }, [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.auth.remember_me,
+                      expression: "auth.remember_me"
+                    }
+                  ],
+                  attrs: { type: "checkbox", name: "remember" },
+                  domProps: {
+                    checked: Array.isArray(_vm.auth.remember_me)
+                      ? _vm._i(_vm.auth.remember_me, null) > -1
+                      : _vm.auth.remember_me
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.auth.remember_me,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(_vm.auth, "remember_me", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.auth,
+                              "remember_me",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.auth, "remember_me", $$c)
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" ログインを記憶する\n          ")
+              ])
+            ]),
             _vm._v(" "),
             _c(
               "button",
@@ -43658,19 +43874,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "checkbox" }, [
-      _c("label", [
-        _c("input", { attrs: { type: "checkbox", name: "remember" } }),
-        _vm._v(" ログインを記憶する\n          ")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -44180,6 +44384,50 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-a57852b6", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a71fd1e8\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/common/alert/Alert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { class: _vm.alertClass },
+    [_vm._m(0), _vm._v(" "), _vm._t("message")],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }
+      },
+      [_c("i", { staticClass: "material-icons" }, [_vm._v("close")])]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a71fd1e8", module.exports)
   }
 }
 
@@ -50618,6 +50866,33 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a57852b6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./currentStatus.vue", function() {
      var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a57852b6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./currentStatus.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a71fd1e8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/common/alert/Alert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a71fd1e8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/common/alert/Alert.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("5aaf0448", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a71fd1e8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Alert.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a71fd1e8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Alert.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -63266,6 +63541,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["log"] = log;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CorpusDataType", function() { return CorpusDataType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CorpusLanguage", function() { return CorpusLanguage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CorpusType", function() { return CorpusType; });
 var DEBUG_MODE = true;
 
 /**
@@ -63295,6 +63571,15 @@ var CorpusLanguage = {
   },
   1: {
     label: '英語'
+  }
+};
+
+var CorpusType = {
+  1: {
+    label: '自然言語'
+  },
+  2: {
+    label: '画像'
   }
 };
 
@@ -63582,11 +63867,12 @@ var actions = {
   login: function login(_ref, _ref2) {
     var commit = _ref.commit;
     var email = _ref2.email,
-        password = _ref2.password;
+        password = _ref2.password,
+        remember_me = _ref2.remember_me;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] login');
     var apiOption = __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].login;
-    apiOption.data = { email: email, password: password };
+    apiOption.data = { email: email, password: password, remember_me: remember_me };
 
     __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'doLogin', 'setLoginError');
   }
@@ -63802,6 +64088,19 @@ var getters = {
     if (state.trainingData !== undefined && state.trainingData.length > 0) {
       state.trainingData.filter(function (classData) {
         sum += parseInt(classData.test_data_count, 10);
+      });
+    }
+    return sum;
+  },
+  // 学習データ件数
+  trainingDataCount: function trainingDataCount(state) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] trainingDataCount');
+    var sum = 0;
+
+    if (state.trainingData !== undefined && state.trainingData.length > 0) {
+      state.trainingData.filter(function (classData) {
+        __WEBPACK_IMPORTED_MODULE_0__app__["log"](classData.training_data_count);
+        sum += parseInt(classData.training_data_count, 10);
       });
     }
     return sum;
@@ -64295,6 +64594,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["alertRefreshToken"] = alertRefreshToken;
 /* harmony export (immutable) */ __webpack_exports__["alertVendorEscalation"] = alertVendorEscalation;
 /* harmony export (immutable) */ __webpack_exports__["execFileDownload"] = execFileDownload;
+/* harmony export (immutable) */ __webpack_exports__["elapsedTime"] = elapsedTime;
+/* harmony export (immutable) */ __webpack_exports__["adjastCorpusCardDescriptionRowsResize"] = adjastCorpusCardDescriptionRowsResize;
+/* harmony export (immutable) */ __webpack_exports__["adjastCorpusCardDescriptionRows"] = adjastCorpusCardDescriptionRows;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie__ = __webpack_require__("./node_modules/jquery.cookie/jquery.cookie.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_cookie__);
@@ -64446,6 +64748,150 @@ function execFileDownload(url, filename) {
   link.click();
 }
 
+/**
+ * 経過時間算出
+ */
+function elapsedTime(dateTime) {
+  var now = new Date().getTime();
+  var from = new Date(dateTime).getTime();
+  var diff = now - from;
+  var elapsed = new Date(diff);
+
+  var diffFullYear = elapsed.getUTCFullYear();
+  var diffMonth = elapsed.getUTCMonth();
+  var diffDate = elapsed.getUTCDate();
+  var diffHours = elapsed.getUTCHours();
+  var diffMinutes = elapsed.getUTCMinutes();
+  var diffSeconds = elapsed.getUTCSeconds();
+
+  __WEBPACK_IMPORTED_MODULE_0__core_app__["log"]('FullYear: ' + diffFullYear + '|Month: ' + diffMonth + '|Date: ' + diffDate + '|Hours: ' + diffHours + '|Minutes: ' + diffMinutes + '|Seconds: ' + diffSeconds);
+
+  var res = dateTime;
+  if (diffFullYear - 1970 > 0 || diffMonth >= 3) {
+    res = '3ヶ月以上前';
+  } else if (diffMonth > 0) {
+    res = diffMonth + '\u30F6\u6708\u524D';
+  } else if (diffDate - 1 > 0) {
+    res = diffDate + '\u65E5\u524D';
+  } else if (diffHours > 0) {
+    res = diffDate + '\u6642\u9593\u524D';
+  } else if (diffMinutes > 0) {
+    res = diffMinutes + '\u5206\u524D';
+  } else {
+    res = diffSeconds + '\u79D2\u524D';
+  }
+  return res;
+}
+
+/**
+ * コーパスカードで表示する説明文を2行に調整
+ */
+function adjastCorpusCardDescriptionRowsResize(classname) {
+  var timer = false;
+  $(window).resize(function () {
+    // タイマーによって、リサイズ単位毎に関数が実行され、重くなるのを防ぐ
+    if (timer !== false) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function () {
+      $('.' + classname).each(function () {
+        var $target = $(this);
+        var rest = void 0;
+        // 以前にリサイズしたか(document.readyで必ず<p class="three-dots-card-rest">
+        // は存在するのでこの条件文はtrueを返すが、念のため)
+        if ($target.next().hasClass(classname + '-rest')) {
+          // 省略していた文章を取得
+          rest = $target.next().html();
+          // 省略していた文章が空ではなかったとき、本文には３点リーダーが表示されて
+          // いるので、その３文字を削除
+          if (rest !== '') {
+            $target.html($target.html().slice(0, -3)); // 末尾の...を削除
+          }
+          // これがないと永遠に<p class="three-dots-card-rest">が増えていく
+          $target.next().remove();
+        } else {
+          rest = '';
+        }
+
+        // オリジナルの文章を復元
+        var html = $target.html() + rest;
+        // 対象の要素を、高さにautoを指定し非表示で複製する
+        // 方針としては、このクローン(オリジナルの文章を保持)を非表示でブラウザに配置させ、
+        // クローンの文字消去と元のボックスとの高さ比較を行うことによって、
+        // クローンが元のボックスと同様の高さになったときの文章で差し替える
+        var $clone = $target.clone();
+        $clone.html(html);
+        $clone.css({
+          display: 'none'
+        }).width($target.width()).height('auto');
+
+        // 目印クラスをつけて
+        // DOMを追加 (これにより高さを獲得)
+        $clone.addClass(classname + '-rest');
+        $target.after($clone);
+
+        rest = '';
+        // 指定した高さになるまで、1文字ずつ消去していくと同時に、
+        // 文章が完全消去されないように rest に退避させておく
+        while (html.length > 0 && $clone.height() > $target.height()) {
+          rest = html.substr(html.length - 1, 1) + rest;
+          html = html.substr(0, html.length - 1);
+          $clone.html(html + '...'); // 高さ更新
+        }
+
+        // 文章差し替え
+        // rest が空っぽということは、三点リーダーを表示する必要がないということ
+        if (rest == "") {
+          $target.html(html);
+        } else {
+          $target.html(html + '...');
+        }
+        // 次のリサイズ用に次の要素に残りの文章を入れておく
+        $clone.html(rest);
+      });
+    }, 100);
+  });
+}
+
+function adjastCorpusCardDescriptionRows(classname) {
+  $('.' + classname).each(function () {
+    var $target = $(this);
+    var rest = '';
+
+    // オリジナルの文章を取得
+    var html = $target.html();
+
+    // 対象の要素を、高さにautoを指定し非表示で複製する
+    var $clone = $target.clone();
+    $clone.css({
+      display: 'none'
+    }).width($target.width()).height('auto');
+
+    // 目印クラスをつけて
+    // DOMを追加
+    $clone.addClass(classname + '-rest');
+    $target.after($clone);
+
+    // 指定した高さになるまで、1文字ずつ消去していく
+    while (html.length > 0 && $clone.height() > $target.height()) {
+      rest = html.substr(html.length - 1, 1) + rest;
+      html = html.substr(0, html.length - 1);
+      $clone.html(html + '...'); // 高さ更新
+    }
+
+    // 文章差し替え
+    if (rest == '') {
+      $target.html(html);
+    } else {
+      $target.html(html + '...');
+    }
+    // リサイズ用に次の要素に残りの文章を入れておく
+    $clone.html(rest);
+  });
+  // リサイズした時のイベント
+  adjastCorpusCardDescriptionRowsResize(classname);
+}
+
 /***/ }),
 
 /***/ "./resources/assets/js/vue/capAdmin/apiManage/Main.vue":
@@ -64485,6 +64931,58 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-650871b0", Component.options)
   } else {
     hotAPI.reload("data-v-650871b0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/capAdmin/common/alert/Alert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a71fd1e8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/common/alert/Alert.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/common/alert/Alert.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a71fd1e8\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/common/alert/Alert.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/capAdmin/common/alert/Alert.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a71fd1e8", Component.options)
+  } else {
+    hotAPI.reload("data-v-a71fd1e8", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -64537,6 +65035,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-4e477c44", Component.options)
   } else {
     hotAPI.reload("data-v-4e477c44", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/capAdmin/corpusManage/alert/NoCorpusAlert.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/corpusManage/alert/NoCorpusAlert.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3c279c45\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/corpusManage/alert/NoCorpusAlert.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/capAdmin/corpusManage/alert/NoCorpusAlert.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3c279c45", Component.options)
+  } else {
+    hotAPI.reload("data-v-3c279c45", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
