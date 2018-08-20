@@ -162,7 +162,7 @@ class TrainingDataController extends Controller
    */
   public function upload(Request $_request, $_corpus_id)
   {
-    try {
+    // try {
       // バリデーション
       $user = JWTAuth::parseToken()->authenticate();
       $corpus = Corpus::where('id', $_corpus_id)->where('company_id', $user->company_id)->get();
@@ -190,7 +190,7 @@ class TrainingDataController extends Controller
       $form = $_request->all();
       $data_type = $form['data_type'];
       if ($data_type == CorpusDataType::Training) {
-        $rowCnt_error = $file->isInvalidCsvRow($file, $_corpus_id);
+        $rowCnt_error = $file->isInvalidCsvRow($file->getObject(), $_corpus_id);
         if ($rowCnt_error) {
           $message = 'Invalid file contents.';
           $formatter = new ApiResponseFormatter(404, $message, array(
@@ -203,10 +203,10 @@ class TrainingDataController extends Controller
       DB::beginTransaction();
 
       // 古いデータの削除
-      $del_classes = CorpusClass::where('corpus_id', $_corpus_id)->get();
+      $del_classes = CorpusClass::where('corpus_id', $_corpus_id);
 
       $del_class_id_list = [];
-      foreach ($del_classes as $class) {
+      foreach ($del_classes->get() as $class) {
         $del_class_id_list[] = $class->id;
       }
 
@@ -232,6 +232,7 @@ class TrainingDataController extends Controller
         'data_type' => $data_type
       ];
 
+      // return $file->getObject();
       $insert_data = $this->createCreativeInsertData($file->getObject(), $with_data);
 
       // 登録処理
@@ -271,17 +272,17 @@ class TrainingDataController extends Controller
       ));
       return response()->json($formatter->getResponseArray());
 
-    } catch (\PDOException $e){
-      DB::rollBack();
-      $formatter = new ApiResponseFormatter(404, $e->getMessage(), '');
-      return response()->json($formatter->getResponseArray());
+    // } catch (\PDOException $e){
+    //   DB::rollBack();
+    //   $formatter = new ApiResponseFormatter(404, $e->getMessage(), '');
+    //   return response()->json($formatter->getResponseArray());
 
-    } catch(\Exception $e) {
-      DB::rollBack();
-      $formatter = new ApiResponseFormatter(400, $e->getMessage(), '');
-      return response()->json($formatter->getResponseArray());
+    // } catch(\Exception $e) {
+    //   DB::rollBack();
+    //   $formatter = new ApiResponseFormatter(400, $e->getMessage(), '');
+    //   return response()->json($formatter->getResponseArray());
 
-    }
+    // }
   }
 
   /**
@@ -320,7 +321,7 @@ class TrainingDataController extends Controller
         'テキスト（この行は削除しないでください。）',
         'クラス',
       ];
-      mb_convert_variables('SJIS-win', 'UTF-8', $columns);
+      // mb_convert_variables('SJIS-win', 'UTF-8', $columns);
       fputcsv($handle, $columns);
 
 
@@ -336,7 +337,7 @@ class TrainingDataController extends Controller
           $data->content,
           $data->name
         ];
-        mb_convert_variables('SJIS-win', 'UTF-8', $csv);
+        // mb_convert_variables('SJIS-win', 'UTF-8', $csv);
         fputcsv($handle, $csv);
       }
 

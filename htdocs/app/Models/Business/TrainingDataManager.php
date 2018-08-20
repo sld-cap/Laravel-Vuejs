@@ -165,6 +165,7 @@ class TrainingDataManager
     $class_roop_cnt = 0; // クラス個数カウンタ
     foreach($classes as $class) {
       $creatives = CorpusCreative::where('corpus_class_id', $class->id)
+          ->orderBy('content', 'asc')
           ->orderBy('updated_at', 'desc')
           ->get();
 
