@@ -63228,8 +63228,6 @@ var API_CONFIG = {
   // 教師データダウンロード
   downloadTrainingData: {
     url: '/api/v1/training-data/{corpus_id}/download',
-    // url: '/stub/data/successData.json', // 処理成功用stub
-    // url: '/stub/data/TrainingDataUploadError.json', // 処理失敗用stub
     method: 'GET',
     data: {}
   }
@@ -63892,13 +63890,13 @@ var mutations = {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setDownloadTrainingDataCsvResult');
     __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
 
-    // if (payload.code === 200) {
-    //   // 完了モーダルを開く
-    //   this.dispatch('multiModal/showCompUploadTrainingDataCsvModal');
-    // } else {
-    //   // エラーデータセット
-    //   this.commit('multiModal/setTrainingDataUploadError', payload.errors);
-    // }
+    var content = payload;
+    var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+    var url = window.URL.createObjectURL(new Blob([bom, content], {
+      type: 'text/csv'
+    }));
+    var filename = 'training_data.csv';
+    __WEBPACK_IMPORTED_MODULE_3__ext_functions__["execFileDownload"](url, filename);
   }
 };
 
@@ -64105,6 +64103,12 @@ var mutations = {
   setTrainingDataUploadError: function setTrainingDataUploadError(state, errors) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setTrainingDataUploadError');
     state.trainingDataUploadError = errors;
+  },
+
+  // リロード処理
+  reloadTrainingData: function reloadTrainingData() {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] reloadTrainingData');
+    this.dispatch('corpusTrainingData/getTrainingData');
   }
 };
 
@@ -64135,7 +64139,6 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showAddTrainingDataModal]');
     state.currentDataType = dataType;
-
     commit('setModal', 'AddTrainingDataModal');
   },
   showCompAddTrainingDataModal: function showCompAddTrainingDataModal(_ref5) {
@@ -64143,7 +64146,7 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompAddTrainingDataModal]');
     commit('setModal', 'CompAddTrainingDataModal');
-    this.dispatch('corpusTrainingData/getTrainingData');
+    commit('reloadTrainingData');
   },
 
 
@@ -64170,7 +64173,7 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompEditTrainingDataModal]');
     commit('setModal', 'CompEditTrainingDataModal');
-    this.dispatch('corpusTrainingData/getTrainingData');
+    commit('reloadTrainingData');
   },
 
 
@@ -64189,11 +64192,11 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompDeleteTrainingDataModal]');
     commit('setModal', 'CompDeleteTrainingDataModal');
-    this.dispatch('corpusTrainingData/getTrainingData');
+    commit('reloadTrainingData');
   },
 
 
-  // 教師データSVアップロードモーダル開閉
+  // 教師データCSVアップロードモーダル開閉
   showUploadTrainingCsvModal: function showUploadTrainingCsvModal(_ref11, _ref12) {
     var commit = _ref11.commit,
         state = _ref11.state;
@@ -64209,6 +64212,7 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompUploadTrainingDataCsvModal]');
     commit('setModal', 'CompUploadTrainingCsvModal');
+    commit('reloadTrainingData');
   },
 
 
@@ -64256,6 +64260,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["alertAxiosError"] = alertAxiosError;
 /* harmony export (immutable) */ __webpack_exports__["alertRefreshToken"] = alertRefreshToken;
 /* harmony export (immutable) */ __webpack_exports__["alertVendorEscalation"] = alertVendorEscalation;
+/* harmony export (immutable) */ __webpack_exports__["execFileDownload"] = execFileDownload;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie__ = __webpack_require__("./node_modules/jquery.cookie/jquery.cookie.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_cookie__);
@@ -64394,6 +64399,17 @@ function alertRefreshToken() {
  */
 function alertVendorEscalation(errorCode) {
   alert('\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u30A8\u30E9\u30FC\u304C\u767A\u751F\u3057\u307E\u3057\u305F\uFF08code: ' + errorCode + '\uFF09\u3002\n\u30A8\u30E9\u30FC\u304C\u7D9A\u304F\u5834\u5408\u3001\u304A\u554F\u3044\u5408\u308F\u305B\u304F\u3060\u3055\u3044\u3002');
+}
+
+/**
+ * ファイルダウンローダー
+ */
+function execFileDownload(url, filename) {
+  var link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', filename);
+  document.body.appendChild(link);
+  link.click();
 }
 
 /***/ }),
