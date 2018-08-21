@@ -38,3 +38,30 @@ export const CorpusType = {
     label: '画像',
   },
 };
+
+export const CorpusStateType = {
+  0: {
+    status: '本番稼働中',
+    availableMsg: '完了済み',
+  },
+  1: {
+    status: '注意：教師データなし',
+    availableMsg: '学習不可',
+  },
+  2: {
+    status: '注意：学習未実行',
+    availableMsg: '学習可能',
+  },
+  3: {
+    status: '注意：学習中',
+    availableMsg: '学習中...',
+  },
+  4: {
+    status: '注意：本番反映未実行',
+    availableMsg: '完了済み',
+  },
+  9: {
+    status: '注意：コーパスの登録不備',
+    availableMsg: '学習可能',
+  },
+};
