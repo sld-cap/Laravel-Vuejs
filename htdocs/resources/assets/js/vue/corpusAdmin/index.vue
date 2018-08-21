@@ -87,6 +87,22 @@ export default {
       loading: 'commonData/loading',
     }),
   },
+  watch: {
+    'corpusInfo': {
+      handler: function (val, oldVal) {
+        Core.log('[watch] corpusAdmin/index.vue');
+        Core.log(oldVal);
+        Core.log(val);
+        
+        // 初回のコーパスデータ取得時に、学習完了を確認するタイマー処理を実行する
+        const oldValLength = Object.keys(oldVal).length;
+        if ( (oldValLength === 0 || oldVal.status === '2') && val.status === '3' ) {
+          this.$store.commit('corpusData/execCheckCorpusTrainingTimer')
+        }
+      },
+      deep: true
+    }
+  },
   created() {
     Core.log('[created]');
     Core.log('me/corpusId');
@@ -97,6 +113,7 @@ export default {
     // 各種情報取得
     this.getCorpusInfo();
     this.getTrainingData();
+    this.getApiList();
   },
   updated: function() {
     Core.log('[updated]');
@@ -109,6 +126,7 @@ export default {
     ...mapActions({
       getCorpusInfo: 'corpusData/getCorpusInfo',
       getTrainingData: 'corpusTrainingData/getTrainingData',
+      getApiList: 'apiData/getApiList',
     }),
   },
 };
