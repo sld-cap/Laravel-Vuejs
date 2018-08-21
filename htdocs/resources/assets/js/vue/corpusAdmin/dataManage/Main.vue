@@ -47,7 +47,7 @@
           <TrainingDataManageActions></TrainingDataManageActions>
           <!-- /.row -->
 
-          <div class="row mt-2" v-if="corpusInfo.status == 1" >
+          <div class="row mt-2" v-if="corpusInfo.status == 1 || trainingDataCount === 0" >
             <div class="col-12">
               <NoTrainingDataAlert></NoTrainingDataAlert>
               <!-- /.alert -->
@@ -60,16 +60,19 @@
 
         <!-- テストデータタブ -->
         <div class="tab-pane fade" id="test" role="tabpanel" aria-labelledby="test-tab">
-          <div v-if="corpusInfo.status == 1" class="row mt-2">
-            <div class="col-12">
-              <NoTrainingDataAlert></NoTrainingDataAlert>
-            <!-- /.alert -->
+          <template v-if="corpusInfo.status == 1 || trainingDataCount === 0">
+            <div class="row mt-2">
+              <div class="col-12">
+                <NoTrainingDataAlert></NoTrainingDataAlert>
+              <!-- /.alert -->
+              </div>
             </div>
-          </div>
-          <!-- /.row -->
-
-          <TestDataManageActions v-if="corpusInfo.status != 1"></TestDataManageActions>
-          <TestDataTable v-if="corpusInfo.status != 1"></TestDataTable>
+            <!-- /.row -->
+          </template>
+          <template v-else>
+            <TestDataManageActions></TestDataManageActions>
+            <TestDataTable></TestDataTable>
+          </template>
         </div>
         <!-- テストデータタブ -->
 
@@ -114,6 +117,7 @@ export default {
       corpusInfo: 'corpusData/corpusInfo',
       successMsg: 'commonData/successMsg',
       errors: 'commonData/errors',
+      trainingDataCount: 'corpusTrainingData/trainingDataCount',
     }),
   },
   created() {

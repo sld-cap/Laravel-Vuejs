@@ -9,6 +9,7 @@ import * as Lib from '../../../ext/functions';
  */
 const state = {
   trainingData: [],
+  loading: true,
 };
 
 
@@ -19,6 +20,9 @@ const getters = {
   // コーパス情報取得
   trainingData: (state) => {
     return state.trainingData;
+  },
+  loading: (state) => {
+    return state.loading;
   },
   // テストデータ件数
   testDataCount: (state) => {
@@ -61,9 +65,12 @@ const mutations = {
       state.trainingData = payload.data;
     } else if (resCode === 401) {
       Lib.alertRefreshToken();
+    } else if (resCode === 404) {
+      state.trainingData = [];
     } else {
       Lib.alertVendorEscalation(resCode);
     }
+    state.loading = false;
   },
   // 登録: 教師データ登録結果チェック
   setAddTrainingData(state, payload) {
@@ -172,6 +179,7 @@ const actions = {
   getTrainingData({ commit, state }) {
     Core.log('[store] getCorpusInfoAtDataManage');
     state.trainingData = [];
+    state.loading = true;
 
     const apiOption = { ...ApiConfig.getTrainingData };
     const corpusId = this.getters['commonData/corpusId'];
