@@ -49,6 +49,7 @@ import * as Core from '../../../common/core/app';
 import * as Ajax from '../../../common/core/ajax';
 import * as Lib from '../../../common/ext/functions';
 import ApiConfig from '../../../common/core/apiConfig';
+import { mapActions, mapGetters } from 'vuex';
 
 // 学習ステップコンポーネント
 import Step1 from './stepList/step1.vue';
@@ -61,7 +62,7 @@ import Step7 from './stepList/step7.vue';
 // これまでの学習状況
 import CurrentStatus from './trainingStatus/currentStatus.vue';
 import LatestSummary from './trainingStatus/latestSummary.vue';
-// モーダル系
+
 
 export default {
   props: ['me', 'corpusId'],
@@ -70,8 +71,6 @@ export default {
     Step1, Step2, Step3, Step4, Step5, Step6, Step7, 
     // これまでの学習状況
     CurrentStatus, LatestSummary,
-    // モーダル系
-
   },
   data() {
     return {
@@ -80,18 +79,22 @@ export default {
   computed: {
   },
   created() {
-    Core.log('[created]');
+    Core.log('[created] TrainingManage/Main.vue');
     this.$store.state.successMsg = '';
     this.$store.state.errors = [];
   },
   updated: function() {
-    Core.log('[updated]');
+    Core.log('[updated] TrainingManage/Main.vue');
   },
   mounted: function() {
-    Core.log('[mounted]');
+    Core.log('[mounted] TrainingManage/Main.vue');
+    this.getCorpusInfo();
     feather.replace();
   },
   methods: {
+    ...mapActions({
+      getCorpusInfo: 'corpusData/getCorpusInfo',
+    }),
   },
 };
 </script>

@@ -13,8 +13,8 @@
       <form class="container mt-4">
         <div class="form-group">
           <label for="selectApi">紐付けるAPIを指定してください</label>
-          <select class="form-control" id="selectApi">
-            <option>動的に表示を変えます</option>
+          <select class="form-control" id="selectApi" v-model="postData.api_id">
+            <option v-for="api in apiList" :key="api.id" :value="api.id">{{ api.name }}</option>
           </select>
         </div>
         <!-- /.form-group -->
@@ -47,18 +47,27 @@ export default {
   props: [],
   data() {
     return {
+      postData: {
+        corpus_id: this.$store.getters['commonData/corpusId'],
+        api_id: '',
+      },
     };
   },
   computed: {
     ...mapGetters({
+      apiList: 'apiData/apiList',
     }),
   },
   mounted() {
     Core.log('[mounted]');
+    this.postData.api_id = this.apiList[0].id;
   },
   methods: {
     deploy() {
       Core.log('[deploy]');
+      Core.log(this.postData);
+      this.$store.dispatch('corpusData/deployCorpus', this.postData);
+      this.hideModal();
     },
   },
 };
