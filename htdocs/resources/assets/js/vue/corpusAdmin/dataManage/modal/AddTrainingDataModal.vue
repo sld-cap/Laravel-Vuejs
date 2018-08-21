@@ -10,7 +10,7 @@
       <!-- /.alert -->
       <div class="form-group">
         <label for="addContent">追加するテキスト</label>
-        <textarea v-model="form.content" :class="'form-control' + err.content.invalid" id="addContent" rows="3"></textarea>
+        <textarea v-model="form.content" :class="'form-control' + err.content.invalid" id="addContent" rows="3" maxlength="1024"></textarea>
         <small class="form-text text-muted">1024文字以内で入力してください。</small>
         <div class="invalid-feedback">
           {{ err.content.message }}
@@ -32,7 +32,8 @@
       <!-- /.form-group -->
       <div v-if="form.data_type === 1 && form.corpus_class_id === ''" class="form-group">
         <label for="addClass">追加するクラス名</label>
-        <input v-model="form.add_class_name" type="text" :class="'form-control' + err.add_class_name.invalid" id="addClass">
+        <input v-model="form.add_class_name" type="text" :class="'form-control' + err.add_class_name.invalid" id="addClass" maxlength="30">
+        <small class="form-text text-muted">30文字以内で入力してください。</small>
         <div class="invalid-feedback">
           {{ err.add_class_name.message }}
         </div>
