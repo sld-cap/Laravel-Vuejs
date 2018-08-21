@@ -3,20 +3,23 @@
     <div class="modal-mask" @click.self="hideModal">
       <div :class="modalClass" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">
-              <slot name="title"></slot>
-            </h5>
-            <button type="button" class="close" @click="hideModal">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <slot name="body"></slot>
-          </div>
-          <div class="modal-footer">
-            <slot name="footer"></slot>
-          </div>
+            <div class="modal-header">
+              <h5 class="modal-title h3">
+                <slot name="title"></slot>
+              </h5>
+              <button type="button" class="close" @click="hideModal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <!-- /.modal-header -->
+            <div class="modal-body">
+              <slot name="body"></slot>
+            </div>
+            <!-- /.modal-body -->
+            <div class="modal-footer">
+              <slot name="footer"></slot>
+            </div>
+            <!-- /.modal-footer -->
         </div>
       </div>
     </div>
