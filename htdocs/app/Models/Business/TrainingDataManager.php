@@ -3,8 +3,9 @@
 namespace App\Models\Business;
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Company;
 use App\Models\Api;
@@ -24,20 +25,72 @@ use App\Enums\TrainingDataStatus;
  */
 class TrainingDataManager
 {
-  const SAVE_FILE_PATH = '/../../../public/files/corpus-admin/training-datas/';
+  // const SAVE_FILE_PATH = public_path() . '/files/corpus-admin/training-datas/';
   protected $corpus_id;   // コーパスID
   protected $file_name;   // ファイル名
   protected $file_path;   // ファイルパス
   protected $file;        // fileオブジェクト
   protected $record_cnt;  // レコード件数
-  protected $err_msg;     // エラーメッセージ
-  
+  protected $message;     // メッセージ
+  protected $err_exists = false;  // エラー有無フラグ
+
   /**
    * コンストラクタ
    */
   public function __construct($_corpus_id)
   {
     $this->corpus_id = $_corpus_id;
+  }
+
+  /**
+   * エラーのセット
+   */
+  private function setError($_message)
+  {
+    $this->err_exists = true;
+    $this->message = $_message;
+  }
+
+  /**
+   * エラーの有無を取得する
+   * 
+   * @return Boolean
+   */
+  public function isErrorExists()
+  {
+    return $this->err_exists;
+  }
+
+  /**
+   * 教師データのCSVファイルの保存パスを返す
+   */
+  public function getTrainingDataPath()
+  {
+    return $this->file_path;
+  }
+
+  /**
+   * 教師データの件数を返す
+   */
+  public function getRecordCount()
+  {
+    return $this->record_cnt;
+  }
+
+  /**
+   * 教師データ登録時のエラーメッセージを返す
+   */
+  public function getMessage()
+  {
+    return $this->message;
+  }
+
+  /**
+   * FILEオブジェクトを返す
+   */
+  public function getObject()
+  {
+    return $this->file;
   }
 
   /**
@@ -60,58 +113,36 @@ class TrainingDataManager
       // ファイルパス
       $this->file_path = dirname(__FILE__) . self::SAVE_FILE_PATH . $this->file_name;
 
-
       // CSV形式で保存
       if(is_writable(dirname($this->file_path)) && touch($this->file_path)) {
         // 書き込み
         $file = new \SplFileObject($this->file_path, "w");
-
         foreach($training_data as $data) {
           $csv = [$data->content, $data->name];
           $file->fputcsv($csv);
         }
-
         $file = null;
       } else {
-        throw new \Exception('学習実行用のテキストデータ取得に失敗しました');
+        $this->setError('学習実行用のテキストデータ取得に失敗しました');
       }
 
       // レコード件数保存
       $this->record_cnt = count($training_data);
 
-
     } catch (\Exception $e) {
-      $this->err_msg = $e->getMessage();
+      $this->setError($e->getMessage());
       return;
     }
 
-    $this->err_msg = "";
     return;
-
   }
 
   /**
-   * 教師データのCSVファイルの保存パスを返す
+   * 所定フォルダ内にあるCSVを一括削除する
    */
-  public function getTrainingDataPath()
+  public function deleteAllCsv()
   {
-    return $this->file_path;
-  }
-
-  /**
-   * 教師データの件数を返す
-   */
-  public function getRecordCount()
-  {
-    return $this->record_cnt;
-  }
-
-  /**
-   * 教師データ登録時のエラーメッセージを返す
-   */
-  public function getErrorMessage()
-  {
-    return $this->err_msg;
+    return Storage::files(public_path() . '/files');
   }
 
   /**
@@ -124,12 +155,12 @@ class TrainingDataManager
 
     try {
       $class_id_list = CorpusClass::where('corpus_id', $this->corpus_id)->get(['id']);
-      $training_data = CorpusCreative::whereIn('corpus_class_id', $class_id_list)
+      $training_datas = CorpusCreative::whereIn('corpus_class_id', $class_id_list)
         ->where('data_type', CorpusDataType::Training)
         ->get();
 
       $now = Carbon::now();
-      foreach($training_data as $data) {
+      foreach($training_datas as $data) {
         $creative = CorpusCreative::find($data->id);
         $creative->training_done_data = $now;
         $creative->save();
@@ -137,6 +168,7 @@ class TrainingDataManager
       }
   
       DB::commit();
+      $this->message = "学習完了日のセットが完了しました";
 
     } catch (\PDOException $e){
       DB::rollBack();
@@ -149,9 +181,8 @@ class TrainingDataManager
   }
 
   /**
-   * 指定コーパスの教師データ一覧を配列で返す
+   * 教師データ一覧を配列で返す
    *
-   * @param  int  $_corpus_id
    * @return Array  教師データ
    */
   public function loadTrainingDataAll()
@@ -162,7 +193,13 @@ class TrainingDataManager
         ->orderByRaw('CAST(training_data_count AS int) DESC')
         ->get();
 
-    $class_roop_cnt = 0; // クラス個数カウンタ
+    if ($classes->count()) {
+      $this->setError('教師データが登録されていません');
+      return;
+    }
+
+    $class_roop_cnt = 0;     // クラス件数カウンタ
+    $response_array = null;  // レスポンス配列
     foreach($classes as $class) {
       $creatives = CorpusCreative::where('corpus_class_id', $class->id)
           ->orderBy('content', 'asc')
@@ -268,8 +305,4 @@ class TrainingDataManager
     return false;
   }
 
-  public function getObject()
-  {
-    return $this->file;
-  }
 }
