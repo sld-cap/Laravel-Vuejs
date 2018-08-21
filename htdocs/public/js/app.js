@@ -1910,6 +1910,115 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/common/modal/Modal.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['modalSize'],
+  mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_MultiModalMixin__["a" /* default */]],
+  data: function data() {
+    return {
+      defaultModalClass: 'modal-dialog'
+    };
+  },
+
+  computed: {
+    modalClass: function modalClass() {
+      var largeClass = this.modalSize !== undefined ? ' ' + this.modalSize : '';
+      return this.defaultModalClass + largeClass;
+    }
+  },
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+  },
+  mounted: function mounted() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+  },
+  updated: function updated() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
+  },
+
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/common/modal/MultiModal.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__corpusManage_modal_AddCorpusModal_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/corpusManage/modal/AddCorpusModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__corpusManage_modal_AddCorpusModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__corpusManage_modal_AddCorpusModal_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__corpusManage_modal_CompAddCorpusModal_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/corpusManage/modal/CompAddCorpusModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__corpusManage_modal_CompAddCorpusModal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__corpusManage_modal_CompAddCorpusModal_vue__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+
+
+
+// コーパス作成
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'MultiModalView',
+  components: {
+    // コーパス作成
+    AddCorpusModal: __WEBPACK_IMPORTED_MODULE_1__corpusManage_modal_AddCorpusModal_vue___default.a, CompAddCorpusModal: __WEBPACK_IMPORTED_MODULE_2__corpusManage_modal_CompAddCorpusModal_vue___default.a
+  },
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["e" /* mapState */])('multiModal', ['modalName']), {
+    isShow: function isShow() {
+      return this.modalName !== '';
+    }
+  })
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/corpusManage/Main.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1924,6 +2033,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__alert_NoCorpusAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__alert_NoCorpusAlert_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
 //
 //
 //
@@ -2036,7 +2149,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
   },
   methods: {
+    openAddCorpusModal: function openAddCorpusModal() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[openAddCorpusModal]');
+      this.$store.dispatch('multiModal/showAddCorpusInfoModal');
+    },
     openCorpusAdminTab: function openCorpusAdminTab(corpusId) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[openCorpusAdminTab]');
       var corpusIdStr = corpusId + '';
       var redirectPath = '/corpus/' + corpusIdStr + '/data';
       open(redirectPath, "_blank");
@@ -2080,6 +2198,197 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   mounted: function mounted() {},
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/corpusManage/modal/AddCorpusModal.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'AddCorpusModal',
+  mixins: [__WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default.a },
+  props: [],
+  data: function data() {
+    return {
+      corpusLanguageList: __WEBPACK_IMPORTED_MODULE_0__common_core_app__["CorpusLanguage"],
+      postData: {
+        name: '',
+        description: '',
+        language: 0
+      },
+      err: []
+    };
+  },
+
+  watch: {
+    'errors': {
+      handler: function handler(errors) {
+        __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('error更新');
+        // エラー表示処理
+        this.resetErr();
+        this.setErrData(errors);
+      },
+      deep: true
+    }
+  },
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapGetters */])({
+    errors: 'multiModal/corpusAddError'
+  })),
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.resetErr();
+  },
+  mounted: function mounted() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+  },
+
+  methods: {
+    // コーパス登録処理
+    execAddCorpus: function execAddCorpus() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[execAddCorpus]');
+      this.$store.dispatch('corpusData/AddCorpus', this.postData);
+    },
+
+    // エラーリセット
+    resetErr: function resetErr() {
+      this.err = {
+        name: {
+          hasDanger: '',
+          invalid: '',
+          message: ''
+        },
+        description: {
+          hasDanger: '',
+          invalid: '',
+          message: ''
+        },
+        language: {
+          hasDanger: '',
+          invalid: '',
+          message: ''
+        }
+      };
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/corpusManage/modal/CompAddCorpusModal.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'CompAddCorpusModal',
+  mixins: [__WEBPACK_IMPORTED_MODULE_2__common_modal_mixins_MultiModalMixin__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default.a },
+  props: [],
+  data: function data() {
+    return {};
+  },
+
+  computed: {},
+  mounted: function mounted() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+  },
+
   methods: {}
 });
 
@@ -2233,6 +2542,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_MultiModal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/MultiModal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_MultiModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_MultiModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_components_Loading__ = __webpack_require__("./resources/assets/js/vue/common/components/Loading.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_components_Loading___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__common_components_Loading__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -2319,6 +2635,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+
+
+
+
 
 
 
@@ -2326,9 +2649,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['me'],
+  components: {
+    MultiModal: __WEBPACK_IMPORTED_MODULE_3__common_modal_MultiModal___default.a, Loading: __WEBPACK_IMPORTED_MODULE_4__common_components_Loading___default.a
+  },
   data: function data() {
     return {};
   },
+
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_5_vuex__["c" /* mapGetters */])({
+    loading: 'commonData/loading'
+  })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('me/corpusId');
@@ -8941,6 +9271,21 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-485d37ee\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/common/modal/Modal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.modal-mask {\n  position: fixed;\n  z-index: 9990;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, .5);\n  display: table;\n  -webkit-transition: opacity .3s ease;\n  transition: opacity .3s ease;\n}\n.modal-wrapper {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container {\n  width: 300px;\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n          box-shadow: 0 2px 8px rgba(0, 0, 0, .33);\n  -webkit-transition: all .3s ease;\n  transition: all .3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n  margin-top: 0;\n  color: #42b983;\n}\n.modal-body {\n  margin: 20px 0;\n}\n.modal-default-button {\n  float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n  opacity: 0;\n}\n.modal-leave-active {\n  opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n  -webkit-transform: scale(1.1);\n  transform: scale(1.1);\n}\n\n/* .modal-leave-to.modal-mask{\n  transition: all 0s;\n}\n\n.modal-leave-to .modal-container{\n  transition: all 0s;\n} */\n\n", ""]);
 
 // exports
 
@@ -40641,181 +40986,199 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "wrapper" }, [
-    _c(
-      "div",
-      {
-        staticClass: "sidebar",
-        attrs: { "data-color": "azure", "data-background-color": "white" }
-      },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "sidebar-wrapper" }, [
-          _c(
-            "ul",
-            { staticClass: "nav" },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-item",
-                  attrs: { to: { name: "dashboard" }, tag: "li" }
-                },
-                [
-                  _c("a", { staticClass: "nav-link" }, [
-                    _c("i", { staticClass: "material-icons" }, [
-                      _vm._v("dashboard")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("ダッシュボード")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-item",
-                  attrs: { to: { name: "corpusManage" }, tag: "li" }
-                },
-                [
-                  _c("a", { staticClass: "nav-link" }, [
-                    _c("i", { staticClass: "material-icons" }, [
-                      _vm._v("school")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("コーパス管理")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-item",
-                  attrs: { to: { name: "apiManage" }, tag: "li" }
-                },
-                [
-                  _c("a", { staticClass: "nav-link" }, [
-                    _c("i", { staticClass: "material-icons" }, [
-                      _vm._v("play_for_work")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("API管理")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-item",
-                  attrs: { to: { name: "serviveManage" }, tag: "li" }
-                },
-                [
-                  _c("a", { staticClass: "nav-link" }, [
-                    _c("i", { staticClass: "material-icons" }, [
-                      _vm._v("settings")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("サービス管理")])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-item",
-                  attrs: { to: { name: "help" }, tag: "li" }
-                },
-                [
-                  _c("a", { staticClass: "nav-link" }, [
-                    _c("i", { staticClass: "material-icons" }, [
-                      _vm._v("help_outline")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("ヘルプ")])
-                  ])
-                ]
-              )
-            ],
-            1
-          )
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "main-panel" },
-      [
-        _c(
-          "nav",
-          {
-            staticClass:
-              "navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top"
-          },
-          [
-            _c("div", { staticClass: "container-fluid" }, [
-              _c("div", { staticClass: "navbar-wrapper" }, [
-                _vm._v("\n          パンくずナビ\n        ")
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "collapse navbar-collapse justify-content-end",
-                  attrs: { id: "navigation" }
-                },
-                [
-                  _c("ul", { staticClass: "navbar-nav" }, [
-                    _c("li", { staticClass: "nav-item dropdown" }, [
-                      _vm._m(1),
+  return _c(
+    "div",
+    { staticClass: "wrapper" },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "sidebar",
+          attrs: { "data-color": "azure", "data-background-color": "white" }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "sidebar-wrapper" }, [
+            _c(
+              "ul",
+              { staticClass: "nav" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-item",
+                    attrs: { to: { name: "dashboard" }, tag: "li" }
+                  },
+                  [
+                    _c("a", { staticClass: "nav-link" }, [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("dashboard")
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "dropdown-menu dropdown-menu-right",
-                          attrs: {
-                            "aria-labelledby": "navbarDropdownMenuLink2"
-                          }
-                        },
-                        [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "dropdown-item",
-                              attrs: { href: "#" }
-                            },
-                            [_vm._v("アカウント情報の確認")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "dropdown-item",
-                              attrs: { href: "javascript:void(0);" },
-                              on: { click: _vm.logout }
-                            },
-                            [_vm._v("ログアウト")]
-                          )
-                        ]
-                      )
+                      _c("p", [_vm._v("ダッシュボード")])
                     ])
-                  ])
-                ]
-              )
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("router-view", { attrs: { me: _vm.me } })
-      ],
-      1
-    )
-  ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-item",
+                    attrs: { to: { name: "corpusManage" }, tag: "li" }
+                  },
+                  [
+                    _c("a", { staticClass: "nav-link" }, [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("school")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("コーパス管理")])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-item",
+                    attrs: { to: { name: "apiManage" }, tag: "li" }
+                  },
+                  [
+                    _c("a", { staticClass: "nav-link" }, [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("play_for_work")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("API管理")])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-item",
+                    attrs: { to: { name: "serviveManage" }, tag: "li" }
+                  },
+                  [
+                    _c("a", { staticClass: "nav-link" }, [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("settings")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("サービス管理")])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-item",
+                    attrs: { to: { name: "help" }, tag: "li" }
+                  },
+                  [
+                    _c("a", { staticClass: "nav-link" }, [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("help_outline")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("ヘルプ")])
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "main-panel" },
+        [
+          _c(
+            "nav",
+            {
+              staticClass:
+                "navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top"
+            },
+            [
+              _c("div", { staticClass: "container-fluid" }, [
+                _c("div", { staticClass: "navbar-wrapper" }, [
+                  _vm._v("\n          パンくずナビ\n        ")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "collapse navbar-collapse justify-content-end",
+                    attrs: { id: "navigation" }
+                  },
+                  [
+                    _c("ul", { staticClass: "navbar-nav" }, [
+                      _c("li", { staticClass: "nav-item dropdown" }, [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "dropdown-menu dropdown-menu-right",
+                            attrs: {
+                              "aria-labelledby": "navbarDropdownMenuLink2"
+                            }
+                          },
+                          [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "dropdown-item",
+                                attrs: { href: "#" }
+                              },
+                              [_vm._v("アカウント情報の確認")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "dropdown-item",
+                                attrs: { href: "javascript:void(0);" },
+                                on: { click: _vm.logout }
+                              },
+                              [_vm._v("ログアウト")]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("router-view", { attrs: { me: _vm.me } })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("MultiModal"),
+      _vm._v(" "),
+      _c("Loading", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.loading,
+            expression: "loading"
+          }
+        ]
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -41342,6 +41705,55 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-2604dfc3", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2b427e00\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/corpusManage/modal/CompAddCorpusModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("CommonModal", [
+    _c("div", { attrs: { slot: "title" }, slot: "title" }, [
+      _vm._v("コーパスの作成")
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+      _c("h4", [_vm._v("コーパスの作成が完了しました")]),
+      _vm._v(" "),
+      _c("p", [
+        _c("small", [
+          _vm._v(
+            "コーパス管理画面にアクセスして、教師データの登録を行いましょう"
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button" },
+          on: { click: _vm.hideModal }
+        },
+        [_vm._v("閉じる")]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2b427e00", module.exports)
   }
 }
 
@@ -42104,6 +42516,69 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-485d37ee\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/common/modal/Modal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("transition", { attrs: { name: "modal" } }, [
+    _c(
+      "div",
+      {
+        staticClass: "modal-mask",
+        on: {
+          click: function($event) {
+            if ($event.target !== $event.currentTarget) {
+              return null
+            }
+            return _vm.hideModal($event)
+          }
+        }
+      },
+      [
+        _c("div", { class: _vm.modalClass, attrs: { role: "document" } }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c("h5", { staticClass: "modal-title h3" }, [_vm._t("title")], 2),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "close",
+                  attrs: { type: "button" },
+                  on: { click: _vm.hideModal }
+                },
+                [
+                  _c("span", { attrs: { "aria-hidden": "true" } }, [
+                    _vm._v("×")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [_vm._t("body")], 2),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [_vm._t("footer")], 2)
+          ])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-485d37ee", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-48a9880a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/alert/ProductionNoticeAlert.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -42301,16 +42776,25 @@ var render = function() {
                         {
                           staticClass: "btn btn-danger",
                           staticStyle: { "margin-left": "15px" },
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "modal",
-                            "data-target": "#NlCreateModal"
-                          }
+                          attrs: { type: "button" },
+                          on: { click: _vm.openAddCorpusModal }
                         },
                         [_vm._v("新規作成")]
                       )
                     ])
-                  : _vm._e(),
+                  : _vm.corpusList.length === 8
+                    ? _c("div", { staticClass: "row mt-2" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            staticStyle: { "margin-left": "15px" },
+                            attrs: { type: "button", disabled: "" }
+                          },
+                          [_vm._v("新規作成")]
+                        )
+                      ])
+                    : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -44200,6 +44684,27 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-78375203\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/common/modal/MultiModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.isShow ? _c(_vm.modalName, { tag: "component" }) : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-78375203", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-78f6c011\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/corpusAdmin/dataManage/modal/UploadTrainingCsvModal.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -44964,6 +45469,210 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-cfdb0342", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d21223de\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/corpusManage/modal/AddCorpusModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("CommonModal", [
+    _c("div", { attrs: { slot: "title" }, slot: "title" }, [
+      _vm._v("コーパスの作成")
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+      _c("p", [
+        _vm._v(
+          "コーパスを作成し教師データを学習することで、ユーザから入力されたクリエイティブの意図を分類し、結果をAPIとして提供できます。"
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { class: "form-group bmd-form-group" + _vm.err.name.hasDanger },
+        [
+          _c(
+            "label",
+            {
+              staticClass: "bmd-label-floating",
+              attrs: { for: "corpusNameField" }
+            },
+            [_vm._v("コーパス名")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.postData.name,
+                expression: "postData.name"
+              }
+            ],
+            class: "form-control" + _vm.err.name.invalid,
+            attrs: {
+              type: "text",
+              id: "corpusNameField",
+              required: "true",
+              "aria-required": "true",
+              "aria-invalid": "true"
+            },
+            domProps: { value: _vm.postData.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.postData, "name", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v("\n        " + _vm._s(_vm.err.name.message) + "\n      ")
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "bmd-help" }, [
+            _vm._v("10字程度の識別しやすい名前を記入してください。")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { class: "form-group bmd-form-group" + _vm.err.description.hasDanger },
+        [
+          _c(
+            "label",
+            {
+              staticClass: "bmd-label-floating",
+              attrs: { for: "descriptionField" }
+            },
+            [_vm._v("説明文")]
+          ),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.postData.description,
+                expression: "postData.description"
+              }
+            ],
+            class: "form-control" + _vm.err.description.invalid,
+            attrs: { id: "descriptionField", rows: "2", maxlength: "255" },
+            domProps: { value: _vm.postData.description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.postData, "description", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v(
+              "\n        " + _vm._s(_vm.err.description.message) + "\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "bmd-help" }, [
+            _vm._v("30字程度で記入してください。")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "selectLanguage" } }, [_vm._v("言語")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.postData.language,
+                expression: "postData.language"
+              }
+            ],
+            class: "form-control" + _vm.err.language.invalid,
+            attrs: { id: "selectLanguage" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.postData,
+                  "language",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _vm._l(_vm.corpusLanguageList, function(language, i) {
+              return [
+                _c("option", { key: i, domProps: { value: i } }, [
+                  _vm._v(_vm._s(language.label))
+                ])
+              ]
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "invalid-feedback" }, [
+          _vm._v("\n        " + _vm._s(_vm.err.language.message) + "\n      ")
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button" },
+          on: { click: _vm.hideModal }
+        },
+        [_vm._v("閉じる")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-brand",
+          attrs: { type: "button" },
+          on: { click: _vm.execAddCorpus }
+        },
+        [_vm._v("作成")]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d21223de", module.exports)
   }
 }
 
@@ -50824,6 +51533,33 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-45389e25\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TestDataManageActions.vue", function() {
      var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-45389e25\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TestDataManageActions.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-485d37ee\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/common/modal/Modal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-485d37ee\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("addf304a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-485d37ee\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-485d37ee\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -63646,12 +64382,19 @@ var API_CONFIG = {
     method: 'GET',
     params: {}
   },
-
   // コーパス情報取得
   getCorpus: {
     url: '/api/v1/corpus/{corpusId}',
     method: 'GET',
     params: {}
+  },
+  // コーパス情報登録
+  addCorpusInfo: {
+    // url: '/api/v1/corpus',
+    // url: '/stub/data/successData.json', // 処理成功用stub
+    url: '/stub/data/CorpusAddError.json', // 処理失敗用stub
+    method: 'POST',
+    data: {}
   },
   // コーパス情報更新
   saveCorpusInfo: {
@@ -64304,6 +65047,28 @@ var mutations = {
     }
   },
 
+  // 登録: コーパスデータ作成処理結果
+  setAddCorpusInfoResult: function setAddCorpusInfoResult(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setAddCorpusInfoResult');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+    var resCode = payload.code;
+
+    if (resCode === 200) {
+      this.dispatch('multiModal/showCompAddCorpusInfoModal');
+    } else if (resCode === 400) {
+      if (payload.errors.length > 0) {
+        this.commit('multiModal/setCorpusAddError', payload.errors);
+      } else {
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+      }
+    } else if (resCode === 401) {
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+    } else {
+      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    }
+    this.commit('commonData/hideLoading');
+  },
+
   // 更新: コーパスデータ更新処理結果
   setSaveCorpusInfoResult: function setSaveCorpusInfoResult(state, payload) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setSaveCorpusInfoResult');
@@ -64435,7 +65200,6 @@ var actions = {
     var commit = _ref2.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusInfo');
-    // const apiOption = Object.assign({}, ApiConfig['getCorpus']);
     var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].getCorpus);
     var corpusId = this.getters['commonData/corpusId'];
     apiOption.url = apiOption.url.replace(/{corpusId}/g, corpusId);
@@ -64443,13 +65207,32 @@ var actions = {
     __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setGetCorpusInfoResult');
   },
 
-  // 編集
-  saveCorpus: function saveCorpus(_ref3, _ref4) {
+  // 登録
+  AddCorpus: function AddCorpus(_ref3, _ref4) {
     var commit = _ref3.commit;
-    var corpus_id = _ref4.corpus_id,
-        name = _ref4.name,
+    var name = _ref4.name,
         description = _ref4.description,
         language = _ref4.language;
+
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] AddCorpus');
+    this.commit('commonData/showLoading');
+
+    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].addCorpusInfo);
+    // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
+    apiOption.data = {
+      name: name, description: description, language: language
+    };
+
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setAddCorpusInfoResult', 'hideLoading');
+  },
+
+  // 編集
+  saveCorpus: function saveCorpus(_ref5, _ref6) {
+    var commit = _ref5.commit;
+    var corpus_id = _ref6.corpus_id,
+        name = _ref6.name,
+        description = _ref6.description,
+        language = _ref6.language;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusInfo');
     this.commit('commonData/showLoading');
@@ -64464,9 +65247,9 @@ var actions = {
   },
 
   // 削除
-  deleteCorpus: function deleteCorpus(_ref5, _ref6) {
-    var commit = _ref5.commit;
-    var corpus_id = _ref6.corpus_id;
+  deleteCorpus: function deleteCorpus(_ref7, _ref8) {
+    var commit = _ref7.commit;
+    var corpus_id = _ref8.corpus_id;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] deleteCorpus');
     this.commit('commonData/showLoading');
@@ -64477,9 +65260,9 @@ var actions = {
   },
 
   // 学習
-  trainingCorpus: function trainingCorpus(_ref7, _ref8) {
-    var commit = _ref7.commit;
-    var corpus_id = _ref8.corpus_id;
+  trainingCorpus: function trainingCorpus(_ref9, _ref10) {
+    var commit = _ref9.commit;
+    var corpus_id = _ref10.corpus_id;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] trainingCorpus');
     this.commit('commonData/showLoading');
@@ -64490,9 +65273,9 @@ var actions = {
   },
 
   // 学習完了チェック
-  checkCorpusTrainingDone: function checkCorpusTrainingDone(_ref9, _ref10) {
-    var commit = _ref9.commit;
-    var corpus_id = _ref10.corpus_id;
+  checkCorpusTrainingDone: function checkCorpusTrainingDone(_ref11, _ref12) {
+    var commit = _ref11.commit;
+    var corpus_id = _ref12.corpus_id;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] checkCorpusTrainingDone');
 
@@ -64502,10 +65285,10 @@ var actions = {
   },
 
   // 本番反映
-  deployCorpus: function deployCorpus(_ref11, _ref12) {
-    var commit = _ref11.commit;
-    var corpus_id = _ref12.corpus_id,
-        api_id = _ref12.api_id;
+  deployCorpus: function deployCorpus(_ref13, _ref14) {
+    var commit = _ref13.commit;
+    var corpus_id = _ref14.corpus_id,
+        api_id = _ref14.api_id;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] deployCorpus');
     this.commit('commonData/showLoading');
@@ -64857,6 +65640,7 @@ var state = {
   },
 
   // エラー群
+  corpusAddError: [],
   corpusEditError: [],
   trainingDataAddError: [],
   trainingDataEditError: [],
@@ -64877,6 +65661,9 @@ var getters = {
     return state.deleteTrainingData;
   },
   // エラー
+  corpusAddError: function corpusAddError(state) {
+    return state.corpusAddError;
+  },
   corpusEditError: function corpusEditError(state) {
     return state.corpusEditError;
   },
@@ -64905,6 +65692,10 @@ var mutations = {
   },
 
   // エラーセット
+  setCorpusAddError: function setCorpusAddError(state, errors) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setCorpusAddError');
+    state.corpusAddError = errors;
+  },
   setCorpusEditError: function setCorpusEditError(state, errors) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setCorpusEditError');
     state.corpusEditError = errors;
@@ -64937,15 +65728,30 @@ var mutations = {
  * actions
  */
 var actions = {
-  // コーパス情報: 編集モーダル開閉
-  showEditCorpusInfoModal: function showEditCorpusInfoModal(_ref) {
+  // コーパス情報: 作成モーダル開閉
+  showAddCorpusInfoModal: function showAddCorpusInfoModal(_ref) {
     var commit = _ref.commit;
+
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showAddCorpusInfoModal]');
+    commit('setModal', 'AddCorpusModal');
+  },
+  showCompAddCorpusInfoModal: function showCompAddCorpusInfoModal(_ref2) {
+    var commit = _ref2.commit;
+
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompAddCorpusInfoModal]');
+    commit('setModal', 'CompAddCorpusModal');
+  },
+
+
+  // コーパス情報: 編集モーダル開閉
+  showEditCorpusInfoModal: function showEditCorpusInfoModal(_ref3) {
+    var commit = _ref3.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showEditCorpusInfoModal]');
     commit('setModal', 'EditCorpusInfoModal');
   },
-  showCompEditCorpusInfoModal: function showCompEditCorpusInfoModal(_ref2) {
-    var commit = _ref2.commit;
+  showCompEditCorpusInfoModal: function showCompEditCorpusInfoModal(_ref4) {
+    var commit = _ref4.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompEditCorpusInfoModal]');
     commit('setModal', 'CompEditCorpusInfoModal');
@@ -64954,8 +65760,8 @@ var actions = {
 
 
   // コーパス情報: 削除モーダル
-  showDeleteCorpusInfoModal: function showDeleteCorpusInfoModal(_ref3) {
-    var commit = _ref3.commit;
+  showDeleteCorpusInfoModal: function showDeleteCorpusInfoModal(_ref5) {
+    var commit = _ref5.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showDeleteCorpusInfoModal]');
     commit('setModal', 'DeleteCorpusInfoModal');
@@ -64963,17 +65769,17 @@ var actions = {
 
 
   // 教師データ登録モーダル開閉
-  showAddTrainingDataModal: function showAddTrainingDataModal(_ref4, _ref5) {
-    var commit = _ref4.commit,
-        state = _ref4.state;
-    var dataType = _ref5.dataType;
+  showAddTrainingDataModal: function showAddTrainingDataModal(_ref6, _ref7) {
+    var commit = _ref6.commit,
+        state = _ref6.state;
+    var dataType = _ref7.dataType;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showAddTrainingDataModal]');
     state.currentDataType = dataType;
     commit('setModal', 'AddTrainingDataModal');
   },
-  showCompAddTrainingDataModal: function showCompAddTrainingDataModal(_ref6) {
-    var commit = _ref6.commit;
+  showCompAddTrainingDataModal: function showCompAddTrainingDataModal(_ref8) {
+    var commit = _ref8.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompAddTrainingDataModal]');
     commit('setModal', 'CompAddTrainingDataModal');
@@ -64982,13 +65788,13 @@ var actions = {
 
 
   // 教師データ編集モーダル開閉
-  showEditTrainingDataModal: function showEditTrainingDataModal(_ref7, _ref8) {
-    var commit = _ref7.commit,
-        state = _ref7.state;
-    var class_id = _ref8.class_id,
-        creative_id = _ref8.creative_id,
-        content = _ref8.content,
-        dataType = _ref8.dataType;
+  showEditTrainingDataModal: function showEditTrainingDataModal(_ref9, _ref10) {
+    var commit = _ref9.commit,
+        state = _ref9.state;
+    var class_id = _ref10.class_id,
+        creative_id = _ref10.creative_id,
+        content = _ref10.content,
+        dataType = _ref10.dataType;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showEditTrainingDataModal]');
     state.currentDataType = dataType;
@@ -64999,8 +65805,8 @@ var actions = {
 
     commit('setModal', 'EditTrainingDataModal');
   },
-  showCompEditTrainingDataModal: function showCompEditTrainingDataModal(_ref9) {
-    var commit = _ref9.commit;
+  showCompEditTrainingDataModal: function showCompEditTrainingDataModal(_ref11) {
+    var commit = _ref11.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompEditTrainingDataModal]');
     commit('setModal', 'CompEditTrainingDataModal');
@@ -65009,17 +65815,17 @@ var actions = {
 
 
   // 教師データ削除モーダル開閉
-  showDeleteTrainingDataModal: function showDeleteTrainingDataModal(_ref10, creative_id) {
-    var commit = _ref10.commit,
-        state = _ref10.state;
+  showDeleteTrainingDataModal: function showDeleteTrainingDataModal(_ref12, creative_id) {
+    var commit = _ref12.commit,
+        state = _ref12.state;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showDeleteTrainingDataModal]');
     state.deleteTrainingData.creative_id = creative_id;
 
     commit('setModal', 'DeleteTrainingDataModal');
   },
-  showCompDeleteTrainingDataModal: function showCompDeleteTrainingDataModal(_ref11) {
-    var commit = _ref11.commit;
+  showCompDeleteTrainingDataModal: function showCompDeleteTrainingDataModal(_ref13) {
+    var commit = _ref13.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompDeleteTrainingDataModal]');
     commit('setModal', 'CompDeleteTrainingDataModal');
@@ -65028,18 +65834,18 @@ var actions = {
 
 
   // 教師データCSVアップロードモーダル開閉
-  showUploadTrainingCsvModal: function showUploadTrainingCsvModal(_ref12, _ref13) {
-    var commit = _ref12.commit,
-        state = _ref12.state;
-    var dataType = _ref13.dataType;
+  showUploadTrainingCsvModal: function showUploadTrainingCsvModal(_ref14, _ref15) {
+    var commit = _ref14.commit,
+        state = _ref14.state;
+    var dataType = _ref15.dataType;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showUploadTrainingCsvModal]');
     state.currentDataType = dataType;
 
     commit('setModal', 'UploadTrainingCsvModal');
   },
-  showCompUploadTrainingDataCsvModal: function showCompUploadTrainingDataCsvModal(_ref14) {
-    var commit = _ref14.commit;
+  showCompUploadTrainingDataCsvModal: function showCompUploadTrainingDataCsvModal(_ref16) {
+    var commit = _ref16.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompUploadTrainingDataCsvModal]');
     commit('setModal', 'CompUploadTrainingCsvModal');
@@ -65048,8 +65854,8 @@ var actions = {
 
 
   // 閾値設定モーダル開閉
-  showEditThresholdModal: function showEditThresholdModal(_ref15) {
-    var commit = _ref15.commit;
+  showEditThresholdModal: function showEditThresholdModal(_ref17) {
+    var commit = _ref17.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showEditThresholdModal]');
     commit('setModal', 'EditThresholdModal');
@@ -65057,8 +65863,8 @@ var actions = {
 
 
   // 本番反映モーダル開閉
-  showSelectDeployModal: function showSelectDeployModal(_ref16) {
-    var commit = _ref16.commit;
+  showSelectDeployModal: function showSelectDeployModal(_ref18) {
+    var commit = _ref18.commit;
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showSelectDeployModal]');
     commit('setModal', 'SelectDeployModal');
@@ -65492,6 +66298,142 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  methods: {
+    setErrData: function setErrData(errors) {
+      for (var index in errors) {
+        var item = errors[index].field_id;
+        if (item in this.err) {
+          this.err[item]['hasDanger'] = ' has-danger';
+          this.err[item]['invalid'] = ' is-invalid';
+          this.err[item]['message'] = errors[index].message;
+        }
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/capAdmin/common/modal/Modal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-485d37ee\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vue/capAdmin/common/modal/Modal.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/common/modal/Modal.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-485d37ee\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/common/modal/Modal.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/capAdmin/common/modal/Modal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-485d37ee", Component.options)
+  } else {
+    hotAPI.reload("data-v-485d37ee", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/capAdmin/common/modal/MultiModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/common/modal/MultiModal.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-78375203\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/common/modal/MultiModal.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/capAdmin/common/modal/MultiModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-78375203", Component.options)
+  } else {
+    hotAPI.reload("data-v-78375203", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["d" /* mapMutations */])('multiModal', ['hideModal']))
+});
+
+/***/ }),
+
 /***/ "./resources/assets/js/vue/capAdmin/corpusManage/Main.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -65581,6 +66523,102 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-3c279c45", Component.options)
   } else {
     hotAPI.reload("data-v-3c279c45", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/capAdmin/corpusManage/modal/AddCorpusModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/corpusManage/modal/AddCorpusModal.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d21223de\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/corpusManage/modal/AddCorpusModal.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/capAdmin/corpusManage/modal/AddCorpusModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d21223de", Component.options)
+  } else {
+    hotAPI.reload("data-v-d21223de", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vue/capAdmin/corpusManage/modal/CompAddCorpusModal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vue/capAdmin/corpusManage/modal/CompAddCorpusModal.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2b427e00\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vue/capAdmin/corpusManage/modal/CompAddCorpusModal.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/vue/capAdmin/corpusManage/modal/CompAddCorpusModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2b427e00", Component.options)
+  } else {
+    hotAPI.reload("data-v-2b427e00", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

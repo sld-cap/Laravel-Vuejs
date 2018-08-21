@@ -20,6 +20,7 @@ const state = {
   },
 
   // エラー群
+  corpusAddError: [],
   corpusEditError: [],
   trainingDataAddError: [],
   trainingDataEditError: [],
@@ -41,6 +42,9 @@ const getters = {
     return state.deleteTrainingData;
   },
   // エラー
+  corpusAddError: (state) => {
+    return state.corpusAddError;
+  },
   corpusEditError: (state) => {
     return state.corpusEditError;
   },
@@ -69,6 +73,10 @@ const mutations = {
     state.currentDataType = null;
   },
   // エラーセット
+  setCorpusAddError(state, errors) {
+    Core.log('[store] setCorpusAddError');
+    state.corpusAddError = errors;
+  },
   setCorpusEditError(state, errors) {
     Core.log('[store] setCorpusEditError');
     state.corpusEditError = errors;
@@ -101,6 +109,16 @@ const mutations = {
  * actions
  */
 const actions = {
+  // コーパス情報: 作成モーダル開閉
+  showAddCorpusInfoModal({ commit }) {
+    Core.log('[showAddCorpusInfoModal]');
+    commit('setModal', 'AddCorpusModal');
+  },
+  showCompAddCorpusInfoModal({ commit }) {
+    Core.log('[showCompAddCorpusInfoModal]');
+    commit('setModal', 'CompAddCorpusModal');
+  },
+
   // コーパス情報: 編集モーダル開閉
   showEditCorpusInfoModal({ commit }) {
     Core.log('[showEditCorpusInfoModal]');

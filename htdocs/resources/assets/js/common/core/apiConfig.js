@@ -25,12 +25,19 @@ const API_CONFIG = {
     method: 'GET',
     params: {},
   },
-
   // コーパス情報取得
   getCorpus: {
     url: '/api/v1/corpus/{corpusId}',
     method: 'GET',
     params: {},
+  },
+  // コーパス情報登録
+  addCorpusInfo: {
+    // url: '/api/v1/corpus',
+    // url: '/stub/data/successData.json', // 処理成功用stub
+    url: '/stub/data/CorpusAddError.json', // 処理失敗用stub
+    method: 'POST',
+    data: {},
   },
   // コーパス情報更新
   saveCorpusInfo: {

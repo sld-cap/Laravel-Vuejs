@@ -101,6 +101,27 @@ const mutations = {
       location.href = '/corpus';
     }
   },
+  // 登録: コーパスデータ作成処理結果
+  setAddCorpusInfoResult(state, payload) {
+    Core.log('[store] setAddCorpusInfoResult');
+    Core.log(payload);
+    const resCode = payload.code;
+
+    if (resCode === 200) {
+      this.dispatch('multiModal/showCompAddCorpusInfoModal');
+    } else if (resCode === 400) {
+      if (payload.errors.length > 0) {
+        this.commit('multiModal/setCorpusAddError', payload.errors);
+      } else {
+        Lib.alertVendorEscalation(resCode);
+      }
+    } else if (resCode === 401) {
+      Lib.alertRefreshToken();
+    } else {
+      Lib.alertVendorEscalation(resCode);
+    }
+    this.commit('commonData/hideLoading');
+  },
   // 更新: コーパスデータ更新処理結果
   setSaveCorpusInfoResult(state, payload) {
     Core.log('[store] setSaveCorpusInfoResult');
@@ -220,12 +241,24 @@ const actions = {
   // 取得（詳細）
   getCorpusInfo({ commit }) {
     Core.log('[store] getCorpusInfo');
-    // const apiOption = Object.assign({}, ApiConfig['getCorpus']);
     const apiOption = { ...ApiConfig.getCorpus };
     const corpusId = this.getters['commonData/corpusId'];
     apiOption.url = apiOption.url.replace(/{corpusId}/g, corpusId);
 
     Ajax.exec(apiOption, commit, 'setGetCorpusInfoResult');
+  },
+  // 登録
+  AddCorpus({ commit }, { name, description, language }) {
+    Core.log('[store] AddCorpus');
+    this.commit('commonData/showLoading');
+
+    const apiOption = { ...ApiConfig.addCorpusInfo };
+    // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
+    apiOption.data = {
+      name, description, language,
+    };
+
+    Ajax.exec(apiOption, commit, 'setAddCorpusInfoResult', 'hideLoading');
   },
   // 編集
   saveCorpus({ commit }, { corpus_id, name, description, language }) {
