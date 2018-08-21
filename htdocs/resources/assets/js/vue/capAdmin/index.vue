@@ -79,6 +79,9 @@
 
     </div>
     <!-- /.main-panel -->
+
+    <MultiModal></MultiModal>
+    <Loading v-show="loading"></Loading>
   </div>
   <!-- /.wrapper -->
 </template>
@@ -89,10 +92,22 @@ import * as Core from '../../common/core/app';
 import * as Api from '../../common/core/apiConfig';
 import * as Lib from '../../common/ext/functions';
 
+import MultiModal from './common/modal/MultiModal';
+import Loading from '../common/components/Loading';
+import { mapGetters } from 'vuex';
+
 export default {
   props: ['me'],
+  components: {
+    MultiModal, Loading,
+  },
   data() {
     return {};
+  },
+  computed: {
+    ...mapGetters({
+      loading: 'commonData/loading',
+    }),
   },
   created() {
     Core.log('[created]');
