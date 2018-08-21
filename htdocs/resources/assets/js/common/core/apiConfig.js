@@ -26,7 +26,6 @@ const API_CONFIG = {
     params: {},
   },
 
-  // コーパス管理画面
   // コーパス情報取得
   getCorpus: {
     url: '/api/v1/corpus/{corpusId}',
@@ -41,6 +40,33 @@ const API_CONFIG = {
     method: 'POST',
     data: {},
   },
+  // コーパス削除
+  deleteCorpusInfo: {
+    // url: '/api/v1/corpus/{corpusId}',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    method: 'DELETE',
+  },
+  // コーパス学習
+  trainingCorpus: {
+    // url: '/api/v1/corpus/{corpusId}',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    method: 'POST',
+    data: {},
+  },
+  // コーパス学習完了確認
+  checkCorpusTrainingDone: {
+    // url: '/api/v1/corpus/{corpusId}',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    method: 'GET',
+  },
+  // コーパス本番反映
+  deployCorpus: {
+    // url: '/api/v1/corpus/{corpusId}',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    method: 'POST',
+    data: {},
+  },
+
   // 教師データ一覧取得
   getTrainingData: {
     url: '/api/v1/training-data/{training_datum}',
@@ -76,6 +102,13 @@ const API_CONFIG = {
   // 教師データダウンロード
   downloadTrainingData: {
     url: '/api/v1/training-data/{corpus_id}/download',
+    method: 'GET',
+    data: {},
+  },
+
+  // API一覧取得
+  getApiList: {
+    url: '/stub/data/ApiListGetSuccess.json',
     method: 'GET',
     data: {},
   },
