@@ -50,7 +50,13 @@ class TrainingDataController extends Controller
     try {
       $train_data = new TrainingDataManager($_corpus_id);
       $contents = $train_data->loadTrainingDataAll();
-      $formatter = new ApiResponseFormatter(200, 'Find Successful.', $contents);
+      if ($train_data->isErrorExists()) {
+        $formatter = new ApiResponseFormatter(404, 'Training Data is not found.', array(
+          'message' => $train_data->getMessage()
+        ));
+      } else {
+        $formatter = new ApiResponseFormatter(200, 'Find Successful.', $contents);
+      }
 
     } catch (ModelNotFoundException $e) {
       $formatter = new ApiResponseFormatter(404, $e->getMessage(), array());
