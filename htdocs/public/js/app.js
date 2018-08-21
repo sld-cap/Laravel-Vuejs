@@ -4835,6 +4835,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 
@@ -4857,6 +4859,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
 
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["c" /* mapGetters */])({
+    loading: 'corpusTrainingData/loading',
     trainingData: 'corpusTrainingData/trainingData',
     testDataCount: 'corpusTrainingData/testDataCount'
   })),
@@ -9087,7 +9090,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -44675,7 +44678,7 @@ var render = function() {
                 }
               },
               [
-                _vm.trainingData.length === 0 ? _c("Loading") : _vm._e(),
+                _vm.loading ? _c("Loading") : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -44773,7 +44776,7 @@ var render = function() {
                     attrs: { id: "v-pills-tabContent" }
                   },
                   [
-                    _vm.trainingData.length === 0 ? _c("Loading") : _vm._e(),
+                    _vm.loading ? _c("Loading") : _vm._e(),
                     _vm._v(" "),
                     _vm._l(_vm.trainingData, function(classData, i) {
                       return [
