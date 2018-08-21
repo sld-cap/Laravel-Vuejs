@@ -13,10 +13,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CompaniesTableSeeder::class,
+            // CompanyApisTableSeeder::class,
+            ApisTableSeeder::class,
             CorpusesTableSeeder::class,
+            ApiCorpusTableSeeder::class,
             UsersTableSeeder::class,
-            CorpusClassesTableSeeder::class,
-            CorpusCreativesTableSeeder::class
+            // CorpusClassesTableSeeder::class,
+            // CorpusCreativesTableSeeder::class
         ]);
     }
 }
