@@ -1,0 +1,28 @@
+{
+  "code": 200,
+  "data": [
+    {
+      "id": "1",
+      "display_api_id": "001abcd-cap-001",
+      "name": "テストカンパニー社のサンプルAPI① ",
+      "description": "Laravelが自動生成したテスト用のAPIです。Laravelが自動生成したテスト用のAPIです。Laravelが自動生成したテスト用のAPIです。",
+      "nlc_id": "***",
+      "company_id": "1",
+      "deleted_at": null,
+      "created_at": "2018/08/17 12:00:00",
+      "updated_at": "2018/08/20 12:00:00"
+    },
+    {
+      "id": "2",
+      "display_api_id": "001abcd-cap-002",
+      "name": "テストカンパニー社のサンプルAPI② ",
+      "description": "Laravelが自動生成したテスト用のAPIです。Laravelが自動生成したテスト用のAPIです。Laravelが自動生成したテスト用のAPIです。",
+      "nlc_id": "***",
+      "company_id": "1",
+      "deleted_at": null,
+      "created_at": "2018/08/17 12:00:00",
+      "updated_at": "2018/08/20 12:00:00"
+    }
+  ],
+  "message": ""
+}
