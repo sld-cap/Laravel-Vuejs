@@ -20,44 +20,39 @@
       <span class="text-muted" data-feather="chevrons-right" style=""></span>
     </td>
     <td class="step-list__cell">
-      <template v-if="canTraining">
-        <p class="text-danger">ここにテキストが入ります</p>
-        <button @click="confirmExec" type="button" class="btn btn-danger" id="exec_corpus_training_btn">学習実行</button>
+      <template v-if="corpusStatus === '2'">
+        <p class="text-danger">{{ btnMsg }}</p>
+        <button @click="confirmExec" type="button" class="btn btn-danger">学習実行</button>
       </template>
+      <!-- // 実行可能 -->
       <template v-else>
-        <p class="text-secondary">ここにテキストが入ります</p>
+        <p class="text-secondary">{{ btnMsg }}</p>
         <button type="button" class="btn btn-secondary" disabled>実行不可</button>
       </template>
+      <!-- // 実行不可 -->
     </td>
   </tr>
 </template>
 
 <script>
 import * as Core from '../../../../common/core/app';
-// import * as Ajax from '../../../../common/core/ajax';
-// import ApiConfig from '../../../../common/core/apiConfig';
-// import CommonModal from '../../common/modal/Modal';
-
-// import { mapGetters } from 'vuex';
-// import MultiModalMixin from '../../common/modal/mixins/MultiModalMixin';
+import { mapGetters } from 'vuex';
 
 export default {
-  // name: 'EditTrainingDataModal',
-  // mixins: [MultiModalMixin],
   components: {},
   props: [],
   data() {
-    return {
-      canTraining: true,
-    };
+    return {};
   },
   computed: {
-    // ...mapGetters({
-    //   trainingData: 'corpusTrainingData/trainingData',
-    // }),
+    ...mapGetters({
+      corpusStatus: 'corpusData/corpusStatus',
+      btnMsg: 'corpusData/corpusAiTrainingBtnMsg',
+    }),
   },
   crated() {
     Core.log('[crated]');
+    this.$store.dispatch('corpusData/getCorpusInfo');
   },
   mounted() {
     Core.log('[mounted]');
@@ -66,7 +61,8 @@ export default {
     confirmExec() {
       Core.log('[confirmExec]');
       if (confirm('学習の実行には料金が掛かります。\n本当に実行しますか？')) {
-        alert('処理は未実装');
+        const corpus_id = this.$store.getters['commonData/corpusId'];
+        this.$store.dispatch('corpusData/trainingCorpus', { corpus_id });
       }
     },
   },

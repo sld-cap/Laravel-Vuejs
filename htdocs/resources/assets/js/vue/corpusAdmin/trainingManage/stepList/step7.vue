@@ -20,30 +20,22 @@
       <span class="text-muted" data-feather="chevrons-right" style=""></span>
     </td>
     <td class="step-list__cell">
-      <template v-if="!canDeproy">
-        <button type="button" class="btn btn-secondary" disabled>実行不可</button>
-      </template>
-      
-      <template v-else>
+      <template v-if="isProduction === '0' && corpusStatus === '4'">
         <p class="text-danger">実行可能</p>
         <button @click="openSelectDeployModal" type="button" class="btn btn-danger">本番反映</button>
-      </template>                
+      </template>
+      <template v-else>
+        <button type="button" class="btn btn-secondary" disabled>実行不可</button>
+      </template>
     </td>
   </tr>
 </template>
 
 <script>
 import * as Core from '../../../../common/core/app';
-// import * as Ajax from '../../../../common/core/ajax';
-// import ApiConfig from '../../../../common/core/apiConfig';
-// import CommonModal from '../../common/modal/Modal';
-
-// import { mapGetters } from 'vuex';
-// import MultiModalMixin from '../../common/modal/mixins/MultiModalMixin';
+import { mapGetters } from 'vuex';
 
 export default {
-  // name: 'EditTrainingDataModal',
-  // mixins: [MultiModalMixin],
   components: {},
   props: [],
   data() {
@@ -52,9 +44,10 @@ export default {
     };
   },
   computed: {
-    // ...mapGetters({
-    //   trainingData: 'corpusTrainingData/trainingData',
-    // }),
+    ...mapGetters({
+      corpusStatus: 'corpusData/corpusStatus',
+      isProduction: 'corpusData/isProduction',
+    }),
   },
   crated() {
     Core.log('[crated]');

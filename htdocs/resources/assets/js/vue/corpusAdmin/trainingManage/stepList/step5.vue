@@ -27,27 +27,15 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
-// import * as Ajax from '../../../../common/core/ajax';
-// import ApiConfig from '../../../../common/core/apiConfig';
-// import CommonModal from '../../common/modal/Modal';
-
-// import { mapGetters } from 'vuex';
-// import MultiModalMixin from '../../common/modal/mixins/MultiModalMixin';
 
 export default {
-  // name: 'EditTrainingDataModal',
-  // mixins: [MultiModalMixin],
   components: {},
   props: [],
   data() {
     return {
     };
   },
-  computed: {
-    // ...mapGetters({
-    //   trainingData: 'corpusTrainingData/trainingData',
-    // }),
-  },
+  computed: {},
   crated() {
     Core.log('[crated]');
   },

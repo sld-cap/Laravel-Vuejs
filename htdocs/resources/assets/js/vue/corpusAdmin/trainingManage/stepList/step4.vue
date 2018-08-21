@@ -20,30 +20,21 @@
       <span class="text-muted" data-feather="chevrons-right" style=""></span>
     </td>
     <td class="step-list__cell">
-      <template v-if="canUnitTest">
-        <!-- <p class="text-danger">（未実装）</p> -->
-        <button type="button" class="btn btn-outline-danger">検証実行</button>
-      </template>
-      <template v-else>
-        <!-- <p class="text-secondary">（未実装）</p> -->
-        <button type="button" class="btn btn-secondary" disabled>実行不可</button>
-      </template>
+      <button v-if="corpusStatus === '4' || corpusStatus === '0'" 
+        type="button" class="btn btn-outline-danger">検証実行
+      </button>
+      <button v-else 
+        type="button" class="btn btn-secondary" disabled>実行不可
+      </button>
     </td>
   </tr>
 </template>
 
 <script>
 import * as Core from '../../../../common/core/app';
-// import * as Ajax from '../../../../common/core/ajax';
-// import ApiConfig from '../../../../common/core/apiConfig';
-// import CommonModal from '../../common/modal/Modal';
-
-// import { mapGetters } from 'vuex';
-// import MultiModalMixin from '../../common/modal/mixins/MultiModalMixin';
+import { mapGetters } from 'vuex';
 
 export default {
-  // name: 'EditTrainingDataModal',
-  // mixins: [MultiModalMixin],
   components: {},
   props: [],
   data() {
@@ -52,9 +43,9 @@ export default {
     };
   },
   computed: {
-    // ...mapGetters({
-    //   trainingData: 'corpusTrainingData/trainingData',
-    // }),
+    ...mapGetters({
+      corpusStatus: 'corpusData/corpusStatus',
+    }),
   },
   crated() {
     Core.log('[crated]');
