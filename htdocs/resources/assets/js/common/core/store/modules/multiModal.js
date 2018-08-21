@@ -86,6 +86,10 @@ const mutations = {
     state.trainingDataUploadError = errors;
   },
   // リロード処理
+  reloadCorpusInfo() {
+    Core.log('[store] reloadCorpusInfo');
+    this.dispatch('corpusData/getCorpusInfo');
+  },
   reloadTrainingData() {
     Core.log('[store] reloadTrainingData');
     this.dispatch('corpusTrainingData/getTrainingData');
@@ -105,6 +109,13 @@ const actions = {
   showCompEditCorpusInfoModal({ commit }) {
     Core.log('[showCompEditCorpusInfoModal]');
     commit('setModal', 'CompEditCorpusInfoModal');
+    commit('reloadCorpusInfo');
+  },
+
+  // コーパス情報: 削除モーダル
+  showDeleteCorpusInfoModal({ commit }) {
+    Core.log('[showDeleteCorpusInfoModal]');
+    commit('setModal', 'DeleteCorpusInfoModal');
   },
 
   // 教師データ登録モーダル開閉

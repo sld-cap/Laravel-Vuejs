@@ -51,6 +51,14 @@
     </div>
     <!-- /.panel-group -->
 
+    <div class="row mb-4">
+      <div class="col-12 text-right">
+        <a @click="openDeleteCorpusInfoModal" href="javascript:void(0);">コーパスの削除はこちら</a>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
   </main>
 </template>
 
@@ -80,9 +88,6 @@ import * as Core from '../../../common/core/app';
 import * as Ajax from '../../../common/core/ajax';
 import * as Lib from '../../../common/ext/functions';
 import ApiConfig from '../../../common/core/apiConfig';
-// アラート
-// import SuccessAlert from '../common/custom/SuccessAlert.vue';
-// import ErrorAlert from '../common/custom/ErrorAlert.vue';
 // 概要
 import CorpusInfo from './overview/CorpusInfo.vue';
 // ステータス
@@ -95,8 +100,6 @@ import TrainingDataRaitoByClass from './status/TrainingDataRaitoByClass.vue';
 export default {
   props: ['me'],
   components: {
-    // アラート
-    // SuccessAlert, ErrorAlert,
     // 概要
     CorpusInfo,
     // ステータス
@@ -118,6 +121,10 @@ export default {
     feather.replace();
   },
   methods: {
+    openDeleteCorpusInfoModal() {
+      Core.log('[openDeleteCorpusInfoModal]');
+      this.$store.dispatch('multiModal/showDeleteCorpusInfoModal');
+    },
   },
 };
 </script>

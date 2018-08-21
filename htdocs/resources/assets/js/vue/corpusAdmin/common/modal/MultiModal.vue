@@ -10,6 +10,8 @@
   // コーパスデータ編集
   import EditCorpusInfoModal from '../../baseInfo/modal/EditCorpusInfoModal';
   import CompEditCorpusInfoModal from '../../baseInfo/modal/CompEditCorpusInfoModal';
+  // コーパスデータ削除
+  import DeleteCorpusInfoModal from '../../baseInfo/modal/DeleteCorpusInfoModal.vue';
 
   // 教師データ登録
   import AddTrainingDataModal from '../../dataManage/modal/AddTrainingDataModal';
@@ -33,7 +35,7 @@
     name: 'MultiModalView',
     components: {
       // コーパスデータ
-      EditCorpusInfoModal, CompEditCorpusInfoModal,
+      EditCorpusInfoModal, CompEditCorpusInfoModal, DeleteCorpusInfoModal,
       // 教師データ
       AddTrainingDataModal, CompAddTrainingDataModal, // 教師データ登録
       EditTrainingDataModal, CompEditTrainingDataModal, // 教師データ編集
