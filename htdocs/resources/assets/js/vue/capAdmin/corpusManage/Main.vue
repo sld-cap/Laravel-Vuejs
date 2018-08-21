@@ -19,9 +19,13 @@
                 </div>
               </div>
               <!-- /.row -->
-              <div class="row mt-2" v-if="corpusList.length > 0 && corpusList.length < 8">
-                <button type="button" class="btn btn-danger" style="margin-left:15px;" data-toggle="modal" data-target="#NlCreateModal">新規作成</button>
+              <div v-if="corpusList.length > 0 && corpusList.length < 8" class="row mt-2">
+                <button @click="openAddCorpusModal" type="button" class="btn btn-danger" style="margin-left:15px;">新規作成</button>
               </div>
+              <div v-else-if="corpusList.length === 8" class="row mt-2">
+                <button type="button" class="btn btn-danger" style="margin-left:15px;" disabled>新規作成</button>
+              </div>
+
               <!-- /.row -->
 
               <div class="row">
@@ -110,7 +114,12 @@ export default {
     Core.log('[mounted]');
   },
   methods: {
+    openAddCorpusModal() {
+      Core.log('[openAddCorpusModal]');
+      this.$store.dispatch('multiModal/showAddCorpusInfoModal');
+    },
     openCorpusAdminTab(corpusId) {
+      Core.log('[openCorpusAdminTab]');
       const corpusIdStr = corpusId + '';
       const redirectPath = `/corpus/${corpusIdStr}/data`;
       open(redirectPath, "_blank");
