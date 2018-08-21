@@ -46,7 +46,7 @@ class TrainingDataManager
   /**
    * エラーのセット
    */
-  private function setError($_messagem, $_errors = null)
+  private function setError($_message, $_errors = null)
   {
     $this->err_exists = true;
     $this->errors = $_errors;
@@ -311,7 +311,7 @@ class TrainingDataManager
   /**
    * バリデーション：教師データの登録・更新
    */
-  public function trainDataValidation($_request, $_creative_id)
+  public function trainDataValidation(Request $_request, $_creative_id = null)
   {
     $form = $_request->all();
     unset($form['_token']);
