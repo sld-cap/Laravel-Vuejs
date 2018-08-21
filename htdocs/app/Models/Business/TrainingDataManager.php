@@ -193,7 +193,7 @@ class TrainingDataManager
         ->orderByRaw('CAST(training_data_count AS int) DESC')
         ->get();
 
-    if ($classes->count()) {
+    if ($classes->count() == 0) {
       $this->setError('教師データが登録されていません');
       return;
     }
