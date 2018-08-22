@@ -140,9 +140,9 @@ class TrainingDataManager
 
     } catch (\PDOException $e){
       DB::rollBack();
-      $this->setError(400, $e->getMessage(), array(
+      $this->setError(400, $e->getMessage(), [array(
         'message' => 'Exception from TrainingDataManager.php@setTrainingDoneDate'
-      ));
+      )]);
     }
 
     return;
@@ -161,9 +161,9 @@ class TrainingDataManager
           ->orderByRaw('CAST(training_data_count AS int) DESC')->get();
 
       if ($classes->count() == 0) {
-        $this->setError(404, 'Training data not found.', array(
+        $this->setError(404, 'Training data not found.', [array(
           'message' => '教師データが登録されていません->corpus_id:' . $this->corpus_id
-        ));
+        )]);
         return;
       }
 
@@ -205,9 +205,9 @@ class TrainingDataManager
       return $response_array;
 
     } catch (\Exception $e) {
-      $this->setError(400, $e->getMessage(), array(
+      $this->setError(400, $e->getMessage(), [array(
         'message' => 'Exception from TrainingDataManager.php@LoadTrainingDataAll'
-      ));
+      )]);
       return;
     }
   }
@@ -281,11 +281,11 @@ class TrainingDataManager
             ->count();
 
         if ($count > 0) {
-          $data = array(
+          $data = [array(
             'corpus_id' => $corpus_id,
             'add_class_name' => $add_class_name,
             'message' => '既に同じクラス名が存在しています'
-          );
+          )];
           $this->setError(400, 'Duplicate class name', $data);
           return;
 
@@ -434,9 +434,9 @@ class TrainingDataManager
       } else {
         // 既存のクラス名が指定されているかどうか
         if (!array_key_exists($class_name, $current_class_name_list)) {
-          $this->setError(400, 'Invalid class name', array(
+          $this->setError(400, 'Invalid class name', [array(
             'message' => '学習データに登録されていないクラス名が入力されています.'
-          ));
+          )]);
           return;
         }
       }      
@@ -493,9 +493,9 @@ class TrainingDataManager
         }
         $file = null;
       } else {
-        $this->setError(400, 'This file is not writable or can not touch.', array(
+        $this->setError(400, 'This file is not writable or can not touch.', [array(
           'message' => '学習実行用のテキストデータ取得に失敗しました'
-        ));
+        )]);
         return;
       }
 
@@ -503,7 +503,9 @@ class TrainingDataManager
       $this->record_cnt = count($training_data);
 
     } catch (\Exception $e) {
-      $this->setError(400, $e->getMessage());
+      $this->setError(400, $e->getMessage(), [array(
+        'message' => 'Exception from TainingDataManager.php@saveTrainingDataToCsv'
+      )]);
       return;
     }
 
@@ -535,23 +537,23 @@ class TrainingDataManager
         $del_creatives = CorpusCreative::whereIn('corpus_class_id', $del_class_id_list)->where('data_type', $data_type);
         $del_creatives->delete();
       } else {
-        $this->setError(400, 'Data-type not selected.', array(
+        $this->setError(400, 'Data-type not selected.', [array(
           'message' => 'データタイプが指定されていません'
-        ));
+        )]);
       }
 
       DB::commit();
 
     } catch (\PDOException $e){
       DB::rollBack();
-      $this->setError(400, $e->getMessage(), array(
+      $this->setError(400, $e->getMessage(), [array(
         'message' => 'PDOException from TrainingDataManager.php@deleteOldCreative'
-      ));
+      )]);
     } catch (\Exception $e){
       DB::rollBack();
-      $this->setError(400, $e->getMessage(), array(
+      $this->setError(400, $e->getMessage(), [array(
         'message' => 'Exception from TrainingDataManager.php@deleteOldCreative'
-      ));
+      )]);
     }
   }
 
@@ -572,9 +574,9 @@ class TrainingDataManager
     $user = JWTAuth::parseToken()->authenticate();
     $corpus = Corpus::where('id', $this->corpus_id)->where('company_id', $user->company_id)->get();
     if ($corpus->count() == 0) {
-      $this->setError(404, 'Corpus not found. -> corpus_id:' . $this->corpus_id, array(
+      $this->setError(404, 'Corpus not found. -> corpus_id:' . $this->corpus_id, [array(
         'message' => 'ご指定のコーパスは登録されておりません'
-      ));
+      )]);
     }
   }
 
@@ -586,21 +588,21 @@ class TrainingDataManager
     $err = false;
     $pass_extension = ['txt', 'csv']; // 適切な拡張子セット
     if (!$_request->hasFile('csv_file')) {
-      $this->setError(400, 'Training-data not found.', array(
+      $this->setError(400, 'Training-data not found.', [array(
         'message' => 'CSVファイルがアップロードされていません'
-      ));
+      )]);
       return;
     } elseif (!in_array($_request->csv_file->extension(), $pass_extension)) {
-      $this->setError(400, 'Training data is invalid extension.', array(
+      $this->setError(400, 'Training data is invalid extension.', [array(
         'message' => 'ファイル形式が不正です。CSVファイルをアップロードしてください。'
-      ));
+      )]);
       return;
     } else {
       $csv_tmp_file = $_request->file('csv_file');
       if (!$csv_tmp_file->isValid()) {
-        $this->setError(400, 'Training data is invalid data.', array(
+        $this->setError(400, 'Training data is invalid data.', [array(
           'message' => '不正なCSVファイル。ファイル内容を確認の上、再度アップロードしてください。'
-        ));
+        )]);
         return;
       }
     }
@@ -651,9 +653,9 @@ class TrainingDataManager
         ->count();
 
     if ($my_corpus == 0) {
-      $this->setError(400, 'Invalid corpus error.', array(
+      $this->setError(400, 'Invalid corpus error.', [array(
         'message' => '指定されたコーパスは利用できません->corpus_id:' . $form['corpus_id']
-      ));
+      )]);
       return;
     }
 
@@ -681,9 +683,9 @@ class TrainingDataManager
       }
 
       if ($row_count < $min_row_count || $max_row_count < $row_count) {
-        $this->setError(400, 'Training data row count is invalid.', array(
+        $this->setError(400, 'Training data row count is invalid.', [array(
           'message' => '教師データは、5 〜 15,000件で登録する必要があります'
-        ));
+        )]);
       }
     }
   }
@@ -708,9 +710,9 @@ class TrainingDataManager
     // CSVデータ件数チェック(学習データの場合のみ)
     $data_type = $_request->data_type;
     if ($data_type == null) {
-      $this->setError(400, 'Data-type missing.', array(
+      $this->setError(400, 'Data-type missing.', [array(
         'message' => 'データタイプが指定されていません'
-      ));
+      )]);
     }
     $this->checkCsvRowCount($_request->data_type);
     if ($this->err_exists) return;

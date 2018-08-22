@@ -45,7 +45,7 @@ class TrainingDataController extends Controller
       );
     } else {
       $formatter = new ApiResponseFormatter(
-        200, 'Add training data successfull.', array('message' => '教師データを追加しました')
+        200, 'Add training data successfull.', [array('message' => '教師データを追加しました')]
       );
     }
 
@@ -72,9 +72,9 @@ class TrainingDataController extends Controller
         $formatter = new ApiResponseFormatter(200, 'Find Successful.', $contents);
       }
     } catch (ModelNotFoundException $e) {
-      $formatter = new ApiResponseFormatter(404, $e->getMessage(), array(
+      $formatter = new ApiResponseFormatter(404, $e->getMessage(), [array(
         'message' => 'ModelNotFoundException from TrainingDataController@show'
-      ));
+      )]);
     }
     
     return response()->json($formatter->getResponseArray());
@@ -100,14 +100,14 @@ class TrainingDataController extends Controller
         );
       } else {
         $formatter = new ApiResponseFormatter(
-          200, 'Training data update successfull.', array('message' => '教師データを編集しました')
+          200, 'Training data update successfull.', [array('message' => '教師データを編集しました')]
         );
       }
 
     } catch (\Exception $e) {
-      $formatter = new ApiResponseFormatter(400, $e->getMessage(), array(
+      $formatter = new ApiResponseFormatter(400, $e->getMessage(), [array(
         'message' => 'Exception from TrainingDataController@update'
-      ));
+      )]);
     }
 
     return response()->json($formatter->getResponseArray());
@@ -168,17 +168,21 @@ class TrainingDataController extends Controller
 
       DB::commit();
 
-      $formatter = new ApiResponseFormatter(200, 'Training data delete sucessfull.', array(
+      $formatter = new ApiResponseFormatter(200, 'Training data delete sucessfull.', [array(
         'target_creative_id' => $_creative_id,
         'message' => '対象のクリエイティブを削除しました。'
-      ));
+      )]);
 
     } catch (\PDOException $e){
       DB::rollBack();
-      $formatter = new ApiResponseFormatter(404, $e->getMessage(), '');
+      $formatter = new ApiResponseFormatter(404, $e->getMessage(), [array(
+        'message' => 'PDOException from TrainingDataController@destroy'
+      )]);
     } catch(\Exception $e) {
       DB::rollBack();
-      $formatter = new ApiResponseFormatter(400, $e->getMessage(), '');
+      $formatter = new ApiResponseFormatter(404, $e->getMessage(), [array(
+        'message' => 'Exception from TrainingDataController@destroy'
+      )]);
     }
 
     return response()->json($formatter->getResponseArray());
@@ -252,19 +256,23 @@ class TrainingDataController extends Controller
       
       DB::commit();
 
-      $formatter = new ApiResponseFormatter(200, 'CSV upload successfull.', array(
+      $formatter = new ApiResponseFormatter(200, 'CSV upload successfull.', [array(
         'message' => CorpusDataType::getDescription($data_type) . 'のCSVアップロードに成功しました。'
-      ));
+      )]);
       return response()->json($formatter->getResponseArray());
 
     } catch (\PDOException $e){
       DB::rollBack();
-      $formatter = new ApiResponseFormatter(404, $e->getMessage(), '');
+      $formatter = new ApiResponseFormatter(404, $e->getMessage(), [array(
+        'message' => 'PDOException from TrainingDataController@upload'
+      )]);
       return response()->json($formatter->getResponseArray());
 
     } catch(\Exception $e) {
       DB::rollBack();
-      $formatter = new ApiResponseFormatter(400, $e->getMessage(), '');
+      $formatter = new ApiResponseFormatter(404, $e->getMessage(), [array(
+        'message' => 'Exception from TrainingDataController@upload'
+      )]);
       return response()->json($formatter->getResponseArray());
 
     }
@@ -283,9 +291,9 @@ class TrainingDataController extends Controller
     $corpus = Corpus::where('id', $_corpus_id)->where('company_id', $user->company_id)->get();
     if ($corpus->count() == 0) {
       $message = 'Corpus not found. -> corpus_id:' . $_corpus_id;
-      $formatter = new ApiResponseFormatter(404, $message, array(
+      $formatter = new ApiResponseFormatter(404, $message, [array(
         'message' => 'ご指定のコーパスは利用できません'
-      ));
+      )]);
       return response()->json($formatter->getResponseArray());
     }
 
