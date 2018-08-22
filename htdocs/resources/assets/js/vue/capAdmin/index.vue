@@ -113,11 +113,12 @@ export default {
     Core.log('[created]');
     Core.log('me/corpusId');
     Core.log(this.me);
-
+    this.$store.state.commonData.me = this.me;
     // 各種データ取得
     // ダッシュボードで表示する情報 / コーパス一覧 / API一覧 / アカウント一覧
     // Todo: 利用ログ一覧や請求一覧の情報も取得する（ite2）
     this.$store.dispatch('corpusData/getCorpusList');
+    this.$store.dispatch('accountData/getAccountList');
   },
   mounted() {
     Core.log('[mounted]');
