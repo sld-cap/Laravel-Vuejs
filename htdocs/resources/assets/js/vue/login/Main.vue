@@ -75,6 +75,13 @@ export default {
       loginError: 'commonData/loginError',
     }),
   },
+  created() {
+    Core.log('[created]');
+    const token = Lib.getToken();
+    if (token !== undefined && token !== '') {
+      location.href = '/';
+    }
+  },
   methods: {
     login: function() {
 			Core.log('[method] login');
