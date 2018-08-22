@@ -6,7 +6,7 @@
       <p>コーパスを作成し教師データを学習することで、ユーザから入力されたクリエイティブの意図を分類し、結果をAPIとして提供できます。</p>
       <div :class="'form-group bmd-form-group' + err.name.hasDanger">
         <label for="corpusNameField" class="bmd-label-floating">コーパス名</label>
-        <input v-model="postData.name" type="text" :class="'form-control' + err.name.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true">
+        <input v-model="postData.name" type="text" :class="'form-control' + err.name.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
         <div class="invalid-feedback">
           {{ err.name.message }}
         </div>
