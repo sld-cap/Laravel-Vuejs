@@ -20,6 +20,9 @@ const state = {
  * getters
  */
 const getters = {
+  me: () => {
+    return state.me;
+  },
   // コーパスID
   corpusId: () => {
     return state.corpusId;
