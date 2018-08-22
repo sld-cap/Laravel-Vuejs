@@ -15,8 +15,10 @@ Route::post('authenticate','UserController@authenticate');
     // コーパスのCRUD
     Route::resource('corpus', 'CorpusController');
 
-    // AI学習
+    // AI学習可否
     Route::get('corpus/{corpus_id}/learnable', 'LearningController@learnable');
+    // AI学習実行
+    Route::get('corpus/{corpus_id}/learn', 'LearningController@learn');
 
     // 教師データのCRUD
     Route::resource('training-data', 'TrainingDataController')->except([

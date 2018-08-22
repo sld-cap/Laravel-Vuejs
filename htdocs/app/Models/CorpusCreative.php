@@ -15,9 +15,10 @@ class CorpusCreative extends Model
 
   public static $create_error_messages = array(
     'content.required' => 'テキストが入力されていません',
-    'content.between' => 'テキストは1024文字以内で入力してください'
+    'content.between' => 'テキストは1024文字以内で入力してください',
+    'add_class_name.required' => 'クラス名が入力されていません',
+    'add_class_name.between' => 'クラス名は30字以内で入力してください'
   );
-
 
   /**
    * 編集バリデーション
@@ -36,7 +37,6 @@ class CorpusCreative extends Model
     'add_class_name.required' => 'クラス名が入力されていません',
   );
 
-
   /**
    * 削除バリデーション
    */
@@ -47,7 +47,6 @@ class CorpusCreative extends Model
   public static $delete_error_messages = array(
     'creative_id.required' => 'リクエストパラメータが不正です'
   );
-
 
   /**
    * CSVアップロードバリデーション

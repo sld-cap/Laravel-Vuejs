@@ -5,16 +5,16 @@ namespace App\Models\Business;
 use Carbon\Carbon;
 use JWTAuth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 use App\Models\Company;
 use App\Models\User;
-use App\Models\Api;
-use App\Models\ApiCorpus;
+// use App\Models\Api;
+// use App\Models\ApiCorpus;
 use App\Models\Corpus;
 use App\Models\CorpusClass;
 use App\Models\CorpusCreative;
-use App\Models\Business\ApiResponseFormatter;
+use App\Models\Business\TrainingDataManager;
 
 use App\Enums\CorpusStateType;
 use App\Enums\CorpusDataType;
@@ -25,11 +25,12 @@ use App\Enums\TrainingDataStatus;
  */
 class CorpusManager
 {
-  protected $id;  // コーパスID
-  protected $corpus_obj; // コーパスモデルオブジェクト
-  protected $status; // 学習ステータス
-  protected $message; // 状態メッセージ 
-  protected $err_exists = false;
+  protected $id;                  // コーパスID
+  protected $corpus_obj;          // コーパスモデルオブジェクト
+  protected $status;              // 学習ステータス
+  protected $message;             // 状態メッセージ 
+  protected $err_exists = false;  // エラー有無
+  protected $isProduction;        // 本番コーパスチェック
   
   /**
    * コンストラクタ
@@ -39,6 +40,7 @@ class CorpusManager
     $this->id = $_corpus_id;
     $this->setObject();
     $this->setStatus();
+    $this->setProductionStatus();
   }
 
   /**
@@ -52,14 +54,12 @@ class CorpusManager
         $this->message = "コーパスオブジェクトをセットしました";
 
       } else {
-        // $this->message = "指定されたコーパスはご利用できません";
         $this->err_exists = true;
+
       }
-
     } catch (\Exception $e) {
-      $this->message = "指定されたコーパスはご利用できません";
-      $this->err_exists = true;
-
+      $this->setError("指定されたコーパスは利用できません");
+ 
     }
   }
 
@@ -79,6 +79,14 @@ class CorpusManager
   private function setStatus()
   {
     $this->status = $this->err_exists ? CorpusStateType::Unavailable : $this->corpus_obj->status;
+  }
+
+  /**
+   * コーパスの本番化状態をセットする
+   */
+  private function setProductionStatus()
+  {
+    $this->isProduction = $this->err_exists ? 999 : $this->corpus_obj->is_production;
   }
 
   /**
@@ -102,6 +110,16 @@ class CorpusManager
   }
 
   /**
+   * コーパスのエラー有無を返す
+   * 
+   * @return Boolean
+   */
+  public function errorExists()
+  {
+    return $this->err_exists;
+  }
+
+  /**
    * コーパス作成者とログインユーザの所属会社を比較する
    * 
    * @return Boolean
@@ -109,9 +127,8 @@ class CorpusManager
   // private function isOurs()
   public function isOurs()
   {
-    // try {
+    try {
       $user = JWTAuth::parseToken()->authenticate();
-      return $user;
 
       $user_company = $user->company_id;
       $corpus_company = Corpus::findOrFail($this->id)->company_id;
@@ -121,17 +138,15 @@ class CorpusManager
         return true;
 
       } else {
-        $this->message = "指定コーパスの所有権が存在しません";
-        $this->err_exists = true;
+        $this->setError("指定コーパスの所有権が存在しません");
         return false;
   
       }
-    // } catch (\Exception $e) {
-    //   $this->message = "コーパス所有権チェックに失敗しました";
-    //   $this->err_exists = true;
-    //   return false;
+    } catch (\Exception $e) {
+      $this->setError("コーパス所有権チェックに失敗しました");
+      return false;
 
-    // }
+    }
   }
 
   /**
@@ -141,7 +156,50 @@ class CorpusManager
    */
   public function isLearnable()
   {
-    return $this->status == CorpusStateType::Untrained ? true : false;
+    if (!$this->err_exists && $this->status == CorpusStateType::Untrained) {
+      $this->message = '学習の実行が可能です';
+      return true;
+    }
+
+    $this->setError('現在、学習の実行ができません');
+    return false;
+  }
+
+  /**
+   * コーパスの学習を実行する
+   * 
+   * @return \App\Models\Business\ApiResponseFormatter
+   */
+  public function execLearn()
+  {
+    if ($this->isLearnable()) {
+      DB::beginTransaction();
+      // try {
+        // 学習データをCSVに保存する
+        $training_data = new TrainingDataManager($this->id);
+        $training_data->saveTrainingDataCsv();
+
+        $err_msg = $training_data->getErrorMessage();
+        if($err_msg) {
+          $this->setError($err_msg);
+          return false;
+        }
+
+        // NLCの学習APIを実行する
+
+      // }
+
+    }
+
+  }
+
+  /**
+   * エラーをセットする
+   */
+  private function setError($_err_message)
+  {
+    $this->err_exists = true;
+    $this->message = $_err_message;
   }
 
 }

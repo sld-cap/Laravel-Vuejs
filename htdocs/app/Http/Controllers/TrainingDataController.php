@@ -18,10 +18,9 @@ use App\Models\Business\ApiResponseFormatter;
 use App\Models\Business\TrainingDataManager;
 
 use Log;
-use Validator;
 use Carbon\Carbon;
-use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
+// use JWTAuth;
+// use Tymon\JWTAuth\Exceptions\JWTException;
 
 /**
  * 教師データの管理コントローラー
@@ -39,7 +38,18 @@ class TrainingDataController extends Controller
     $form = $_request->all();
     $corpus_id = $form['corpus_id']; 
     $train_data = new TrainingDataManager($corpus_id);
-    $update_result = $train->updateTrainData($_request);
+    $update_result = $train_data->updateTrainData($_request);
+    if ($train_data->isErrorExists()) {
+      $formatter = new ApiResponseFormatter(
+        $train_data->getCode(), $train_data->getMessage(), $train_data->getData()
+      );
+    } else {
+      $formatter = new ApiResponseFormatter(
+        200, 'Add training data successfull.', array('message' => '教師データを追加しました')
+      );
+    }
+
+    return response()->json($formatter->getResponseArray());
   }
 
   /**
@@ -50,19 +60,21 @@ class TrainingDataController extends Controller
    */
   public function show($_corpus_id)
   {
+    $formatter = null;
     try {
       $train_data = new TrainingDataManager($_corpus_id);
       $contents = $train_data->loadTrainingDataAll();
       if ($train_data->isErrorExists()) {
-        $formatter = new ApiResponseFormatter(404, 'Training Data is not found.', array(
-          'message' => $train_data->getMessage()
-        ));
+        $formatter = new ApiResponseFormatter(
+          $train_data->getCode(), $train_data->getMessage(), $train_data->getData()
+        );
       } else {
         $formatter = new ApiResponseFormatter(200, 'Find Successful.', $contents);
       }
-
     } catch (ModelNotFoundException $e) {
-      $formatter = new ApiResponseFormatter(404, $e->getMessage(), array());
+      $formatter = new ApiResponseFormatter(404, $e->getMessage(), array(
+        'message' => 'ModelNotFoundException from TrainingDataController@show'
+      ));
     }
     
     return response()->json($formatter->getResponseArray());
@@ -79,13 +91,26 @@ class TrainingDataController extends Controller
   {
     try {
       $form = $_request->all();
-      return $this->updateTrainData($_request, $form['creative_id']);
+      $train_data = new TrainingDataManager($form['corpus_id']);
+      $train_data->updateTrainData($_request, $form['creative_id']);
+
+      if ($train_data->isErrorExists()) {
+        $formatter = new ApiResponseFormatter(
+          $train_data->getCode(), $train_data->getMessage(), $train_data->getData()
+        );
+      } else {
+        $formatter = new ApiResponseFormatter(
+          200, 'Training data update successfull.', array('message' => '教師データを編集しました')
+        );
+      }
 
     } catch (\Exception $e) {
-      $formatter = new ApiResponseFormatter(400, $e->getMessage(), '');
-      return response()->json($formatter->getResponseArray());
-
+      $formatter = new ApiResponseFormatter(400, $e->getMessage(), array(
+        'message' => 'Exception from TrainingDataController@update'
+      ));
     }
+
+    return response()->json($formatter->getResponseArray());
   }
 
   /**
@@ -97,6 +122,7 @@ class TrainingDataController extends Controller
   public function destroy($_creative_id)
   {
     // 削除処理開始
+    $formatter = null;
     DB::beginTransaction();
 
     try {
@@ -146,19 +172,16 @@ class TrainingDataController extends Controller
         'target_creative_id' => $_creative_id,
         'message' => '対象のクリエイティブを削除しました。'
       ));
-      return response()->json($formatter->getResponseArray());
 
     } catch (\PDOException $e){
       DB::rollBack();
       $formatter = new ApiResponseFormatter(404, $e->getMessage(), '');
-      return response()->json($formatter->getResponseArray());
-
     } catch(\Exception $e) {
       DB::rollBack();
       $formatter = new ApiResponseFormatter(400, $e->getMessage(), '');
-      return response()->json($formatter->getResponseArray());
-
     }
+
+    return response()->json($formatter->getResponseArray());
   }
 
   /**
@@ -173,76 +196,34 @@ class TrainingDataController extends Controller
   {
     try {
       // バリデーション
-      $user = JWTAuth::parseToken()->authenticate();
-      $corpus = Corpus::where('id', $_corpus_id)->where('company_id', $user->company_id)->get();
-      if ($corpus->count() == 0) {
-        $message = 'Corpus not found. -> corpus_id:' . $_corpus_id;
-        $formatter = new ApiResponseFormatter(404, $message, array(
-          'message' => 'ご指定のコーパスは利用できません'
-        ));
+      $data = new TrainingDataManager($_corpus_id);
+      $data_type = $_request->data_type;
+
+      $data->validateUpload($_request);
+      if ($data->isErrorExists()) {
+        $formatter = new ApiResponseFormatter(
+          $data->getCode(), $data->getMessage(), $data->getData()
+        );
         return response()->json($formatter->getResponseArray());
       }
-      
-      // CSVファイルのアップロードチェック
-      $file = new TrainingDataManager($_corpus_id);
-      $upload_error = $file->checkUploadFile($_request);
-      if ($upload_error) {
-        return $upload_error;
-      }
-
-      // csvファイル読み込み
-      $csv_tmp_file = $_request->file('csv_file');
-      $csv_file_path = $csv_tmp_file->path();
-      $file->loadCsvFile($csv_tmp_file);
-
-      // 学習データの場合のみ、CSVデータ件数チェック(範囲: 5-15000件)
-      $form = $_request->all();
-      $data_type = $form['data_type'];
-      if ($data_type == CorpusDataType::Training) {
-        $rowCnt_error = $file->isInvalidCsvRow($file->getObject(), $_corpus_id);
-        if ($rowCnt_error) {
-          $message = 'Invalid file contents.';
-          $formatter = new ApiResponseFormatter(404, $message, array(
-            'message' => '教師データは、5 〜 15,000件で登録する必要があります'
-          ));
-          return response()->json($formatter->getResponseArray());
-        }
-      }
-
-      DB::beginTransaction();
 
       // 古いデータの削除
-      $del_classes = CorpusClass::where('corpus_id', $_corpus_id);
-
-      $del_class_id_list = [];
-      foreach ($del_classes->get() as $class) {
-        $del_class_id_list[] = $class->id;
+      $data->deleteOldCreative($data_type);
+      if ($data->isErrorExists()) {
+        $formatter = new ApiResponseFormatter(
+          $data->getCode(), $data->getMessage(), $data->getData()
+        );
+        return response()->json($formatter->getResponseArray());
       }
 
-      // 学習 or テスト
-      if ($data_type == CorpusDataType::Training) {
-        // 全てのクリエイティブ対象
-        $del_creatives = CorpusCreative::whereIn('corpus_class_id', $del_class_id_list);
-
-      } else {
-        // テストデータのみ対象
-        $del_creatives = CorpusCreative::whereIn('corpus_class_id', $del_class_id_list)->where('data_type', $data_type);
-
-      }
-      $del_creatives->delete();
-
-      if ($data_type == CorpusDataType::Training) {
-        $del_classes->delete();
-      }
-      
       // 登録データの作成
       $with_data = [
         'corpus_id' => $_corpus_id,
         'data_type' => $data_type
       ];
 
-      // return $file->getObject();
-      $insert_data = $this->createCreativeInsertData($file->getObject(), $with_data);
+      DB::beginTransaction();
+      $insert_data = $data->createCreativeInsertData($with_data);
 
       // 登録処理
       foreach($insert_data as $data) {
@@ -252,18 +233,13 @@ class TrainingDataController extends Controller
 
       // クラスの登録件数更新
       $added_classes = CorpusClass::where('corpus_id', $_corpus_id)->get();
-      
-      $class_id_list = [];
       foreach($added_classes as $class) {
         $added_creative_count = CorpusCreative::where('corpus_class_id', $class->id)->where('data_type', $data_type)->count();
-
-        $class = CorpusClass::find($class->id);
         if($data_type == CorpusDataType::Training) {
           $class->training_data_count = $added_creative_count;
         } else {
           $class->test_data_count = $added_creative_count;
-        }
-        
+        }        
         $class->save();
       }
       
