@@ -23,7 +23,7 @@
                 <button @click="openAddCorpusModal" type="button" class="btn btn-danger" style="margin-left:15px;">新規作成</button>
               </div>
               <div v-else-if="corpusList.length === 8" class="row mt-2">
-                <button type="button" class="btn btn-danger" style="margin-left:15px;" disabled>新規作成</button>
+                <button type="button" class="btn btn-danger cursor-default" style="margin-left:15px;" disabled>新規作成</button>
               </div>
 
               <!-- /.row -->
@@ -46,9 +46,9 @@
                       </div>
                       <p class="card-text three-dots-card" style="clear:both;margin-bottom:10px;">{{ corpus.description }}</p>
                     </div>
-                    <div class="card-footer" style="padding-top:2px;border-top: 1px solid #eee;">
+                    <div v-if="corpus.related_api_name !== ''" class="card-footer" style="padding-top:2px;border-top: 1px solid #eee;">
                       <div class="stats pull-right">
-                        関連API:「」（Todo: 後で実装）
+                        関連API:{{ corpus.related_api_name }}
                       </div>
                     </div>
                     <div class="card-footer" style="padding-top:2px;border-top: 1px solid #eee;">
@@ -163,5 +163,9 @@ export default {
 
 .detail-card:hover {
   cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
 }
 </style>
