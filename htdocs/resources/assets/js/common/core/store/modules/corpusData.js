@@ -98,6 +98,7 @@ const mutations = {
     } else if (resCode === 401) {
       Lib.alertRefreshToken();
     } else {
+      alert('該当のコーパスデータが見つかりませんでした。\nCAP管理画面に戻ります。');
       location.href = '/corpus';
     }
   },
