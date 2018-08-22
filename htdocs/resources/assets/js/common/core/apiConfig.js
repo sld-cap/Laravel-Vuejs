@@ -34,8 +34,8 @@ const API_CONFIG = {
   // コーパス情報登録
   addCorpusInfo: {
     // url: '/api/v1/corpus',
-    // url: '/stub/data/successData.json', // 処理成功用stub
-    url: '/stub/data/CorpusAddError.json', // 処理失敗用stub
+    url: '/stub/data/successData.json', // 処理成功用stub
+    // url: '/stub/data/CorpusAddError.json', // 処理失敗用stub
     method: 'POST',
     data: {},
   },
@@ -117,6 +117,38 @@ const API_CONFIG = {
   getApiList: {
     url: '/stub/data/ApiListGetSuccess.json',
     method: 'GET',
+    data: {},
+  },
+
+  // アカウント一覧取得
+  getAccountList: {
+    // url: '/api/v1/users',
+    url: '/stub/data/AccountListGetSuccess.json',
+    method: 'GET',
+    data: {},
+  },
+  // アカウント登録
+  addAccount: {
+    // url: '/api/v1/users',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    // url: '/stub/data/AccountAddError.json', // 処理error用stub
+    method: 'POST',
+    data: {},
+  },
+  // アカウント編集
+  saveAccount: {
+    // url: '/api/v1/users',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    // url: '/stub/data/AccountAddError.json', // 処理error用stub
+    method: 'POST',
+    data: {},
+  },
+  // アカウント削除
+  deleteAccount: {
+    // url: '/api/v1/users',
+    url: '/stub/data/successData.json', // 処理成功用stub
+    // url: '/stub/data/AccountAddError.json', // 処理error用stub
+    method: 'POST',
     data: {},
   },
 };
