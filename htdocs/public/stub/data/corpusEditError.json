@@ -1,16 +1,16 @@
 {
-  "code": 401,
+  "code": 400,
   "errors": [
     {
-      "item": "name",
+      "field_id": "name",
       "message": "入力されていません"
     },
     {
-      "item": "description",
+      "field_id": "description",
       "message": "入力されていません"
     },
     {
-      "item": "language",
+      "field_id": "language",
       "message": "選択されていません"
     }
   ],

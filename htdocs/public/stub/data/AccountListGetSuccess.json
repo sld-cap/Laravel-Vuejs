@@ -1,0 +1,32 @@
+{
+  "code": 200,
+  "data": [
+    {
+      "id": "1",
+      "sei_kanji": "スタブ",
+      "mei_kanji": "太郎1",
+      "email": "stub1@gmail.com",
+      "passowrd": "",
+      "role": "10",
+      "company_id": "1",
+      "remember_token": "",
+      "deleted_at": null,
+      "created_at": "2018/08/17 12:00:00",
+      "updated_at": "2018/08/20 12:00:00"
+    },
+    {
+      "id": "2",
+      "sei_kanji": "スタブ",
+      "mei_kanji": "太郎2",
+      "email": "stub2@gmail.com",
+      "passowrd": "",
+      "role": "10",
+      "company_id": "1",
+      "remember_token": "",
+      "deleted_at": null,
+      "created_at": "2018/08/17 12:00:00",
+      "updated_at": "2018/08/20 12:00:00"
+    }
+  ],
+  "message": ""
+}

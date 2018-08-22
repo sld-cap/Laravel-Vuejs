@@ -1,0 +1,22 @@
+{
+  "code": 400,
+  "errors": [
+    {
+      "field_id": "sei_kanji",
+      "message": "入力されていません"
+    },
+    {
+      "field_id": "mei_kanji",
+      "message": "入力されていません"
+    },
+    {
+      "field_id": "email",
+      "message": "入力されていません"
+    },
+    {
+      "field_id": "password",
+      "message": "入力されていません"
+    }
+  ],
+  "message": "validation error."
+}
