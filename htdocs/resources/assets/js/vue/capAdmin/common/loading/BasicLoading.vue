@@ -19,8 +19,8 @@ export default {
 </script>
 
 <style>
-.vue-loaders,
-.vue-loaders-text {
+.loading-block > .vue-loaders,
+.loading-block > .vue-loaders-text {
   display: inline-block;  /* インラインブロック化 */
   vertical-align: middle; /* 中央を揃える */
 }
