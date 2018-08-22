@@ -18,6 +18,10 @@ const state = {
   deleteTrainingData: {
     creative_id: null,
   },
+  // アカウント編集対象
+  editAccountIndex: null,
+  // アカウント削除対象
+  deleteAccountIndex: null,
 
   // エラー群
   corpusAddError: [],
@@ -25,6 +29,8 @@ const state = {
   trainingDataAddError: [],
   trainingDataEditError: [],
   trainingDataUploadError: [],
+  accountAddError: [],
+  accountEditError: [],
 };
 
 
@@ -41,6 +47,12 @@ const getters = {
   deleteTrainingData: (state) => {
     return state.deleteTrainingData;
   },
+  editAccountIndex: (state) => {
+    return state.editAccountIndex;
+  },
+  deleteAccountIndex: (state) => {
+    return state.deleteAccountIndex;
+  },
   // エラー
   corpusAddError: (state) => {
     return state.corpusAddError;
@@ -56,6 +68,12 @@ const getters = {
   },
   trainingDataUploadError: (state) => {
     return state.trainingDataUploadError;
+  },
+  accountAddError: (state) => {
+    return state.accountAddError;
+  },
+  accountEditError: (state) => {
+    return state.accountEditError;
   },
 };
 
@@ -93,6 +111,14 @@ const mutations = {
     Core.log('[store] setTrainingDataUploadError');
     state.trainingDataUploadError = errors;
   },
+  setAccountAddError(state, errors) {
+    Core.log('[store] setAccountAddError');
+    state.accountAddError = errors;
+  },
+  setAccountEditError(state, errors) {
+    Core.log('[store] setAccountEditError');
+    state.accountEditError = errors;
+  },
   // リロード処理
   reloadCorpusInfo() {
     Core.log('[store] reloadCorpusInfo');
@@ -101,6 +127,10 @@ const mutations = {
   reloadTrainingData() {
     Core.log('[store] reloadTrainingData');
     this.dispatch('corpusTrainingData/getTrainingData');
+  },
+  reloadAccountList() {
+    Core.log('[store] reloadAccountList');
+    this.dispatch('accountData/getAccountList');
   },
 };
 
@@ -201,6 +231,41 @@ const actions = {
   showSelectDeployModal({ commit }) {
     Core.log('[showSelectDeployModal]');
     commit('setModal', 'SelectDeployModal');
+  },
+
+  // アカウント登録モーダル
+  showAddAccountModal({ commit }) {
+    Core.log('[showAddAccountModal]');
+    commit('setModal', 'AddAccountModal');
+  },
+  showCompAddAccountModal({ commit }) {
+    Core.log('[showCompAddAccountModal]');
+    commit('setModal', 'CompAddAccountModal');
+    commit('reloadAccountList');
+  },
+  // アカウント編集モーダル
+  showEditAccountModal({ commit, state }, { index }) {
+    Core.log('[showEditAccountModal]');
+    state.editAccountIndex = index;
+
+    commit('setModal', 'EditAccountModal');
+  },
+  showCompEditAccountModal({ commit }) {
+    Core.log('[showCompEditAccountModal]');
+    commit('setModal', 'CompEditAccountModal');
+    commit('reloadAccountList');
+  },
+  // アカウント編集モーダル
+  showDeleteAccountModal({ commit, state }, { index }) {
+    Core.log('[showDeleteAccountModal]');
+    state.deleteAccountIndex = index;
+
+    commit('setModal', 'DeleteAccountModal');
+  },
+  showCompDeleteAccountModal({ commit }) {
+    Core.log('[showCompDeleteAccountModal]');
+    commit('setModal', 'CompDeleteAccountModal');
+    commit('reloadAccountList');
   },
 };
 
