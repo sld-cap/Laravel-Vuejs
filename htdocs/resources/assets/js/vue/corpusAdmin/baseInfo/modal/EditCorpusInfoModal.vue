@@ -9,7 +9,7 @@
       <!-- /message -->
       <div class="form-group">
         <label for="editCorpusName">コーパス名</label>
-        <input v-model="form.name" type="text" :class="'form-control' + err.name.invalid" id="editCorpusName" aria-describedby="nameHelp">
+        <input v-model="form.name" type="text" :class="'form-control' + err.name.invalid" id="editCorpusName" aria-describedby="nameHelp" maxlength="255">
         <small id="nameHelp" class="form-text text-muted">10字程度の識別しやすい名前を記入してください。</small>
         <div class="invalid-feedback">
           {{ err.name.message }}
@@ -18,7 +18,7 @@
       <!-- /.form-group -->
       <div class="form-group">
         <label for="editDescription">説明文</label>
-        <textarea v-model="form.description" :class="'form-control' + err.description.invalid" id="editDescription" rows="3"></textarea>
+        <textarea v-model="form.description" :class="'form-control' + err.description.invalid" id="editDescription" rows="3" maxlength="255"></textarea>
         <!-- <small class="form-text text-muted">1000文字以内で入力してください。</small> -->
         <div class="invalid-feedback">
           {{ err.description.message }}
