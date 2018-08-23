@@ -2,7 +2,8 @@
   <div class="card bg-light mb-3">
     <div class="card-header">現在のステータス</div>
     <div class="card-body" style="padding: 0.5rem;">
-      <p>{{ corpusCurrentStatus }}</p>
+      <Loading v-if="loading" /><!-- loading -->
+      <p v-else>{{ corpusCurrentStatus }}</p>
     </div>
   </div>
   <!-- /.card -->
@@ -12,14 +13,19 @@
 import * as Core from '../../../../common/core/app';
 import { mapGetters } from 'vuex';
 
+import Loading from '../../common/loading/BasicLoading.vue';
+
 export default {
-  components: {},
+  components: {
+    Loading, 
+  },
   props: [],
   data() {
     return {};
   },
   computed: {
     ...mapGetters({
+      loading: 'corpusData/loading',
       corpusCurrentStatus: 'corpusData/corpusCurrentStatus',
     }),
   },
