@@ -37,26 +37,82 @@ const routes = [
         name: 'dashboard',
         path: '/',
         component: DashboardVue,
+        meta: {
+          breadcrumbe: [
+            {
+              label: 'TOP',
+              name: '',
+            },
+          ],
+        },
       },
       {
         name: 'corpusManage',
         path: '/corpus',
         component: CorpusManageVue,
+        meta: {
+          breadcrumbe: [
+            {
+              label: 'TOP',
+              name: 'dashboard',
+            },
+            {
+              label: 'コーパス管理',
+              name: '',
+            },
+          ],
+        },
       },
       {
         name: 'apiManage',
         path: '/api-info',
         component: ApiManageVue,
+        meta: {
+          breadcrumbe: [
+            {
+              label: 'TOP',
+              name: 'dashboard',
+            },
+            {
+              label: 'API管理',
+              name: '',
+            },
+          ],
+        },
       },
       {
         name: 'serviveManage',
         path: '/setting',
         component: ServieManageVue,
+        meta: {
+          breadcrumbe: [
+            {
+              label: 'TOP',
+              name: 'dashboard',
+            },
+            {
+              label: 'サービス管理',
+              name: '',
+            },
+          ],
+        },
       },
       {
         name: 'help',
         path: '/help',
         component: HelpVue,
+        meta: {
+          breadcrumbe: [
+            {
+              label: 'TOP',
+              name: 'dashboard',
+            },
+            {
+              label: 'ヘルプ',
+              name: '',
+            },
+          ],
+        },
       },
     ],
   },

@@ -53,7 +53,11 @@
       <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            パンくずナビ
+            <template v-for="breadcrumb in currentBreadcrumbs">
+              <router-link v-if="breadcrumb.name !== ''" :to="{ name: breadcrumb.name }">{{ breadcrumb.label }}</router-link>
+              <span v-else>{{ breadcrumb.label }}</span>
+              <span v-if="breadcrumb.name !== ''" style="margin: 0 5px;"> ＞ </span>  
+            </template>
           </div>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="navbar-nav">
@@ -94,7 +98,7 @@ import * as Lib from '../../common/ext/functions';
 
 import MultiModal from './common/modal/MultiModal';
 import Loading from '../common/components/Loading';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   props: ['me'],
@@ -102,23 +106,33 @@ export default {
     MultiModal, Loading,
   },
   data() {
-    return {};
+    return {
+      currentBreadcrumbs: [],
+    };
   },
   computed: {
     ...mapGetters({
       loading: 'commonData/loading',
     }),
   },
+  watch: {
+    '$route': function (to, from) {
+      this.setCurrentBreadcrumbs(this.$route.meta.breadcrumbe);
+    }
+  },
   created() {
     Core.log('[created]');
     Core.log('me/corpusId');
     Core.log(this.me);
     this.$store.state.commonData.me = this.me;
+    this.setCurrentBreadcrumbs(this.$route.meta.breadcrumbe);
+
     // 各種データ取得
     // ダッシュボードで表示する情報 / コーパス一覧 / API一覧 / アカウント一覧
     // Todo: 利用ログ一覧や請求一覧の情報も取得する（ite2）
-    this.$store.dispatch('corpusData/getCorpusList');
-    this.$store.dispatch('accountData/getAccountList');
+    this.getCorpusList();
+    this.getAccountList();
+    this.getApiList();
   },
   mounted() {
     Core.log('[mounted]');
@@ -126,7 +140,15 @@ export default {
   methods: {
     logout() {
       Lib.logout();
-    }
+    },
+    setCurrentBreadcrumbs(params) {
+      this.currentBreadcrumbs = params;
+    },
+    ...mapActions({
+      getCorpusList: 'corpusData/getCorpusList',
+      getAccountList: 'accountData/getAccountList',
+      getApiList: 'apiData/getApiList',
+    }),
   }
 };
 </script>
