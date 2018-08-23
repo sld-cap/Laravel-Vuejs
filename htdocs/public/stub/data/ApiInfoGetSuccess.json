@@ -1,0 +1,25 @@
+{
+  "code": 200,
+  "data": [
+    {
+      "id": 1,
+      "display_api_id": "001abcd-cap-001",
+      "name": "テストカンパニー社のサンプルAPI①",
+      "corpus_name": "スタブコーパス1",
+      "status_availability": "可",
+      "status_description": "本番稼働中",
+      "api_url": "https://cap-development.mybluemix.net/api/exec/",
+      "token": "mOe2mpoe"
+    }, {
+      "id": 2,
+      "display_api_id": "001abcd-cap-002",
+      "name": "サンプルAPI②",
+      "corpus_name": "スタブコーパス2",
+      "status_availability": "不可",
+      "status_description": "注意: 学習未実行",
+      "api_url": "https://cap-development.mybluemix.net/api/exec/",
+      "token": "0xcMdwks"
+    }
+  ],
+  "message": "this is stub."
+}

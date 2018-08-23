@@ -113,13 +113,6 @@ const API_CONFIG = {
     data: {},
   },
 
-  // API一覧取得
-  getApiList: {
-    url: '/stub/data/ApiListGetSuccess.json',
-    method: 'GET',
-    data: {},
-  },
-
   // アカウント一覧取得
   getAccountList: {
     // url: '/api/v1/users',
@@ -149,6 +142,13 @@ const API_CONFIG = {
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/AccountAddError.json', // 処理error用stub
     method: 'POST',
+    data: {},
+  },
+
+  // API一覧取得
+  getApiList: {
+    url: '/stub/data/ApiInfoGetSuccess.json',
+    method: 'GET',
     data: {},
   },
 };
