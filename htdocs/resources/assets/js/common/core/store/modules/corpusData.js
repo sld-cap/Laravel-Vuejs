@@ -107,6 +107,7 @@ const mutations = {
       alert('該当のコーパスデータが見つかりませんでした。\nCAP管理画面に戻ります。');
       location.href = '/corpus';
     }
+    state.loading = false;
   },
   // 登録: コーパスデータ作成処理結果
   setAddCorpusInfoResult(state, payload) {
@@ -250,6 +251,8 @@ const actions = {
   // 取得（詳細）
   getCorpusInfo({ commit }) {
     Core.log('[store] getCorpusInfo');
+    state.loading = true;
+
     const apiOption = { ...ApiConfig.getCorpus };
     const corpusId = this.getters['commonData/corpusId'];
     apiOption.url = apiOption.url.replace(/{corpusId}/g, corpusId);
