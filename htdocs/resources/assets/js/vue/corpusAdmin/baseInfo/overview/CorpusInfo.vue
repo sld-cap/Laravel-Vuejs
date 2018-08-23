@@ -6,8 +6,9 @@
       </h4>
     </div>
     <div id="collapse1" class="panel-collapse collapse show">
-      <Loading v-if="Object.keys(corpusInfo).length === 0" /><!-- loading -->
-      <div v-if="Object.keys(corpusInfo).length > 0" class="table-responsive">
+      <Loading v-if="loading" /><!-- loading -->
+      <p v-else-if="Object.keys(corpusInfo).length === 0">該当のコーパスデータが見つかりませんでした</p><!-- // 0件 -->
+      <div v-else-if="Object.keys(corpusInfo).length > 0" class="table-responsive">
         <table class="table mb-0">
           <thead class="thead-light">
             <tr>
@@ -59,6 +60,7 @@ import * as Ajax from '../../../../common/core/ajax';
 import * as Lib from '../../../../common/ext/functions';
 import ApiConfig from '../../../../common/core/apiConfig';
 
+import { mapGetters } from 'vuex';
 import Loading from '../../common/loading/BasicLoading.vue';
 
 export default {
@@ -70,12 +72,11 @@ export default {
     return {};
   },
   computed: {
-    corpusInfo() {
-      return this.$store.getters['corpusData/corpusInfo'];
-    },
-    language_labal() {
-      return this.$store.getters['corpusData/CorpuslanguageLabel'];
-    },
+    ...mapGetters({
+      loading: 'corpusData/loading',
+      corpusInfo: 'corpusData/corpusInfo',
+      language_labal: 'corpusData/CorpuslanguageLabel',
+    }),
   },
   created() {
     Core.log('[created]');
