@@ -11,6 +11,7 @@ const state = {
   corpusInfo: {},
   corpusList: [],
   timer: null,
+  loading: false,
 };
 
 
@@ -18,6 +19,10 @@ const state = {
  * getters
  */
 const getters = {
+  loading: (state) => {
+    Core.log('[store] getters: loading');
+    return state.loading;
+  },
   // コーパス一覧
   corpusList: (state) => {
     Core.log('[store] getters: corpusList');
@@ -86,6 +91,7 @@ const mutations = {
     } else {
       Lib.alertVendorEscalation(resCode);
     }
+    state.loading = false;
   },
   // 取得: コーパスデータセット
   setGetCorpusInfoResult(state, payload) {
@@ -234,8 +240,10 @@ const mutations = {
  */
 const actions = {
   // 取得（一覧）
-  getCorpusList({ commit }) {
+  getCorpusList({ commit, state }) {
     Core.log('[store] getCorpusList');
+    state.loading = true;
+
     const apiOption = { ...ApiConfig.getCorpusList };
     Ajax.exec(apiOption, commit, 'setGetCorpusListResult');
   },
