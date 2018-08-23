@@ -81,6 +81,11 @@ const CapApp = new Vue({
   el: '#app',
   router,
   store,
+  created() {
+    Core.log('======');
+    Core.log('Created CapApp!!');
+    Core.log('======');
+  },
   data() {
     return {
       me: {},
