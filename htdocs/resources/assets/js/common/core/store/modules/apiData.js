@@ -9,6 +9,8 @@ import * as Lib from '../../../ext/functions';
  */
 const state = {
   apiList: [],
+  loading: true,
+  displayApiTab: {},
 };
 
 
@@ -16,10 +18,18 @@ const state = {
  * getters
  */
 const getters = {
+  loading: (state) => {
+    Core.log('[store] getters: loading');
+    return state.loading;
+  },
   // コーパス一覧
   apiList: (state) => {
     Core.log('[store] getters: apiList');
     return state.apiList;
+  },
+  displayApiTab: (state) => {
+    Core.log('[store] getters: displayApiTab');
+    return state.displayApiTab;
   },
 };
 
@@ -28,6 +38,12 @@ const getters = {
  * mutations
  */
 const mutations = {
+  //
+  setDisplayIndex(state, payload) {
+    Core.log('[store] setDisplayIndex');
+    Core.log(payload);
+    state.displayApiTab = payload;
+  },
   // 取得 :API一覧
   setGetApiListResult(state, payload) {
     Core.log('[store] setGetApiListResult');
@@ -41,6 +57,7 @@ const mutations = {
     } else {
       Lib.alertVendorEscalation(resCode);
     }
+    state.loading = false;
   },
 };
 
@@ -50,8 +67,10 @@ const mutations = {
  */
 const actions = {
   // 取得（一覧）
-  getApiList({ commit }) {
+  getApiList({ commit, state }) {
     Core.log('[store] getApiList');
+    state.loading = true;
+
     const apiOption = { ...ApiConfig.getApiList };
     Ajax.exec(apiOption, commit, 'setGetApiListResult');
   },
