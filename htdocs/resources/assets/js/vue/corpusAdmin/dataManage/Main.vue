@@ -15,10 +15,14 @@
       <div class="col-12">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
           <li class="nav-item">
-            <a class="btn btn-outline-brand nav-link active mr-1" id="training-tab" data-toggle="tab" href="#training" role="tab" aria-controls="training" aria-selected="true">学習データ</a>
+            <a class="btn btn-outline-brand nav-link active mr-1" id="training-tab" 
+              data-toggle="tab" href="#training" role="tab" aria-controls="training" aria-selected="true">学習データ
+            </a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-outline-info nav-link" id="test-tab" data-toggle="tab" href="#test" role="tab" aria-controls="test" aria-selected="false">テストデータ</a>
+            <a class="btn btn-outline-info nav-link" id="test-tab" 
+              data-toggle="tab" href="#test" role="tab" aria-controls="test" aria-selected="false">テストデータ
+            </a>
           </li>
           <li class="nav-item w-50 ">
             <input class="form-control form-control-dark border-bottom ml-5" type="text" placeholder="キーワード検索" aria-label="キーワード検索">
@@ -29,50 +33,20 @@
     </div>
     <!-- /.row -->
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <SuccessAlert v-if="successMsg !== ''"></SuccessAlert>
-        <!-- /.alert -->
-        <ErrorAlert v-if="errors.length > 0"></ErrorAlert>
-        <!-- /.alert -->
-      </div>
-    </div>
-    <!-- /.row alert-area-->
-
     <section class="viewCreativeContents mt-3" style="width:100%;">
       <div class="tab-content" id="pills-tabContent">
 
         <!-- 学習データタブ -->
         <div class="tab-pane fade show active" id="training" role="tabpanel" aria-labelledby="training-tab" style="width:100%;"> 
           <TrainingDataManageActions></TrainingDataManageActions>
-          <!-- /.row -->
-
-          <div class="row mt-2" v-if="corpusInfo.status == 1 || trainingDataCount === 0" >
-            <div class="col-12">
-              <NoTrainingDataAlert></NoTrainingDataAlert>
-              <!-- /.alert -->
-            </div>
-          </div>
-          <!-- /.row -->
-          <TrainingDataTable v-else></TrainingDataTable>
+          <TrainingDataTable></TrainingDataTable>
         </div>
         <!-- /学習データタブ -->
 
         <!-- テストデータタブ -->
         <div class="tab-pane fade" id="test" role="tabpanel" aria-labelledby="test-tab">
-          <template v-if="corpusInfo.status == 1 || trainingDataCount === 0">
-            <div class="row mt-2">
-              <div class="col-12">
-                <NoTrainingDataAlert></NoTrainingDataAlert>
-              <!-- /.alert -->
-              </div>
-            </div>
-            <!-- /.row -->
-          </template>
-          <template v-else>
-            <TestDataManageActions></TestDataManageActions>
-            <TestDataTable></TestDataTable>
-          </template>
+          <TestDataManageActions></TestDataManageActions>
+          <TestDataTable></TestDataTable>
         </div>
         <!-- テストデータタブ -->
 
@@ -92,9 +66,6 @@ import { mapGetters } from 'vuex';
 // アラート
 import ProductionNoticeAlert from './alert/ProductionNoticeAlert.vue';
 import IsTrainingAlert from './alert/IsTrainingAlert.vue';
-import SuccessAlert from '../common/alert/custom/SuccessAlert.vue';
-import ErrorAlert from '../common/alert/custom/ErrorAlert.vue';
-import NoTrainingDataAlert from './alert/NoTrainingDataAlert.vue';
 // データ管理
 import TrainingDataManageActions from './tab/TrainingDataManageActions.vue';
 import TrainingDataTable from './tab/TrainingDataTable.vue';
@@ -104,7 +75,7 @@ import TestDataTable from './tab/TestDataTable.vue';
 export default {
   components: {
     // アラート
-    ProductionNoticeAlert, IsTrainingAlert, SuccessAlert, ErrorAlert, NoTrainingDataAlert,
+    ProductionNoticeAlert, IsTrainingAlert,
     // タブ
     TrainingDataManageActions, TrainingDataTable,TestDataManageActions, TestDataTable,
   },
@@ -115,15 +86,10 @@ export default {
   computed: {
     ...mapGetters({
       corpusInfo: 'corpusData/corpusInfo',
-      successMsg: 'commonData/successMsg',
-      errors: 'commonData/errors',
-      trainingDataCount: 'corpusTrainingData/trainingDataCount',
     }),
   },
   created() {
     Core.log('[created]');
-    this.$store.state.successMsg = '';
-    this.$store.state.errors = [];
   },
   updated: function() {
     Core.log('[updated]');
