@@ -3401,6 +3401,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // import * as Ajax from '../../../../common/core/ajax';
@@ -3424,7 +3440,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
   },
 
-  methods: {}
+  methods: {
+    downloadInvoice: function downloadInvoice() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] downloadInvoice');
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('未実装');
+    }
+  }
 });
 
 /***/ }),
@@ -10728,7 +10749,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43813,70 +43834,141 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "card" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "limit-contents" }, [
+        _c("table", { staticClass: "table setting-table" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("tbody", [
+            _c("tr", [
+              _c("td", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("2018年6月分")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("23,200")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("￥81,000")]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: { type: "button", rel: "tooltip" },
+                    on: {
+                      click: function($event) {
+                        _vm.downloadInvoice()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("cloud_download")
+                    ]),
+                    _vm._v(" 請求書ダウンロード\n              ")
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("2")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("2018年5月分")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("21,192")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("￥73,000")]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: { type: "button", rel: "tooltip" },
+                    on: {
+                      click: function($event) {
+                        _vm.downloadInvoice()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("cloud_download")
+                    ]),
+                    _vm._v(" 請求書ダウンロード\n              ")
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("3")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("2018年4月分")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("19,000")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("￥55,000")]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: { type: "button", rel: "tooltip" },
+                    on: {
+                      click: function($event) {
+                        _vm.downloadInvoice()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "material-icons" }, [
+                      _vm._v("cloud_download")
+                    ]),
+                    _vm._v(" 請求書ダウンロード\n              ")
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header card-header-default" }, [
-        _c("h4", { staticClass: "card-title " }, [_vm._v("ご請求一覧")]),
-        _vm._v(" "),
-        _c("p", { staticClass: "card-category" }, [
-          _vm._v("ご請求利用料金の履歴の一覧です。")
-        ])
-      ]),
+    return _c("div", { staticClass: "card-header card-header-default" }, [
+      _c("h4", { staticClass: "card-title " }, [_vm._v("ご請求一覧")]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "limit-contents" }, [
-          _c("table", { staticClass: "table" }, [
-            _c("thead", { staticClass: " text-info" }, [
-              _c("tr", [
-                _c("th", [_vm._v("＃")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("対象年月")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("APIコール回数")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("利用料金")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("td", [_vm._v("1")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("2018年6月分")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("23,200")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("￥81,000")])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("2")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("2018年5月分")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("21,192")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("￥73,000")])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("3")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("2018年4月分")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("19,000")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("￥55,000")])
-              ])
-            ])
-          ])
-        ])
+      _c("p", { staticClass: "card-category" }, [
+        _vm._v("ご請求利用料金の履歴の一覧です。")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-info" }, [
+      _c("tr", [
+        _c("th", [_vm._v("＃")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("対象年月")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("APIコール回数")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("利用料金")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "btnbox" })
       ])
     ])
   }
@@ -43972,7 +44064,7 @@ var render = function() {
                                   },
                                   [
                                     _c("i", { staticClass: "material-icons" }, [
-                                      _vm._v("close")
+                                      _vm._v("delete")
                                     ])
                                   ]
                                 )
