@@ -21,6 +21,9 @@ import CorpusadminTrainingManageVue from '../../vue/corpusAdmin/trainingManage/M
  * router config
  */
 const routes = [
+  /**
+   * ログイン画面
+   */
   {
     path: '/login',
     component: LoginVue,

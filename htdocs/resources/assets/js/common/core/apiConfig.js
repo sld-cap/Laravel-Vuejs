@@ -1,72 +1,74 @@
 const API_CONFIG = {
-  // システム共通
-  // ログイン
-  login: {
+  /**
+   * システム共通
+   */
+  login: { // ログイン
     url: '/api/authenticate',
     method: 'POST',
     data: {},
   },
-  // ログアウト
-  logout: {
+  logout: { // ログアウト
     url: '',
     method: 'GET',
     params: {},
   },
-  // 自分の情報
-  auth: {
+  auth: { // 自分の情報取得
     url: '/api/v1/me',
     method: 'GET',
   },
 
-  // CAP管理画面
-  getCorpusList: {
+  /**
+   * コーパス管理
+   */
+  getCorpusList: { // コーパス一覧取得
     // url: '/api/v1/corpus',
     url: '/stub/data/CorpusListGetSuccess.json', // 処理成功用stub
     method: 'GET',
     params: {},
   },
-  // コーパス情報取得
-  getCorpus: {
+  getCorpus: { // コーパス詳細取得
     url: '/api/v1/corpus/{corpusId}',
     method: 'GET',
     params: {},
   },
-  // コーパス情報登録
-  addCorpusInfo: {
+  addCorpusInfo: { // コーパスの作成
     // url: '/api/v1/corpus',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/CorpusAddError.json', // 処理失敗用stub
     method: 'POST',
     data: {},
   },
-  // コーパス情報更新
-  saveCorpusInfo: {
+  saveCorpusInfo: { // コーパスの編集
     // url: '/api/v1/corpus',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/corpusEditError.json', // 処理失敗用stub
     method: 'POST',
     data: {},
   },
-  // コーパス削除
-  deleteCorpusInfo: {
+  deleteCorpusInfo: { // コーパスの削除
     // url: '/api/v1/corpus/{corpusId}',
     url: '/stub/data/successData.json', // 処理成功用stub
     method: 'DELETE',
   },
-  // コーパス学習
-  trainingCorpus: {
+
+  /**
+   * コーパスの学習
+   */
+  trainingCorpus: { // AI学習の実行
     // url: '/api/v1/corpus/{corpusId}',
     url: '/stub/data/successData.json', // 処理成功用stub
     method: 'POST',
     data: {},
   },
-  // コーパス学習完了確認
-  checkCorpusTrainingDone: {
+  checkCorpusTrainingDone: { // AI学習が完了したかどうかの確認
     // url: '/api/v1/corpus/{corpusId}',
     url: '/stub/data/successData.json', // 処理成功用stub
     method: 'GET',
   },
-  // コーパス本番反映
+
+  /**
+   * コーパスの本番反映
+   */
   deployCorpus: {
     // url: '/api/v1/corpus/{corpusId}',
     url: '/stub/data/successData.json', // 処理成功用stub
@@ -74,31 +76,29 @@ const API_CONFIG = {
     data: {},
   },
 
-  // 教師データ一覧取得
-  getTrainingData: {
+  /**
+   * 教師データの管理
+   */
+  getTrainingData: { // 教師データ一覧取得
     url: '/api/v1/training-data/{training_datum}',
     method: 'GET',
     params: {},
   },
-  // 教師データ追加
-  addTrainingData: {
+  addTrainingData: { // 教師データの登録
     url: '/api/v1/training-data',
     method: 'POST',
     data: {},
   },
-  // 教師データ編集
-  saveTrainingData: {
+  saveTrainingData: { // 教師データの編集
     url: '/api/v1/training-data/{creative_id}',
     method: 'PUT',
     data: {},
   },
-  // 教師データ削除
-  deleteTrainingData: {
+  deleteTrainingData: { // 教師データの削除
     url: '/api/v1/training-data/{creative_id}',
     method: 'DELETE',
   },
-  // 教師データアップロード
-  uploadTrainingData: {
+  uploadTrainingData: { // 教師データのアップロード
     url: '/api/v1/training-data/{corpus_id}/upload',
     method: 'POST',
     data: {},
@@ -106,38 +106,36 @@ const API_CONFIG = {
       'content-type': 'multipart/form-data',
     },
   },
-  // 教師データダウンロード
-  downloadTrainingData: {
+  downloadTrainingData: { // 教師データのダウンロード
     url: '/api/v1/training-data/{corpus_id}/download',
     method: 'GET',
     data: {},
   },
 
-  // アカウント一覧取得
-  getAccountList: {
+  /**
+   * アカウントの管理
+   */
+  getAccountList: { // アカウント一覧取得
     // url: '/api/v1/users',
     url: '/stub/data/AccountListGetSuccess.json',
     method: 'GET',
     data: {},
   },
-  // アカウント登録
-  addAccount: {
+  addAccount: { // アカウントの作成
     // url: '/api/v1/users',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/AccountAddError.json', // 処理error用stub
     method: 'POST',
     data: {},
   },
-  // アカウント編集
-  saveAccount: {
+  saveAccount: { // アカウントの編集
     // url: '/api/v1/users',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/AccountAddError.json', // 処理error用stub
     method: 'POST',
     data: {},
   },
-  // アカウント削除
-  deleteAccount: {
+  deleteAccount: { // アカウントの削除
     // url: '/api/v1/users',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/AccountAddError.json', // 処理error用stub
@@ -145,12 +143,24 @@ const API_CONFIG = {
     data: {},
   },
 
-  // API一覧取得
-  getApiList: {
+  /**
+   * APIデータの管理
+   */
+  getApiList: { // API一覧取得
     url: '/stub/data/ApiInfoGetSuccess.json',
     method: 'GET',
     data: {},
   },
+
+  /**
+   * 教師データでのテスト
+   */
+  /**
+   * 請求書データの管理
+   */
+  /**
+   * ログデータの管理
+   */
 };
 
 export default API_CONFIG;
