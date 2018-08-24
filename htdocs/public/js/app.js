@@ -1637,13 +1637,11 @@ module.exports = {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__list_ApiList_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/apiManage/list/ApiList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__list_ApiList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__list_ApiList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tab_tab_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/apiManage/tab/tab.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tab_tab_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__tab_tab_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list_ApiList_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/apiManage/list/ApiList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list_ApiList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__list_ApiList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tab_tab_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/apiManage/tab/tab.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tab_tab_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__tab_tab_vue__);
 //
 //
 //
@@ -1667,8 +1665,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
-
 
 
 
@@ -1677,9 +1673,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['me'],
+  props: [],
   components: {
-    ApiList: __WEBPACK_IMPORTED_MODULE_4__list_ApiList_vue___default.a, Tab: __WEBPACK_IMPORTED_MODULE_5__tab_tab_vue___default.a
+    ApiList: __WEBPACK_IMPORTED_MODULE_2__list_ApiList_vue___default.a, Tab: __WEBPACK_IMPORTED_MODULE_3__tab_tab_vue___default.a
   },
   data: function data() {
     return {};
@@ -1754,7 +1750,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 
 
-// import * as Ajax from '../../../../common/core/ajax';
 
 
 
@@ -1801,6 +1796,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
 //
 //
 //
@@ -2004,8 +2001,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 
 
-// import * as Ajax from '../../../../common/core/ajax';
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2093,7 +2088,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 
 
-// import * as Ajax from '../../../../common/core/ajax';
 
 
 
@@ -2333,12 +2327,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__list_CorpusList_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/corpusManage/list/CorpusList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__list_CorpusList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__list_CorpusList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__list_CorpusList_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/corpusManage/list/CorpusList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__list_CorpusList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__list_CorpusList_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -2395,29 +2387,27 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['me'],
+  props: [],
   components: {
-    CorpusList: __WEBPACK_IMPORTED_MODULE_5__list_CorpusList_vue___default.a
+    CorpusList: __WEBPACK_IMPORTED_MODULE_3__list_CorpusList_vue___default.a
   },
   data: function data() {
     return {};
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapGetters */])({
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
     corpusList: 'corpusData/corpusList'
   })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
   },
 
-  updated: function updated() {
-    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
-  },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+  },
+  updated: function updated() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
   },
   methods: {
     openAddCorpusModal: function openAddCorpusModal() {
@@ -2467,14 +2457,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__alert_NoCorpusAlert_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/corpusManage/alert/NoCorpusAlert.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__alert_NoCorpusAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__alert_NoCorpusAlert_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_loading_BasicLoading_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/loading/BasicLoading.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_loading_BasicLoading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__common_loading_BasicLoading_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__alert_NoCorpusAlert_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/corpusManage/alert/NoCorpusAlert.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__alert_NoCorpusAlert_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__alert_NoCorpusAlert_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/loading/BasicLoading.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -2528,18 +2516,16 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['me'],
+  props: [],
   components: {
-    Loading: __WEBPACK_IMPORTED_MODULE_6__common_loading_BasicLoading_vue___default.a, NoCorpusAlert: __WEBPACK_IMPORTED_MODULE_5__alert_NoCorpusAlert_vue___default.a
+    Loading: __WEBPACK_IMPORTED_MODULE_4__common_loading_BasicLoading_vue___default.a, NoCorpusAlert: __WEBPACK_IMPORTED_MODULE_3__alert_NoCorpusAlert_vue___default.a
   },
   data: function data() {
     return {};
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapGetters */])({
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
     loading: 'corpusData/loading',
     corpusList: 'corpusData/corpusList'
   })),
@@ -2549,11 +2535,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
   updated: function updated() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[updated]');
-    __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__["adjastCorpusCardDescriptionRows"]('three-dots-card');
+    __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["adjastCorpusCardDescriptionRows"]('three-dots-card');
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
-    __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__["adjastCorpusCardDescriptionRows"]('three-dots-card');
+    __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["adjastCorpusCardDescriptionRows"]('three-dots-card');
   },
   methods: {
     openCorpusAdminTab: function openCorpusAdminTab(corpusId) {
@@ -2564,7 +2550,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
     convElapsedTime: function convElapsedTime(dateTime) {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[convElapsedTime]');
-      return __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__["elapsedTime"](dateTime);
+      return __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["elapsedTime"](dateTime);
     },
     dispCorpusTypeLabel: function dispCorpusTypeLabel(typeKey) {
       return __WEBPACK_IMPORTED_MODULE_0__common_core_app__["CorpusType"][typeKey].label;
@@ -2580,13 +2566,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -2643,12 +2627,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AddCorpusModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
@@ -2673,7 +2655,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       deep: true
     }
   },
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapGetters */])({
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
     errors: 'multiModal/corpusAddError'
   })),
   created: function created() {
@@ -2754,8 +2736,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {};
   },
-
-  computed: {},
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
   },
@@ -2911,13 +2891,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_MultiModal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/MultiModal.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_MultiModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_MultiModal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_components_Loading__ = __webpack_require__("./resources/assets/js/vue/common/components/Loading.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_components_Loading___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__common_components_Loading__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -3021,7 +3000,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['me'],
   components: {
@@ -3033,7 +3011,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_5_vuex__["c" /* mapGetters */])({
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
     loading: 'commonData/loading'
   })),
   watch: {
@@ -3061,12 +3039,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
   methods: _extends({
     logout: function logout() {
-      __WEBPACK_IMPORTED_MODULE_2__common_ext_functions__["logout"]();
+      __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["logout"]();
     },
     setCurrentBreadcrumbs: function setCurrentBreadcrumbs(params) {
       this.currentBreadcrumbs = params;
     }
-  }, Object(__WEBPACK_IMPORTED_MODULE_5_vuex__["b" /* mapActions */])({
+  }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapActions */])({
     getCorpusList: 'corpusData/getCorpusList',
     getAccountList: 'accountData/getAccountList',
     getApiList: 'apiData/getApiList'
@@ -3141,11 +3119,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {};
   },
-
-  computed: {
-    // ...mapGetters({
-    // }),
-  },
   crated: function crated() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[crated]');
   },
@@ -3219,19 +3192,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-// import * as Ajax from '../../../../common/core/ajax';
-// import { mapGetters } from 'vuex';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   props: [],
   data: function data() {
     return {};
-  },
-
-  computed: {
-    // ...mapGetters({
-    // }),
   },
   crated: function crated() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[crated]');
@@ -3419,19 +3385,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-// import * as Ajax from '../../../../common/core/ajax';
-// import { mapGetters } from 'vuex';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   props: [],
   data: function data() {
     return {};
-  },
-
-  computed: {
-    // ...mapGetters({
-    // }),
   },
   crated: function crated() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[crated]');
@@ -3507,19 +3466,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-// import * as Ajax from '../../../../common/core/ajax';
-// import { mapGetters } from 'vuex';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   props: [],
   data: function data() {
     return {};
-  },
-
-  computed: {
-    // ...mapGetters({
-    // }),
   },
   crated: function crated() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[crated]');
@@ -3539,13 +3491,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -3628,12 +3578,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AddAccountModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
@@ -3658,7 +3606,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       deep: true
     }
   },
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapGetters */])({
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
     errors: 'multiModal/accountAddError'
   })),
   created: function created() {
@@ -3743,8 +3691,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {};
   },
-
-  computed: {},
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
   },
@@ -3791,8 +3737,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {};
   },
-
-  computed: {},
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
   },
@@ -3839,8 +3783,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {};
   },
-
-  computed: {},
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
   },
@@ -3856,9 +3798,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -3891,7 +3833,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'DeleteAccountModal',
   mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default.a },
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
@@ -3901,7 +3843,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
     accountList: 'accountData/accountList',
     deleteIndex: 'multiModal/deleteAccountIndex'
   })),
@@ -3932,13 +3874,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -4021,12 +3961,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'EditAccountModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_5__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
@@ -4052,7 +3990,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       deep: true
     }
   },
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["c" /* mapGetters */])({
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
     accountList: 'accountData/accountList',
     editIndex: 'multiModal/editAccountIndex',
     errors: 'multiModal/accountEditError'
@@ -10569,7 +10507,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -10749,7 +10687,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -10794,7 +10732,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -10884,7 +10822,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -10944,7 +10882,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -10989,7 +10927,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -11064,7 +11002,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -41874,9 +41812,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("th", [_vm._v("URI")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("認証トークン")])
+      _c("tr", [
+        _c("th", [_vm._v("URI")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("認証トークン")])
+      ])
     ])
   }
 ]
@@ -67431,74 +67371,76 @@ var checkStatus = function () {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var API_CONFIG = {
-  // システム共通
-  // ログイン
-  login: {
+  /**
+   * システム共通
+   */
+  login: { // ログイン
     url: '/api/authenticate',
     method: 'POST',
     data: {}
   },
-  // ログアウト
-  logout: {
+  logout: { // ログアウト
     url: '',
     method: 'GET',
     params: {}
   },
-  // 自分の情報
-  auth: {
+  auth: { // 自分の情報取得
     url: '/api/v1/me',
     method: 'GET'
   },
 
-  // CAP管理画面
-  getCorpusList: {
+  /**
+   * コーパス管理
+   */
+  getCorpusList: { // コーパス一覧取得
     // url: '/api/v1/corpus',
     url: '/stub/data/CorpusListGetSuccess.json', // 処理成功用stub
     method: 'GET',
     params: {}
   },
-  // コーパス情報取得
-  getCorpus: {
+  getCorpus: { // コーパス詳細取得
     url: '/api/v1/corpus/{corpusId}',
     method: 'GET',
     params: {}
   },
-  // コーパス情報登録
-  addCorpusInfo: {
+  addCorpusInfo: { // コーパスの作成
     // url: '/api/v1/corpus',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/CorpusAddError.json', // 処理失敗用stub
     method: 'POST',
     data: {}
   },
-  // コーパス情報更新
-  saveCorpusInfo: {
+  saveCorpusInfo: { // コーパスの編集
     // url: '/api/v1/corpus',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/corpusEditError.json', // 処理失敗用stub
     method: 'POST',
     data: {}
   },
-  // コーパス削除
-  deleteCorpusInfo: {
+  deleteCorpusInfo: { // コーパスの削除
     // url: '/api/v1/corpus/{corpusId}',
     url: '/stub/data/successData.json', // 処理成功用stub
     method: 'DELETE'
   },
-  // コーパス学習
-  trainingCorpus: {
+
+  /**
+   * コーパスの学習
+   */
+  trainingCorpus: { // AI学習の実行
     // url: '/api/v1/corpus/{corpusId}',
     url: '/stub/data/successData.json', // 処理成功用stub
     method: 'POST',
     data: {}
   },
-  // コーパス学習完了確認
-  checkCorpusTrainingDone: {
+  checkCorpusTrainingDone: { // AI学習が完了したかどうかの確認
     // url: '/api/v1/corpus/{corpusId}',
     url: '/stub/data/successData.json', // 処理成功用stub
     method: 'GET'
   },
-  // コーパス本番反映
+
+  /**
+   * コーパスの本番反映
+   */
   deployCorpus: {
     // url: '/api/v1/corpus/{corpusId}',
     url: '/stub/data/successData.json', // 処理成功用stub
@@ -67506,31 +67448,29 @@ var API_CONFIG = {
     data: {}
   },
 
-  // 教師データ一覧取得
-  getTrainingData: {
+  /**
+   * 教師データの管理
+   */
+  getTrainingData: { // 教師データ一覧取得
     url: '/api/v1/training-data/{training_datum}',
     method: 'GET',
     params: {}
   },
-  // 教師データ追加
-  addTrainingData: {
+  addTrainingData: { // 教師データの登録
     url: '/api/v1/training-data',
     method: 'POST',
     data: {}
   },
-  // 教師データ編集
-  saveTrainingData: {
+  saveTrainingData: { // 教師データの編集
     url: '/api/v1/training-data/{creative_id}',
     method: 'PUT',
     data: {}
   },
-  // 教師データ削除
-  deleteTrainingData: {
+  deleteTrainingData: { // 教師データの削除
     url: '/api/v1/training-data/{creative_id}',
     method: 'DELETE'
   },
-  // 教師データアップロード
-  uploadTrainingData: {
+  uploadTrainingData: { // 教師データのアップロード
     url: '/api/v1/training-data/{corpus_id}/upload',
     method: 'POST',
     data: {},
@@ -67538,38 +67478,36 @@ var API_CONFIG = {
       'content-type': 'multipart/form-data'
     }
   },
-  // 教師データダウンロード
-  downloadTrainingData: {
+  downloadTrainingData: { // 教師データのダウンロード
     url: '/api/v1/training-data/{corpus_id}/download',
     method: 'GET',
     data: {}
   },
 
-  // アカウント一覧取得
-  getAccountList: {
+  /**
+   * アカウントの管理
+   */
+  getAccountList: { // アカウント一覧取得
     // url: '/api/v1/users',
     url: '/stub/data/AccountListGetSuccess.json',
     method: 'GET',
     data: {}
   },
-  // アカウント登録
-  addAccount: {
+  addAccount: { // アカウントの作成
     // url: '/api/v1/users',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/AccountAddError.json', // 処理error用stub
     method: 'POST',
     data: {}
   },
-  // アカウント編集
-  saveAccount: {
+  saveAccount: { // アカウントの編集
     // url: '/api/v1/users',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/AccountAddError.json', // 処理error用stub
     method: 'POST',
     data: {}
   },
-  // アカウント削除
-  deleteAccount: {
+  deleteAccount: { // アカウントの削除
     // url: '/api/v1/users',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/AccountAddError.json', // 処理error用stub
@@ -67577,12 +67515,24 @@ var API_CONFIG = {
     data: {}
   },
 
-  // API一覧取得
-  getApiList: {
+  /**
+   * APIデータの管理
+   */
+  getApiList: { // API一覧取得
     url: '/stub/data/ApiInfoGetSuccess.json',
     method: 'GET',
     data: {}
   }
+
+  /**
+   * 教師データでのテスト
+   */
+  /**
+   * 請求書データの管理
+   */
+  /**
+   * ログデータの管理
+   */
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (API_CONFIG);
@@ -67717,7 +67667,11 @@ var CorpusStateType = {
 /**
  * router config
  */
-var routes = [{
+var routes = [
+/**
+ * ログイン画面
+ */
+{
   path: '/login',
   component: __WEBPACK_IMPORTED_MODULE_0__vue_login_Main_vue___default.a
 },
