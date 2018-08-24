@@ -25,7 +25,7 @@ mix.js(['resources/assets/js/app.js',
     'resources/assets/js/common/ext/plugins/chart.min.js',
   ], 'public/js/corpusadmin-core.js')
   .scripts([
-    // 'resources/assets/js/common/ext/plugins/jquery.min.js', // public/js/app.jsでjquery読み込んでいるため
+    'resources/assets/js/common/ext/plugins/jquery.min.js', // public/js/app.jsでjquery読み込んでいるため
     'resources/assets/js/common/ext/plugins/popper.min.js',
     'resources/assets/js/common/ext/plugins/perfect-scrollbar.jquery.min.js',
     'resources/assets/js/common/ext/plugins/chartist.min.js',
