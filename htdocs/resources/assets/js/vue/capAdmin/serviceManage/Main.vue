@@ -51,10 +51,6 @@ export default {
     return {
     };
   },
-  computed: {
-    // ...mapGetters({
-    // }),
-  },
   crated() {
     Core.log('[crated]');
   },

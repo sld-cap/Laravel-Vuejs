@@ -26,8 +26,6 @@ export default {
   data() {
     return {};
   },
-  computed: {
-  },
   mounted() {
     Core.log('[mounted]');
   },

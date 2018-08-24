@@ -17,9 +17,9 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
-import CommonModal from '../../common/modal/Modal';
-
 import { mapGetters } from 'vuex';
+
+import CommonModal from '../../common/modal/Modal';
 import MultiModalMixin from '../../common/modal/mixins/MultiModalMixin';
 import SetErrDataMixin from '../../common/form/mixins/SetErrData';
 

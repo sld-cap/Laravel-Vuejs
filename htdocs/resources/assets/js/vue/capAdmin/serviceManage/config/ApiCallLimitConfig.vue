@@ -53,8 +53,6 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
-// import * as Ajax from '../../../../common/core/ajax';
-// import { mapGetters } from 'vuex';
 
 export default {
   components: {},
@@ -62,10 +60,6 @@ export default {
   data() {
     return {
     };
-  },
-  computed: {
-    // ...mapGetters({
-    // }),
   },
   crated() {
     Core.log('[crated]');
