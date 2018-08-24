@@ -41,9 +41,8 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
-// import * as Ajax from '../../../../common/core/ajax';
-
 import { mapGetters } from 'vuex';
+
 import Example from './Example.vue';
 import Credential from './Credential.vue';
 import Loading from '../../common/loading/BasicLoading.vue';

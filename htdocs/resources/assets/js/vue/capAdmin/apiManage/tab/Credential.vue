@@ -2,8 +2,10 @@
   <div class="table-responsive">
     <table class="table api-auth-table">
       <thead>
-        <th>URI</th>
-        <th>認証トークン</th>
+        <tr>
+          <th>URI</th>
+          <th>認証トークン</th>
+        </tr>
       </thead>
       <tbody>
         <tr>

@@ -93,12 +93,11 @@
 
 <script>
 import * as Core from '../../common/core/app';
-import * as Api from '../../common/core/apiConfig';
 import * as Lib from '../../common/ext/functions';
-
-import MultiModal from './common/modal/MultiModal';
-import Loading from '../common/components/Loading';
 import { mapGetters, mapActions } from 'vuex';
+import MultiModal from './common/modal/MultiModal';
+
+import Loading from '../common/components/Loading';
 
 export default {
   props: ['me'],

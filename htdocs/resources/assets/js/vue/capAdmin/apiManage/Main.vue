@@ -23,15 +23,13 @@
 
 <script>
 import * as Core from '../../../common/core/app';
-import * as Ajax from '../../../common/core/ajax';
 import * as Lib from '../../../common/ext/functions';
-import ApiConfig from '../../../common/core/apiConfig';
 
 import ApiList from './list/ApiList.vue';
 import Tab from './tab/tab.vue';
 
 export default {
-  props: ['me'],
+  props: [],
   components: {
     ApiList, Tab,
   },
