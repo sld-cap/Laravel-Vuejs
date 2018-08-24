@@ -74,6 +74,7 @@ export default {
   },
   mounted: function() {
     Core.log('[mounted]');
+    Lib.adjastCorpusCardDescriptionRows('three-dots-card');
   },
   methods: {
     openCorpusAdminTab(corpusId) {
