@@ -32,7 +32,7 @@
                   <i class="material-icons">edit</i>
                 </button>
                 <button v-if="me.id != account.id" @click="openDeleteAccountModal(i)" type="button" rel="tooltip" class="btn btn-danger">
-                  <i class="material-icons">close</i>
+                  <i class="material-icons">delete</i>
                 </button>
               </td>
             </tr>
