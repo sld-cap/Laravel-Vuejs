@@ -43,16 +43,14 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
-import * as Ajax from '../../../../common/core/ajax';
 import * as Lib from '../../../../common/ext/functions';
-import ApiConfig from '../../../../common/core/apiConfig';
-
 import { mapGetters } from 'vuex';
+
 import NoCorpusAlert from '../alert/NoCorpusAlert.vue';
 import Loading from '../../common/loading/BasicLoading.vue';
 
 export default {
-  props: ['me'],
+  props: [],
   components: {
     Loading, NoCorpusAlert,
   },

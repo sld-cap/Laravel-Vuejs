@@ -47,15 +47,13 @@
 
 <script>
 import * as Core from '../../../common/core/app';
-import * as Ajax from '../../../common/core/ajax';
 import * as Lib from '../../../common/ext/functions';
-import ApiConfig from '../../../common/core/apiConfig';
 
 import { mapGetters } from 'vuex';
 import CorpusList from './list/CorpusList.vue';
 
 export default {
-  props: ['me'],
+  props: [],
   components: {
     CorpusList,
   },
@@ -70,11 +68,11 @@ export default {
   created() {
     Core.log('[created]');
   },
-  updated: function() {
-    Core.log('[updated]');
-  },
   mounted: function() {
     Core.log('[mounted]');
+  },
+  updated: function() {
+    Core.log('[updated]');
   },
   methods: {
     openAddCorpusModal() {
