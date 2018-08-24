@@ -56,19 +56,9 @@ export default {
     };
   },
   watch: {
-    'apiList': {
-      handler: function (newData, oldData) {
-        if(oldData.length === 0) {
-          let setData = [];
-          if(newData.length > 0) setData = newData[0];
-          this.$store.commit('apiData/setDisplayIndex', setData);
-        }
-      },
-      deep: true
-    },
     'displayCheck': function (newIndex, oldIndex) {
       Core.log('[watch] displayCheck');
-      this.$store.commit('apiData/setDisplayIndex', this.apiList[this.displayCheck]);
+      this.$store.commit('apiData/setCheckedIndex', newIndex);
     },
   },
   computed: {

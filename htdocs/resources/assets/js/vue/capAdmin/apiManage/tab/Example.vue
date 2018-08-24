@@ -153,13 +153,16 @@ export default {
   },
   props: [],
   data() {
-    return {
-    };
+    return {};
   },
   computed: {
     ...mapGetters({
-        displayApiTab: 'apiData/displayApiTab',
+      checkedIndex: 'apiData/checkedIndex',
+      apiList: 'apiData/apiList',
     }),
+    displayApiTab() {
+      return this.apiList[this.checkedIndex];
+    },
   },
   crated() {
     Core.log('[crated]');

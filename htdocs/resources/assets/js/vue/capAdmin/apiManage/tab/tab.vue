@@ -61,8 +61,11 @@ export default {
     ...mapGetters({
       loading: 'apiData/loading',
       apiList: 'apiData/apiList',
-      displayApiTab: 'apiData/displayApiTab',
+      checkedIndex: 'apiData/checkedIndex',
     }),
+    displayApiTab() {
+      return this.apiList[this.checkedIndex];
+    },
   },
   crated() {
     Core.log('[crated]');

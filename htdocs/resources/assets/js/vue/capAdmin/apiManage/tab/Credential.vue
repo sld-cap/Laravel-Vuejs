@@ -28,8 +28,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      displayApiTab: 'apiData/displayApiTab',
+      checkedIndex: 'apiData/checkedIndex',
+      apiList: 'apiData/apiList',
     }),
+    displayApiTab() {
+      return this.apiList[this.checkedIndex];
+    },
   },
   crated() {
     Core.log('[crated]');

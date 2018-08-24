@@ -10,7 +10,7 @@ import * as Lib from '../../../ext/functions';
 const state = {
   apiList: [],
   loading: true,
-  displayApiTab: {},
+  checkedIndex: null,
 };
 
 
@@ -27,9 +27,10 @@ const getters = {
     Core.log('[store] getters: apiList');
     return state.apiList;
   },
-  displayApiTab: (state) => {
-    Core.log('[store] getters: displayApiTab');
-    return state.displayApiTab;
+  // 表示対象
+  checkedIndex: (state) => {
+    Core.log('[store] getters: checkedIndex');
+    return state.checkedIndex;
   },
 };
 
@@ -39,10 +40,10 @@ const getters = {
  */
 const mutations = {
   //
-  setDisplayIndex(state, payload) {
-    Core.log('[store] setDisplayIndex');
+  setCheckedIndex(state, payload) {
+    Core.log('[store] setCheckedIndex');
     Core.log(payload);
-    state.displayApiTab = payload;
+    state.checkedIndex = payload;
   },
   // 取得 :API一覧
   setGetApiListResult(state, payload) {
@@ -52,6 +53,7 @@ const mutations = {
 
     if (resCode === 200) {
       state.apiList = payload.data;
+      state.checkedIndex = 0;
     } else if (resCode === 401) {
       Lib.alertRefreshToken();
     } else {
