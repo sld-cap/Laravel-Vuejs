@@ -106,7 +106,7 @@ class TrainingDataController extends Controller
 
     } catch (\Exception $e) {
       $formatter = new ApiResponseFormatter(400, $e->getMessage(), [array(
-        'message' => 'Exception from TrainingDataController@update'
+        'debug' => 'Exception from TrainingDataController@update'
       )]);
     }
 
@@ -198,7 +198,7 @@ class TrainingDataController extends Controller
    */
   public function upload(Request $_request, $_corpus_id)
   {
-    try {
+    // try {
       // バリデーション
       $data = new TrainingDataManager($_corpus_id);
       $data_type = $_request->data_type;
@@ -226,11 +226,18 @@ class TrainingDataController extends Controller
         'data_type' => $data_type
       ];
 
-      DB::beginTransaction();
       $insert_data = $data->createCreativeInsertData($with_data);
+      if ($data->isErrorExists()) {
+        $formatter = new ApiResponseFormatter(
+          $data->getCode(), $data->getMessage(), $data->getData()
+        );
+        return response()->json($formatter->getResponseArray());
+      }
 
       // 登録処理
-      foreach($insert_data as $data) {
+      DB::beginTransaction();
+
+      foreach ($insert_data as $data) {
         $creative = new CorpusCreative;
         $creative->insert($data);
       }
@@ -261,21 +268,21 @@ class TrainingDataController extends Controller
       )]);
       return response()->json($formatter->getResponseArray());
 
-    } catch (\PDOException $e){
-      DB::rollBack();
-      $formatter = new ApiResponseFormatter(404, $e->getMessage(), [array(
-        'message' => 'PDOException from TrainingDataController@upload'
-      )]);
-      return response()->json($formatter->getResponseArray());
+    // } catch (\PDOException $e){
+    //   DB::rollBack();
+    //   $formatter = new ApiResponseFormatter(404, $e->getMessage(), [array(
+    //     'message' => 'PDOException from TrainingDataController@upload'
+    //   )]);
+    //   return response()->json($formatter->getResponseArray());
 
-    } catch(\Exception $e) {
-      DB::rollBack();
-      $formatter = new ApiResponseFormatter(404, $e->getMessage(), [array(
-        'message' => 'Exception from TrainingDataController@upload'
-      )]);
-      return response()->json($formatter->getResponseArray());
+    // } catch(\Exception $e) {
+    //   DB::rollBack();
+    //   $formatter = new ApiResponseFormatter(404, $e->getMessage(), [array(
+    //     'message' => 'Exception from TrainingDataController@upload'
+    //   )]);
+    //   return response()->json($formatter->getResponseArray());
 
-    }
+    // }
   }
 
   /**

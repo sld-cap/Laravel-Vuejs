@@ -141,11 +141,14 @@ class TrainingDataManager
     } catch (\PDOException $e){
       DB::rollBack();
       $this->setError(400, $e->getMessage(), [array(
-        'message' => 'Exception from TrainingDataManager.php@setTrainingDoneDate'
+        'debug' => 'PDOException from TrainingDataManager.php@setTrainingDoneDate'
+      )]);
+    } catch (\Exception $e){
+      DB::rollBack();
+      $this->setError(400, $e->getMessage(), [array(
+        'debug' => 'Exception from TrainingDataManager.php@setTrainingDoneDate'
       )]);
     }
-
-    return;
   }
 
   /**
@@ -162,6 +165,7 @@ class TrainingDataManager
 
       if ($classes->count() == 0) {
         $this->setError(404, 'Training data not found.', [array(
+          'field_id' => 'csv_file',
           'message' => '教師データが登録されていません->corpus_id:' . $this->corpus_id
         )]);
         return;
@@ -206,7 +210,7 @@ class TrainingDataManager
 
     } catch (\Exception $e) {
       $this->setError(400, $e->getMessage(), [array(
-        'message' => 'Exception from TrainingDataManager.php@LoadTrainingDataAll'
+        'debug' => 'Exception from TrainingDataManager.php@LoadTrainingDataAll'
       )]);
       return;
     }
@@ -272,7 +276,8 @@ class TrainingDataManager
       $corpus_id = $form['corpus_id'];
       $add_class_name = $form['add_class_name'];
       $get_data_type = (int)$form['data_type'];
-      $corpus_class_id = $form['corpus_class_id'];
+      $corpus_class_id = $form['corpus_class_id']; // 変更後クラス
+      $current_class_id = CorpusCreative::find($_creative_id)->corpus_class_id;
 
       if ($corpus_class_id == null) {
         // 同じ名前のクラス名がないかどうか
@@ -281,12 +286,10 @@ class TrainingDataManager
             ->count();
 
         if ($count > 0) {
-          $data = [array(
-            'corpus_id' => $corpus_id,
-            'add_class_name' => $add_class_name,
+          $this->setError(400, 'Duplicate class name', [array(
+            'field_id' => 'add_class_name',
             'message' => '既に同じクラス名が存在しています'
-          )];
-          $this->setError(400, 'Duplicate class name', $data);
+          )]);
           return;
 
         } else {
@@ -306,13 +309,13 @@ class TrainingDataManager
       // creative_id 指定 -> クリエイティブの更新
       // creative_id 未指定 -> クリエイティブの新規登録 
       if ($_creative_id) {
+        // DBレコード編集
         $creative = CorpusCreative::find($_creative_id);
         $creative->corpus_class_id = $corpus_class_id;
         $creative->data_type = $get_data_type;
         $creative->content = $form['content'];
         $creative->training_done_data = null;
         $creative->save();
-
       } else {
         $creative = new CorpusCreative;
         $creative->corpus_class_id = $corpus_class_id;
@@ -322,46 +325,90 @@ class TrainingDataManager
         $creative->save();
       }
 
-      // クラスのデータ件数の更新
-      $update_class = CorpusClass::find($corpus_class_id);
-
+      // クラスのクリエイティブ件数更新
       if ($get_data_type == CorpusDataType::Training) { // 学習データ
-        $count = $update_class->training_data_count;
-        $count++;
-        $update_class->training_data_count = $count;
+        // もしクラスも変わってたらクラス件数更新
+        if ($current_class_id != $corpus_class_id) {
+          $this->addCount($corpus_class_id, CorpusDataType::Training);
+          $this->minusCount($current_class_id, CorpusDataType::Training);
+        }
 
         // コーパスのステータスを未学習に更新
         $corpus = Corpus::find($corpus_id);
         $corpus->status = CorpusStateType::Untrained;
-        $corpus->save();
-
+        $corpus->save(); 
       } else if ($get_data_type == CorpusDataType::Test) { // テストデータ
-        $count = $update_class->test_data_count;
-        $count++;
-        $update_class->test_data_count = $count;
+        // もしクラスも変わってたら元クラス減算
+        if ($current_class_id != $corpus_class_id) {
+          $this->addCount($corpus_class_id, CorpusDataType::Test);
+          $this->minusCount($current_class_id, CorpusDataType::Test);
+        }
       }
 
-      $update_class->save();
       DB::commit();
 
     } catch (\PDOException $e){
       DB::rollBack();
-      $this->setError(400, $e->getMessage(), array(
-        'message' => 'PDOException from TrainingDataManager.php@saveCreative'
-      ));
-      return;
-
+      $this->setError(400, $e->getMessage(), [array(
+        'debug' => 'PDOException from TrainingDataManager.php@saveCreative'
+      )]);
     } catch(\Exception $e) {
       DB::rollBack();
-      $this->setError(404, $e->getMessage(), array(
-        'message' => 'Exception from TrainingDataManager.php@saveCreative'
-      ));
-      return;
+      $this->setError(404, $e->getMessage(), [array(
+        'debug' => 'Exception from TrainingDataManager.php@saveCreative'
+      )]);
     }
   }
 
   /**
-   * データ作成：クリエイティブ一括登録用
+   * - データ編集：クリエイティブデータ件数の加算
+   */
+  private function addCount($_corpus_class_id, $_data_type, $_add_num = 1)
+  {
+    $class = CorpusClass::find($_corpus_class_id);
+    if ($_data_type == CorpusDataType::Training) {
+      $count = $class->training_data_count;
+      $count++;
+      $class->training_data_count = $count;
+    } else if ($_data_type == CorpusDataType::Test) {
+      $count = $class->test_data_count;
+      $count++;
+      $class->test_data_count = $count;
+    }
+    $class->save();
+  }
+
+  /**
+   * - データ編集：クリエイティブデータ件数の減算
+   */
+  private function minusCount($_corpus_class_id, $_data_type, $_minus_num = 1)
+  {
+    $class = CorpusClass::find($_corpus_class_id);
+    if ($_data_type == CorpusDataType::Training) {
+      $count = $class->training_data_count;
+      $count--;
+      $class->training_data_count = $count;
+
+      // 元のクラスが0件になっていたら、クラスを削除する
+      if($count == 0) {
+        // 関連するクリエイティブも削除
+        $related_creative = CorpusCreative::where('corpus_class_id', $_corpus_class_id);
+        $related_creative->delete();
+        // 元のクラスを削除
+        $class->delete();
+      }
+      
+    } else if ($_data_type == CorpusDataType::Test) {
+      $count = $class->test_data_count;
+      $count--;
+      $class->test_data_count = $count;
+    }
+    $class->save();
+  }
+
+
+  /**
+   * + データ作成：クリエイティブ一括登録用
    */
   public function createCreativeInsertData($_with_data) 
   {
@@ -379,7 +426,7 @@ class TrainingDataManager
         $current_class_name_list[$class->name] = $class->id;
       }
     }
-    
+
     $this->file->rewind();
     $key = 0;
     foreach ($this->file as $line) {
@@ -387,30 +434,31 @@ class TrainingDataManager
       if ($this->file->key() == 0) {
         continue;
       }
+
       $content = mb_convert_encoding($line[0], "UTF-8", "ASCII,JIS,UTF-8,EUC-JP,SJIS");
       $class_name = mb_convert_encoding($line[1], "UTF-8", "ASCII,JIS,UTF-8,EUC-JP,SJIS");
 
       // クラス名のバリデーション
-      $validator = Validator::make(array('class_name' => $class_name), CorpusClass::$csv_insert_rule, CorpusClass::$csv_insert_error_message);
-      if ($validator->fails()) {
-        $errors = array();
-        foreach ($validator->errors()->toArray() as $key => $value) {
-          $errors[] = array(
-            'field_id' => $key,
-            'message' => $value[0] // validatorのmessegeが配列で帰ってくるので0指定
-          ); 
-        }
-        $this->setError(400, 'validation error.', $errors);
-        return;
-      }
+      // $validator = Validator::make(array('class_name' => $class_name), CorpusClass::$csv_upload_rule, CorpusClass::$csv_upload_error_message);
+      // if ($validator->fails()) {
+      //   $errors = array();
+      //   foreach ($validator->errors()->toArray() as $key => $value) {
+      //     $errors[] = array(
+      //       'field_id' => $key,
+      //       'message' => $value[0] // validatorのmessegeが配列で帰ってくるので0指定
+      //     ); 
+      //   }
+      //   $this->setError(400, 'Class name validation error.', $errors);
+      //   return;
+      // }
       
       // クリエイティブのバリデーション
-      $validator = Validator::make(array('content' => $content), CorpusCreative::$csv_upload_rule, CorpusCreative::$csv_upload_error_message);
+      $validator = Validator::make(compact('content', 'class_name'), CorpusCreative::$csv_upload_rule, CorpusCreative::$csv_upload_error_message);
       if ($validator->fails()) {
         $errors = array();
         foreach ($validator->errors()->toArray() as $key => $value) {
           $errors[] = array(
-            'field_id' => $key,
+            'field_id' => 'csv_file',
             'message' => $value[0] // validatorのmessegeが配列で帰ってくるので0指定
           ); 
         }
@@ -435,6 +483,7 @@ class TrainingDataManager
         // 既存のクラス名が指定されているかどうか
         if (!array_key_exists($class_name, $current_class_name_list)) {
           $this->setError(400, 'Invalid class name', [array(
+            'field_id' => 'csv_file',
             'message' => '学習データに登録されていないクラス名が入力されています.'
           )]);
           return;
@@ -464,7 +513,7 @@ class TrainingDataManager
   }
 
   /**
-   * CSVデータ作成：DBから教師データ情報を抽出し、所定フォルダにCSV保存する
+   * + CSVデータ作成：DBから教師データ情報を抽出し、所定フォルダにCSV保存する
    */
   public function saveTrainingDataToCsv()
   {
@@ -494,6 +543,7 @@ class TrainingDataManager
         $file = null;
       } else {
         $this->setError(400, 'This file is not writable or can not touch.', [array(
+          'field_id' => 'csv_file',
           'message' => '学習実行用のテキストデータ取得に失敗しました'
         )]);
         return;
@@ -504,7 +554,7 @@ class TrainingDataManager
 
     } catch (\Exception $e) {
       $this->setError(400, $e->getMessage(), [array(
-        'message' => 'Exception from TainingDataManager.php@saveTrainingDataToCsv'
+        'debug' => 'Exception from TainingDataManager.php@saveTrainingDataToCsv'
       )]);
       return;
     }
@@ -513,7 +563,7 @@ class TrainingDataManager
   }
 
   /**
-   * データ削除：既存のクリエイティブデータを削除する
+   * + データ削除：既存のクリエイティブデータを削除する
    * 
    * @param int $_data_type
    */
@@ -534,7 +584,7 @@ class TrainingDataManager
         $del_classes->delete();
       } elseif ($_data_type == CorpusDataType::Test) {
         // テスト用データの場合はクリエイティブのみ削除
-        $del_creatives = CorpusCreative::whereIn('corpus_class_id', $del_class_id_list)->where('data_type', $data_type);
+        $del_creatives = CorpusCreative::whereIn('corpus_class_id', $del_class_id_list)->where('data_type', $_data_type);
         $del_creatives->delete();
       } else {
         $this->setError(400, 'Data-type not selected.', [array(
@@ -547,19 +597,18 @@ class TrainingDataManager
     } catch (\PDOException $e){
       DB::rollBack();
       $this->setError(400, $e->getMessage(), [array(
-        'message' => 'PDOException from TrainingDataManager.php@deleteOldCreative'
+        'debug' => 'PDOException from TrainingDataManager.php@deleteOldCreative'
       )]);
     } catch (\Exception $e){
       DB::rollBack();
       $this->setError(400, $e->getMessage(), [array(
-        'message' => 'Exception from TrainingDataManager.php@deleteOldCreative'
+        'debug' => 'Exception from TrainingDataManager.php@deleteOldCreative'
       )]);
     }
   }
 
-
   /**
-   * ファイル削除：所定フォルダ内にあるCSVを一括削除する
+   * + ファイル削除：所定フォルダ内にあるCSVを一括削除する
    */
   public function deleteAllCsv()
   {
@@ -567,49 +616,48 @@ class TrainingDataManager
   }
 
   /**
-   * エラーチェック：コーパス利用可否チェック
+   * - エラーチェック：コーパス利用可否チェック
    */
-  public function checkValid()
+  private function checkValid()
   {
     $user = JWTAuth::parseToken()->authenticate();
     $corpus = Corpus::where('id', $this->corpus_id)->where('company_id', $user->company_id)->get();
     if ($corpus->count() == 0) {
       $this->setError(404, 'Corpus not found. -> corpus_id:' . $this->corpus_id, [array(
+        'field_id' => '',
         'message' => 'ご指定のコーパスは登録されておりません'
       )]);
     }
   }
 
   /**
-   * エラーチェック：教師データCSVファイルが正常にアップされたかどうかを返す
+   * - エラーチェック：教師データCSVファイルが正常にアップされたかどうかを返す
    */
-  public function checkUploadFile(Request $_request) 
+  private function checkUploadFile(Request $_request) 
   {
     $err = false;
     $pass_extension = ['txt', 'csv']; // 適切な拡張子セット
     if (!$_request->hasFile('csv_file')) {
       $this->setError(400, 'Training-data not found.', [array(
+        'field_id' => 'csv_file',
         'message' => 'CSVファイルがアップロードされていません'
       )]);
-      return;
     } elseif (!in_array($_request->csv_file->extension(), $pass_extension)) {
       $this->setError(400, 'Training data is invalid extension.', [array(
         'message' => 'ファイル形式が不正です。CSVファイルをアップロードしてください。'
       )]);
-      return;
     } else {
       $csv_tmp_file = $_request->file('csv_file');
       if (!$csv_tmp_file->isValid()) {
         $this->setError(400, 'Training data is invalid data.', [array(
           'message' => '不正なCSVファイル。ファイル内容を確認の上、再度アップロードしてください。'
         )]);
-        return;
       }
     }
   }
 
   /**
-   * エラーチェック：教師データの登録・更新バリデーション
+   * - エラーチェック：教師データの登録・更新バリデーション
    */
   private function trainDataValidation(Request $_request, $_creative_id = null)
   {
@@ -654,6 +702,7 @@ class TrainingDataManager
 
     if ($my_corpus == 0) {
       $this->setError(400, 'Invalid corpus error.', [array(
+        'field_id' => 'corpus_id',
         'message' => '指定されたコーパスは利用できません->corpus_id:' . $form['corpus_id']
       )]);
       return;
@@ -684,6 +733,7 @@ class TrainingDataManager
 
       if ($row_count < $min_row_count || $max_row_count < $row_count) {
         $this->setError(400, 'Training data row count is invalid.', [array(
+          'field_id' => 'csv_file',
           'message' => '教師データは、5 〜 15,000件で登録する必要があります'
         )]);
       }
@@ -691,7 +741,7 @@ class TrainingDataManager
   }
 
   /**
-   * エラーチェック：CSVアップロード全体
+   * + エラーチェック：CSVアップロード全体
    */
   public function validateUpload(Request $_request)
   {
@@ -711,6 +761,7 @@ class TrainingDataManager
     $data_type = $_request->data_type;
     if ($data_type == null) {
       $this->setError(400, 'Data-type missing.', [array(
+        'field_id' => 'data_type',
         'message' => 'データタイプが指定されていません'
       )]);
     }

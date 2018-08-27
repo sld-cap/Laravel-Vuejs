@@ -88,7 +88,18 @@ class ApiResponseFormatter
    */
   public function getResponseArray()
   {
-    return $this->response_array;
+    // production環境の場合は、errorレスポンスの「debug」プロパティを除去
+    $response_array = $this->response_array;
+    if (env('APP_ENV') == 'production' && array_key_exists('errors', $response_array)) {
+      $replace_errors = [];
+      foreach ($response_array['errors'] as $error) {
+        unset($error['debug']);
+        $replace_errors[] = $error;
+      }
+      $response_array['errors'] = $replace_errors;
+    }
+    
+    return $response_array;
   }
 
 }

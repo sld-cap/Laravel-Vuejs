@@ -52,10 +52,13 @@ class CorpusCreative extends Model
    * CSVアップロードバリデーション
    */
   public static $csv_upload_rule = array(
+    'class_name' => 'required|between:0,30',
     'content' => 'required|between:0,1024'
   );
 
   public static $csv_upload_error_message = array(
+    'class_name.required' => 'クラス名が入力されていないセルが存在します',
+    'class_name.between' => '30文字以内でないクラス名が存在します',
     'content.required' => 'テキストが入力されていないセルが存在します',
     'content.between' => '1024文字以内でないテキストが存在します'
   );
