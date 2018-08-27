@@ -59,9 +59,6 @@
 
 <script>
 import * as Core from '../../../common/core/app';
-import * as Ajax from '../../../common/core/ajax';
-import * as Lib from '../../../common/ext/functions';
-import ApiConfig from '../../../common/core/apiConfig';
 import { mapGetters } from 'vuex';
 // アラート
 import ProductionNoticeAlert from './alert/ProductionNoticeAlert.vue';

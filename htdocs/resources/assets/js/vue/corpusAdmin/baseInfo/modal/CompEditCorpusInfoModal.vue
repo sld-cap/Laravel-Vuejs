@@ -15,8 +15,6 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
-import * as Ajax from '../../../../common/core/ajax';
-import ApiConfig from '../../../../common/core/apiConfig';
 import CommonModal from '../../common/modal/Modal';
 
 import { mapGetters } from 'vuex';
