@@ -4,25 +4,21 @@ import * as Lib from '../ext/functions';
 /**
  * axiosによる非同期通信
  */
-export function exec(option, commit, mutation, eMutation) {
+export function exec(commit, option) {
+  Core.log('[axios]');
+  Core.log(option);
+
   axios(option).then((res) => {
     // commit
     Core.log('[axios] success');
     Core.log(res);
-
-    commit(mutation, res.data);
+    commit(option.mutation.success, res.data);
   }).catch((err) => {
     // error
     Core.log('[axios] faild...');
     Core.log(err);
-
-    if (eMutation !== undefined && eMutation !== '') {
-      commit(eMutation);
-    }
-
-    // Todo: エラー周りはもう少しなんとかしたい
-    if (eMutation !== 'setLoginError') {
-      Lib.alertAxiosError();
+    if (option.mutation.error !== undefined && option.mutation.error !== '') {
+      commit(option.mutation.error);
     }
   });
 }

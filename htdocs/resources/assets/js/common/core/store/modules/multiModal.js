@@ -31,6 +31,9 @@ const state = {
   trainingDataUploadError: [],
   accountAddError: [],
   accountEditError: [],
+
+  // modal
+  commonError: [],
 };
 
 
@@ -54,6 +57,9 @@ const getters = {
     return state.deleteAccountIndex;
   },
   // エラー
+  commonError: (state) => {
+    return state.commonError;
+  },
   corpusAddError: (state) => {
     return state.corpusAddError;
   },
@@ -91,6 +97,10 @@ const mutations = {
     state.currentDataType = null;
   },
   // エラーセット
+  setCommonError(state, errors) {
+    Core.log('[mutation] multiModal/setCommonError');
+    state.commonError = errors;
+  },
   setCorpusAddError(state, errors) {
     Core.log('[store] setCorpusAddError');
     state.corpusAddError = errors;
@@ -120,17 +130,9 @@ const mutations = {
     state.accountEditError = errors;
   },
   // リロード処理
-  reloadCorpusInfo() {
-    Core.log('[store] reloadCorpusInfo');
-    this.dispatch('corpusData/getCorpusInfo');
-  },
   reloadTrainingData() {
     Core.log('[store] reloadTrainingData');
     this.dispatch('corpusTrainingData/getTrainingData');
-  },
-  reloadAccountList() {
-    Core.log('[store] reloadAccountList');
-    this.dispatch('accountData/getAccountList');
   },
 };
 
@@ -144,8 +146,8 @@ const actions = {
     Core.log('[showAddCorpusInfoModal]');
     commit('setModal', 'AddCorpusModal');
   },
-  showCompAddCorpusInfoModal({ commit }) {
-    Core.log('[showCompAddCorpusInfoModal]');
+  showCompAddCorpusModal({ commit }) {
+    Core.log('[showCompAddCorpusModal]');
     commit('setModal', 'CompAddCorpusModal');
   },
 
@@ -154,10 +156,9 @@ const actions = {
     Core.log('[showEditCorpusInfoModal]');
     commit('setModal', 'EditCorpusInfoModal');
   },
-  showCompEditCorpusInfoModal({ commit }) {
-    Core.log('[showCompEditCorpusInfoModal]');
+  showCompEditCorpusModal({ commit }) {
+    Core.log('[showCompEditCorpusModal]');
     commit('setModal', 'CompEditCorpusInfoModal');
-    commit('reloadCorpusInfo');
   },
 
   // コーパス情報: 削除モーダル
@@ -175,7 +176,6 @@ const actions = {
   showCompAddTrainingDataModal({ commit }) {
     Core.log('[showCompAddTrainingDataModal]');
     commit('setModal', 'CompAddTrainingDataModal');
-    commit('reloadTrainingData');
   },
 
   // 教師データ編集モーダル開閉
@@ -192,7 +192,6 @@ const actions = {
   showCompEditTrainingDataModal({ commit }) {
     Core.log('[showCompEditTrainingDataModal]');
     commit('setModal', 'CompEditTrainingDataModal');
-    commit('reloadTrainingData');
   },
 
   // 教師データ削除モーダル開閉
@@ -205,7 +204,6 @@ const actions = {
   showCompDeleteTrainingDataModal({ commit }) {
     Core.log('[showCompDeleteTrainingDataModal]');
     commit('setModal', 'CompDeleteTrainingDataModal');
-    commit('reloadTrainingData');
   },
 
   // 教師データCSVアップロードモーダル開閉
@@ -218,7 +216,6 @@ const actions = {
   showCompUploadTrainingDataCsvModal({ commit }) {
     Core.log('[showCompUploadTrainingDataCsvModal]');
     commit('setModal', 'CompUploadTrainingCsvModal');
-    commit('reloadTrainingData');
   },
 
   // 閾値設定モーダル開閉
@@ -241,7 +238,6 @@ const actions = {
   showCompAddAccountModal({ commit }) {
     Core.log('[showCompAddAccountModal]');
     commit('setModal', 'CompAddAccountModal');
-    commit('reloadAccountList');
   },
   // アカウント編集モーダル
   showEditAccountModal({ commit, state }, { index }) {
@@ -253,7 +249,6 @@ const actions = {
   showCompEditAccountModal({ commit }) {
     Core.log('[showCompEditAccountModal]');
     commit('setModal', 'CompEditAccountModal');
-    commit('reloadAccountList');
   },
   // アカウント編集モーダル
   showDeleteAccountModal({ commit, state }, { index }) {
@@ -265,7 +260,6 @@ const actions = {
   showCompDeleteAccountModal({ commit }) {
     Core.log('[showCompDeleteAccountModal]');
     commit('setModal', 'CompDeleteAccountModal');
-    commit('reloadAccountList');
   },
 };
 

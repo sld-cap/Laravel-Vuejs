@@ -1,6 +1,5 @@
 import * as Core from '../../app';
 import * as Ajax from '../../ajax';
-import ApiConfig from '../../apiConfig';
 import * as Lib from '../../../ext/functions';
 
 
@@ -55,118 +54,147 @@ const getters = {
  * mutations
  */
 const mutations = {
-  // 教師データセット
-  setGetTrainingDataResult(state, payload) {
-    Core.log('[store] setGetTrainingDataResult');
-    Core.log(payload);
+  // 一覧取得結果
+  SET_LIST(state, payload) {
+    Core.log('[mutation] corpusTrainingData/SET_LIST');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      state.trainingData = payload.data;
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else if (resCode === 404) {
-      state.trainingData = [];
-    } else {
-      Lib.alertVendorEscalation(resCode);
+    switch (resCode) {
+      case 200:
+        state.trainingData = payload.data;
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      case 404:
+        state.trainingData = [];
+        break;
+      default:
+        Lib.alertVendorEscalation(resCode);
+        break;
     }
-    state.loading = false;
+    state.loading = false; // 一覧ローディング非表示
   },
   // 登録: 教師データ登録結果チェック
-  setAddTrainingData(state, payload) {
-    Core.log('[store] setAddTrainingData');
-    Core.log(payload);
+  ADD_RESULT(state, payload) {
+    Core.log('[mutation] corpusTrainingData/ADD_RESULT');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompAddTrainingDataModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setTrainingDataAddError', payload.errors);
-      } else {
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompAddTrainingDataModal');
+        this.dispatch('corpusTrainingData/getList');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          Lib.alertVendorEscalation(resCode);
+        }
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
         Lib.alertVendorEscalation(resCode);
-      }
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
   // 編集: 教師データ編集結果チェック
-  setSaveTrainingData(state, payload) {
-    Core.log('[store] setSaveTrainingData');
-    Core.log(payload);
+  SAVE_RESULT(state, payload) {
+    Core.log('[mutation] corpusTrainingData/SAVE_RESULT');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompEditTrainingDataModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setTrainingDataEditError', payload.errors);
-      } else {
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompEditTrainingDataModal');
+        this.dispatch('corpusTrainingData/getList');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          Lib.alertVendorEscalation(resCode);
+        }
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
         Lib.alertVendorEscalation(resCode);
-      }
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
   // 削除: 教師データ削除結果チェック
-  setDeleteTrainingData(state, payload) {
-    Core.log('[store] setDeleteTrainingData');
-    Core.log(payload);
+  DELETE_RESULT(state, payload) {
+    Core.log('[mutation] corpusTrainingData/DELETE_RESULT');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompDeleteTrainingDataModal');
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompDeleteTrainingDataModal');
+        this.dispatch('corpusTrainingData/getList');
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
+        Lib.alertVendorEscalation(resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
   // アップロード: 教師データCSVアップロード結果チェック
-  setUploadTrainingDataCsvResult(state, payload) {
-    Core.log('[store] setUploadTrainingDataCsvResult');
-    Core.log(payload);
+  CSV_UPLOAD_RESULT(state, payload) {
+    Core.log('[mutation] corpusTrainingData/SAVE_RESULT');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompUploadTrainingDataCsvModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setTrainingDataUploadError', payload.errors);
-      } else {
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompUploadTrainingDataCsvModal');
+        this.dispatch('corpusTrainingData/getList');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          Lib.alertVendorEscalation(resCode);
+        }
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
         Lib.alertVendorEscalation(resCode);
-      }
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
   // ダウンロード: 教師データCSVダウンロード結果チェック
-  setDownloadTrainingDataCsvResult(state, payload) {
-    Core.log('[store] setDownloadTrainingDataCsvResult');
-    Core.log(payload);
-
-    const content = payload;
+  CSV_DOWNLOAD_RESULT(state, payload) {
+    Core.log('[mutation] corpusTrainingData/CSV_DOWNLOAD_RESULT');
+    const resCode = payload.code;
+    const content = payload.data;
     const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
     const url = window.URL.createObjectURL(new Blob([bom, content], {
       type: 'text/csv',
     }));
     const filename = 'training_data.csv';
-    Lib.execFileDownload(url, filename);
-  },
-  // ajaxでエラー時にローディング削除する用
-  hideLoading() {
-    Core.log('[store] hideLoading');
-    this.commit('commonData/hideLoading');
+
+    switch (resCode) {
+      case 200:
+        Lib.execFileDownload(url, filename);
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
+        Lib.alertVendorEscalation(resCode);
+        break;
+    }
+    this.commit('commonData/HIDE_LOADING');
   },
 };
 
@@ -176,74 +204,45 @@ const mutations = {
  */
 const actions = {
   // 取得
-  getTrainingData({ commit, state }) {
-    Core.log('[store] getCorpusInfoAtDataManage');
-    state.trainingData = [];
-    state.loading = true;
+  getList({ commit, state }) {
+    Core.log('[action] corpusTraningData/getList');
+    state.loading = true; // 一覧ローディング表示
 
-    const apiOption = { ...ApiConfig.getTrainingData };
+    const option = Lib.getApiConfig('getTrainingDataList');
     const corpusId = this.getters['commonData/corpusId'];
-    apiOption.url = apiOption.url.replace(/{training_datum}/g, corpusId);
+    option.url = option.url.replace(/{training_datum}/g, corpusId);
 
-    Ajax.exec(apiOption, commit, 'setGetTrainingDataResult');
+    Ajax.exec(this.commit, option);
   },
   // 登録
-  addTrainingData({ commit }, {corpus_id, data_type, corpus_class_id, add_class_name, content}) {
-    Core.log('[store] addTrainingData');
-    this.commit('commonData/showLoading');
-    
-    const apiOption = Object.assign({}, ApiConfig.addTrainingData);
-    apiOption.data = {
-      corpus_id, data_type, corpus_class_id, add_class_name, content,
-    };
-    Ajax.exec(apiOption, commit, 'setAddTrainingData', 'hideLoading');
+  add({ commit }, { option }) {
+    Core.log('[action] corpusTraningData/add');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
   // 編集
-  saveTrainingData({ commit }, {corpus_id, data_type, corpus_class_id, creative_id, content}) {
-    Core.log('[store] saveTrainingData');
-    this.commit('commonData/showLoading');
-
-    const apiOption = Object.assign({}, ApiConfig.saveTrainingData);
-    apiOption.url = apiOption.url.replace(/{creative_id}/g, creative_id);
-    const add_class_name = '';
-
-    apiOption.data = {
-      corpus_id, data_type, corpus_class_id, content, add_class_name, creative_id,
-    };
-    Ajax.exec(apiOption, commit, 'setSaveTrainingData', 'hideLoading');
+  save({ commit }, { option }) {
+    Core.log('[action] corpusTraningData/save');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
   // 削除
-  deleteTrainingData({ commit }, { creative_id }) {
-    Core.log('[store] deleteTrainingData');
-    this.commit('commonData/showLoading');
-
-    const apiOption = Object.assign({}, ApiConfig.deleteTrainingData);
-    apiOption.url = apiOption.url.replace(/{creative_id}/g, creative_id);
-    Ajax.exec(apiOption, commit, 'setDeleteTrainingData', 'hideLoading');
+  delete({ commit }, { option }) {
+    Core.log('[action] corpusTraningData/delete');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
   // 一括登録
-  uploadTrainingDataCsv({ commit, state }, { csv_file, data_type }) {
-    Core.log('[store] upload');
-    this.commit('commonData/showLoading');
-
-    const apiOption = Object.assign({}, ApiConfig.uploadTrainingData);
-    const corpusId = this.getters['commonData/corpusId'];
-    apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
-    // ファイル送信
-    apiOption.data = new FormData();
-    apiOption.data.append('csv_file', csv_file);
-    apiOption.data.append('data_type', data_type);
-    Ajax.exec(apiOption, commit, 'setUploadTrainingDataCsvResult', 'hideLoading');
+  upload({ commit }, { option }) {
+    Core.log('[action] corpusTraningData/upload');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
   // CSVダウンロード
-  downloadTrainingDataCsv({ commit, state }) {
-    Core.log('[store] upload');
-    const apiOption = Object.assign({}, ApiConfig.downloadTrainingData);
-    const corpusId = this.getters['commonData/corpusId'];
-    apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
-
-    // ファイル送信
-    Ajax.exec(apiOption, commit, 'setDownloadTrainingDataCsvResult');
+  download({ commit }, { option }) {
+    Core.log('[action] corpusTraningData/download');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
 };
 

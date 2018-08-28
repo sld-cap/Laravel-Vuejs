@@ -36,13 +36,16 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
+import * as Lib from '../../../../common/ext/functions';
 import { mapGetters } from 'vuex';
 
 export default {
   components: {},
   props: [],
   data() {
-    return {};
+    return {
+      option: {},
+    };
   },
   computed: {
     ...mapGetters({
@@ -50,19 +53,27 @@ export default {
       btnMsg: 'corpusData/corpusAiTrainingBtnMsg',
     }),
   },
-  crated() {
+  created() {
     Core.log('[crated]');
-    this.$store.dispatch('corpusData/getCorpusInfo');
+    this.loadApiConfig('trainingCorpus');
   },
   mounted() {
     Core.log('[mounted]');
   },
   methods: {
+    loadApiConfig(configName) {
+      Core.log('[method] loadApiConfig');
+      const config = Lib.getApiConfig(configName);
+      this.option = config;
+    },
+    // 実行確認
     confirmExec() {
       Core.log('[confirmExec]');
       if (confirm('学習の実行には料金が掛かります。\n本当に実行しますか？')) {
+        Core.log(this.option);
         const corpus_id = this.$store.getters['commonData/corpusId'];
-        this.$store.dispatch('corpusData/trainingCorpus', { corpus_id });
+        this.option.url = this.option.url.replace(/{corpus_id}/g, corpus_id);
+        this.$store.dispatch('corpusData/training', { option: this.option });
       }
     },
   },

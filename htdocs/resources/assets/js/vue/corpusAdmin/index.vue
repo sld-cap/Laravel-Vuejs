@@ -97,7 +97,7 @@ export default {
         // 初回のコーパスデータ取得時に、学習完了を確認するタイマー処理を実行する
         const oldValLength = Object.keys(oldVal).length;
         if ( (oldValLength === 0 || oldVal.status === '2') && val.status === '3' ) {
-          this.$store.commit('corpusData/execCheckCorpusTrainingTimer')
+          this.$store.commit('corpusData/SET_CHECK_TRAINING_DONE_TIMER');
         }
       },
       deep: true
@@ -109,7 +109,7 @@ export default {
     Core.log(this.me);
     Core.log(this.corpusId);
 
-    this.$store.commit('commonData/setCorpusId', { corpusId: this.corpusId });
+    this.$store.commit('commonData/SET_CORPUS_ID', { corpusId: this.corpusId });
     // 各種情報取得
     this.getCorpusInfo();
     this.getTrainingData();
@@ -124,9 +124,9 @@ export default {
   },
   methods: {
     ...mapActions({
-      getCorpusInfo: 'corpusData/getCorpusInfo',
-      getTrainingData: 'corpusTrainingData/getTrainingData',
-      getApiList: 'apiData/getApiList',
+      getCorpusInfo: 'corpusData/getDetail',
+      getTrainingData: 'corpusTrainingData/getList',
+      getApiList: 'apiData/getList',
     }),
   },
 };

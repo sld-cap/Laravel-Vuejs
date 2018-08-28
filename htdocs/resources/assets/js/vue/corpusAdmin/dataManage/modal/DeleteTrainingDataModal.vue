@@ -24,6 +24,7 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
+import * as Lib from '../../../../common/ext/functions';
 import CommonModal from '../../common/modal/Modal';
 
 import { mapGetters } from 'vuex';
@@ -37,9 +38,9 @@ export default {
   props: [],
   data() {
     return {
-      deleteData: {
-        creative_id: this.$store.getters['multiModal/deleteTrainingData'].creative_id,
-      },
+      option: {},
+      data: {},
+      creative_id: this.$store.getters['multiModal/deleteTrainingData'].creative_id,
     };
   },
   computed: {
@@ -48,13 +49,24 @@ export default {
   },
   created() {
     Core.log('[crated]');
+    this.loadApiConfig('deleteTrainingData');
   },
   mounted() {
     Core.log('[mounted]');
   },
   methods: {
+    loadApiConfig(configName) {
+      Core.log('[method] loadApiConfig');
+      const config = Lib.getApiConfig(configName);
+      this.option = config;
+      this.data = config.data;
+      Core.log(this.data);
+    },
+    // 削除
     deleteExec() {
-      this.$store.dispatch('corpusTrainingData/deleteTrainingData', this.deleteData);
+      Core.log('[method] addTrainingData');
+      this.option.url = this.option.url.replace(/{creative_id}/g, this.creative_id);
+      this.$store.dispatch('corpusTrainingData/delete', { option: this.option });
     },
   },
 };

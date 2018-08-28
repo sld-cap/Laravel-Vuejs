@@ -6,9 +6,9 @@
 
       <div class="row">
         <div class="col">
-          <div :class="'form-group bmd-form-group' + err.sei_kanji.hasDanger">
+          <div :class="'form-group bmd-form-group is-filled' + err.sei_kanji.hasDanger">
             <label for="corpusNameField" class="bmd-label-floating">姓</label>
-            <input v-model="postData.sei_kanji" type="text" :class="'form-control' + err.sei_kanji.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
+            <input v-model="data.sei_kanji" type="text" :class="'form-control' + err.sei_kanji.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
             <div class="invalid-feedback">
               {{ err.sei_kanji.message }}
             </div>
@@ -17,9 +17,9 @@
         </div>
         <!-- /.col -->
         <div class="col">
-          <div :class="'form-group bmd-form-group' + err.mei_kanji.hasDanger">
+          <div :class="'form-group bmd-form-group is-filled' + err.mei_kanji.hasDanger">
             <label for="corpusNameField" class="bmd-label-floating">名</label>
-            <input v-model="postData.mei_kanji" type="text" :class="'form-control' + err.mei_kanji.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
+            <input v-model="data.mei_kanji" type="text" :class="'form-control' + err.mei_kanji.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
             <div class="invalid-feedback">
               {{ err.mei_kanji.message }}
             </div>
@@ -32,9 +32,9 @@
 
       <div class="row">
         <div class="col">
-          <div :class="'form-group bmd-form-group' + err.email.hasDanger">
+          <div :class="'form-group bmd-form-group is-filled' + err.email.hasDanger">
             <label for="corpusNameField" class="bmd-label-floating">メールアドレス</label>
-            <input v-model="postData.email" type="text" :class="'form-control' + err.email.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="191">
+            <input v-model="data.email" type="text" :class="'form-control' + err.email.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="191">
             <div class="invalid-feedback">
               {{ err.email.message }}
             </div>
@@ -47,9 +47,9 @@
 
       <div class="row">
         <div class="col">
-          <div :class="'form-group bmd-form-group' + err.password.hasDanger">
+          <div :class="'form-group bmd-form-group is-filled' + err.password.hasDanger">
             <label for="corpusNameField" class="bmd-label-floating">パスワード</label>
-            <input v-model="postData.password" type="text" :class="'form-control' + err.password.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
+            <input v-model="data.password" type="text" :class="'form-control' + err.password.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
             <div class="invalid-feedback">
               {{ err.password.message }}
             </div>
@@ -72,6 +72,7 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
+import * as Lib from '../../../../common/ext/functions';
 import { mapGetters } from 'vuex';
 
 import CommonModal from '../../common/modal/Modal';
@@ -85,12 +86,8 @@ export default {
   props: [],
   data() {
     return {
-      postData: {
-        sei_kanji: '',
-        mei_kanji: '',
-        email: '',
-        password: '',
-      },
+      data: {},
+      option: {},
       err: [],
     };
   },
@@ -107,46 +104,37 @@ export default {
   },
   computed: {
     ...mapGetters({
-      errors: 'multiModal/accountAddError'
+      errors: 'multiModal/commonError'
     }),
   },
   created() {
     Core.log('[created]');
+    this.loadApiConfig('addAccount');
     this.resetErr();
   },
   mounted() {
     Core.log('[mounted]');
+    $('body').bootstrapMaterialDesign();
   },
   methods: {
-    // コーパス登録処理
-    execAddAccount() {
-      Core.log('[execAddAccount]');
-      this.$store.dispatch('accountData/addAccount', this.postData);
+    loadApiConfig(configName) {
+      Core.log('[method] loadApiConfig');
+      const config = Lib.getApiConfig(configName);
+      this.option = config;
+      this.data = config.data;
+      Core.log(this.data);
     },
     // エラーリセット
     resetErr() {
-      this.err = {
-        sei_kanji: {
-          hasDanger: '',
-          invalid: '',
-          message: '',
-        },
-        mei_kanji: {
-          hasDanger: '',
-          invalid: '',
-          message: '',
-        },
-        email: {
-          hasDanger: '',
-          invalid: '',
-          message: '',
-        },
-        password: {
-          hasDanger: '',
-          invalid: '',
-          message: '',
-        },
-      };
+      Core.log('[method] resetErr');
+      this.err = Lib.resetFormError(this.data);
+      Core.log(this.err);
+    },
+    // コーパス登録処理
+    execAddAccount() {
+      Core.log('[execAddAccount]');
+      this.option.data = this.data;
+      this.$store.dispatch('accountData/add', { option: this.option });
     },
   },
 };

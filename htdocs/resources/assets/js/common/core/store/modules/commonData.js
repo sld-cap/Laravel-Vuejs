@@ -48,43 +48,53 @@ const getters = {
  */
 const mutations = {
   // ログイン処理
-  doLogin(state, payload) {
-    Core.log('[store] setLoginResult');
-    // トークンセット
+  LOGIN(state, payload) {
+    Core.log('[mutation] commonData/LOGIN');
     Lib.setToken(payload.token);
-    // ダッシュボードにログイン
     Lib.login();
   },
-  setLoginError(state) {
-    Core.log('[store] setLoginError');
+  // ログイン失敗処理
+  LOGIN_ERROR(state) {
+    Core.log('[mutation] commonData/LOGIN_ERROR');
     state.loading = false;
     state.loginError = true;
   },
   // ログインユーザ情報セット
-  setMe(state, payload) {
-    Core.log('[store] setMe');
+  SET_ME(state, payload) {
+    Core.log('[mutation] commonData/SET_ME');
     state.me = payload;
     Core.log(state.me);
   },
   // 今のコーパスIDをセット
-  setCorpusId(state, payload) {
-    Core.log('[store] setCorpusId');
+  SET_CORPUS_ID(state, payload) {
+    Core.log('[mutation] commonData/SET_CORPUS_ID');
     state.corpusId = payload.corpusId;
     Core.log(state.corpusId);
   },
   // 画面エラーセット
-  setError(state, payload) {
-    Core.log('[store] setError');
+  SET_ERROR(state, payload) {
+    Core.log('[mutation] commonData/SET_ERROR');
     state.errors = payload;
     Core.log(state.error);
   },
-  // ローディング開閉
-  showLoading(state) {
-    Core.log('[store] showLoading');
+  // 画面ローディング表示
+  SHOW_LOADING(state) {
+    Core.log('[mutation] commonData/SHOW_LOADING');
     state.loading = true;
   },
-  hideLoading(state) {
-    Core.log('[store] hideLoading');
+  // 画面ローディング非表示
+  HIDE_LOADING(state) {
+    Core.log('[mutation] commonData/HIDE_LOADING');
+    state.loading = false;
+  },
+  // axios共通エラー
+  AXIOS_ERROR(state) {
+    Core.log('[mutation] commonData/AXIOS_ERROR');
+    Lib.alertAxiosError();
+  },
+  AXIOS_ERROR_WITH_HIDE_LOADING(state) {
+    Core.log('[mutation] commonData/AXIOS_ERROR_WITH_HIDE_LOADING');
+    Lib.alertAxiosError();
     state.loading = false;
   },
 };
@@ -95,12 +105,10 @@ const mutations = {
  */
 const actions = {
   // ログイン処理
-  login({ commit }, { email, password, remember_me }) {
-    Core.log('[store] login');
-    const apiOption = ApiConfig.login;
-    apiOption.data = { email, password, remember_me };
-
-    Ajax.exec(apiOption, commit, 'doLogin', 'setLoginError');
+  login({ commit }, { option }) {
+    Core.log('[action] commonData/login');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
 };
 

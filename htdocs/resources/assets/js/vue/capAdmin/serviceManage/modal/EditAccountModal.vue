@@ -8,7 +8,7 @@
         <div class="col">
           <div :class="'form-group bmd-form-group is-filled' + err.sei_kanji.hasDanger">
             <label for="corpusNameField" class="bmd-label-floating">姓</label>
-            <input v-model="postData.sei_kanji" type="text" :class="'form-control' + err.sei_kanji.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
+            <input v-model="data.sei_kanji" type="text" :class="'form-control' + err.sei_kanji.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
             <div class="invalid-feedback">
               {{ err.sei_kanji.message }}
             </div>
@@ -19,7 +19,7 @@
         <div class="col">
           <div :class="'form-group bmd-form-group is-filled' + err.mei_kanji.hasDanger">
             <label for="corpusNameField" class="bmd-label-floating">名</label>
-            <input v-model="postData.mei_kanji" type="text" :class="'form-control' + err.mei_kanji.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
+            <input v-model="data.mei_kanji" type="text" :class="'form-control' + err.mei_kanji.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
             <div class="invalid-feedback">
               {{ err.mei_kanji.message }}
             </div>
@@ -34,7 +34,7 @@
         <div class="col">
           <div :class="'form-group bmd-form-group is-filled' + err.email.hasDanger">
             <label for="corpusNameField" class="bmd-label-floating">メールアドレス</label>
-            <input v-model="postData.email" type="text" :class="'form-control' + err.email.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="191">
+            <input v-model="data.email" type="text" :class="'form-control' + err.email.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="191">
             <div class="invalid-feedback">
               {{ err.email.message }}
             </div>
@@ -49,7 +49,7 @@
         <div class="col">
           <div :class="'form-group bmd-form-group' + err.password.hasDanger">
             <label for="corpusNameField" class="bmd-label-floating">パスワード（変更する場合は入力してください）</label>
-            <input v-model="postData.password" type="text" :class="'form-control' + err.password.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
+            <input v-model="data.password" type="text" :class="'form-control' + err.password.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
             <div class="invalid-feedback">
               {{ err.password.message }}
             </div>
@@ -72,6 +72,7 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
+import * as Lib from '../../../../common/ext/functions';
 import { mapGetters } from 'vuex';
 
 import CommonModal from '../../common/modal/Modal';
@@ -85,14 +86,10 @@ export default {
   props: [],
   data() {
     return {
-      postData: {
-        sei_kanji: '',
-        mei_kanji: '',
-        email: '',
-        password: '',
-        id: '',
-      },
+      data: {},
+      option: {},
       err: [],
+      editId: null,
     };
   },
   watch: {
@@ -110,54 +107,43 @@ export default {
     ...mapGetters({
       accountList: 'accountData/accountList',
       editIndex: 'multiModal/editAccountIndex',
-      errors: 'multiModal/accountEditError'
+      errors: 'multiModal/commonError'
     }),
   },
   created() {
     Core.log('[created]');
+    this.loadApiConfig('saveAccount');
     this.resetErr();
   },
   mounted() {
     Core.log('[mounted]');
-    Core.log(this.accountList);
-    Core.log(this.editIndex);
 
-    this.postData.sei_kanji = this.accountList[this.editIndex].sei_kanji;
-    this.postData.mei_kanji = this.accountList[this.editIndex].mei_kanji;
-    this.postData.email = this.accountList[this.editIndex].email;
-    this.postData.password = '';
-    this.postData.id = this.accountList[this.editIndex].id;
+    this.data.sei_kanji = this.accountList[this.editIndex].sei_kanji;
+    this.data.mei_kanji = this.accountList[this.editIndex].mei_kanji;
+    this.data.email = this.accountList[this.editIndex].email;
+    this.data.password = '';
+    this.editId = this.accountList[this.editIndex].id;
   },
   methods: {
-    // コーパス登録処理
-    execSaveAccount() {
-      Core.log('[execEditCorpus]');
-      this.$store.dispatch('accountData/saveAccount', this.postData);
+    loadApiConfig(configName) {
+      Core.log('[method] loadApiConfig');
+      const config = Lib.getApiConfig(configName);
+      this.option = config;
+      this.data = config.data;
+      Core.log(this.data);
     },
     // エラーリセット
     resetErr() {
-      this.err = {
-        sei_kanji: {
-          hasDanger: '',
-          invalid: '',
-          message: '',
-        },
-        mei_kanji: {
-          hasDanger: '',
-          invalid: '',
-          message: '',
-        },
-        email: {
-          hasDanger: '',
-          invalid: '',
-          message: '',
-        },
-        password: {
-          hasDanger: '',
-          invalid: '',
-          message: '',
-        },
-      };
+      Core.log('[method] resetErr');
+      this.err = Lib.resetFormError(this.data);
+      Core.log(this.err);
+    },
+    // コーパス登録処理
+    execSaveAccount() {
+      Core.log('[execSaveAccount]');
+      this.option.data = this.data;
+      this.option.url = this.option.url.replace(/{user}/g, this.editId);
+      this.$store.dispatch('accountData/save', { option: this.option });
     },
   },
 };

@@ -46,8 +46,6 @@ export default {
   },
   data() {
     return {
-      createModal: {},
-      uploadModal: {},
     };
   },
   computed: {

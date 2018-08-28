@@ -36,12 +36,14 @@ export default {
   },
   data() {
     return {
+      option: {},
     };
   },
   computed: {
   },
   created() {
     Core.log('[created]');
+    this.loadApiConfig('downloadTrainingData');
   },
   mounted() {
     Core.log('[mounted]');
@@ -50,14 +52,25 @@ export default {
     Core.log('[updated]');
   },
   methods: {
+    loadApiConfig(configName) {
+      Core.log('[method] loadApiConfig');
+      const config = Lib.getApiConfig(configName);
+      this.option = config;
+      Core.log(this.data);
+    },
     openAddCreativeModal(dataType) {
+      Core.log('[method] openAddCreativeModal');
       this.$store.dispatch('multiModal/showAddTrainingDataModal', { dataType });
     },
     openUploadTrainingCsvModal(dataType) {
+      Core.log('[method] openUploadTrainingCsvModal');
       this.$store.dispatch('multiModal/showUploadTrainingCsvModal', { dataType });
     },
     execDownloadTrainingCsv() {
-      this.$store.dispatch('corpusTrainingData/downloadTrainingDataCsv');
+      Core.log('[method] execDownloadTrainingCsv');
+      const corpusId = this.$store.getters['commonData/corpusId'];
+      this.option.url = this.option.url.replace(/{corpus_id}/g, corpusId);
+      this.$store.dispatch('corpusTrainingData/download', { option: this.option });
     },
     downloadSampleCsv() {
       const url = '/files/corpus-admin/training_data_sample.csv';

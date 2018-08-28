@@ -1,7 +1,7 @@
 <template>
   <CommonModal>
-    <div v-if="form.data_type === 1" slot="title">クラス／テキスト編集（学習データ）</div>
-    <div v-if="form.data_type === 0" slot="title">クラス／テキスト編集（テストデータ）</div>
+    <div v-if="data.data_type === 1" slot="title">クラス／テキスト編集（学習データ）</div>
+    <div v-if="data.data_type === 0" slot="title">クラス／テキスト編集（テストデータ）</div>
     <!-- /.title -->
     <div slot="body">
       <div class="alert alert-warning" role="alert">
@@ -10,7 +10,7 @@
       <!-- /.alert -->
       <div class="form-group">
         <label for="addContent">テキスト</label>
-        <textarea v-model="form.content" :class="'form-control' + err.content.invalid" id="addContent" rows="3"></textarea>
+        <textarea v-model="data.content" :class="'form-control' + err.content.invalid" id="addContent" rows="3"></textarea>
         <small class="form-text text-muted">1024文字以内で入力してください。</small>
         <div class="invalid-feedback">
           {{ err.content.message }}
@@ -18,8 +18,8 @@
       </div>
       <!-- /.form-group -->
       <div class="form-group">
-        <label :for="'selectEditClass_' + this.form.data_type">クラス選択</label>
-        <select v-model="form.corpus_class_id" :class="'form-control form-control-sm' + err.corpus_class_id.invalid" :id="'selectEditClass_' + this.form.data_type">
+        <label :for="'selectEditClass_' + this.data.data_type">クラス選択</label>
+        <select v-model="data.corpus_class_id" :class="'form-control form-control-sm' + err.corpus_class_id.invalid" :id="'selectEditClass_' + this.data.data_type">
           <template v-for="classData in trainingData">
             <option :value="classData.class_id" :key="classData.class_id">{{ classData.name }}</option>
           </template>
@@ -41,6 +41,7 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
+import * as Lib from '../../../../common/ext/functions';
 import CommonModal from '../../common/modal/Modal';
 
 import { mapGetters } from 'vuex';
@@ -54,21 +55,10 @@ export default {
   props: [],
   data() {
     return {
-      form: {
-        corpus_id: this.$store.getters['commonData/corpusId'],
-        data_type: this.$store.getters['multiModal/currentDataType'],
-        corpus_class_id: null,
-        creative_id: null,
-        content: '',
-      },
+      data: {},
+      option: {},
       err: [],
     };
-  },
-  computed: {
-    ...mapGetters({
-      trainingData: 'corpusTrainingData/trainingData',
-      errors: 'multiModal/trainingDataEditError',
-    }),
   },
   watch: {
     'errors': {
@@ -80,49 +70,57 @@ export default {
       deep: true
     },
   },
+  computed: {
+    ...mapGetters({
+      trainingData: 'corpusTrainingData/trainingData',
+      errors: 'multiModal/trainingDataEditError',
+    }),
+  },
   created() {
     Core.log('[crated]');
+    this.loadApiConfig('saveTrainingData');
     this.resetErr();
   },
   mounted() {
     Core.log('[mounted]');
-    this.setEditData();
+    this.setParams();
   },
   methods: {
+    loadApiConfig(configName) {
+      Core.log('[method] loadApiConfig');
+      const config = Lib.getApiConfig(configName);
+      this.option = config;
+      this.data = config.data;
+      Core.log(this.data);
+    },
+    // エラーリセット
+    resetErr() {
+      Core.log('[method] resetErr');
+      this.err = Lib.resetFormError(this.data);
+      Core.log(this.err);
+    },
     // 編集データセット
-    setEditData() {
-      Core.log('[setEditData]');
+    setParams() {
+      Core.log('[method] setParams');
       const editData = this.$store.getters['multiModal/editTrainingData'];
-      this.form.corpus_class_id = editData.class_id;
-      this.form.creative_id = editData.creative_id;
-      this.form.content = editData.content;
-      
-      Core.log(this.form);
+
+      this.data.corpus_id = this.$store.getters['commonData/corpusId'];
+      this.data.data_type = this.$store.getters['multiModal/currentDataType'];
+      this.data.corpus_class_id = editData.class_id;
+      this.data.creative_id = editData.creative_id;
+      this.data.content = editData.content;
     },
     // 更新
     saveTrainingData() {
-      Core.log('[saveTrainingData]');
-      Core.log(this.form);
-      this.$store.dispatch('corpusTrainingData/saveTrainingData', this.form);
+      Core.log('[method] saveTrainingData');
+      this.option.data = this.data;
+      this.option.url = this.option.url.replace(/{creative_id}/g, this.data.creative_id);
+      this.$store.dispatch('corpusTrainingData/save', { option: this.option });
     },
     // 削除モーダル表示
     openDeleteTrainingDataModal() {
       Core.log('[openDeleteTrainingDataModal]');
-      this.$store.dispatch('multiModal/showDeleteTrainingDataModal', this.form.creative_id);
-    },
-    // エラーデータリセット
-    resetErr() {
-      Core.log('[resetErr]');
-      this.err = {
-        corpus_class_id: {
-          invalid: '',
-          message: '',
-        },
-        content: {
-          invalid: '',
-          message: '',
-        },
-      };
+      this.$store.dispatch('multiModal/showDeleteTrainingDataModal', this.data.creative_id);
     },
   },
 };

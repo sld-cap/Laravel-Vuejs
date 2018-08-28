@@ -39,27 +39,30 @@ const getters = {
  * mutations
  */
 const mutations = {
+  // 取得 :API一覧
+  SET_LIST(state, payload) {
+    Core.log('[mutation] accountData/SET_LIST');
+    const resCode = payload.code;
+
+    switch(resCode) {
+      case 200:
+        state.apiList = payload.data;
+        state.checkedIndex = 0;
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
+        Lib.alertVendorEscalation(resCode);
+        break;
+    }
+    state.loading = false; // 一覧ローディング非表示
+  },
   //
   setCheckedIndex(state, payload) {
     Core.log('[store] setCheckedIndex');
     Core.log(payload);
     state.checkedIndex = payload;
-  },
-  // 取得 :API一覧
-  setGetApiListResult(state, payload) {
-    Core.log('[store] setGetApiListResult');
-    Core.log(payload);
-    const resCode = payload.code;
-
-    if (resCode === 200) {
-      state.apiList = payload.data;
-      state.checkedIndex = 0;
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
-    }
-    state.loading = false;
   },
 };
 
@@ -69,12 +72,12 @@ const mutations = {
  */
 const actions = {
   // 取得（一覧）
-  getApiList({ commit, state }) {
-    Core.log('[store] getApiList');
-    state.loading = true;
+  getList({ commit, state }) {
+    Core.log('[action] apiData/getList');
+    state.loading = true; // 一覧ローディング表示
 
-    const apiOption = { ...ApiConfig.getApiList };
-    Ajax.exec(apiOption, commit, 'setGetApiListResult');
+    const option = Lib.getApiConfig('getApiList');
+    Ajax.exec(this.commit, option);
   },
 };
 

@@ -79,159 +79,182 @@ const getters = {
  */
 const mutations = {
   // 取得 :コーパス一覧
-  setGetCorpusListResult(state, payload) {
-    Core.log('[store] setGetCorpusListResult');
-    Core.log(payload);
+  SET_LIST(state, payload) {
+    Core.log('[mutation] corpusData/SET_LIST');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      state.corpusList = payload.data;
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
-    }
-    state.loading = false;
-  },
-  // 取得: コーパスデータセット
-  setGetCorpusInfoResult(state, payload) {
-    Core.log('[store] setGetCorpusInfoResult');
-    Core.log(payload);
-    const resCode = payload.code;
-
-    if (resCode === 200) {
-      state.corpusInfo = payload.data;
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      alert('該当のコーパスデータが見つかりませんでした。\nCAP管理画面に戻ります。');
-      location.href = '/corpus';
-    }
-    state.loading = false;
-  },
-  // 登録: コーパスデータ作成処理結果
-  setAddCorpusInfoResult(state, payload) {
-    Core.log('[store] setAddCorpusInfoResult');
-    Core.log(payload);
-    const resCode = payload.code;
-
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompAddCorpusInfoModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setCorpusAddError', payload.errors);
-      } else {
+    switch (resCode) {
+      case 200:
+        state.corpusList = payload.data;
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
         Lib.alertVendorEscalation(resCode);
-      }
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    state.loading = false; // 一覧ローディング非表示
   },
-  // 更新: コーパスデータ更新処理結果
-  setSaveCorpusInfoResult(state, payload) {
-    Core.log('[store] setSaveCorpusInfoResult');
-    Core.log(payload);
+  // 取得: コーパス詳細
+  SET_DETAIL(state, payload) {
+    Core.log('[mutation] corpusData/SET_DETAIL');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompEditCorpusInfoModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setCorpusEditError', payload.errors);
-      } else {
-        Lib.alertVendorEscalation(resCode);
-      }
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+    switch (resCode) {
+      case 200:
+        state.corpusInfo = payload.data;
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
+        alert('該当のコーパスデータが見つかりませんでした。\nCAP管理画面に戻ります。');
+        location.href = '/corpus';
+        break;
     }
-    this.commit('commonData/hideLoading');
+    state.loading = false; // 一覧ローディング非表示
+  },
+  // 登録結果
+  ADD_RESULT(state, payload) {
+    Core.log('[mutation] corpusData/ADD_RESULT');
+    const resCode = payload.code;
+
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompAddCorpusModal');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          Lib.alertVendorEscalation(resCode);
+        }
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
+        Lib.alertVendorEscalation(resCode);
+        break;
+    }
+    this.commit('commonData/HIDE_LOADING');
+  },
+  // 更新結果
+  EDIT_RESULT(state, payload) {
+    Core.log('[mutation] corpusData/EDIT_RESULT');
+    const resCode = payload.code;
+
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompEditCorpusModal');
+        this.dispatch('corpusData/getList');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          Lib.alertVendorEscalation(resCode);
+        }
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
+        Lib.alertVendorEscalation(resCode);
+        break;
+    }
+    this.commit('commonData/HIDE_LOADING');
   },
   // 削除: コーパスデータ削除処理結果
-  setDeleteCorpusResult(state, payload) {
-    Core.log('[store] setDeleteCorpusResult');
-    Core.log(payload);
+  DELETE_RESULT(state, payload) {
+    Core.log('[mutation] corpusData/DELETE_RESULT');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      alert('コーパスの削除が完了しました。\nコーパス管理画面に戻ります。');
-      location.href = '/corpus';
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+    switch (resCode) {
+      case 200:
+        alert('コーパスの削除が完了しました。\nコーパス管理画面に戻ります。');
+        location.href = '/corpus';
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
+        Lib.alertVendorEscalation(resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
-  // 学習: コーパス学習実行処理結果
-  setTrainingCorpusResult(state, payload) {
-    Core.log('[store] setTrainingCorpusResult');
-    Core.log(payload);
+  // 学習実行結果
+  TRAINING_RESULT(state, payload) {
+    Core.log('[mutation] corpusData/TRAINING_RESULT');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      alert('ただ今学習中です。完了まで15分程度かかります。\n完了までそのままお待ちください。');
-      this.dispatch('corpusData/getCorpusInfo');
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+    switch (resCode) {
+      case 200:
+        alert('ただ今学習中です。完了まで15分程度かかります。\n完了までそのままお待ちください。');
+        this.dispatch('corpusData/getDetail');
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
+        Lib.alertVendorEscalation(resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
   // 学習中コーパスの学習完了タイマーセット
-  execCheckCorpusTrainingTimer(state) {
+  SET_CHECK_TRAINING_DONE_TIMER(state) {
     const interval = 30000; // 30秒に1回
     const corpus_id = this.getters['commonData/corpusId'];
 
     state.timer = setInterval(() => {
-      this.dispatch('corpusData/checkCorpusTrainingDone', { corpus_id });
+      this.dispatch('corpusData/isTrainingDone', { corpus_id });
       Core.log('timer');
     }, interval);
 
     // 初回起動
-    this.dispatch('corpusData/checkCorpusTrainingDone');
+    this.dispatch('corpusData/isTrainingDone');
   },
   // 学習完了チェック結果
-  setCheckCorpusTrainingDoneResult(state, payload) {
-    Core.log('[store] setTrainingCorpusResult');
-    Core.log(payload);
+  TRAINING_DONE_RESULT(state, payload) {
+    Core.log('[mutation] corpusData/TRAINING_DONE_RESULT');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      alert('コーパスの学習が完了しました');
-      this.dispatch('corpusData/getCorpusInfo');
-      clearInterval(state.timer);
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      // Lib.alertVendorEscalation(resCode);
+    switch (resCode) {
+      case 200:
+        alert('コーパスの学習が完了しました');
+        this.dispatch('corpusData/getDetail');
+        clearInterval(state.timer);
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
+        // Lib.alertVendorEscalation(resCode);
+        break;
     }
   },
   // コーパス本番反映処理結果
-  setDeployCorpusResult(state, payload) {
-    Core.log('[store] setDeployCorpusResult');
-    Core.log(payload);
+  DEPLOY_RESULT(state, payload) {
+    Core.log('[mutation] corpusData/DEPLOY_RESULT');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      alert('本番反映が完了しました');
-      this.dispatch('corpusData/getCorpusInfo');
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+    switch (resCode) {
+      case 200:
+        alert('本番反映が完了しました');
+        this.dispatch('corpusData/getDetail');
+        clearInterval(state.timer);
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
+        Lib.alertVendorEscalation(resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
-  },
-  // ajaxでエラー時にローディング削除する用
-  hideLoading() {
-    Core.log('[store] hideLoading');
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
 };
 
@@ -241,85 +264,60 @@ const mutations = {
  */
 const actions = {
   // 取得（一覧）
-  getCorpusList({ commit, state }) {
-    Core.log('[store] getCorpusList');
-    state.loading = true;
+  getList({ state }) {
+    Core.log('[action] corpusData/getList');
+    state.loading = true; // 一覧ローディング表示
 
-    const apiOption = { ...ApiConfig.getCorpusList };
-    Ajax.exec(apiOption, commit, 'setGetCorpusListResult');
+    const option = Lib.getApiConfig('getCorpusList');
+    Ajax.exec(this.commit, option);
   },
   // 取得（詳細）
-  getCorpusInfo({ commit }) {
-    Core.log('[store] getCorpusInfo');
-    state.loading = true;
+  getDetail({ state }) {
+    Core.log('[action] corpusData/getDetail');
+    state.loading = true; // 一覧ローディング表示
 
-    const apiOption = { ...ApiConfig.getCorpus };
+    const option = Lib.getApiConfig('getCorpusDetail');
     const corpusId = this.getters['commonData/corpusId'];
-    apiOption.url = apiOption.url.replace(/{corpusId}/g, corpusId);
+    option.url = option.url.replace(/{corpus}/g, corpusId);
 
-    Ajax.exec(apiOption, commit, 'setGetCorpusInfoResult');
+    Ajax.exec(this.commit, option);
   },
   // 登録
-  AddCorpus({ commit }, { name, description, language }) {
-    Core.log('[store] AddCorpus');
-    this.commit('commonData/showLoading');
-
-    const apiOption = { ...ApiConfig.addCorpusInfo };
-    // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
-    apiOption.data = {
-      name, description, language,
-    };
-
-    Ajax.exec(apiOption, commit, 'setAddCorpusInfoResult', 'hideLoading');
+  add({ commit }, { option }) {
+    Core.log('[action] corpusData/add');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
   // 編集
-  saveCorpus({ commit }, { corpus_id, name, description, language }) {
-    Core.log('[store] getCorpusInfo');
-    this.commit('commonData/showLoading');
-
-    const apiOption = { ...ApiConfig.saveCorpusInfo };
-    // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
-    apiOption.data = {
-      corpus_id, name, description, language,
-    };
-
-    Ajax.exec(apiOption, commit, 'setSaveCorpusInfoResult', 'hideLoading');
+  save({ commit }, { option }) {
+    Core.log('[action] corpusData/save');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
   // 削除
-  deleteCorpus({ commit }, { corpus_id }) {
-    Core.log('[store] deleteCorpus');
-    this.commit('commonData/showLoading');
-
-    const apiOption = { ...ApiConfig.deleteCorpusInfo };
-    // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
-    Ajax.exec(apiOption, commit, 'setDeleteCorpusResult', 'hideLoading');
+  delete({ commit }, { option }) {
+    Core.log('[action] corpusData/delete');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
   // 学習
-  trainingCorpus({ commit }, { corpus_id }) {
-    Core.log('[store] trainingCorpus');
-    this.commit('commonData/showLoading');
-
-    const apiOption = { ...ApiConfig.trainingCorpus };
-    // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
-    Ajax.exec(apiOption, commit, 'setTrainingCorpusResult', 'hideLoading');
+  training({ commit }, { option }) {
+    Core.log('[action] corpusData/training');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
   // 学習完了チェック
-  checkCorpusTrainingDone({ commit }, { corpus_id }) {
-    Core.log('[store] checkCorpusTrainingDone');
-
-    const apiOption = { ...ApiConfig.checkCorpusTrainingDone };
-    // // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
-    Ajax.exec(apiOption, commit, 'setCheckCorpusTrainingDoneResult');
+  isTrainingDone({ commit }, { corpus_id }) {
+    Core.log('[action] corpusData/isTrainingDone');
+    const option = Lib.getApiConfig('isTrainingDone');
+    option.url = option.url.replace(/{corpus}/g, corpus_id);
+    Ajax.exec(this.commit, option);
   },
   // 本番反映
-  deployCorpus({ commit }, { corpus_id, api_id }) {
-    Core.log('[store] deployCorpus');
-    this.commit('commonData/showLoading');
-
-    const apiOption = { ...ApiConfig.deployCorpus };
-    // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
-    apiOption.data = { api_id };
-    Ajax.exec(apiOption, commit, 'setDeployCorpusResult', 'hideLoading');
+  deploy({ commit }, { option }) {
+    Core.log('[action] corpusData/deploy');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
 };
 

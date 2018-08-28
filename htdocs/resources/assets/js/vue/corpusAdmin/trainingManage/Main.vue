@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getCorpusInfo: 'corpusData/getCorpusInfo',
+      getCorpusInfo: 'corpusData/getDetail',
     }),
   },
 };

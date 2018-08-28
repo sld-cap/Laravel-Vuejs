@@ -17,6 +17,7 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
+import * as Lib from '../../../../common/ext/functions';
 import { mapGetters } from 'vuex';
 
 import CommonModal from '../../common/modal/Modal';
@@ -30,9 +31,8 @@ export default {
   props: [],
   data() {
     return {
-      postData: {
-        id: '',
-      },
+      option: {},
+      deleteId: null,
     };
   },
   computed: {
@@ -43,18 +43,25 @@ export default {
   },
   created() {
     Core.log('[created]');
+    this.loadApiConfig('deleteAccount');
   },
   mounted() {
     Core.log('[mounted]');
-    Core.log(this.accountList);
-    Core.log(this.deleteIndex);
-    this.postData.id = this.accountList[this.deleteIndex].id;
+    this.deleteId = this.accountList[this.deleteIndex].id;
   },
   methods: {
-    // コーパス登録処理
+    loadApiConfig(configName) {
+      Core.log('[method] loadApiConfig');
+      const config = Lib.getApiConfig(configName);
+      this.option = config;
+      Core.log(this.data);
+    },
+    // アカウント削除
     execDeleteAccount() {
       Core.log('[execDeleteAccount]');
-      this.$store.dispatch('accountData/deleteAccount', this.postData);
+
+      this.option.url = this.option.url.replace(/{user}/g, this.deleteId);
+      this.$store.dispatch('accountData/delete', { option: this.option });
     },
   },
 };

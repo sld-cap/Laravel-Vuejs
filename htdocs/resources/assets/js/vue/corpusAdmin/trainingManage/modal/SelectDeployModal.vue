@@ -13,7 +13,7 @@
       <form class="container mt-4">
         <div class="form-group">
           <label for="selectApi">紐付けるAPIを指定してください</label>
-          <select class="form-control" id="selectApi" v-model="postData.api_id">
+          <select class="form-control" id="selectApi" v-model="data.api_id">
             <option v-for="api in apiList" :key="api.id" :value="api.id">{{ api.name }}</option>
           </select>
         </div>
@@ -33,6 +33,7 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
+import * as Lib from '../../../../common/ext/functions';
 import CommonModal from '../../common/modal/Modal';
 
 import { mapGetters } from 'vuex';
@@ -45,10 +46,9 @@ export default {
   props: [],
   data() {
     return {
-      postData: {
-        corpus_id: this.$store.getters['commonData/corpusId'],
-        api_id: '',
-      },
+      data: {},
+      option: {},
+      err: [],
     };
   },
   computed: {
@@ -56,15 +56,35 @@ export default {
       apiList: 'apiData/apiList',
     }),
   },
+  created() {
+    Core.log('[created]');
+    this.loadApiConfig('deployCorpus');
+  },
   mounted() {
     Core.log('[mounted]');
-    this.postData.api_id = this.apiList[0].id;
+    this.setParams();
   },
   methods: {
+    loadApiConfig(configName) {
+      Core.log('[method] loadApiConfig');
+      const config = Lib.getApiConfig(configName);
+      this.option = config;
+      this.data = config.data;
+      Core.log(this.data);
+    },
+    // 値セット
+    setParams() {
+      Core.log('[method] setParams');
+      Core.log(this.apiList[0].id);
+      this.data.api_id = this.apiList[0].id;
+    },
+    // 本番反映
     deploy() {
-      Core.log('[deploy]');
-      Core.log(this.postData);
-      this.$store.dispatch('corpusData/deployCorpus', this.postData);
+      Core.log('[method] deploy');
+      this.option.data = this.data;
+      const corpus_id = this.$store.getters['commonData/corpusId'];
+      this.option.url = this.option.url.replace(/{corpus_id}/g, corpus_id);
+      this.$store.dispatch('corpusData/deploy', { option: this.option });
       this.hideModal();
     },
   },

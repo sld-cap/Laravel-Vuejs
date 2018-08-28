@@ -2566,11 +2566,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -2627,19 +2628,17 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AddCorpusModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
       corpusLanguageList: __WEBPACK_IMPORTED_MODULE_0__common_core_app__["CorpusLanguage"],
-      postData: {
-        name: '',
-        description: '',
-        language: 0
-      },
+      data: {},
+      option: {},
       err: []
     };
   },
@@ -2655,11 +2654,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       deep: true
     }
   },
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
-    errors: 'multiModal/corpusAddError'
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
+    errors: 'multiModal/commonError'
   })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.loadApiConfig('addCorpus');
     this.resetErr();
   },
   mounted: function mounted() {
@@ -2667,31 +2667,26 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
 
   methods: {
-    // コーパス登録処理
-    execAddCorpus: function execAddCorpus() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[execAddCorpus]');
-      this.$store.dispatch('corpusData/AddCorpus', this.postData);
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      this.data = config.data;
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.data);
     },
 
     // エラーリセット
     resetErr: function resetErr() {
-      this.err = {
-        name: {
-          hasDanger: '',
-          invalid: '',
-          message: ''
-        },
-        description: {
-          hasDanger: '',
-          invalid: '',
-          message: ''
-        },
-        language: {
-          hasDanger: '',
-          invalid: '',
-          message: ''
-        }
-      };
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] resetErr');
+      this.err = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["resetFormError"](this.data);
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.err);
+    },
+
+    // コーパス登録処理
+    execAddCorpus: function execAddCorpus() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] execAddCorpus');
+      this.option.data = this.data;
+      this.$store.dispatch('corpusData/add', { option: this.option });
     }
   }
 });
@@ -3045,9 +3040,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.currentBreadcrumbs = params;
     }
   }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapActions */])({
-    getCorpusList: 'corpusData/getCorpusList',
-    getAccountList: 'accountData/getAccountList',
-    getApiList: 'apiData/getApiList'
+    getCorpusList: 'corpusData/getList',
+    getAccountList: 'accountData/getList',
+    getApiList: 'apiData/getList'
   }))
 });
 
@@ -3491,11 +3486,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -3578,19 +3574,16 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AddAccountModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
-      postData: {
-        sei_kanji: '',
-        mei_kanji: '',
-        email: '',
-        password: ''
-      },
+      data: {},
+      option: {},
       err: []
     };
   },
@@ -3606,48 +3599,40 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       deep: true
     }
   },
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
-    errors: 'multiModal/accountAddError'
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
+    errors: 'multiModal/commonError'
   })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.loadApiConfig('addAccount');
     this.resetErr();
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+    $('body').bootstrapMaterialDesign();
   },
 
   methods: {
-    // コーパス登録処理
-    execAddAccount: function execAddAccount() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[execAddAccount]');
-      this.$store.dispatch('accountData/addAccount', this.postData);
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      this.data = config.data;
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.data);
     },
 
     // エラーリセット
     resetErr: function resetErr() {
-      this.err = {
-        sei_kanji: {
-          hasDanger: '',
-          invalid: '',
-          message: ''
-        },
-        mei_kanji: {
-          hasDanger: '',
-          invalid: '',
-          message: ''
-        },
-        email: {
-          hasDanger: '',
-          invalid: '',
-          message: ''
-        },
-        password: {
-          hasDanger: '',
-          invalid: '',
-          message: ''
-        }
-      };
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] resetErr');
+      this.err = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["resetFormError"](this.data);
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.err);
+    },
+
+    // コーパス登録処理
+    execAddAccount: function execAddAccount() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[execAddAccount]');
+      this.option.data = this.data;
+      this.$store.dispatch('accountData/add', { option: this.option });
     }
   }
 });
@@ -3798,11 +3783,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -3830,38 +3816,46 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'DeleteAccountModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
-      postData: {
-        id: ''
-      }
+      option: {},
+      deleteId: null
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
     accountList: 'accountData/accountList',
     deleteIndex: 'multiModal/deleteAccountIndex'
   })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.loadApiConfig('deleteAccount');
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
-    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.accountList);
-    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.deleteIndex);
-    this.postData.id = this.accountList[this.deleteIndex].id;
+    this.deleteId = this.accountList[this.deleteIndex].id;
   },
 
   methods: {
-    // コーパス登録処理
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.data);
+    },
+
+    // アカウント削除
     execDeleteAccount: function execDeleteAccount() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[execDeleteAccount]');
-      this.$store.dispatch('accountData/deleteAccount', this.postData);
+
+      this.option.url = this.option.url.replace(/{user}/g, this.deleteId);
+      this.$store.dispatch('accountData/delete', { option: this.option });
     }
   }
 });
@@ -3874,11 +3868,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/capAdmin/common/form/mixins/SetErrData.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -3961,21 +3956,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'EditAccountModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_3__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
-      postData: {
-        sei_kanji: '',
-        mei_kanji: '',
-        email: '',
-        password: '',
-        id: ''
-      },
-      err: []
+      data: {},
+      option: {},
+      err: [],
+      editId: null
     };
   },
 
@@ -3990,58 +3982,48 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       deep: true
     }
   },
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
     accountList: 'accountData/accountList',
     editIndex: 'multiModal/editAccountIndex',
-    errors: 'multiModal/accountEditError'
+    errors: 'multiModal/commonError'
   })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.loadApiConfig('saveAccount');
     this.resetErr();
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
-    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.accountList);
-    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.editIndex);
 
-    this.postData.sei_kanji = this.accountList[this.editIndex].sei_kanji;
-    this.postData.mei_kanji = this.accountList[this.editIndex].mei_kanji;
-    this.postData.email = this.accountList[this.editIndex].email;
-    this.postData.password = '';
-    this.postData.id = this.accountList[this.editIndex].id;
+    this.data.sei_kanji = this.accountList[this.editIndex].sei_kanji;
+    this.data.mei_kanji = this.accountList[this.editIndex].mei_kanji;
+    this.data.email = this.accountList[this.editIndex].email;
+    this.data.password = '';
+    this.editId = this.accountList[this.editIndex].id;
   },
 
   methods: {
-    // コーパス登録処理
-    execSaveAccount: function execSaveAccount() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[execEditCorpus]');
-      this.$store.dispatch('accountData/saveAccount', this.postData);
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      this.data = config.data;
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.data);
     },
 
     // エラーリセット
     resetErr: function resetErr() {
-      this.err = {
-        sei_kanji: {
-          hasDanger: '',
-          invalid: '',
-          message: ''
-        },
-        mei_kanji: {
-          hasDanger: '',
-          invalid: '',
-          message: ''
-        },
-        email: {
-          hasDanger: '',
-          invalid: '',
-          message: ''
-        },
-        password: {
-          hasDanger: '',
-          invalid: '',
-          message: ''
-        }
-      };
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] resetErr');
+      this.err = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["resetFormError"](this.data);
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.err);
+    },
+
+    // コーパス登録処理
+    execSaveAccount: function execSaveAccount() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[execSaveAccount]');
+      this.option.data = this.data;
+      this.option.url = this.option.url.replace(/{user}/g, this.editId);
+      this.$store.dispatch('accountData/save', { option: this.option });
     }
   }
 });
@@ -4207,10 +4189,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
 //
 //
 //
@@ -4226,6 +4209,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -4235,23 +4219,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: '',
-  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
   props: [],
   data: function data() {
-    return {};
+    return {
+      option: {}
+    };
   },
 
   computed: {},
-  mounted: function mounted() {},
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.loadApiConfig('deleteCorpus');
+  },
+  mounted: function mounted() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+  },
 
   methods: {
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.data);
+    },
+
+    // 削除確認
     showConfirmAlert: function showConfirmAlert() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[showConfirmAlert]');
 
       if (confirm('コーパスを削除してもよろしいですか？')) {
-        var corpus_id = this.$store.getters['commonData/corpusId'];
-        this.$store.dispatch('corpusData/deleteCorpus', corpus_id);
+        var corpusId = this.$store.getters['commonData/corpusId'];
+
+        this.option.url = this.option.url.replace(/{corpus}/g, corpusId);
+        this.$store.dispatch('corpusData/delete', { option: this.option });
       }
     }
   }
@@ -4265,11 +4267,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/form/mixins/SetErrData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/form/mixins/SetErrData.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -4331,27 +4334,24 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'EditCorpusInfoModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
       corpusLanguageList: __WEBPACK_IMPORTED_MODULE_0__common_core_app__["CorpusLanguage"],
-      form: {
-        corpus_id: this.$store.getters['commonData/corpusId'],
-        name: '',
-        description: '',
-        language: ''
-      },
+      data: {},
+      option: {},
       err: []
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["c" /* mapGetters */])({
     corpusInfo: 'corpusData/corpusInfo',
-    errors: 'multiModal/corpusEditError'
+    errors: 'multiModal/commonError'
   })),
   watch: {
     'errors': {
@@ -4365,6 +4365,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.loadApiConfig('saveCorpus');
     this.resetErr();
   },
   mounted: function mounted() {
@@ -4376,38 +4377,37 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
 
   methods: {
-    // 編集データセット
-    setEditData: function setEditData() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setEditData]');
-      this.form.name = this.corpusInfo.name;
-      this.form.description = this.corpusInfo.description;
-      this.form.language = this.corpusInfo.language;
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.form);
-    },
-
-    // 更新
-    saveCorpusInfo: function saveCorpusInfo() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[saveCorpusInfo]');
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.form);
-      this.$store.dispatch('corpusData/saveCorpus', this.form);
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      this.data = config.data;
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.data);
     },
 
     // エラーリセット
     resetErr: function resetErr() {
-      this.err = {
-        name: {
-          invalid: '',
-          message: ''
-        },
-        description: {
-          invalid: '',
-          message: ''
-        },
-        language: {
-          invalid: '',
-          message: ''
-        }
-      };
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] resetErr');
+      this.err = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["resetFormError"](this.data);
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.err);
+    },
+
+    // 編集データセット
+    setEditData: function setEditData() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] setEditData');
+      this.data.name = this.corpusInfo.name;
+      this.data.description = this.corpusInfo.description;
+      this.data.language = this.corpusInfo.language;
+    },
+
+    // 更新
+    execSaveCorpus: function execSaveCorpus() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] execSaveCorpus');
+      var corpusId = this.$store.getters['commonData/corpusId'];
+
+      this.option.url = this.option.url.replace(/{corpus}/g, corpusId);
+      this.option.data = this.data;
+      this.$store.dispatch('corpusData/save', { option: this.option });
     }
   }
 });
@@ -5502,11 +5502,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/form/mixins/SetErrData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/form/mixins/SetErrData.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -5567,28 +5568,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AddCreativeModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
-      form: {
-        corpus_id: this.$store.getters['commonData/corpusId'],
-        data_type: this.$store.getters['multiModal/currentDataType'],
-        corpus_class_id: null,
-        add_class_name: '',
-        content: ''
-      },
+      data: {},
+      option: {},
       err: []
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
-    trainingData: 'corpusTrainingData/trainingData',
-    errors: 'multiModal/trainingDataAddError'
-  })),
   watch: {
     'errors': {
       handler: function handler(errors) {
@@ -5600,49 +5593,53 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       deep: true
     }
   },
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["c" /* mapGetters */])({
+    trainingData: 'corpusTrainingData/trainingData',
+    errors: 'multiModal/trainingDataAddError'
+  })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.loadApiConfig('addTrainingData');
     this.resetErr();
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
-    this.initRender();
+    this.setParams();
   },
 
   methods: {
-    // セレクトボックス初期値設定
-    initRender: function initRender() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[initRender]');
-      var initCorpusClassId = "";
-      if (this.trainingData.length > 0) {
-        initCorpusClassId = this.trainingData[0].class_id;
-      }
-      this.form.corpus_class_id = initCorpusClassId;
-    },
-
-    // 登録
-    addTrainingData: function addTrainingData() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[addTrainingData]');
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.form);
-      this.$store.dispatch('corpusTrainingData/addTrainingData', this.form);
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      this.data = config.data;
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.data);
     },
 
     // エラーリセット
     resetErr: function resetErr() {
-      this.err = {
-        corpus_class_id: {
-          invalid: '',
-          message: ''
-        },
-        add_class_name: {
-          invalid: '',
-          message: ''
-        },
-        content: {
-          invalid: '',
-          message: ''
-        }
-      };
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] resetErr');
+      this.err = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["resetFormError"](this.data);
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.err);
+    },
+
+    // 
+    setParams: function setParams() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] setParams');
+      var initCorpusClassId = "";
+      if (this.trainingData.length > 0) {
+        initCorpusClassId = this.trainingData[0].class_id;
+      }
+      this.data.corpus_class_id = initCorpusClassId;
+      this.data.corpus_id = this.$store.getters['commonData/corpusId'];
+      this.data.data_type = this.$store.getters['multiModal/currentDataType'];
+    },
+
+    // 登録
+    addTrainingData: function addTrainingData() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] addTrainingData');
+      this.option.data = this.data;
+      this.$store.dispatch('corpusTrainingData/add', { option: this.option });
     }
   }
 });
@@ -5919,11 +5916,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/form/mixins/SetErrData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/form/mixins/SetErrData.js");
 //
 //
 //
@@ -5948,6 +5946,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -5958,14 +5957,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'DeleteTrainingDataModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
-      deleteData: {
-        creative_id: this.$store.getters['multiModal/deleteTrainingData'].creative_id
-      }
+      option: {},
+      data: {},
+      creative_id: this.$store.getters['multiModal/deleteTrainingData'].creative_id
     };
   },
 
@@ -5973,14 +5972,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   watch: {},
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[crated]');
+    this.loadApiConfig('deleteTrainingData');
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
   },
 
   methods: {
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      this.data = config.data;
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.data);
+    },
+
+    // 削除
     deleteExec: function deleteExec() {
-      this.$store.dispatch('corpusTrainingData/deleteTrainingData', this.deleteData);
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] addTrainingData');
+      this.option.url = this.option.url.replace(/{creative_id}/g, this.creative_id);
+      this.$store.dispatch('corpusTrainingData/delete', { option: this.option });
     }
   }
 });
@@ -5993,11 +6004,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/form/mixins/SetErrData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/form/mixins/SetErrData.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -6049,28 +6061,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'EditTrainingDataModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
-      form: {
-        corpus_id: this.$store.getters['commonData/corpusId'],
-        data_type: this.$store.getters['multiModal/currentDataType'],
-        corpus_class_id: null,
-        creative_id: null,
-        content: ''
-      },
+      data: {},
+      option: {},
       err: []
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
-    trainingData: 'corpusTrainingData/trainingData',
-    errors: 'multiModal/trainingDataEditError'
-  })),
   watch: {
     'errors': {
       handler: function handler(errors) {
@@ -6081,53 +6085,60 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       deep: true
     }
   },
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["c" /* mapGetters */])({
+    trainingData: 'corpusTrainingData/trainingData',
+    errors: 'multiModal/trainingDataEditError'
+  })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[crated]');
+    this.loadApiConfig('saveTrainingData');
     this.resetErr();
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
-    this.setEditData();
+    this.setParams();
   },
 
   methods: {
-    // 編集データセット
-    setEditData: function setEditData() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[setEditData]');
-      var editData = this.$store.getters['multiModal/editTrainingData'];
-      this.form.corpus_class_id = editData.class_id;
-      this.form.creative_id = editData.creative_id;
-      this.form.content = editData.content;
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      this.data = config.data;
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.data);
+    },
 
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.form);
+    // エラーリセット
+    resetErr: function resetErr() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] resetErr');
+      this.err = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["resetFormError"](this.data);
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.err);
+    },
+
+    // 編集データセット
+    setParams: function setParams() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] setParams');
+      var editData = this.$store.getters['multiModal/editTrainingData'];
+
+      this.data.corpus_id = this.$store.getters['commonData/corpusId'];
+      this.data.data_type = this.$store.getters['multiModal/currentDataType'];
+      this.data.corpus_class_id = editData.class_id;
+      this.data.creative_id = editData.creative_id;
+      this.data.content = editData.content;
     },
 
     // 更新
     saveTrainingData: function saveTrainingData() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[saveTrainingData]');
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.form);
-      this.$store.dispatch('corpusTrainingData/saveTrainingData', this.form);
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] saveTrainingData');
+      this.option.data = this.data;
+      this.option.url = this.option.url.replace(/{creative_id}/g, this.data.creative_id);
+      this.$store.dispatch('corpusTrainingData/save', { option: this.option });
     },
 
     // 削除モーダル表示
     openDeleteTrainingDataModal: function openDeleteTrainingDataModal() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[openDeleteTrainingDataModal]');
-      this.$store.dispatch('multiModal/showDeleteTrainingDataModal', this.form.creative_id);
-    },
-
-    // エラーデータリセット
-    resetErr: function resetErr() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[resetErr]');
-      this.err = {
-        corpus_class_id: {
-          invalid: '',
-          message: ''
-        },
-        content: {
-          invalid: '',
-          message: ''
-        }
-      };
+      this.$store.dispatch('multiModal/showDeleteTrainingDataModal', this.data.creative_id);
     }
   }
 });
@@ -6140,11 +6151,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/form/mixins/SetErrData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/form/mixins/SetErrData.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -6191,24 +6203,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UploadTrainingCsvModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__common_form_mixins_SetErrData__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__common_form_mixins_SetErrData__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
-      form: {
-        csv_file: null,
-        data_type: this.$store.getters['multiModal/currentDataType']
-      },
+      data: {},
+      option: {},
       err: []
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
-    errors: 'multiModal/trainingDataUploadError'
-  })),
   watch: {
     'errors': {
       handler: function handler(errors) {
@@ -6219,37 +6227,59 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       deep: true
     }
   },
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["c" /* mapGetters */])({
+    errors: 'multiModal/trainingDataUploadError'
+  })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.loadApiConfig('uploadTrainingData');
     this.resetErr();
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
+    this.setParams();
   },
 
   methods: {
-    // 登録
-    upload: function upload() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[upload]');
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.form);
-      this.$store.dispatch('corpusTrainingData/uploadTrainingDataCsv', this.form);
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      this.data = config.data;
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.data);
+    },
+
+    // エラーリセット
+    resetErr: function resetErr() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] resetErr');
+      this.err = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["resetFormError"](this.data);
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.err);
+    },
+    setParams: function setParams() {
+      this.data.data_type = this.$store.getters['multiModal/currentDataType'];
     },
 
     // 選択ファイルセット
     setUploadFile: function setUploadFile(e) {
       e.preventDefault();
       var files = e.target.files;
-      this.form.csv_file = files[0];
+      this.data.csv_file = files[0];
     },
 
-    // エラーリセット
-    resetErr: function resetErr() {
-      this.err = {
-        csv_file: {
-          invalid: '',
-          message: ''
-        }
-      };
+    // 登録
+    upload: function upload() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] upload');
+      this.option.data = this.data;
+      var corpusId = this.$store.getters['commonData/corpusId'];
+      this.option.url = this.option.url.replace(/{corpus_id}/g, corpusId);
+      // FormDataに変換
+      var selected_file = this.data.csv_file;
+      var current_data_type = this.data.data_type;
+      this.option.data = new FormData();
+      this.option.data.append('csv_file', selected_file);
+      this.option.data.append('data_type', current_data_type);
+
+      this.$store.dispatch('corpusTrainingData/upload', { option: this.option });
     }
   }
 });
@@ -6314,10 +6344,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     NoTrainingDataAlert: __WEBPACK_IMPORTED_MODULE_2__alert_NoTrainingDataAlert_vue___default.a
   },
   data: function data() {
-    return {
-      createModal: {},
-      uploadModal: {}
-    };
+    return {};
   },
 
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
@@ -6528,12 +6555,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: [],
   components: {},
   data: function data() {
-    return {};
+    return {
+      option: {}
+    };
   },
 
   computed: {},
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.loadApiConfig('downloadTrainingData');
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
@@ -6543,14 +6573,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.data);
+    },
     openAddCreativeModal: function openAddCreativeModal(dataType) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] openAddCreativeModal');
       this.$store.dispatch('multiModal/showAddTrainingDataModal', { dataType: dataType });
     },
     openUploadTrainingCsvModal: function openUploadTrainingCsvModal(dataType) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] openUploadTrainingCsvModal');
       this.$store.dispatch('multiModal/showUploadTrainingCsvModal', { dataType: dataType });
     },
     execDownloadTrainingCsv: function execDownloadTrainingCsv() {
-      this.$store.dispatch('corpusTrainingData/downloadTrainingDataCsv');
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] execDownloadTrainingCsv');
+      var corpusId = this.$store.getters['commonData/corpusId'];
+      this.option.url = this.option.url.replace(/{corpus_id}/g, corpusId);
+      this.$store.dispatch('corpusTrainingData/download', { option: this.option });
     },
     downloadSampleCsv: function downloadSampleCsv() {
       var url = '/files/corpus-admin/training_data_sample.csv';
@@ -6803,7 +6844,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         // 初回のコーパスデータ取得時に、学習完了を確認するタイマー処理を実行する
         var oldValLength = Object.keys(oldVal).length;
         if ((oldValLength === 0 || oldVal.status === '2') && val.status === '3') {
-          this.$store.commit('corpusData/execCheckCorpusTrainingTimer');
+          this.$store.commit('corpusData/SET_CHECK_TRAINING_DONE_TIMER');
         }
       },
       deep: true
@@ -6815,7 +6856,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.me);
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.corpusId);
 
-    this.$store.commit('commonData/setCorpusId', { corpusId: this.corpusId });
+    this.$store.commit('commonData/SET_CORPUS_ID', { corpusId: this.corpusId });
     // 各種情報取得
     this.getCorpusInfo();
     this.getTrainingData();
@@ -6830,9 +6871,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     feather.replace();
   },
   methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])({
-    getCorpusInfo: 'corpusData/getCorpusInfo',
-    getTrainingData: 'corpusTrainingData/getTrainingData',
-    getApiList: 'apiData/getApiList'
+    getCorpusInfo: 'corpusData/getDetail',
+    getTrainingData: 'corpusTrainingData/getList',
+    getApiList: 'apiData/getList'
   }))
 });
 
@@ -6955,7 +6996,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     feather.replace();
   },
   methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])({
-    getCorpusInfo: 'corpusData/getCorpusInfo'
+    getCorpusInfo: 'corpusData/getDetail'
   }))
 });
 
@@ -7050,10 +7091,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/Modal.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__common_modal_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -7096,33 +7138,55 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SelectDeployModal',
-  mixins: [__WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__["a" /* default */]],
-  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_4__common_modal_mixins_MultiModalMixin__["a" /* default */]],
+  components: { CommonModal: __WEBPACK_IMPORTED_MODULE_2__common_modal_Modal___default.a },
   props: [],
   data: function data() {
     return {
-      postData: {
-        corpus_id: this.$store.getters['commonData/corpusId'],
-        api_id: ''
-      }
+      data: {},
+      option: {},
+      err: []
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["c" /* mapGetters */])({
     apiList: 'apiData/apiList'
   })),
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
+    this.loadApiConfig('deployCorpus');
+  },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
-    this.postData.api_id = this.apiList[0].id;
+    this.setParams();
   },
 
   methods: {
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      this.data = config.data;
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.data);
+    },
+
+    // 値セット
+    setParams: function setParams() {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] setParams');
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.apiList[0].id);
+      this.data.api_id = this.apiList[0].id;
+    },
+
+    // 本番反映
     deploy: function deploy() {
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[deploy]');
-      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.postData);
-      this.$store.dispatch('corpusData/deployCorpus', this.postData);
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] deploy');
+      this.option.data = this.data;
+      var corpus_id = this.$store.getters['commonData/corpusId'];
+      this.option.url = this.option.url.replace(/{corpus_id}/g, corpus_id);
+      this.$store.dispatch('corpusData/deploy', { option: this.option });
       this.hideModal();
     }
   }
@@ -7192,7 +7256,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -7235,31 +7300,43 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   props: [],
   data: function data() {
-    return {};
+    return {
+      option: {}
+    };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
     corpusStatus: 'corpusData/corpusStatus',
     btnMsg: 'corpusData/corpusAiTrainingBtnMsg'
   })),
-  crated: function crated() {
+  created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[crated]');
-    this.$store.dispatch('corpusData/getCorpusInfo');
+    this.loadApiConfig('trainingCorpus');
   },
   mounted: function mounted() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[mounted]');
   },
 
   methods: {
+    loadApiConfig: function loadApiConfig(configName) {
+      __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] loadApiConfig');
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+    },
+
+    // 実行確認
     confirmExec: function confirmExec() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[confirmExec]');
       if (confirm('学習の実行には料金が掛かります。\n本当に実行しますか？')) {
+        __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.option);
         var corpus_id = this.$store.getters['commonData/corpusId'];
-        this.$store.dispatch('corpusData/trainingCorpus', { corpus_id: corpus_id });
+        this.option.url = this.option.url.replace(/{corpus_id}/g, corpus_id);
+        this.$store.dispatch('corpusData/training', { option: this.option });
       }
     }
   }
@@ -7805,11 +7882,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
   data: function data() {
     return {
-      auth: {
-        email: "",
-        password: "",
-        remember_me: false
-      }
+      data: {},
+      option: {}
     };
   },
 
@@ -7819,18 +7893,29 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
-    var token = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getToken"]();
-    if (token !== undefined && token !== '') {
-      location.href = '/';
-    }
+    this.checkToken();
+    this.loadApiConfig('login');
   },
 
   methods: {
+    // トークン持っていたらダッシュボードにリダイレクトかける
+    // todo: あとで処理を見直し
+    checkToken: function checkToken() {
+      var token = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getToken"]();
+      if (token !== undefined && token !== '') {
+        location.href = '/';
+      }
+    },
+    loadApiConfig: function loadApiConfig(configName) {
+      var config = __WEBPACK_IMPORTED_MODULE_1__common_ext_functions__["getApiConfig"](configName);
+      this.option = config;
+      this.data = config.data;
+    },
+
     login: function login() {
       __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[method] login');
-
-      this.$store.commit('commonData/showLoading');
-      this.$store.dispatch('commonData/login', this.auth);
+      this.option.data = this.data;
+      this.$store.dispatch('commonData/login', { option: this.option });
     }
   }
 });
@@ -10252,7 +10337,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -41405,8 +41490,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.form.name,
-              expression: "form.name"
+              value: _vm.data.name,
+              expression: "data.name"
             }
           ],
           class: "form-control" + _vm.err.name.invalid,
@@ -41416,13 +41501,13 @@ var render = function() {
             "aria-describedby": "nameHelp",
             maxlength: "255"
           },
-          domProps: { value: _vm.form.name },
+          domProps: { value: _vm.data.name },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.form, "name", $event.target.value)
+              _vm.$set(_vm.data, "name", $event.target.value)
             }
           }
         }),
@@ -41446,19 +41531,19 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.form.description,
-              expression: "form.description"
+              value: _vm.data.description,
+              expression: "data.description"
             }
           ],
           class: "form-control" + _vm.err.description.invalid,
           attrs: { id: "editDescription", rows: "3", maxlength: "255" },
-          domProps: { value: _vm.form.description },
+          domProps: { value: _vm.data.description },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.form, "description", $event.target.value)
+              _vm.$set(_vm.data, "description", $event.target.value)
             }
           }
         }),
@@ -41480,8 +41565,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.form.language,
-                expression: "form.language"
+                value: _vm.data.language,
+                expression: "data.language"
               }
             ],
             class: "form-control form-control-sm" + _vm.err.language.invalid,
@@ -41497,7 +41582,7 @@ var render = function() {
                     return val
                   })
                 _vm.$set(
-                  _vm.form,
+                  _vm.data,
                   "language",
                   $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                 )
@@ -41528,7 +41613,7 @@ var render = function() {
         {
           staticClass: "btn btn-primary",
           attrs: { type: "button" },
-          on: { click: _vm.saveCorpusInfo }
+          on: { click: _vm.execSaveCorpus }
         },
         [_vm._v("保存する")]
       )
@@ -43401,8 +43486,8 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.postData.api_id,
-                  expression: "postData.api_id"
+                  value: _vm.data.api_id,
+                  expression: "data.api_id"
                 }
               ],
               staticClass: "form-control",
@@ -43418,7 +43503,7 @@ var render = function() {
                       return val
                     })
                   _vm.$set(
-                    _vm.postData,
+                    _vm.data,
                     "api_id",
                     $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                   )
@@ -43480,13 +43565,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("CommonModal", [
-    _vm.form.data_type === 1
+    _vm.data.data_type === 1
       ? _c("div", { attrs: { slot: "title" }, slot: "title" }, [
           _vm._v("クラス／テキスト編集（学習データ）")
         ])
       : _vm._e(),
     _vm._v(" "),
-    _vm.form.data_type === 0
+    _vm.data.data_type === 0
       ? _c("div", { attrs: { slot: "title" }, slot: "title" }, [
           _vm._v("クラス／テキスト編集（テストデータ）")
         ])
@@ -43507,19 +43592,19 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.form.content,
-              expression: "form.content"
+              value: _vm.data.content,
+              expression: "data.content"
             }
           ],
           class: "form-control" + _vm.err.content.invalid,
           attrs: { id: "addContent", rows: "3" },
-          domProps: { value: _vm.form.content },
+          domProps: { value: _vm.data.content },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.form, "content", $event.target.value)
+              _vm.$set(_vm.data, "content", $event.target.value)
             }
           }
         }),
@@ -43536,7 +43621,7 @@ var render = function() {
       _c("div", { staticClass: "form-group" }, [
         _c(
           "label",
-          { attrs: { for: "selectEditClass_" + this.form.data_type } },
+          { attrs: { for: "selectEditClass_" + this.data.data_type } },
           [_vm._v("クラス選択")]
         ),
         _vm._v(" "),
@@ -43547,13 +43632,13 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.form.corpus_class_id,
-                expression: "form.corpus_class_id"
+                value: _vm.data.corpus_class_id,
+                expression: "data.corpus_class_id"
               }
             ],
             class:
               "form-control form-control-sm" + _vm.err.corpus_class_id.invalid,
-            attrs: { id: "selectEditClass_" + this.form.data_type },
+            attrs: { id: "selectEditClass_" + this.data.data_type },
             on: {
               change: function($event) {
                 var $$selectedVal = Array.prototype.filter
@@ -43565,7 +43650,7 @@ var render = function() {
                     return val
                   })
                 _vm.$set(
-                  _vm.form,
+                  _vm.data,
                   "corpus_class_id",
                   $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                 )
@@ -44678,8 +44763,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.postData.sei_kanji,
-                    expression: "postData.sei_kanji"
+                    value: _vm.data.sei_kanji,
+                    expression: "data.sei_kanji"
                   }
                 ],
                 class: "form-control" + _vm.err.sei_kanji.invalid,
@@ -44691,13 +44776,13 @@ var render = function() {
                   "aria-invalid": "true",
                   maxlength: "255"
                 },
-                domProps: { value: _vm.postData.sei_kanji },
+                domProps: { value: _vm.data.sei_kanji },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.postData, "sei_kanji", $event.target.value)
+                    _vm.$set(_vm.data, "sei_kanji", $event.target.value)
                   }
                 }
               }),
@@ -44736,8 +44821,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.postData.mei_kanji,
-                    expression: "postData.mei_kanji"
+                    value: _vm.data.mei_kanji,
+                    expression: "data.mei_kanji"
                   }
                 ],
                 class: "form-control" + _vm.err.mei_kanji.invalid,
@@ -44749,13 +44834,13 @@ var render = function() {
                   "aria-invalid": "true",
                   maxlength: "255"
                 },
-                domProps: { value: _vm.postData.mei_kanji },
+                domProps: { value: _vm.data.mei_kanji },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.postData, "mei_kanji", $event.target.value)
+                    _vm.$set(_vm.data, "mei_kanji", $event.target.value)
                   }
                 }
               }),
@@ -44795,8 +44880,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.postData.email,
-                    expression: "postData.email"
+                    value: _vm.data.email,
+                    expression: "data.email"
                   }
                 ],
                 class: "form-control" + _vm.err.email.invalid,
@@ -44808,13 +44893,13 @@ var render = function() {
                   "aria-invalid": "true",
                   maxlength: "191"
                 },
-                domProps: { value: _vm.postData.email },
+                domProps: { value: _vm.data.email },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.postData, "email", $event.target.value)
+                    _vm.$set(_vm.data, "email", $event.target.value)
                   }
                 }
               }),
@@ -44851,8 +44936,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.postData.password,
-                    expression: "postData.password"
+                    value: _vm.data.password,
+                    expression: "data.password"
                   }
                 ],
                 class: "form-control" + _vm.err.password.invalid,
@@ -44864,13 +44949,13 @@ var render = function() {
                   "aria-invalid": "true",
                   maxlength: "255"
                 },
-                domProps: { value: _vm.postData.password },
+                domProps: { value: _vm.data.password },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.postData, "password", $event.target.value)
+                    _vm.$set(_vm.data, "password", $event.target.value)
                   }
                 }
               }),
@@ -45738,7 +45823,9 @@ var render = function() {
           _c(
             "div",
             {
-              class: "form-group bmd-form-group" + _vm.err.sei_kanji.hasDanger
+              class:
+                "form-group bmd-form-group is-filled" +
+                _vm.err.sei_kanji.hasDanger
             },
             [
               _c(
@@ -45755,8 +45842,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.postData.sei_kanji,
-                    expression: "postData.sei_kanji"
+                    value: _vm.data.sei_kanji,
+                    expression: "data.sei_kanji"
                   }
                 ],
                 class: "form-control" + _vm.err.sei_kanji.invalid,
@@ -45768,13 +45855,13 @@ var render = function() {
                   "aria-invalid": "true",
                   maxlength: "255"
                 },
-                domProps: { value: _vm.postData.sei_kanji },
+                domProps: { value: _vm.data.sei_kanji },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.postData, "sei_kanji", $event.target.value)
+                    _vm.$set(_vm.data, "sei_kanji", $event.target.value)
                   }
                 }
               }),
@@ -45794,7 +45881,9 @@ var render = function() {
           _c(
             "div",
             {
-              class: "form-group bmd-form-group" + _vm.err.mei_kanji.hasDanger
+              class:
+                "form-group bmd-form-group is-filled" +
+                _vm.err.mei_kanji.hasDanger
             },
             [
               _c(
@@ -45811,8 +45900,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.postData.mei_kanji,
-                    expression: "postData.mei_kanji"
+                    value: _vm.data.mei_kanji,
+                    expression: "data.mei_kanji"
                   }
                 ],
                 class: "form-control" + _vm.err.mei_kanji.invalid,
@@ -45824,13 +45913,13 @@ var render = function() {
                   "aria-invalid": "true",
                   maxlength: "255"
                 },
-                domProps: { value: _vm.postData.mei_kanji },
+                domProps: { value: _vm.data.mei_kanji },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.postData, "mei_kanji", $event.target.value)
+                    _vm.$set(_vm.data, "mei_kanji", $event.target.value)
                   }
                 }
               }),
@@ -45851,7 +45940,10 @@ var render = function() {
         _c("div", { staticClass: "col" }, [
           _c(
             "div",
-            { class: "form-group bmd-form-group" + _vm.err.email.hasDanger },
+            {
+              class:
+                "form-group bmd-form-group is-filled" + _vm.err.email.hasDanger
+            },
             [
               _c(
                 "label",
@@ -45867,8 +45959,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.postData.email,
-                    expression: "postData.email"
+                    value: _vm.data.email,
+                    expression: "data.email"
                   }
                 ],
                 class: "form-control" + _vm.err.email.invalid,
@@ -45880,13 +45972,13 @@ var render = function() {
                   "aria-invalid": "true",
                   maxlength: "191"
                 },
-                domProps: { value: _vm.postData.email },
+                domProps: { value: _vm.data.email },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.postData, "email", $event.target.value)
+                    _vm.$set(_vm.data, "email", $event.target.value)
                   }
                 }
               }),
@@ -45907,7 +45999,11 @@ var render = function() {
         _c("div", { staticClass: "col" }, [
           _c(
             "div",
-            { class: "form-group bmd-form-group" + _vm.err.password.hasDanger },
+            {
+              class:
+                "form-group bmd-form-group is-filled" +
+                _vm.err.password.hasDanger
+            },
             [
               _c(
                 "label",
@@ -45923,8 +46019,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.postData.password,
-                    expression: "postData.password"
+                    value: _vm.data.password,
+                    expression: "data.password"
                   }
                 ],
                 class: "form-control" + _vm.err.password.invalid,
@@ -45936,13 +46032,13 @@ var render = function() {
                   "aria-invalid": "true",
                   maxlength: "255"
                 },
-                domProps: { value: _vm.postData.password },
+                domProps: { value: _vm.data.password },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.postData, "password", $event.target.value)
+                    _vm.$set(_vm.data, "password", $event.target.value)
                   }
                 }
               }),
@@ -46012,13 +46108,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("CommonModal", [
-    _vm.form.data_type === 1
+    _vm.data.data_type === 1
       ? _c("div", { attrs: { slot: "title" }, slot: "title" }, [
           _vm._v("クラス／テキスト追加（学習データ）")
         ])
       : _vm._e(),
     _vm._v(" "),
-    _vm.form.data_type === 0
+    _vm.data.data_type === 0
       ? _c("div", { attrs: { slot: "title" }, slot: "title" }, [
           _vm._v("クラス／テキスト追加（テストデータ）")
         ])
@@ -46041,19 +46137,19 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.form.content,
-              expression: "form.content"
+              value: _vm.data.content,
+              expression: "data.content"
             }
           ],
           class: "form-control" + _vm.err.content.invalid,
           attrs: { id: "addContent", rows: "3", maxlength: "1024" },
-          domProps: { value: _vm.form.content },
+          domProps: { value: _vm.data.content },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.form, "content", $event.target.value)
+              _vm.$set(_vm.data, "content", $event.target.value)
             }
           }
         }),
@@ -46070,7 +46166,7 @@ var render = function() {
       _c("div", { staticClass: "form-group" }, [
         _c(
           "label",
-          { attrs: { for: "selectEditClass_" + this.form.data_type } },
+          { attrs: { for: "selectEditClass_" + this.data.data_type } },
           [_vm._v("クラス選択")]
         ),
         _vm._v(" "),
@@ -46081,13 +46177,13 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.form.corpus_class_id,
-                expression: "form.corpus_class_id"
+                value: _vm.data.corpus_class_id,
+                expression: "data.corpus_class_id"
               }
             ],
             class:
               "form-control form-control-sm" + _vm.err.corpus_class_id.invalid,
-            attrs: { id: "selectEditClass_" + this.form.data_type },
+            attrs: { id: "selectEditClass_" + this.data.data_type },
             on: {
               change: function($event) {
                 var $$selectedVal = Array.prototype.filter
@@ -46099,7 +46195,7 @@ var render = function() {
                     return val
                   })
                 _vm.$set(
-                  _vm.form,
+                  _vm.data,
                   "corpus_class_id",
                   $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                 )
@@ -46120,7 +46216,7 @@ var render = function() {
               ]
             }),
             _vm._v(" "),
-            _vm.form.data_type === 1
+            _vm.data.data_type === 1
               ? _c("option", { attrs: { value: "" } }, [
                   _vm._v("＋クラスを追加")
                 ])
@@ -46136,7 +46232,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm.form.data_type === 1 && _vm.form.corpus_class_id === ""
+      _vm.data.data_type === 1 && _vm.data.corpus_class_id === ""
         ? _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "addClass" } }, [
               _vm._v("追加するクラス名")
@@ -46147,19 +46243,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.form.add_class_name,
-                  expression: "form.add_class_name"
+                  value: _vm.data.add_class_name,
+                  expression: "data.add_class_name"
                 }
               ],
               class: "form-control" + _vm.err.add_class_name.invalid,
               attrs: { type: "text", id: "addClass", maxlength: "30" },
-              domProps: { value: _vm.form.add_class_name },
+              domProps: { value: _vm.data.add_class_name },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.form, "add_class_name", $event.target.value)
+                  _vm.$set(_vm.data, "add_class_name", $event.target.value)
                 }
               }
             }),
@@ -46699,8 +46795,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.auth.email,
-                    expression: "auth.email"
+                    value: _vm.data.email,
+                    expression: "data.email"
                   }
                 ],
                 staticClass: "form-control",
@@ -46712,13 +46808,13 @@ var render = function() {
                   required: "",
                   autofocus: ""
                 },
-                domProps: { value: _vm.auth.email },
+                domProps: { value: _vm.data.email },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.auth, "email", $event.target.value)
+                    _vm.$set(_vm.data, "email", $event.target.value)
                   }
                 }
               })
@@ -46736,8 +46832,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.auth.password,
-                    expression: "auth.password"
+                    value: _vm.data.password,
+                    expression: "data.password"
                   }
                 ],
                 staticClass: "form-control",
@@ -46748,13 +46844,13 @@ var render = function() {
                   placeholder: "パスワードを入力してください。",
                   required: ""
                 },
-                domProps: { value: _vm.auth.password },
+                domProps: { value: _vm.data.password },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.auth, "password", $event.target.value)
+                    _vm.$set(_vm.data, "password", $event.target.value)
                   }
                 }
               })
@@ -46769,19 +46865,19 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.auth.remember_me,
-                      expression: "auth.remember_me"
+                      value: _vm.data.remember_me,
+                      expression: "data.remember_me"
                     }
                   ],
                   attrs: { type: "checkbox", name: "remember" },
                   domProps: {
-                    checked: Array.isArray(_vm.auth.remember_me)
-                      ? _vm._i(_vm.auth.remember_me, null) > -1
-                      : _vm.auth.remember_me
+                    checked: Array.isArray(_vm.data.remember_me)
+                      ? _vm._i(_vm.data.remember_me, null) > -1
+                      : _vm.data.remember_me
                   },
                   on: {
                     change: function($event) {
-                      var $$a = _vm.auth.remember_me,
+                      var $$a = _vm.data.remember_me,
                         $$el = $event.target,
                         $$c = $$el.checked ? true : false
                       if (Array.isArray($$a)) {
@@ -46789,17 +46885,17 @@ var render = function() {
                           $$i = _vm._i($$a, $$v)
                         if ($$el.checked) {
                           $$i < 0 &&
-                            _vm.$set(_vm.auth, "remember_me", $$a.concat([$$v]))
+                            _vm.$set(_vm.data, "remember_me", $$a.concat([$$v]))
                         } else {
                           $$i > -1 &&
                             _vm.$set(
-                              _vm.auth,
+                              _vm.data,
                               "remember_me",
                               $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                             )
                         }
                       } else {
-                        _vm.$set(_vm.auth, "remember_me", $$c)
+                        _vm.$set(_vm.data, "remember_me", $$c)
                       }
                     }
                   }
@@ -47042,20 +47138,20 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("CommonModal", { attrs: { modalSize: "modal-lg" } }, [
-    _vm.form.data_type === 1
+    _vm.data.data_type === 1
       ? _c("div", { attrs: { slot: "title" }, slot: "title" }, [
           _vm._v("学習データのアップロード")
         ])
       : _vm._e(),
     _vm._v(" "),
-    _vm.form.data_type === 0
+    _vm.data.data_type === 0
       ? _c("div", { attrs: { slot: "title" }, slot: "title" }, [
           _vm._v("テストデータのアップロード")
         ])
       : _vm._e(),
     _vm._v(" "),
     _c("div", { attrs: { slot: "body" }, slot: "body" }, [
-      _vm.form.data_type === 1
+      _vm.data.data_type === 1
         ? _c(
             "div",
             {
@@ -47082,7 +47178,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.form.data_type === 0
+      _vm.data.data_type === 0
         ? _c(
             "div",
             {
@@ -48042,7 +48138,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { class: "form-group bmd-form-group" + _vm.err.name.hasDanger },
+        {
+          class:
+            "mt-4 form-group bmd-form-group is-filled" + _vm.err.name.hasDanger
+        },
         [
           _c(
             "label",
@@ -48058,8 +48157,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.postData.name,
-                expression: "postData.name"
+                value: _vm.data.name,
+                expression: "data.name"
               }
             ],
             class: "form-control" + _vm.err.name.invalid,
@@ -48071,13 +48170,13 @@ var render = function() {
               "aria-invalid": "true",
               maxlength: "255"
             },
-            domProps: { value: _vm.postData.name },
+            domProps: { value: _vm.data.name },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.postData, "name", $event.target.value)
+                _vm.$set(_vm.data, "name", $event.target.value)
               }
             }
           }),
@@ -48094,7 +48193,11 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { class: "form-group bmd-form-group" + _vm.err.description.hasDanger },
+        {
+          class:
+            "form-group bmd-form-group is-filled" +
+            _vm.err.description.hasDanger
+        },
         [
           _c(
             "label",
@@ -48110,19 +48213,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.postData.description,
-                expression: "postData.description"
+                value: _vm.data.description,
+                expression: "data.description"
               }
             ],
             class: "form-control" + _vm.err.description.invalid,
             attrs: { id: "descriptionField", rows: "2", maxlength: "255" },
-            domProps: { value: _vm.postData.description },
+            domProps: { value: _vm.data.description },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.postData, "description", $event.target.value)
+                _vm.$set(_vm.data, "description", $event.target.value)
               }
             }
           }),
@@ -48149,8 +48252,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.postData.language,
-                expression: "postData.language"
+                value: _vm.data.language,
+                expression: "data.language"
               }
             ],
             class: "form-control" + _vm.err.language.invalid,
@@ -48166,7 +48269,7 @@ var render = function() {
                     return val
                   })
                 _vm.$set(
-                  _vm.postData,
+                  _vm.data,
                   "language",
                   $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                 )
@@ -67175,25 +67278,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /**
  * axiosによる非同期通信
  */
-function exec(option, commit, mutation, eMutation) {
+function exec(commit, option) {
+  __WEBPACK_IMPORTED_MODULE_1__app__["log"]('[axios]');
+  __WEBPACK_IMPORTED_MODULE_1__app__["log"](option);
+
   axios(option).then(function (res) {
     // commit
     __WEBPACK_IMPORTED_MODULE_1__app__["log"]('[axios] success');
     __WEBPACK_IMPORTED_MODULE_1__app__["log"](res);
-
-    commit(mutation, res.data);
+    commit(option.mutation.success, res.data);
   }).catch(function (err) {
     // error
     __WEBPACK_IMPORTED_MODULE_1__app__["log"]('[axios] faild...');
     __WEBPACK_IMPORTED_MODULE_1__app__["log"](err);
-
-    if (eMutation !== undefined && eMutation !== '') {
-      commit(eMutation);
-    }
-
-    // Todo: エラー周りはもう少しなんとかしたい
-    if (eMutation !== 'setLoginError') {
-      __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertAxiosError"]();
+    if (option.mutation.error !== undefined && option.mutation.error !== '') {
+      commit(option.mutation.error);
     }
   });
 }
@@ -67242,7 +67341,17 @@ var API_CONFIG = {
   login: { // ログイン
     url: '/api/authenticate',
     method: 'POST',
-    data: {}
+    header: {},
+    params: {},
+    data: {
+      email: null,
+      password: null,
+      remember_me: false
+    },
+    mutation: {
+      success: 'commonData/LOGIN',
+      error: 'commonData/LOGIN_ERROR'
+    }
   },
   logout: { // ログアウト
     url: '',
@@ -67258,34 +67367,72 @@ var API_CONFIG = {
    * コーパス管理
    */
   getCorpusList: { // コーパス一覧取得
-    // url: '/api/v1/corpus',
     url: '/stub/data/CorpusListGetSuccess.json', // 処理成功用stub
     method: 'GET',
-    params: {}
+    header: {},
+    params: {},
+    data: {},
+    mutation: {
+      success: 'corpusData/SET_LIST',
+      error: 'commonData/AXIOS_COMMON_ERROR'
+    }
   },
-  getCorpus: { // コーパス詳細取得
-    url: '/api/v1/corpus/{corpusId}',
+  getCorpusDetail: { // コーパス詳細取得
+    url: '/api/v1/corpus/{corpus}',
     method: 'GET',
-    params: {}
+    header: {},
+    params: {},
+    data: {},
+    mutation: {
+      success: 'corpusData/SET_DETAIL',
+      error: 'commonData/AXIOS_COMMON_ERROR'
+    }
   },
-  addCorpusInfo: { // コーパスの作成
+  addCorpus: { // コーパスの作成
     // url: '/api/v1/corpus',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/CorpusAddError.json', // 処理失敗用stub
     method: 'POST',
-    data: {}
+    header: {},
+    params: {},
+    data: {
+      name: '',
+      description: '',
+      language: 0
+    },
+    mutation: {
+      success: 'corpusData/ADD_RESULT',
+      error: 'commonData/AXIOS_ERROR_WITH_HIDE_LOADING'
+    }
   },
-  saveCorpusInfo: { // コーパスの編集
+  saveCorpus: { // コーパスの編集
     // url: '/api/v1/corpus',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/corpusEditError.json', // 処理失敗用stub
     method: 'POST',
-    data: {}
+    header: {},
+    params: {},
+    data: {
+      name: '',
+      description: '',
+      language: ''
+    },
+    mutation: {
+      success: 'corpusData/EDIT_RESULT',
+      error: 'commonData/AXIOS_ERROR_WITH_HIDE_LOADING'
+    }
   },
-  deleteCorpusInfo: { // コーパスの削除
+  deleteCorpus: { // コーパスの削除
     // url: '/api/v1/corpus/{corpusId}',
     url: '/stub/data/successData.json', // 処理成功用stub
-    method: 'DELETE'
+    method: 'DELETE',
+    header: {},
+    params: {},
+    data: {},
+    mutation: {
+      success: 'corpusData/DELETE_RESULT',
+      error: 'commonData/AXIOS_ERROR_WITH_HIDE_LOADING'
+    }
   },
 
   /**
@@ -67295,12 +67442,25 @@ var API_CONFIG = {
     // url: '/api/v1/corpus/{corpusId}',
     url: '/stub/data/successData.json', // 処理成功用stub
     method: 'POST',
-    data: {}
+    header: {},
+    params: {},
+    data: {},
+    mutation: {
+      success: 'corpusData/TRAINING_RESULT',
+      error: 'commonData/AXIOS_ERROR_WITH_HIDE_LOADING'
+    }
   },
-  checkCorpusTrainingDone: { // AI学習が完了したかどうかの確認
+  isTrainingDone: { // AI学習が完了したかどうかの確認
     // url: '/api/v1/corpus/{corpusId}',
     url: '/stub/data/successData.json', // 処理成功用stub
-    method: 'GET'
+    method: 'GET',
+    header: {},
+    params: {},
+    data: {},
+    mutation: {
+      success: 'corpusData/TRAINING_DONE_RESULT',
+      error: ''
+    }
   },
 
   /**
@@ -67310,83 +67470,181 @@ var API_CONFIG = {
     // url: '/api/v1/corpus/{corpusId}',
     url: '/stub/data/successData.json', // 処理成功用stub
     method: 'POST',
-    data: {}
+    header: {},
+    params: {},
+    data: {
+      api_id: ''
+    },
+    mutation: {
+      success: 'corpusData/DEPLOY_RESULT',
+      error: 'commonData/AXIOS_ERROR_WITH_HIDE_LOADING'
+    }
   },
 
   /**
    * 教師データの管理
    */
-  getTrainingData: { // 教師データ一覧取得
+  getTrainingDataList: { // 教師データ一覧取得
     url: '/api/v1/training-data/{training_datum}',
     method: 'GET',
-    params: {}
+    header: {},
+    params: {},
+    data: {},
+    mutation: {
+      success: 'corpusTrainingData/SET_LIST',
+      error: 'commonData/AXIOS_COMMON_ERROR'
+    }
   },
   addTrainingData: { // 教師データの登録
     url: '/api/v1/training-data',
     method: 'POST',
-    data: {}
+    header: {},
+    params: {},
+    data: {
+      corpus_id: '',
+      data_type: '',
+      corpus_class_id: '',
+      add_class_name: '',
+      content: ''
+    },
+    mutation: {
+      success: 'corpusTrainingData/ADD_RESULT',
+      error: 'commonData/AXIOS_ERROR_WITH_HIDE_LOADING'
+    }
   },
   saveTrainingData: { // 教師データの編集
     url: '/api/v1/training-data/{creative_id}',
     method: 'PUT',
-    data: {}
+    header: {},
+    params: {},
+    data: {
+      corpus_id: '',
+      data_type: '',
+      corpus_class_id: '',
+      add_class_name: '',
+      content: ''
+    },
+    mutation: {
+      success: 'corpusTrainingData/SAVE_RESULT',
+      error: 'commonData/AXIOS_ERROR_WITH_HIDE_LOADING'
+    }
   },
   deleteTrainingData: { // 教師データの削除
     url: '/api/v1/training-data/{creative_id}',
-    method: 'DELETE'
+    method: 'DELETE',
+    header: {},
+    params: {},
+    data: {},
+    mutation: {
+      success: 'corpusTrainingData/DELETE_RESULT',
+      error: 'commonData/AXIOS_ERROR_WITH_HIDE_LOADING'
+    }
   },
   uploadTrainingData: { // 教師データのアップロード
     url: '/api/v1/training-data/{corpus_id}/upload',
     method: 'POST',
-    data: {},
     headers: {
       'content-type': 'multipart/form-data'
+    },
+    params: {},
+    data: {
+      csv_file: '',
+      data_type: ''
+    },
+    mutation: {
+      success: 'corpusTrainingData/CSV_UPLOAD_RESULT',
+      error: 'commonData/AXIOS_ERROR_WITH_HIDE_LOADING'
     }
   },
   downloadTrainingData: { // 教師データのダウンロード
     url: '/api/v1/training-data/{corpus_id}/download',
     method: 'GET',
-    data: {}
+    header: {},
+    params: {},
+    data: {},
+    mutation: {
+      success: 'corpusTrainingData/CSV_DOWNLOAD_RESULT',
+      error: 'commonData/AXIOS_ERROR_WITH_HIDE_LOADING'
+    }
   },
 
   /**
    * アカウントの管理
    */
   getAccountList: { // アカウント一覧取得
-    // url: '/api/v1/users',
-    url: '/stub/data/AccountListGetSuccess.json',
+    url: '/stub/data/AccountListGetSuccess.json', // stub
     method: 'GET',
-    data: {}
+    header: {},
+    params: {},
+    data: {},
+    mutation: {
+      success: 'accountData/SET_LIST',
+      error: 'commonData/AXIOS_COMMON_ERROR'
+    }
   },
   addAccount: { // アカウントの作成
     // url: '/api/v1/users',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/AccountAddError.json', // 処理error用stub
     method: 'POST',
-    data: {}
+    header: {},
+    params: {},
+    data: {
+      sei_kanji: '',
+      mei_kanji: '',
+      email: '',
+      password: ''
+    },
+    mutation: {
+      success: 'accountData/ADD_RESULT',
+      error: 'commonData/AXIOS_COMMON_ERROR'
+    }
   },
   saveAccount: { // アカウントの編集
-    // url: '/api/v1/users',
+    // url: '/api/v1/users/{user}',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/AccountAddError.json', // 処理error用stub
     method: 'POST',
-    data: {}
+    header: {},
+    params: {},
+    data: {
+      sei_kanji: '',
+      mei_kanji: '',
+      email: '',
+      password: ''
+    },
+    mutation: {
+      success: 'accountData/SAVE_RESULT',
+      error: 'commonData/AXIOS_COMMON_ERROR'
+    }
   },
   deleteAccount: { // アカウントの削除
-    // url: '/api/v1/users',
+    // url: '/api/v1/users/{user}',
     url: '/stub/data/successData.json', // 処理成功用stub
     // url: '/stub/data/AccountAddError.json', // 処理error用stub
-    method: 'POST',
-    data: {}
+    method: 'DELETE',
+    header: {},
+    params: {},
+    data: {},
+    mutation: {
+      success: 'accountData/DELETE_RESULT',
+      error: 'commonData/AXIOS_COMMON_ERROR'
+    }
   },
 
   /**
    * APIデータの管理
    */
   getApiList: { // API一覧取得
-    url: '/stub/data/ApiInfoGetSuccess.json',
+    url: '/stub/data/ApiInfoGetSuccess.json', // stub
     method: 'GET',
-    data: {}
+    header: {},
+    params: {},
+    data: {},
+    mutation: {
+      success: 'apiData/SET_LIST',
+      error: 'commonData/AXIOS_COMMON_ERROR'
+    }
   }
 
   /**
@@ -67699,8 +67957,6 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 
 
 
@@ -67735,85 +67991,96 @@ var getters = {
  */
 var mutations = {
   // 取得 :アカウント一覧
-  setGetAccountListResult: function setGetAccountListResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setGetAccountListResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  SET_LIST: function SET_LIST(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] accountData/SET_LIST');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      state.accountList = payload.data;
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    switch (resCode) {
+      case 200:
+        state.accountList = payload.data;
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    state.loading = false;
+    state.loading = false; // 一覧ローディング非表示
   },
 
   // 登録
-  setAddAccountResult: function setAddAccountResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setAddAccountResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  ADD_RESULT: function ADD_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] accountData/ADD_RESULT');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompAddAccountModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setAccountAddError', payload.errors);
-      } else {
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompAddAccountModal');
+        this.dispatch('accountData/getList');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        }
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
         __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
-      }
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
 
   // 編集
-  setSaveAccountResult: function setSaveAccountResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setSaveAccountResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  SAVE_RESULT: function SAVE_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] accountData/SAVE_RESULT');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompEditAccountModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setAccountEditError', payload.errors);
-      } else {
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompEditAccountModal');
+        this.dispatch('accountData/getList');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        }
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
         __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
-      }
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
 
   // 削除
-  setDeleteAccountResult: function setDeleteAccountResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setDeleteAccountResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  DELETE_RESULT: function DELETE_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] accountData/DELETE_RESULT');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompDeleteAccountModal');
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompDeleteAccountModal');
+        this.dispatch('accountData/getList');
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
-  },
-
-  // ajaxでエラー時にローディング削除する用
-  hideLoading: function hideLoading() {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] hideLoading');
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   }
 };
 
@@ -67822,65 +68089,45 @@ var mutations = {
  */
 var actions = {
   // 取得（一覧）
-  getAccountList: function getAccountList(_ref) {
+  getList: function getList(_ref) {
     var commit = _ref.commit,
         state = _ref.state;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getAccountList');
-    state.loading = true;
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] accountData/getList');
+    state.loading = true; // 一覧ローディング表示
 
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].getAccountList);
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setGetAccountListResult');
+    var option = __WEBPACK_IMPORTED_MODULE_3__ext_functions__["getApiConfig"]('getAccountList');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 登録
-  addAccount: function addAccount(_ref2, _ref3) {
+  add: function add(_ref2, _ref3) {
     var commit = _ref2.commit;
-    var sei_kanji = _ref3.sei_kanji,
-        mei_kanji = _ref3.mei_kanji,
-        email = _ref3.email,
-        password = _ref3.password;
+    var option = _ref3.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] addAccount');
-    this.commit('commonData/showLoading');
-
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].addAccount);
-    apiOption.data = {
-      sei_kanji: sei_kanji, mei_kanji: mei_kanji, email: email, password: password
-    };
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setAddAccountResult', 'hideLoading');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] accountData/add');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 編集
-  saveAccount: function saveAccount(_ref4, _ref5) {
+  save: function save(_ref4, _ref5) {
     var commit = _ref4.commit;
-    var sei_kanji = _ref5.sei_kanji,
-        mei_kanji = _ref5.mei_kanji,
-        email = _ref5.email,
-        password = _ref5.password,
-        id = _ref5.id;
+    var option = _ref5.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] editAccount');
-    this.commit('commonData/showLoading');
-
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].saveAccount);
-    apiOption.data = {
-      sei_kanji: sei_kanji, mei_kanji: mei_kanji, email: email, password: password, id: id
-    };
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setSaveAccountResult', 'hideLoading');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] accountData/save');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
-  // 編集
-  deleteAccount: function deleteAccount(_ref6, _ref7) {
+  // 削除
+  delete: function _delete(_ref6, _ref7) {
     var commit = _ref6.commit;
-    var id = _ref7.id;
+    var option = _ref7.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] deleteAccount');
-    this.commit('commonData/showLoading');
-
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].deleteAccount);
-    apiOption.data = { id: id };
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setDeleteAccountResult', 'hideLoading');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] accountData/delete');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   }
 };
 
@@ -67902,8 +68149,6 @@ var actions = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 
 
 
@@ -67942,28 +68187,31 @@ var getters = {
  * mutations
  */
 var mutations = {
+  // 取得 :API一覧
+  SET_LIST: function SET_LIST(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] accountData/SET_LIST');
+    var resCode = payload.code;
+
+    switch (resCode) {
+      case 200:
+        state.apiList = payload.data;
+        state.checkedIndex = 0;
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        break;
+    }
+    state.loading = false; // 一覧ローディング非表示
+  },
+
   //
   setCheckedIndex: function setCheckedIndex(state, payload) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setCheckedIndex');
     __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
     state.checkedIndex = payload;
-  },
-
-  // 取得 :API一覧
-  setGetApiListResult: function setGetApiListResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setGetApiListResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
-    var resCode = payload.code;
-
-    if (resCode === 200) {
-      state.apiList = payload.data;
-      state.checkedIndex = 0;
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
-    }
-    state.loading = false;
   }
 };
 
@@ -67972,15 +68220,15 @@ var mutations = {
  */
 var actions = {
   // 取得（一覧）
-  getApiList: function getApiList(_ref) {
+  getList: function getList(_ref) {
     var commit = _ref.commit,
         state = _ref.state;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getApiList');
-    state.loading = true;
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] apiData/getList');
+    state.loading = true; // 一覧ローディング表示
 
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].getApiList);
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setGetApiListResult');
+    var option = __WEBPACK_IMPORTED_MODULE_3__ext_functions__["getApiConfig"]('getApiList');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   }
 };
 
@@ -68050,47 +68298,60 @@ var getters = {
  */
 var mutations = {
   // ログイン処理
-  doLogin: function doLogin(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setLoginResult');
-    // トークンセット
+  LOGIN: function LOGIN(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] commonData/LOGIN');
     __WEBPACK_IMPORTED_MODULE_3__ext_functions__["setToken"](payload.token);
-    // ダッシュボードにログイン
     __WEBPACK_IMPORTED_MODULE_3__ext_functions__["login"]();
   },
-  setLoginError: function setLoginError(state) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setLoginError');
+
+  // ログイン失敗処理
+  LOGIN_ERROR: function LOGIN_ERROR(state) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] commonData/LOGIN_ERROR');
     state.loading = false;
     state.loginError = true;
   },
 
   // ログインユーザ情報セット
-  setMe: function setMe(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setMe');
+  SET_ME: function SET_ME(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] commonData/SET_ME');
     state.me = payload;
     __WEBPACK_IMPORTED_MODULE_0__app__["log"](state.me);
   },
 
   // 今のコーパスIDをセット
-  setCorpusId: function setCorpusId(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setCorpusId');
+  SET_CORPUS_ID: function SET_CORPUS_ID(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] commonData/SET_CORPUS_ID');
     state.corpusId = payload.corpusId;
     __WEBPACK_IMPORTED_MODULE_0__app__["log"](state.corpusId);
   },
 
   // 画面エラーセット
-  setError: function setError(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setError');
+  SET_ERROR: function SET_ERROR(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] commonData/SET_ERROR');
     state.errors = payload;
     __WEBPACK_IMPORTED_MODULE_0__app__["log"](state.error);
   },
 
-  // ローディング開閉
-  showLoading: function showLoading(state) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] showLoading');
+  // 画面ローディング表示
+  SHOW_LOADING: function SHOW_LOADING(state) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] commonData/SHOW_LOADING');
     state.loading = true;
   },
-  hideLoading: function hideLoading(state) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] hideLoading');
+
+  // 画面ローディング非表示
+  HIDE_LOADING: function HIDE_LOADING(state) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] commonData/HIDE_LOADING');
+    state.loading = false;
+  },
+
+  // axios共通エラー
+  AXIOS_ERROR: function AXIOS_ERROR(state) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] commonData/AXIOS_ERROR');
+    __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertAxiosError"]();
+  },
+  AXIOS_ERROR_WITH_HIDE_LOADING: function AXIOS_ERROR_WITH_HIDE_LOADING(state) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] commonData/AXIOS_ERROR_WITH_HIDE_LOADING');
+    __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertAxiosError"]();
     state.loading = false;
   }
 };
@@ -68102,15 +68363,11 @@ var actions = {
   // ログイン処理
   login: function login(_ref, _ref2) {
     var commit = _ref.commit;
-    var email = _ref2.email,
-        password = _ref2.password,
-        remember_me = _ref2.remember_me;
+    var option = _ref2.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] login');
-    var apiOption = __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].login;
-    apiOption.data = { email: email, password: password, remember_me: remember_me };
-
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'doLogin', 'setLoginError');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] commonData/login');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   }
 };
 
@@ -68132,8 +68389,6 @@ var actions = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 
 
 
@@ -68212,170 +68467,192 @@ var getters = {
  */
 var mutations = {
   // 取得 :コーパス一覧
-  setGetCorpusListResult: function setGetCorpusListResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setGetCorpusListResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  SET_LIST: function SET_LIST(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusData/SET_LIST');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      state.corpusList = payload.data;
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
-    }
-    state.loading = false;
-  },
-
-  // 取得: コーパスデータセット
-  setGetCorpusInfoResult: function setGetCorpusInfoResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setGetCorpusInfoResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
-    var resCode = payload.code;
-
-    if (resCode === 200) {
-      state.corpusInfo = payload.data;
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      alert('該当のコーパスデータが見つかりませんでした。\nCAP管理画面に戻ります。');
-      location.href = '/corpus';
-    }
-    state.loading = false;
-  },
-
-  // 登録: コーパスデータ作成処理結果
-  setAddCorpusInfoResult: function setAddCorpusInfoResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setAddCorpusInfoResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
-    var resCode = payload.code;
-
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompAddCorpusInfoModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setCorpusAddError', payload.errors);
-      } else {
+    switch (resCode) {
+      case 200:
+        state.corpusList = payload.data;
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
         __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
-      }
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    state.loading = false; // 一覧ローディング非表示
   },
 
-  // 更新: コーパスデータ更新処理結果
-  setSaveCorpusInfoResult: function setSaveCorpusInfoResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setSaveCorpusInfoResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  // 取得: コーパス詳細
+  SET_DETAIL: function SET_DETAIL(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusData/SET_DETAIL');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompEditCorpusInfoModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setCorpusEditError', payload.errors);
-      } else {
-        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
-      }
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    switch (resCode) {
+      case 200:
+        state.corpusInfo = payload.data;
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        alert('該当のコーパスデータが見つかりませんでした。\nCAP管理画面に戻ります。');
+        location.href = '/corpus';
+        break;
     }
-    this.commit('commonData/hideLoading');
+    state.loading = false; // 一覧ローディング非表示
+  },
+
+  // 登録結果
+  ADD_RESULT: function ADD_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusData/ADD_RESULT');
+    var resCode = payload.code;
+
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompAddCorpusModal');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        }
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        break;
+    }
+    this.commit('commonData/HIDE_LOADING');
+  },
+
+  // 更新結果
+  EDIT_RESULT: function EDIT_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusData/EDIT_RESULT');
+    var resCode = payload.code;
+
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompEditCorpusModal');
+        this.dispatch('corpusData/getList');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        }
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        break;
+    }
+    this.commit('commonData/HIDE_LOADING');
   },
 
   // 削除: コーパスデータ削除処理結果
-  setDeleteCorpusResult: function setDeleteCorpusResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setDeleteCorpusResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  DELETE_RESULT: function DELETE_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusData/DELETE_RESULT');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      alert('コーパスの削除が完了しました。\nコーパス管理画面に戻ります。');
-      location.href = '/corpus';
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    switch (resCode) {
+      case 200:
+        alert('コーパスの削除が完了しました。\nコーパス管理画面に戻ります。');
+        location.href = '/corpus';
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
 
-  // 学習: コーパス学習実行処理結果
-  setTrainingCorpusResult: function setTrainingCorpusResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setTrainingCorpusResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  // 学習実行結果
+  TRAINING_RESULT: function TRAINING_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusData/TRAINING_RESULT');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      alert('ただ今学習中です。完了まで15分程度かかります。\n完了までそのままお待ちください。');
-      this.dispatch('corpusData/getCorpusInfo');
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    switch (resCode) {
+      case 200:
+        alert('ただ今学習中です。完了まで15分程度かかります。\n完了までそのままお待ちください。');
+        this.dispatch('corpusData/getDetail');
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
 
   // 学習中コーパスの学習完了タイマーセット
-  execCheckCorpusTrainingTimer: function execCheckCorpusTrainingTimer(state) {
+  SET_CHECK_TRAINING_DONE_TIMER: function SET_CHECK_TRAINING_DONE_TIMER(state) {
     var _this = this;
 
     var interval = 30000; // 30秒に1回
     var corpus_id = this.getters['commonData/corpusId'];
 
     state.timer = setInterval(function () {
-      _this.dispatch('corpusData/checkCorpusTrainingDone', { corpus_id: corpus_id });
+      _this.dispatch('corpusData/isTrainingDone', { corpus_id: corpus_id });
       __WEBPACK_IMPORTED_MODULE_0__app__["log"]('timer');
     }, interval);
 
     // 初回起動
-    this.dispatch('corpusData/checkCorpusTrainingDone');
+    this.dispatch('corpusData/isTrainingDone');
   },
 
   // 学習完了チェック結果
-  setCheckCorpusTrainingDoneResult: function setCheckCorpusTrainingDoneResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setTrainingCorpusResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  TRAINING_DONE_RESULT: function TRAINING_DONE_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusData/TRAINING_DONE_RESULT');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      alert('コーパスの学習が完了しました');
-      this.dispatch('corpusData/getCorpusInfo');
-      clearInterval(state.timer);
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      // Lib.alertVendorEscalation(resCode);
+    switch (resCode) {
+      case 200:
+        alert('コーパスの学習が完了しました');
+        this.dispatch('corpusData/getDetail');
+        clearInterval(state.timer);
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        // Lib.alertVendorEscalation(resCode);
+        break;
     }
   },
 
   // コーパス本番反映処理結果
-  setDeployCorpusResult: function setDeployCorpusResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setDeployCorpusResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  DEPLOY_RESULT: function DEPLOY_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusData/DEPLOY_RESULT');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      alert('本番反映が完了しました');
-      this.dispatch('corpusData/getCorpusInfo');
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    switch (resCode) {
+      case 200:
+        alert('本番反映が完了しました');
+        this.dispatch('corpusData/getDetail');
+        clearInterval(state.timer);
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
-  },
-
-  // ajaxでエラー時にローディング削除する用
-  hideLoading: function hideLoading() {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] hideLoading');
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   }
 };
 
@@ -68384,121 +68661,89 @@ var mutations = {
  */
 var actions = {
   // 取得（一覧）
-  getCorpusList: function getCorpusList(_ref) {
-    var commit = _ref.commit,
-        state = _ref.state;
+  getList: function getList(_ref) {
+    var state = _ref.state;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusList');
-    state.loading = true;
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusData/getList');
+    state.loading = true; // 一覧ローディング表示
 
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].getCorpusList);
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setGetCorpusListResult');
+    var option = __WEBPACK_IMPORTED_MODULE_3__ext_functions__["getApiConfig"]('getCorpusList');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 取得（詳細）
-  getCorpusInfo: function getCorpusInfo(_ref2) {
-    var commit = _ref2.commit;
+  getDetail: function getDetail(_ref2) {
+    var state = _ref2.state;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusInfo');
-    state.loading = true;
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusData/getDetail');
+    state.loading = true; // 一覧ローディング表示
 
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].getCorpus);
+    var option = __WEBPACK_IMPORTED_MODULE_3__ext_functions__["getApiConfig"]('getCorpusDetail');
     var corpusId = this.getters['commonData/corpusId'];
-    apiOption.url = apiOption.url.replace(/{corpusId}/g, corpusId);
+    option.url = option.url.replace(/{corpus}/g, corpusId);
 
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setGetCorpusInfoResult');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 登録
-  AddCorpus: function AddCorpus(_ref3, _ref4) {
+  add: function add(_ref3, _ref4) {
     var commit = _ref3.commit;
-    var name = _ref4.name,
-        description = _ref4.description,
-        language = _ref4.language;
+    var option = _ref4.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] AddCorpus');
-    this.commit('commonData/showLoading');
-
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].addCorpusInfo);
-    // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
-    apiOption.data = {
-      name: name, description: description, language: language
-    };
-
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setAddCorpusInfoResult', 'hideLoading');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusData/add');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 編集
-  saveCorpus: function saveCorpus(_ref5, _ref6) {
+  save: function save(_ref5, _ref6) {
     var commit = _ref5.commit;
-    var corpus_id = _ref6.corpus_id,
-        name = _ref6.name,
-        description = _ref6.description,
-        language = _ref6.language;
+    var option = _ref6.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusInfo');
-    this.commit('commonData/showLoading');
-
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].saveCorpusInfo);
-    // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
-    apiOption.data = {
-      corpus_id: corpus_id, name: name, description: description, language: language
-    };
-
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setSaveCorpusInfoResult', 'hideLoading');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusData/save');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 削除
-  deleteCorpus: function deleteCorpus(_ref7, _ref8) {
+  delete: function _delete(_ref7, _ref8) {
     var commit = _ref7.commit;
-    var corpus_id = _ref8.corpus_id;
+    var option = _ref8.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] deleteCorpus');
-    this.commit('commonData/showLoading');
-
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].deleteCorpusInfo);
-    // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setDeleteCorpusResult', 'hideLoading');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusData/delete');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 学習
-  trainingCorpus: function trainingCorpus(_ref9, _ref10) {
+  training: function training(_ref9, _ref10) {
     var commit = _ref9.commit;
-    var corpus_id = _ref10.corpus_id;
+    var option = _ref10.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] trainingCorpus');
-    this.commit('commonData/showLoading');
-
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].trainingCorpus);
-    // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setTrainingCorpusResult', 'hideLoading');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusData/training');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 学習完了チェック
-  checkCorpusTrainingDone: function checkCorpusTrainingDone(_ref11, _ref12) {
+  isTrainingDone: function isTrainingDone(_ref11, _ref12) {
     var commit = _ref11.commit;
     var corpus_id = _ref12.corpus_id;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] checkCorpusTrainingDone');
-
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].checkCorpusTrainingDone);
-    // // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setCheckCorpusTrainingDoneResult');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusData/isTrainingDone');
+    var option = __WEBPACK_IMPORTED_MODULE_3__ext_functions__["getApiConfig"]('isTrainingDone');
+    option.url = option.url.replace(/{corpus}/g, corpus_id);
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 本番反映
-  deployCorpus: function deployCorpus(_ref13, _ref14) {
+  deploy: function deploy(_ref13, _ref14) {
     var commit = _ref13.commit;
-    var corpus_id = _ref14.corpus_id,
-        api_id = _ref14.api_id;
+    var option = _ref14.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] deployCorpus');
-    this.commit('commonData/showLoading');
-
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].deployCorpus);
-    // apiOption.url = apiOption.url.replace(/{corpusId}/g, corpus_id);
-    apiOption.data = { api_id: api_id };
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setDeployCorpusResult', 'hideLoading');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusData/deploy');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   }
 };
 
@@ -68518,11 +68763,7 @@ var actions = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ajax__ = __webpack_require__("./resources/assets/js/common/core/ajax.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ext_functions__ = __webpack_require__("./resources/assets/js/common/ext/functions.js");
 
 
 
@@ -68576,124 +68817,152 @@ var getters = {
  * mutations
  */
 var mutations = {
-  // 教師データセット
-  setGetTrainingDataResult: function setGetTrainingDataResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setGetTrainingDataResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  // 一覧取得結果
+  SET_LIST: function SET_LIST(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusTrainingData/SET_LIST');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      state.trainingData = payload.data;
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else if (resCode === 404) {
-      state.trainingData = [];
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    switch (resCode) {
+      case 200:
+        state.trainingData = payload.data;
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertRefreshToken"]();
+        break;
+      case 404:
+        state.trainingData = [];
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    state.loading = false;
+    state.loading = false; // 一覧ローディング非表示
   },
 
   // 登録: 教師データ登録結果チェック
-  setAddTrainingData: function setAddTrainingData(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setAddTrainingData');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  ADD_RESULT: function ADD_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusTrainingData/ADD_RESULT');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompAddTrainingDataModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setTrainingDataAddError', payload.errors);
-      } else {
-        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
-      }
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompAddTrainingDataModal');
+        this.dispatch('corpusTrainingData/getList');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertVendorEscalation"](resCode);
+        }
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
 
   // 編集: 教師データ編集結果チェック
-  setSaveTrainingData: function setSaveTrainingData(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setSaveTrainingData');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  SAVE_RESULT: function SAVE_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusTrainingData/SAVE_RESULT');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompEditTrainingDataModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setTrainingDataEditError', payload.errors);
-      } else {
-        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
-      }
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompEditTrainingDataModal');
+        this.dispatch('corpusTrainingData/getList');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertVendorEscalation"](resCode);
+        }
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
 
   // 削除: 教師データ削除結果チェック
-  setDeleteTrainingData: function setDeleteTrainingData(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setDeleteTrainingData');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  DELETE_RESULT: function DELETE_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusTrainingData/DELETE_RESULT');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompDeleteTrainingDataModal');
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompDeleteTrainingDataModal');
+        this.dispatch('corpusTrainingData/getList');
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
 
   // アップロード: 教師データCSVアップロード結果チェック
-  setUploadTrainingDataCsvResult: function setUploadTrainingDataCsvResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setUploadTrainingDataCsvResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
+  CSV_UPLOAD_RESULT: function CSV_UPLOAD_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusTrainingData/SAVE_RESULT');
     var resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompUploadTrainingDataCsvModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setTrainingDataUploadError', payload.errors);
-      } else {
-        __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
-      }
-    } else if (resCode === 401) {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertRefreshToken"]();
-    } else {
-      __WEBPACK_IMPORTED_MODULE_3__ext_functions__["alertVendorEscalation"](resCode);
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompUploadTrainingDataCsvModal');
+        this.dispatch('corpusTrainingData/getList');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertVendorEscalation"](resCode);
+        }
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertVendorEscalation"](resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
 
   // ダウンロード: 教師データCSVダウンロード結果チェック
-  setDownloadTrainingDataCsvResult: function setDownloadTrainingDataCsvResult(state, payload) {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setDownloadTrainingDataCsvResult');
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"](payload);
-
-    var content = payload;
+  CSV_DOWNLOAD_RESULT: function CSV_DOWNLOAD_RESULT(state, payload) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] corpusTrainingData/CSV_DOWNLOAD_RESULT');
+    var resCode = payload.code;
+    var content = payload.data;
     var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
     var url = window.URL.createObjectURL(new Blob([bom, content], {
       type: 'text/csv'
     }));
     var filename = 'training_data.csv';
-    __WEBPACK_IMPORTED_MODULE_3__ext_functions__["execFileDownload"](url, filename);
-  },
 
-  // ajaxでエラー時にローディング削除する用
-  hideLoading: function hideLoading() {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] hideLoading');
-    this.commit('commonData/hideLoading');
+    switch (resCode) {
+      case 200:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["execFileDownload"](url, filename);
+        break;
+      case 401:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertRefreshToken"]();
+        break;
+      default:
+        __WEBPACK_IMPORTED_MODULE_2__ext_functions__["alertVendorEscalation"](resCode);
+        break;
+    }
+    this.commit('commonData/HIDE_LOADING');
   }
 };
 
@@ -68702,107 +68971,68 @@ var mutations = {
  */
 var actions = {
   // 取得
-  getTrainingData: function getTrainingData(_ref) {
+  getList: function getList(_ref) {
     var commit = _ref.commit,
         state = _ref.state;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] getCorpusInfoAtDataManage');
-    state.trainingData = [];
-    state.loading = true;
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusTraningData/getList');
+    state.loading = true; // 一覧ローディング表示
 
-    var apiOption = _extends({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].getTrainingData);
+    var option = __WEBPACK_IMPORTED_MODULE_2__ext_functions__["getApiConfig"]('getTrainingDataList');
     var corpusId = this.getters['commonData/corpusId'];
-    apiOption.url = apiOption.url.replace(/{training_datum}/g, corpusId);
+    option.url = option.url.replace(/{training_datum}/g, corpusId);
 
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setGetTrainingDataResult');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 登録
-  addTrainingData: function addTrainingData(_ref2, _ref3) {
+  add: function add(_ref2, _ref3) {
     var commit = _ref2.commit;
-    var corpus_id = _ref3.corpus_id,
-        data_type = _ref3.data_type,
-        corpus_class_id = _ref3.corpus_class_id,
-        add_class_name = _ref3.add_class_name,
-        content = _ref3.content;
+    var option = _ref3.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] addTrainingData');
-    this.commit('commonData/showLoading');
-
-    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].addTrainingData);
-    apiOption.data = {
-      corpus_id: corpus_id, data_type: data_type, corpus_class_id: corpus_class_id, add_class_name: add_class_name, content: content
-    };
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setAddTrainingData', 'hideLoading');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusTraningData/add');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 編集
-  saveTrainingData: function saveTrainingData(_ref4, _ref5) {
+  save: function save(_ref4, _ref5) {
     var commit = _ref4.commit;
-    var corpus_id = _ref5.corpus_id,
-        data_type = _ref5.data_type,
-        corpus_class_id = _ref5.corpus_class_id,
-        creative_id = _ref5.creative_id,
-        content = _ref5.content;
+    var option = _ref5.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] saveTrainingData');
-    this.commit('commonData/showLoading');
-
-    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].saveTrainingData);
-    apiOption.url = apiOption.url.replace(/{creative_id}/g, creative_id);
-    var add_class_name = '';
-
-    apiOption.data = {
-      corpus_id: corpus_id, data_type: data_type, corpus_class_id: corpus_class_id, content: content, add_class_name: add_class_name, creative_id: creative_id
-    };
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setSaveTrainingData', 'hideLoading');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusTraningData/save');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 削除
-  deleteTrainingData: function deleteTrainingData(_ref6, _ref7) {
+  delete: function _delete(_ref6, _ref7) {
     var commit = _ref6.commit;
-    var creative_id = _ref7.creative_id;
+    var option = _ref7.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] deleteTrainingData');
-    this.commit('commonData/showLoading');
-
-    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].deleteTrainingData);
-    apiOption.url = apiOption.url.replace(/{creative_id}/g, creative_id);
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setDeleteTrainingData', 'hideLoading');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusTraningData/delete');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // 一括登録
-  uploadTrainingDataCsv: function uploadTrainingDataCsv(_ref8, _ref9) {
-    var commit = _ref8.commit,
-        state = _ref8.state;
-    var csv_file = _ref9.csv_file,
-        data_type = _ref9.data_type;
+  upload: function upload(_ref8, _ref9) {
+    var commit = _ref8.commit;
+    var option = _ref9.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] upload');
-    this.commit('commonData/showLoading');
-
-    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].uploadTrainingData);
-    var corpusId = this.getters['commonData/corpusId'];
-    apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
-    // ファイル送信
-    apiOption.data = new FormData();
-    apiOption.data.append('csv_file', csv_file);
-    apiOption.data.append('data_type', data_type);
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setUploadTrainingDataCsvResult', 'hideLoading');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusTraningData/upload');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   },
 
   // CSVダウンロード
-  downloadTrainingDataCsv: function downloadTrainingDataCsv(_ref10) {
-    var commit = _ref10.commit,
-        state = _ref10.state;
+  download: function download(_ref10, _ref11) {
+    var commit = _ref10.commit;
+    var option = _ref11.option;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] upload');
-    var apiOption = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__apiConfig__["default"].downloadTrainingData);
-    var corpusId = this.getters['commonData/corpusId'];
-    apiOption.url = apiOption.url.replace(/{corpus_id}/g, corpusId);
-
-    // ファイル送信
-    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](apiOption, commit, 'setDownloadTrainingDataCsvResult');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[action] corpusTraningData/download');
+    this.commit('commonData/SHOW_LOADING');
+    __WEBPACK_IMPORTED_MODULE_1__ajax__["exec"](this.commit, option);
   }
 };
 
@@ -68852,7 +69082,10 @@ var state = {
   trainingDataEditError: [],
   trainingDataUploadError: [],
   accountAddError: [],
-  accountEditError: []
+  accountEditError: [],
+
+  // modal
+  commonError: []
 };
 
 /**
@@ -68875,6 +69108,9 @@ var getters = {
     return state.deleteAccountIndex;
   },
   // エラー
+  commonError: function commonError(state) {
+    return state.commonError;
+  },
   corpusAddError: function corpusAddError(state) {
     return state.corpusAddError;
   },
@@ -68912,6 +69148,10 @@ var mutations = {
   },
 
   // エラーセット
+  setCommonError: function setCommonError(state, errors) {
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[mutation] multiModal/setCommonError');
+    state.commonError = errors;
+  },
   setCorpusAddError: function setCorpusAddError(state, errors) {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] setCorpusAddError');
     state.corpusAddError = errors;
@@ -68942,17 +69182,9 @@ var mutations = {
   },
 
   // リロード処理
-  reloadCorpusInfo: function reloadCorpusInfo() {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] reloadCorpusInfo');
-    this.dispatch('corpusData/getCorpusInfo');
-  },
   reloadTrainingData: function reloadTrainingData() {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] reloadTrainingData');
     this.dispatch('corpusTrainingData/getTrainingData');
-  },
-  reloadAccountList: function reloadAccountList() {
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[store] reloadAccountList');
-    this.dispatch('accountData/getAccountList');
   }
 };
 
@@ -68967,10 +69199,10 @@ var actions = {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showAddCorpusInfoModal]');
     commit('setModal', 'AddCorpusModal');
   },
-  showCompAddCorpusInfoModal: function showCompAddCorpusInfoModal(_ref2) {
+  showCompAddCorpusModal: function showCompAddCorpusModal(_ref2) {
     var commit = _ref2.commit;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompAddCorpusInfoModal]');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompAddCorpusModal]');
     commit('setModal', 'CompAddCorpusModal');
   },
 
@@ -68982,12 +69214,11 @@ var actions = {
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showEditCorpusInfoModal]');
     commit('setModal', 'EditCorpusInfoModal');
   },
-  showCompEditCorpusInfoModal: function showCompEditCorpusInfoModal(_ref4) {
+  showCompEditCorpusModal: function showCompEditCorpusModal(_ref4) {
     var commit = _ref4.commit;
 
-    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompEditCorpusInfoModal]');
+    __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompEditCorpusModal]');
     commit('setModal', 'CompEditCorpusInfoModal');
-    commit('reloadCorpusInfo');
   },
 
 
@@ -69015,7 +69246,6 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompAddTrainingDataModal]');
     commit('setModal', 'CompAddTrainingDataModal');
-    commit('reloadTrainingData');
   },
 
 
@@ -69042,7 +69272,6 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompEditTrainingDataModal]');
     commit('setModal', 'CompEditTrainingDataModal');
-    commit('reloadTrainingData');
   },
 
 
@@ -69061,7 +69290,6 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompDeleteTrainingDataModal]');
     commit('setModal', 'CompDeleteTrainingDataModal');
-    commit('reloadTrainingData');
   },
 
 
@@ -69081,7 +69309,6 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompUploadTrainingDataCsvModal]');
     commit('setModal', 'CompUploadTrainingCsvModal');
-    commit('reloadTrainingData');
   },
 
 
@@ -69115,7 +69342,6 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompAddAccountModal]');
     commit('setModal', 'CompAddAccountModal');
-    commit('reloadAccountList');
   },
 
   // アカウント編集モーダル
@@ -69134,7 +69360,6 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompEditAccountModal]');
     commit('setModal', 'CompEditAccountModal');
-    commit('reloadAccountList');
   },
 
   // アカウント編集モーダル
@@ -69153,7 +69378,6 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0__app__["log"]('[showCompDeleteAccountModal]');
     commit('setModal', 'CompDeleteAccountModal');
-    commit('reloadAccountList');
   }
 };
 
@@ -69187,9 +69411,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["elapsedTime"] = elapsedTime;
 /* harmony export (immutable) */ __webpack_exports__["adjastCorpusCardDescriptionRowsResize"] = adjastCorpusCardDescriptionRowsResize;
 /* harmony export (immutable) */ __webpack_exports__["adjastCorpusCardDescriptionRows"] = adjastCorpusCardDescriptionRows;
+/* harmony export (immutable) */ __webpack_exports__["getApiConfig"] = getApiConfig;
+/* harmony export (immutable) */ __webpack_exports__["resetFormError"] = resetFormError;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_app__ = __webpack_require__("./resources/assets/js/common/core/app.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie__ = __webpack_require__("./node_modules/jquery.cookie/jquery.cookie.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_cookie__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_apiConfig__ = __webpack_require__("./resources/assets/js/common/core/apiConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery_cookie__ = __webpack_require__("./node_modules/jquery.cookie/jquery.cookie.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery_cookie__);
+
 
 
 
@@ -69354,7 +69582,7 @@ function elapsedTime(dateTime) {
   var diffMinutes = elapsed.getUTCMinutes();
   var diffSeconds = elapsed.getUTCSeconds();
 
-  __WEBPACK_IMPORTED_MODULE_0__core_app__["log"]('FullYear: ' + diffFullYear + '|Month: ' + diffMonth + '|Date: ' + diffDate + '|Hours: ' + diffHours + '|Minutes: ' + diffMinutes + '|Seconds: ' + diffSeconds);
+  // Core.log(`FullYear: ${diffFullYear}|Month: ${diffMonth}|Date: ${diffDate}|Hours: ${diffHours}|Minutes: ${diffMinutes}|Seconds: ${diffSeconds}`);
 
   var res = dateTime;
   if (diffFullYear - 1970 > 0 || diffMonth >= 3) {
@@ -69480,6 +69708,55 @@ function adjastCorpusCardDescriptionRows(classname) {
   });
   // リサイズした時のイベント
   adjastCorpusCardDescriptionRowsResize(classname);
+}
+
+/**
+ * api configロード
+ */
+function getApiConfig(configName) {
+  __WEBPACK_IMPORTED_MODULE_0__core_app__["log"]('[getApiConfig]');
+  var config = JSON.parse(JSON.stringify(__WEBPACK_IMPORTED_MODULE_1__core_apiConfig__["default"][configName]));
+  __WEBPACK_IMPORTED_MODULE_0__core_app__["log"](config);
+  return config;
+}
+
+/**
+ * フォームエラーリセット
+ */
+function resetFormError(dataObj, type) {
+  // 0: cap管理画面 1: コーパス管理画面
+  var tmpl = {};
+
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = Object.keys(dataObj)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var key = _step.value;
+
+      tmpl[key] = {
+        hasDanger: '',
+        invalid: '',
+        message: ''
+      };
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  return tmpl;
 }
 
 /***/ }),

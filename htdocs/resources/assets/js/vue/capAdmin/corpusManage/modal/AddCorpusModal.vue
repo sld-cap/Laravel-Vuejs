@@ -4,18 +4,18 @@
     <!-- /.title -->
     <div slot="body">
       <p>コーパスを作成し教師データを学習することで、ユーザから入力されたクリエイティブの意図を分類し、結果をAPIとして提供できます。</p>
-      <div :class="'form-group bmd-form-group' + err.name.hasDanger">
+      <div :class="'mt-4 form-group bmd-form-group is-filled' + err.name.hasDanger">
         <label for="corpusNameField" class="bmd-label-floating">コーパス名</label>
-        <input v-model="postData.name" type="text" :class="'form-control' + err.name.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
+        <input v-model="data.name" type="text" :class="'form-control' + err.name.invalid" id="corpusNameField" required="true" aria-required="true" aria-invalid="true" maxlength="255">
         <div class="invalid-feedback">
           {{ err.name.message }}
         </div>
         <span class="bmd-help">10字程度の識別しやすい名前を記入してください。</span>
       </div>
       <!-- /.form-group -->
-      <div :class="'form-group bmd-form-group' + err.description.hasDanger">
+      <div :class="'form-group bmd-form-group is-filled' + err.description.hasDanger">
         <label for="descriptionField" class="bmd-label-floating">説明文</label>
-        <textarea v-model="postData.description" :class="'form-control' + err.description.invalid" id="descriptionField" rows="2" maxlength="255"></textarea>
+        <textarea v-model="data.description" :class="'form-control' + err.description.invalid" id="descriptionField" rows="2" maxlength="255"></textarea>
         <div class="invalid-feedback">
           {{ err.description.message }}
         </div>
@@ -24,7 +24,7 @@
       <!-- /.form-group -->
       <div class="form-group">
         <label for="selectLanguage">言語</label>
-        <select v-model="postData.language" :class="'form-control' + err.language.invalid" id="selectLanguage">
+        <select v-model="data.language" :class="'form-control' + err.language.invalid" id="selectLanguage">
           <template v-for="(language, i) in corpusLanguageList" >
             <option :value="i" :key="i">{{ language.label }}</option>
           </template>
@@ -46,6 +46,7 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
+import * as Lib from '../../../../common/ext/functions';
 import { mapGetters } from 'vuex';
 
 import CommonModal from '../../common/modal/Modal';
@@ -60,11 +61,8 @@ export default {
   data() {
     return {
       corpusLanguageList: Core.CorpusLanguage,
-      postData: {
-        name: '',
-        description: '',
-        language: 0,
-      },
+      data: {},
+      option: {},
       err: [],
     };
   },
@@ -81,41 +79,36 @@ export default {
   },
   computed: {
     ...mapGetters({
-      errors: 'multiModal/corpusAddError'
+      errors: 'multiModal/commonError'
     }),
   },
   created() {
     Core.log('[created]');
+    this.loadApiConfig('addCorpus');
     this.resetErr();
   },
   mounted() {
     Core.log('[mounted]');
   },
   methods: {
-    // コーパス登録処理
-    execAddCorpus() {
-      Core.log('[execAddCorpus]');
-      this.$store.dispatch('corpusData/AddCorpus', this.postData);
+    loadApiConfig(configName) {
+      Core.log('[method] loadApiConfig');
+      const config = Lib.getApiConfig(configName);
+      this.option = config;
+      this.data = config.data;
+      Core.log(this.data);
     },
     // エラーリセット
     resetErr() {
-      this.err = {
-        name: {
-          hasDanger: '',
-          invalid: '',
-          message: '',
-        },
-        description: {
-          hasDanger: '',
-          invalid: '',
-          message: '',
-        },
-        language: {
-          hasDanger: '',
-          invalid: '',
-          message: '',
-        },
-      };
+      Core.log('[method] resetErr');
+      this.err = Lib.resetFormError(this.data);
+      Core.log(this.err);
+    },
+    // コーパス登録処理
+    execAddCorpus() {
+      Core.log('[method] execAddCorpus');
+      this.option.data = this.data;
+      this.$store.dispatch('corpusData/add', { option: this.option });
     },
   },
 };

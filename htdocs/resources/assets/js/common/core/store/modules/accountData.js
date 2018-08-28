@@ -35,81 +35,93 @@ const getters = {
  */
 const mutations = {
   // 取得 :アカウント一覧
-  setGetAccountListResult(state, payload) {
-    Core.log('[store] setGetAccountListResult');
-    Core.log(payload);
+  SET_LIST(state, payload) {
+    Core.log('[mutation] accountData/SET_LIST');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      state.accountList = payload.data;
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+    switch (resCode) {
+      case 200:
+        state.accountList = payload.data;
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
+        Lib.alertVendorEscalation(resCode);
+        break;
     }
-    state.loading = false;
+    state.loading = false; // 一覧ローディング非表示
   },
   // 登録
-  setAddAccountResult(state, payload) {
-    Core.log('[store] setAddAccountResult');
-    Core.log(payload);
+  ADD_RESULT(state, payload) {
+    Core.log('[mutation] accountData/ADD_RESULT');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompAddAccountModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setAccountAddError', payload.errors);
-      } else {
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompAddAccountModal');
+        this.dispatch('accountData/getList');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          Lib.alertVendorEscalation(resCode);
+        }
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
         Lib.alertVendorEscalation(resCode);
-      }
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
   // 編集
-  setSaveAccountResult(state, payload) {
-    Core.log('[store] setSaveAccountResult');
-    Core.log(payload);
+  SAVE_RESULT(state, payload) {
+    Core.log('[mutation] accountData/SAVE_RESULT');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompEditAccountModal');
-    } else if (resCode === 400) {
-      if (payload.errors.length > 0) {
-        this.commit('multiModal/setAccountEditError', payload.errors);
-      } else {
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompEditAccountModal');
+        this.dispatch('accountData/getList');
+        break;
+      case 400:
+        if (payload.errors.length > 0) {
+          this.commit('multiModal/setCommonError', payload.errors);
+        } else {
+          Lib.alertVendorEscalation(resCode);
+        }
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
         Lib.alertVendorEscalation(resCode);
-      }
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
   // 削除
-  setDeleteAccountResult(state, payload) {
-    Core.log('[store] setDeleteAccountResult');
-    Core.log(payload);
+  DELETE_RESULT(state, payload) {
+    Core.log('[mutation] accountData/DELETE_RESULT');
     const resCode = payload.code;
 
-    if (resCode === 200) {
-      this.dispatch('multiModal/showCompDeleteAccountModal');
-    } else if (resCode === 401) {
-      Lib.alertRefreshToken();
-    } else {
-      Lib.alertVendorEscalation(resCode);
+    switch (resCode) {
+      case 200:
+        this.dispatch('multiModal/showCompDeleteAccountModal');
+        this.dispatch('accountData/getList');
+        break;
+      case 401:
+        Lib.alertRefreshToken();
+        break;
+      default:
+        Lib.alertVendorEscalation(resCode);
+        break;
     }
-    this.commit('commonData/hideLoading');
-  },
-  // ajaxでエラー時にローディング削除する用
-  hideLoading() {
-    Core.log('[store] hideLoading');
-    this.commit('commonData/hideLoading');
+    this.commit('commonData/HIDE_LOADING');
   },
 };
 
@@ -119,43 +131,30 @@ const mutations = {
  */
 const actions = {
   // 取得（一覧）
-  getAccountList({ commit, state }) {
-    Core.log('[store] getAccountList');
-    state.loading = true;
+  getList({ commit, state }) {
+    Core.log('[action] accountData/getList');
+    state.loading = true; // 一覧ローディング表示
 
-    const apiOption = { ...ApiConfig.getAccountList };
-    Ajax.exec(apiOption, commit, 'setGetAccountListResult');
+    const option = Lib.getApiConfig('getAccountList');
+    Ajax.exec(this.commit, option);
   },
   // 登録
-  addAccount({ commit }, { sei_kanji, mei_kanji, email, password }) {
-    Core.log('[store] addAccount');
-    this.commit('commonData/showLoading');
-
-    const apiOption = { ...ApiConfig.addAccount };
-    apiOption.data = {
-      sei_kanji, mei_kanji, email, password
-    };
-    Ajax.exec(apiOption, commit, 'setAddAccountResult', 'hideLoading');
+  add({ commit }, { option }) {
+    Core.log('[action] accountData/add');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
   // 編集
-  saveAccount({ commit }, { sei_kanji, mei_kanji, email, password, id }) {
-    Core.log('[store] editAccount');
-    this.commit('commonData/showLoading');
-
-    const apiOption = { ...ApiConfig.saveAccount };
-    apiOption.data = {
-      sei_kanji, mei_kanji, email, password, id,
-    };
-    Ajax.exec(apiOption, commit, 'setSaveAccountResult', 'hideLoading');
+  save({ commit }, { option }) {
+    Core.log('[action] accountData/save');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
-  // 編集
-  deleteAccount({ commit }, { id }) {
-    Core.log('[store] deleteAccount');
-    this.commit('commonData/showLoading');
-
-    const apiOption = { ...ApiConfig.deleteAccount };
-    apiOption.data = { id };
-    Ajax.exec(apiOption, commit, 'setDeleteAccountResult', 'hideLoading');
+  // 削除
+  delete({ commit }, { option }) {
+    Core.log('[action] accountData/delete');
+    this.commit('commonData/SHOW_LOADING');
+    Ajax.exec(this.commit, option);
   },
 };
 

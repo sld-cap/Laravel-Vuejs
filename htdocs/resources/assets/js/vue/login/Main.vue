@@ -14,19 +14,19 @@
           <div class="divider-form"></div>
           <div class="form-group">
             <label for="email">メールアドレス</label>
-            <input id="email" type="email" class="form-control" name="email" placeholder="メールアドレスを入力してください。" v-model="auth.email" required autofocus>
+            <input id="email" type="email" class="form-control" name="email" placeholder="メールアドレスを入力してください。" v-model="data.email" required autofocus>
           </div>
           <!-- /.form-group -->
           <div class="divider-form"></div>
           <div class="form-group">
             <label for="password">パスワード</label>
-            <input id="password" type="password" class="form-control" name="password" placeholder="パスワードを入力してください。" v-model="auth.password" required>
+            <input id="password" type="password" class="form-control" name="password" placeholder="パスワードを入力してください。" v-model="data.password" required>
           </div>
           <!-- /.form-group -->
           <div class="divider-form"></div>
           <div class="checkbox">
             <label>
-              <input v-model="auth.remember_me" type="checkbox" name="remember"> ログインを記憶する
+              <input v-model="data.remember_me" type="checkbox" name="remember"> ログインを記憶する
             </label>
           </div>
           <!-- /.form-group -->
@@ -60,11 +60,8 @@ export default {
   },
   data() {
     return {
-      auth: {
-				email: "",
-        password: "",
-        remember_me: false,
-      },
+      data: {},
+      option: {},
     };
   },
   computed: {
@@ -75,18 +72,28 @@ export default {
   },
   created() {
     Core.log('[created]');
-    const token = Lib.getToken();
-    if (token !== undefined && token !== '') {
-      location.href = '/';
-    }
+    this.checkToken();
+    this.loadApiConfig('login');
   },
   methods: {
+    // トークン持っていたらダッシュボードにリダイレクトかける
+    // todo: あとで処理を見直し
+    checkToken() {
+      const token = Lib.getToken();
+      if (token !== undefined && token !== '') {
+        location.href = '/';
+      }
+    },
+    loadApiConfig(configName) {
+      const config = Lib.getApiConfig(configName);
+      this.option = config;
+      this.data = config.data;
+    },
     login: function() {
 			Core.log('[method] login');
-
-      this.$store.commit('commonData/showLoading');
-      this.$store.dispatch('commonData/login', this.auth);
-    }
+      this.option.data = this.data;
+      this.$store.dispatch('commonData/login', { option: this.option });
+    },
   }
 };
 </script>

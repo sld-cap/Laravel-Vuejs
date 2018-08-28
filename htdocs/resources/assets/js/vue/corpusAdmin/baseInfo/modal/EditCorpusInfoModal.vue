@@ -9,7 +9,7 @@
       <!-- /message -->
       <div class="form-group">
         <label for="editCorpusName">コーパス名</label>
-        <input v-model="form.name" type="text" :class="'form-control' + err.name.invalid" id="editCorpusName" aria-describedby="nameHelp" maxlength="255">
+        <input v-model="data.name" type="text" :class="'form-control' + err.name.invalid" id="editCorpusName" aria-describedby="nameHelp" maxlength="255">
         <small id="nameHelp" class="form-text text-muted">10字程度の識別しやすい名前を記入してください。</small>
         <div class="invalid-feedback">
           {{ err.name.message }}
@@ -18,7 +18,7 @@
       <!-- /.form-group -->
       <div class="form-group">
         <label for="editDescription">説明文</label>
-        <textarea v-model="form.description" :class="'form-control' + err.description.invalid" id="editDescription" rows="3" maxlength="255"></textarea>
+        <textarea v-model="data.description" :class="'form-control' + err.description.invalid" id="editDescription" rows="3" maxlength="255"></textarea>
         <!-- <small class="form-text text-muted">1000文字以内で入力してください。</small> -->
         <div class="invalid-feedback">
           {{ err.description.message }}
@@ -27,7 +27,7 @@
       <!-- /.form-group -->
       <div class="form-group">
         <label for="selectClass">言語</label>
-        <select v-model="form.language" :class="'form-control form-control-sm' + err.language.invalid" id="selectClass">
+        <select v-model="data.language" :class="'form-control form-control-sm' + err.language.invalid" id="selectClass">
           <template v-for="(language, i) in corpusLanguageList" >
             <option :value="i" :key="i">{{ language.label }}</option>
           </template>
@@ -40,7 +40,7 @@
     </div>
     <!-- /.body -->
     <div slot="footer">
-      <button @click="saveCorpusInfo" type="button" class="btn btn-primary">保存する</button>
+      <button @click="execSaveCorpus" type="button" class="btn btn-primary">保存する</button>
     </div>
     <!-- /.footer -->
   </CommonModal>
@@ -51,6 +51,7 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
+import * as Lib from '../../../../common/ext/functions';
 import CommonModal from '../../common/modal/Modal';
 
 import { mapGetters } from 'vuex';
@@ -65,19 +66,15 @@ export default {
   data() {
     return {
       corpusLanguageList: Core.CorpusLanguage,
-      form: {
-        corpus_id: this.$store.getters['commonData/corpusId'],
-        name: '',
-        description: '',
-        language: '',
-      },
+      data: {},
+      option: {},
       err: [],
     };
   },
   computed: {
     ...mapGetters({
       corpusInfo: 'corpusData/corpusInfo',
-      errors: 'multiModal/corpusEditError'
+      errors: 'multiModal/commonError'
     }),
   },
   watch: {
@@ -92,6 +89,7 @@ export default {
   },
   created() {
     Core.log('[created]');
+    this.loadApiConfig('saveCorpus');
     this.resetErr();
   },
   mounted() {
@@ -102,37 +100,35 @@ export default {
     Core.log('[updated]');
   },
   methods: {
-    // 編集データセット
-    setEditData() {
-      Core.log('[setEditData]');
-      this.form.name = this.corpusInfo.name;
-      this.form.description = this.corpusInfo.description;
-      this.form.language = this.corpusInfo.language;
-      Core.log(this.form);
-    },
-    // 更新
-    saveCorpusInfo() {
-      Core.log('[saveCorpusInfo]');
-      Core.log(this.form);
-      this.$store.dispatch('corpusData/saveCorpus', this.form);
+    loadApiConfig(configName) {
+      Core.log('[method] loadApiConfig');
+      const config = Lib.getApiConfig(configName);
+      this.option = config;
+      this.data = config.data;
+      Core.log(this.data);
     },
     // エラーリセット
     resetErr() {
-      this.err = {
-        name: {
-          invalid: '',
-          message: '',
-        },
-        description: {
-          invalid: '',
-          message: '',
-        },
-        language: {
-          invalid: '',
-          message: '',
-        },
-      };
-    }
+      Core.log('[method] resetErr');
+      this.err = Lib.resetFormError(this.data);
+      Core.log(this.err);
+    },
+    // 編集データセット
+    setEditData() {
+      Core.log('[method] setEditData');
+      this.data.name = this.corpusInfo.name;
+      this.data.description = this.corpusInfo.description;
+      this.data.language = this.corpusInfo.language;
+    },
+    // 更新
+    execSaveCorpus() {
+      Core.log('[method] execSaveCorpus');
+      const corpusId = this.$store.getters['commonData/corpusId'];
+
+      this.option.url = this.option.url.replace(/{corpus}/g, corpusId);
+      this.option.data = this.data;
+      this.$store.dispatch('corpusData/save', { option: this.option });
+    },
   },
 }
 </script>

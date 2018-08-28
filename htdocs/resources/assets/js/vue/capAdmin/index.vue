@@ -144,9 +144,9 @@ export default {
       this.currentBreadcrumbs = params;
     },
     ...mapActions({
-      getCorpusList: 'corpusData/getCorpusList',
-      getAccountList: 'accountData/getAccountList',
-      getApiList: 'apiData/getApiList',
+      getCorpusList: 'corpusData/getList',
+      getAccountList: 'accountData/getList',
+      getApiList: 'apiData/getList',
     }),
   }
 };

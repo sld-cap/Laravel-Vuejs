@@ -1,10 +1,10 @@
 <template>
   <CommonModal modalSize="modal-lg">
-    <div v-if="form.data_type === 1" slot="title">学習データのアップロード</div>
-    <div v-if="form.data_type === 0" slot="title">テストデータのアップロード</div>
+    <div v-if="data.data_type === 1" slot="title">学習データのアップロード</div>
+    <div v-if="data.data_type === 0" slot="title">テストデータのアップロード</div>
     <!-- /.title -->
     <div slot="body">
-      <div v-if="form.data_type === 1" class="alert alert-danger mt-1" role="alert">
+      <div v-if="data.data_type === 1" class="alert alert-danger mt-1" role="alert">
         <ul style="margin-bottom: 0;">
           <li>既に登録されている学習データは削除されます。</li>
           <li>学習データは5-15,000件での範囲で準備してください。</li>
@@ -12,7 +12,7 @@
         </ul>
       </div>
       <!-- /.alert -->
-      <div v-if="form.data_type === 0" class="alert alert-warning mt-1" role="alert">
+      <div v-if="data.data_type === 0" class="alert alert-warning mt-1" role="alert">
         <ul style="margin-bottom: 0;">
           <li>テストデータは、学習データの10％を目安に準備することを推奨しています。</li>
         </ul>
@@ -36,6 +36,7 @@
 
 <script>
 import * as Core from '../../../../common/core/app';
+import * as Lib from '../../../../common/ext/functions';
 import CommonModal from '../../common/modal/Modal';
 
 import { mapGetters } from 'vuex';
@@ -49,17 +50,10 @@ export default {
   props: [],
   data() {
     return {
-      form: {
-        csv_file: null,
-        data_type: this.$store.getters['multiModal/currentDataType'],
-      },
+      data: {},
+      option: {},
       err: [],
     };
-  },
-  computed: {
-    ...mapGetters({
-      errors: 'multiModal/trainingDataUploadError'
-    }),
   },
   watch: {
     'errors': {
@@ -71,34 +65,57 @@ export default {
       deep: true
     },
   },
+  computed: {
+    ...mapGetters({
+      errors: 'multiModal/trainingDataUploadError'
+    }),
+  },
   created() {
     Core.log('[created]');
+    this.loadApiConfig('uploadTrainingData');
     this.resetErr();
   },
   mounted() {
     Core.log('[mounted]');
+    this.setParams();
   },
   methods: {
-    // 登録
-    upload() {
-      Core.log('[upload]');
-      Core.log(this.form);
-      this.$store.dispatch('corpusTrainingData/uploadTrainingDataCsv', this.form);
+    loadApiConfig(configName) {
+      Core.log('[method] loadApiConfig');
+      const config = Lib.getApiConfig(configName);
+      this.option = config;
+      this.data = config.data;
+      Core.log(this.data);
+    },
+    // エラーリセット
+    resetErr() {
+      Core.log('[method] resetErr');
+      this.err = Lib.resetFormError(this.data);
+      Core.log(this.err);
+    },
+    setParams() {
+      this.data.data_type = this.$store.getters['multiModal/currentDataType'];
     },
     // 選択ファイルセット
     setUploadFile(e) {
       e.preventDefault();
       const files = e.target.files;
-      this.form.csv_file = files[0];
+      this.data.csv_file = files[0];
     },
-    // エラーリセット
-    resetErr() {
-      this.err = {
-        csv_file: {
-          invalid: '',
-          message: '',
-        },
-      };
+    // 登録
+    upload() {
+      Core.log('[method] upload');
+      this.option.data = this.data;
+      const corpusId = this.$store.getters['commonData/corpusId'];
+      this.option.url = this.option.url.replace(/{corpus_id}/g, corpusId);
+      // FormDataに変換
+      const selected_file = this.data.csv_file;
+      const current_data_type = this.data.data_type;
+      this.option.data = new FormData();
+      this.option.data.append('csv_file', selected_file);
+      this.option.data.append('data_type', current_data_type);
+
+      this.$store.dispatch('corpusTrainingData/upload', { option: this.option });
     },
   },
 };

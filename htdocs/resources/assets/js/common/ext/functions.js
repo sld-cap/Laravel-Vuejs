@@ -1,4 +1,5 @@
 import * as Core from '../core/app';
+import ApiConfig from '../core/apiConfig';
 import 'jquery.cookie';
 
 const TOKEN_OPTION = {
@@ -164,7 +165,7 @@ export function elapsedTime(dateTime) {
   const diffMinutes = elapsed.getUTCMinutes();
   const diffSeconds = elapsed.getUTCSeconds();
 
-  Core.log(`FullYear: ${diffFullYear}|Month: ${diffMonth}|Date: ${diffDate}|Hours: ${diffHours}|Minutes: ${diffMinutes}|Seconds: ${diffSeconds}`);
+  // Core.log(`FullYear: ${diffFullYear}|Month: ${diffMonth}|Date: ${diffDate}|Hours: ${diffHours}|Minutes: ${diffMinutes}|Seconds: ${diffSeconds}`);
 
   let res = dateTime;
   if (diffFullYear - 1970 > 0 || diffMonth >= 3) {
@@ -290,4 +291,30 @@ export function adjastCorpusCardDescriptionRows(classname) {
   });
   // リサイズした時のイベント
   adjastCorpusCardDescriptionRowsResize(classname);
+}
+
+/**
+ * api configロード
+ */
+export function getApiConfig(configName) {
+  Core.log('[getApiConfig]');
+  const config = JSON.parse(JSON.stringify(ApiConfig[configName]));
+  Core.log(config);
+  return config;
+}
+
+/**
+ * フォームエラーリセット
+ */
+export function resetFormError(dataObj, type) { // 0: cap管理画面 1: コーパス管理画面
+  let tmpl = {};
+
+  for(const key of Object.keys(dataObj)) {
+    tmpl[key] = {
+      hasDanger: '',
+      invalid: '',
+      message: '',
+    };
+  }
+  return tmpl;
 }
