@@ -5729,6 +5729,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5762,7 +5772,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
-  computed: {},
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])({
+    trainingDataCount: 'corpusTrainingData/trainingDataCount'
+  })),
   mounted: function mounted() {},
 
   methods: {}
@@ -5853,6 +5865,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modal_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_modal_Modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modal_mixins_MultiModalMixin__ = __webpack_require__("./resources/assets/js/vue/corpusAdmin/common/modal/mixins/MultiModalMixin.js");
+//
 //
 //
 //
@@ -42828,11 +42841,19 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { attrs: { slot: "body" }, slot: "body" }, [
-              _c("p", [
-                _vm._v(
-                  "テストデータのアップロードが完了しました。学習管理で学習しましょう。"
-                )
-              ])
+              _c("h5", [_vm._v("テストデータのアップロードが完了しました。")]),
+              _vm._v(" "),
+              _c(
+                "p",
+                { staticClass: "mt-4", on: { click: _vm.hideModal } },
+                [
+                  _c("router-link", { attrs: { to: { name: "training" } } }, [
+                    _vm._v("学習管理ページ")
+                  ]),
+                  _vm._v("でテストを実行しましょう。")
+                ],
+                1
+              )
             ]),
             _vm._v(" "),
             _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
@@ -43529,21 +43550,21 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button" },
-          on: { click: _vm.deploy }
-        },
-        [_vm._v("切り替え")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
           staticClass: "btn btn-secondary",
           attrs: { type: "button" },
           on: { click: _vm.hideModal }
         },
         [_vm._v("閉じる")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button" },
+          on: { click: _vm.deploy }
+        },
+        [_vm._v("切り替え")]
       )
     ])
   ])
@@ -46710,9 +46731,52 @@ var render = function() {
       _vm._v("テキスト削除")
     ]),
     _vm._v(" "),
-    _c("div", { attrs: { slot: "body" }, slot: "body" }, [
-      _c("p", [_vm._v("テキストの削除が完了しました。")])
-    ]),
+    _vm.currentDataType === 1
+      ? _c(
+          "div",
+          { attrs: { slot: "body" }, slot: "body" },
+          [
+            _vm.trainingDataCount >= 5
+              ? [
+                  _c("h5", [_vm._v("テキストの削除が完了しました。")]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "mt-4", on: { click: _vm.hideModal } },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "training" } } },
+                        [_vm._v("学習管理ページ")]
+                      ),
+                      _vm._v("でAI学習を実行しましょう。")
+                    ],
+                    1
+                  )
+                ]
+              : _c("p", [_vm._v("テキストの削除が完了しました。")])
+          ],
+          2
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentDataType === 0
+      ? _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+          _c("h5", [_vm._v("テキストの削除が完了しました。")]),
+          _vm._v(" "),
+          _c(
+            "p",
+            { staticClass: "mt-4", on: { click: _vm.hideModal } },
+            [
+              _c("router-link", { attrs: { to: { name: "training" } } }, [
+                _vm._v("学習管理ページ")
+              ]),
+              _vm._v("でテストを実行しましょう。")
+            ],
+            1
+          )
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
       _c(
@@ -67499,7 +67563,8 @@ var API_CONFIG = {
     }
   },
   addTrainingData: { // 教師データの登録
-    url: '/api/v1/training-data',
+    // url: '/api/v1/training-data',
+    url: '/stub/data/successData.json', // 処理成功用stub
     method: 'POST',
     header: {},
     params: {},

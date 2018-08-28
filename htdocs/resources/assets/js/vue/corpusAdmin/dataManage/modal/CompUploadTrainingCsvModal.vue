@@ -18,7 +18,8 @@
       <div slot="title">テストデータのアップロード</div>
       <!-- /.title -->
       <div slot="body">
-        <p>テストデータのアップロードが完了しました。学習管理で学習しましょう。</p>
+        <h5>テストデータのアップロードが完了しました。</h5>
+        <p class="mt-4" @click="hideModal"><router-link :to="{ name: 'training' }">学習管理ページ</router-link>でテストを実行しましょう。</p>
       </div>
       <!-- /.body -->
       <div slot="footer">

@@ -160,7 +160,8 @@ const API_CONFIG = {
     },
   },
   addTrainingData: { // 教師データの登録
-    url: '/api/v1/training-data',
+    // url: '/api/v1/training-data',
+    url: '/stub/data/successData.json', // 処理成功用stub
     method: 'POST',
     header: {},
     params: {},

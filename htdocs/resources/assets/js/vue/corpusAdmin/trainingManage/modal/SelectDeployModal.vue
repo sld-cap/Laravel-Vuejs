@@ -24,8 +24,8 @@
     </div>
     <!-- /.body -->
     <div slot="footer">
-      <button @click="deploy" type="button" class="btn btn-danger">切り替え</button>
       <button @click="hideModal" type="button" class="btn btn-secondary">閉じる</button>
+      <button @click="deploy" type="button" class="btn btn-danger">切り替え</button>
     </div>
     <!-- /.footer -->
   </CommonModal>
