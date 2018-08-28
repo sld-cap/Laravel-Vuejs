@@ -2,10 +2,9 @@
 
 namespace App\Models\Business;
 
-use Carbon\Carbon;
 use JWTAuth;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-// use Illuminate\Http\Request;
 
 use App\Models\Company;
 use App\Models\User;
@@ -23,15 +22,13 @@ use App\Enums\TrainingDataStatus;
 /**
  * コーパスの取り扱いを実装するモデル
  */
-class CorpusManager
+class CorpusManager extends BaseManager
 {
   protected $id;                  // コーパスID
   protected $corpus_obj;          // コーパスモデルオブジェクト
   protected $status;              // 学習ステータス
-  protected $message;             // 状態メッセージ 
-  protected $err_exists = false;  // エラー有無
   protected $isProduction;        // 本番コーパスチェック
-  
+
   /**
    * コンストラクタ
    */
@@ -52,14 +49,13 @@ class CorpusManager
       if ($this->isOurs()) {
         $this->corpus_obj = Corpus::findOrFail($this->id);
         $this->message = "コーパスオブジェクトをセットしました";
-
       } else {
-        $this->err_exists = true;
-
+        return false;
       }
     } catch (\Exception $e) {
-      $this->setError("指定されたコーパスは利用できません");
- 
+      $this->setError(400, $e->getMessage(), [array(
+        'message' => "指定されたコーパスは利用できません"
+      )]);
     }
   }
 
@@ -100,26 +96,6 @@ class CorpusManager
   }
 
   /**
-   * コーパスのエラーメッセージを返す
-   * 
-   * @return String
-   */
-  public function getMessage()
-  {
-    return $this->message;
-  }
-
-  /**
-   * コーパスのエラー有無を返す
-   * 
-   * @return Boolean
-   */
-  public function errorExists()
-  {
-    return $this->err_exists;
-  }
-
-  /**
    * コーパス作成者とログインユーザの所属会社を比較する
    * 
    * @return Boolean
@@ -134,18 +110,18 @@ class CorpusManager
       $corpus_company = Corpus::findOrFail($this->id)->company_id;
 
       if ($user_company == $corpus_company) {
-        $this->message = "このコーパスの所有権チェックをクリアしました";
         return true;
-
       } else {
-        $this->setError("指定コーパスの所有権が存在しません");
+        $this->setError(404, "Ownership of the specified corpus does not exist.", array(
+          'message' => "指定コーパスの所有権が存在しません"
+        ));
         return false;
-  
       }
     } catch (\Exception $e) {
-      $this->setError("コーパス所有権チェックに失敗しました");
+      $this->setError(400, $e->getMessage(), array(
+        'debug' => 'Exeption from CorpusManager@isOurs'
+      ));
       return false;
-
     }
   }
 
@@ -157,11 +133,8 @@ class CorpusManager
   public function isLearnable()
   {
     if (!$this->err_exists && $this->status == CorpusStateType::Untrained) {
-      $this->message = '学習の実行が可能です';
       return true;
     }
-
-    $this->setError('現在、学習の実行ができません');
     return false;
   }
 
@@ -173,33 +146,33 @@ class CorpusManager
   public function execLearn()
   {
     if ($this->isLearnable()) {
-      DB::beginTransaction();
-      // try {
+      try {
         // 学習データをCSVに保存する
         $training_data = new TrainingDataManager($this->id);
         $training_data->saveTrainingDataCsv();
-
-        $err_msg = $training_data->getErrorMessage();
-        if($err_msg) {
-          $this->setError($err_msg);
-          return false;
+        if ($training_data->isErrorExists()) {
+          $this->code = $training_data->getCode();
+          $this->message = $training_data->getMessage();
+          $this->data = $training_data->getData();
+          return;
         }
 
-        // NLCの学習APIを実行する
-
-      // }
-
+        // 学習の実行
+        $training_data_csv_path = $training_data->getTrainingDataPath();
+        $nlc = new NaturalLangageClassifierManager($this->id);
+        $nlc->createNlc($training_data_csv_path);
+        if ($nlc->isErrorExists()) {
+          $this->code = $nlc->getCode();
+          $this->message = $nlc->getMessage();
+          $this->data = $nlc->getData();
+        }
+        
+      } catch (\Excetption $e) {
+        $this->code = 400;
+        $this->message = $e->getMessage();
+        $this->data = [array('debug' => 'Exception from CorpusManager@execLearn')];
+      }
     }
-
-  }
-
-  /**
-   * エラーをセットする
-   */
-  private function setError($_err_message)
-  {
-    $this->err_exists = true;
-    $this->message = $_err_message;
   }
 
 }

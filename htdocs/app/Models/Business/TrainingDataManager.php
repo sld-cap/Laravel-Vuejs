@@ -5,9 +5,9 @@ namespace App\Models\Business;
 use Validator;
 use JWTAuth;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Http\Request;
 
 use App\Models\Company;
 use App\Models\Api;
@@ -24,7 +24,7 @@ use App\Enums\TrainingDataStatus;
 /**
  * AI学習のための教師データの取り扱いを実装するモデル
  */
-class TrainingDataManager
+class TrainingDataManager extends BaseManager
 {
   const SAVE_FILE_PATH = '/files/corpus-admin/training-datas/';
   protected $corpus_id;   // コーパスID
@@ -32,10 +32,6 @@ class TrainingDataManager
   protected $file_path;   // ファイルパス
   protected $file;        // SplFileObjectオブジェクト
   protected $record_cnt;  // レコード件数
-  protected $message;     // メッセージ
-  protected $err_code;    // エラーコード
-  protected $datas;       // レスポンス用整形データ
-  protected $err_exists = false;  // エラー有無フラグ
 
   /**
    * コンストラクタ
@@ -43,27 +39,6 @@ class TrainingDataManager
   public function __construct($_corpus_id)
   {
     $this->corpus_id = $_corpus_id;
-  }
-
-  /**
-   * セッター：エラーのセット
-   */
-  private function setError($_code, $_message, $_errors = null)
-  {
-    $this->err_exists = true;
-    $this->err_code = $_code;
-    $this->datas = $_errors ? $_errors : "";
-    $this->message = $_message;
-  }
-
-  /**
-   * ゲッター：エラーの有無を取得する
-   * 
-   * @return Boolean
-   */
-  public function isErrorExists()
-  {
-    return $this->err_exists;
   }
 
   /**
@@ -80,30 +55,6 @@ class TrainingDataManager
   public function getRecordCount()
   {
     return $this->record_cnt;
-  }
-
-  /**
-   * ゲッター：ステータスコードを返す
-   */
-  public function getCode()
-  {
-    return $this->err_code;
-  }
-
-  /**
-   * ゲッター：教師データ登録時のエラーメッセージを返す
-   */
-  public function getMessage()
-  {
-    return $this->message;
-  }
-
-  /**
-   * ゲッター：レスポンス用整形データを返す
-   */
-  public function getData()
-  {
-    return $this->datas;
   }
 
   /**
@@ -437,20 +388,6 @@ class TrainingDataManager
 
       $content = mb_convert_encoding($line[0], "UTF-8", "ASCII,JIS,UTF-8,EUC-JP,SJIS");
       $class_name = mb_convert_encoding($line[1], "UTF-8", "ASCII,JIS,UTF-8,EUC-JP,SJIS");
-
-      // クラス名のバリデーション
-      // $validator = Validator::make(array('class_name' => $class_name), CorpusClass::$csv_upload_rule, CorpusClass::$csv_upload_error_message);
-      // if ($validator->fails()) {
-      //   $errors = array();
-      //   foreach ($validator->errors()->toArray() as $key => $value) {
-      //     $errors[] = array(
-      //       'field_id' => $key,
-      //       'message' => $value[0] // validatorのmessegeが配列で帰ってくるので0指定
-      //     ); 
-      //   }
-      //   $this->setError(400, 'Class name validation error.', $errors);
-      //   return;
-      // }
       
       // クリエイティブのバリデーション
       $validator = Validator::make(compact('content', 'class_name'), CorpusCreative::$csv_upload_rule, CorpusCreative::$csv_upload_error_message);
@@ -608,11 +545,30 @@ class TrainingDataManager
   }
 
   /**
+   * + ファイル検索：所定フォルダ内にあるCSVを一覧で返す
+   */
+  public function getAllCsvFile()
+  {
+    return glob(public_path() . '/files/corpus-admin/*');
+  }
+
+  /**
    * + ファイル削除：所定フォルダ内にあるCSVを一括削除する
    */
   public function deleteAllCsv()
   {
-    return Storage::files(public_path() . '/files');
+    foreach ($this->getAllCsvFile() as $file) {
+      // sample ファイル以外は全て削除
+      if (strpos($file,'sample') == false) {
+        if (unlink($file) == false) {
+          $this->setError(500, 'CSV file delet is failed.', array(
+            'field_id' => 'err_message',
+            'message' => 'ファイルの削除に失敗しました。:' . $file
+          ));
+          return;
+        }
+      }
+    }
   }
 
   /**
