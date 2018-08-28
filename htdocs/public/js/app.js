@@ -5595,7 +5595,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["c" /* mapGetters */])({
     trainingData: 'corpusTrainingData/trainingData',
-    errors: 'multiModal/trainingDataAddError'
+    errors: 'multiModal/commonError'
   })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');
@@ -6078,6 +6078,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   watch: {
     'errors': {
       handler: function handler(errors) {
+        __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[watch] error更新');
+        __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](errors);
+        __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"](this.err);
         // エラー表示処理
         this.resetErr();
         this.setErrData(errors);
@@ -6087,7 +6090,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["c" /* mapGetters */])({
     trainingData: 'corpusTrainingData/trainingData',
-    errors: 'multiModal/trainingDataEditError'
+    errors: 'multiModal/commonError'
   })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[crated]');
@@ -6228,7 +6231,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     }
   },
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["c" /* mapGetters */])({
-    errors: 'multiModal/trainingDataUploadError'
+    errors: 'multiModal/commonError'
   })),
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_0__common_core_app__["log"]('[created]');

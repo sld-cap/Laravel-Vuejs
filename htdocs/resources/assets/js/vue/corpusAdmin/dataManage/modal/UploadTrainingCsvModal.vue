@@ -67,7 +67,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      errors: 'multiModal/trainingDataUploadError'
+      errors: 'multiModal/commonError'
     }),
   },
   created() {

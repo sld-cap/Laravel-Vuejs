@@ -83,7 +83,7 @@ export default {
   computed: {
     ...mapGetters({
       trainingData: 'corpusTrainingData/trainingData',
-      errors: 'multiModal/trainingDataAddError',
+      errors: 'multiModal/commonError',
     }),
   },
   created() {

@@ -63,6 +63,9 @@ export default {
   watch: {
     'errors': {
       handler: function (errors) {
+        Core.log('[watch] error更新');
+        Core.log(errors);
+        Core.log(this.err);
         // エラー表示処理
         this.resetErr();
         this.setErrData(errors);
@@ -73,7 +76,7 @@ export default {
   computed: {
     ...mapGetters({
       trainingData: 'corpusTrainingData/trainingData',
-      errors: 'multiModal/trainingDataEditError',
+      errors: 'multiModal/commonError',
     }),
   },
   created() {
