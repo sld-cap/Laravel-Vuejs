@@ -42673,15 +42673,6 @@ var render = function() {
                               "a",
                               {
                                 staticClass: "dropdown-item",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("アカウント情報の確認")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item",
                                 attrs: { href: "javascript:void(0);" },
                                 on: { click: _vm.logout }
                               },
@@ -42726,7 +42717,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "logo" }, [
       _c(
         "a",
-        { staticClass: "simple-text logo-normal", attrs: { href: "#" } },
+        { staticClass: "simple-text logo-normal", attrs: { href: "/" } },
         [
           _c("img", {
             attrs: {

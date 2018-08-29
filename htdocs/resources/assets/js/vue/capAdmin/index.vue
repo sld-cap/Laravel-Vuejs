@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="sidebar" data-color="azure" data-background-color="white">
       <div class="logo">
-        <a href="#" class="simple-text logo-normal">
+        <a href="/" class="simple-text logo-normal">
           <img src="img/cap-icon.png" alt="cap_logo" width="50px" height="45px">
           <img src="img/cap-char-logo.png" alt="cap_char" width="70px" height="45px">
         </a>
@@ -69,7 +69,7 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
-                  <a class="dropdown-item" href="#">アカウント情報の確認</a>
+                  <!-- <a class="dropdown-item" href="#">アカウント情報の確認</a> -->
                   <a @click="logout" class="dropdown-item" href="javascript:void(0);">ログアウト</a>
                 </div>
               </li>
