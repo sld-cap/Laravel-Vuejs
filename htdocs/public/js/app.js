@@ -45638,7 +45638,27 @@ var render = function() {
             staticStyle: { "background-color": "#00A1EA" }
           },
           [
-            _vm._m(0),
+            _c("div", [
+              _c(
+                "a",
+                {
+                  staticClass: "navbar-brand text-center",
+                  staticStyle: { padding: "10px 20px 10px 10px" },
+                  attrs: { href: "/corpus/" + _vm.corpusId + "/data" }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "/img/cap-icon.png",
+                      alt: "cap_logo",
+                      width: "25px",
+                      height: "20px"
+                    }
+                  }),
+                  _vm._v("\n          CAP コーパス管理画面\n        ")
+                ]
+              )
+            ]),
             _vm._v(" "),
             _c("ul", { staticClass: "navbar-nav mr-auto" }, [
               _c("li", { staticClass: "nav-item active" }, [
@@ -45658,7 +45678,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _vm._m(0)
           ]
         )
       ]),
@@ -45765,32 +45785,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "a",
-        {
-          staticClass: "navbar-brand text-center",
-          staticStyle: { padding: "10px 20px 10px 10px" },
-          attrs: { href: "/corpus/view/1" }
-        },
-        [
-          _c("img", {
-            attrs: {
-              src: "/img/cap-icon.png",
-              alt: "cap_logo",
-              width: "25px",
-              height: "20px"
-            }
-          }),
-          _vm._v("\n          CAP コーパス管理画面\n        ")
-        ]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

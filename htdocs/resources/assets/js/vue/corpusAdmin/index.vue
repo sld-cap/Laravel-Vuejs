@@ -3,7 +3,7 @@
     <header>
       <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow" style="background-color:#00A1EA;">
         <div>
-          <a class="navbar-brand text-center" href="/corpus/view/1" style="padding:10px 20px 10px 10px;">
+          <a class="navbar-brand text-center" :href='"/corpus/" + corpusId + "/data"' style="padding:10px 20px 10px 10px;">
             <img src="/img/cap-icon.png" alt="cap_logo" width="25px" height="20px">
             CAP コーパス管理画面
           </a>
